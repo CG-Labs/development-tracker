@@ -65,6 +65,25 @@ interface Development {
   units: Unit[];
 }
 
+// Monthly progress data for charts
+interface DevelopmentMonthlyData {
+  plannedQty: number;
+  actualQty: number;
+  plannedValue: number;
+  actualValue: number;
+}
+
+interface MonthlyData {
+  month: string; // "Jan 2025", "Feb 2025", etc.
+  plannedQty: number;
+  actualQty: number;
+  plannedValue: number;
+  actualValue: number;
+  byDevelopment: {
+    [developmentName: string]: DevelopmentMonthlyData;
+  };
+}
+
 // Sheet names to process
 const SHEET_NAMES = ["Knockhill Ph 1", "Knockhill Ph2", "Magee", "Newtown Meadows"];
 
@@ -430,6 +449,96 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
   };
 }
 
+// Development names in the summary sheets (rows 9-16)
+const SUMMARY_DEVELOPMENT_NAMES = [
+  "Knockhill Ph 1",
+  "Knockhill Ph 2",
+  "Childers Road",
+  "Magee",
+  "Newtown Meadows",
+  "Newtown Manor",
+  "Barrington St.",
+  "BNG",
+];
+
+function processSummarySheets(workbook: XLSX.WorkBook): MonthlyData[] {
+  const qtySheet = workbook.Sheets["Summary (Qty)"];
+  const valSheet = workbook.Sheets["Summary (Val)"];
+
+  if (!qtySheet || !valSheet) {
+    console.log("Summary sheets not found");
+    return [];
+  }
+
+  // Convert to array of arrays
+  const qtyData: unknown[][] = utils.sheet_to_json(qtySheet, { header: 1 });
+  const valData: unknown[][] = utils.sheet_to_json(valSheet, { header: 1 });
+
+  console.log("\n" + "=".repeat(60));
+  console.log("PROCESSING SUMMARY SHEETS");
+  console.log("=".repeat(60));
+
+  // Row 6 (index 5) has Excel date serial numbers for months, starting from column B (index 1)
+  // Row 7 (index 6) = Planned Units
+  // Row 8 (index 7) = Actual Units
+  // Rows 9-16 (index 8-15) = Per-development data
+  const monthHeaders = qtyData[5] as unknown[];
+  console.log("Month headers (row 6):", JSON.stringify((monthHeaders || []).slice(0, 15)));
+
+  // Find all month columns (starting from column B, index 1)
+  const monthlyData: MonthlyData[] = [];
+
+  // Process each month column (start at column B = index 1)
+  for (let colIndex = 1; colIndex < (monthHeaders?.length || 0); colIndex++) {
+    const monthHeader = monthHeaders[colIndex];
+    if (!monthHeader || monthHeader === "" || monthHeader === "Total") continue;
+    if (typeof monthHeader !== "number") continue; // Skip non-date values
+
+    // Convert Excel date serial to month string
+    const excelEpoch = new Date(1899, 11, 30);
+    const date = new Date(excelEpoch.getTime() + monthHeader * 24 * 60 * 60 * 1000);
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthStr = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+
+    // Row 7 (index 6) = Planned Units total
+    // Row 8 (index 7) = Actual Units total
+    const plannedQty = Number(qtyData[6]?.[colIndex]) || 0;
+    const actualQty = Number(qtyData[7]?.[colIndex]) || 0;
+    const plannedValue = Number(valData[6]?.[colIndex]) || 0;
+    const actualValue = Number(valData[7]?.[colIndex]) || 0;
+
+    // Get per-development data (rows 9-16, index 8-15)
+    const byDevelopment: { [name: string]: DevelopmentMonthlyData } = {};
+
+    for (let devIndex = 0; devIndex < SUMMARY_DEVELOPMENT_NAMES.length; devIndex++) {
+      const rowIndex = 8 + devIndex; // Rows 9-16 = index 8-15
+      const devName = SUMMARY_DEVELOPMENT_NAMES[devIndex];
+
+      byDevelopment[devName] = {
+        plannedQty: Number(qtyData[rowIndex]?.[colIndex]) || 0,
+        actualQty: Number(qtyData[rowIndex]?.[colIndex]) || 0, // Same row for actual in dev rows
+        plannedValue: Number(valData[rowIndex]?.[colIndex]) || 0,
+        actualValue: Number(valData[rowIndex]?.[colIndex]) || 0,
+      };
+    }
+
+    monthlyData.push({
+      month: monthStr,
+      plannedQty,
+      actualQty,
+      plannedValue,
+      actualValue,
+      byDevelopment,
+    });
+  }
+
+  console.log(`Processed ${monthlyData.length} months of data`);
+  console.log("\nSample monthly data (first 3 months):");
+  console.log(JSON.stringify(monthlyData.slice(0, 3), null, 2));
+
+  return monthlyData;
+}
+
 function main() {
   const excelPath = path.resolve(__dirname, "../../Sales Tracker Quick Reference.xlsx");
 
@@ -494,12 +603,48 @@ function main() {
 export const developments: Development[] = ${JSON.stringify(developments, null, 2)};
 `;
 
-  // Save to file
+  // Save developments to file
   const outputPath = path.resolve(__dirname, "../data/realDevelopments.ts");
   fs.writeFileSync(outputPath, tsContent, "utf-8");
 
   console.log("\n" + "=".repeat(60));
   console.log(`TypeScript file saved to: ${outputPath}`);
+  console.log("=".repeat(60));
+
+  // Process summary sheets for progress data
+  const monthlyData = processSummarySheets(workbook);
+
+  // Generate progress data TypeScript file
+  const progressTsContent = `// Auto-generated from Sales Tracker Quick Reference.xlsx
+// Generated on: ${new Date().toISOString()}
+
+export interface DevelopmentMonthlyData {
+  plannedQty: number;
+  actualQty: number;
+  plannedValue: number;
+  actualValue: number;
+}
+
+export interface MonthlyData {
+  month: string;
+  plannedQty: number;
+  actualQty: number;
+  plannedValue: number;
+  actualValue: number;
+  byDevelopment: {
+    [developmentName: string]: DevelopmentMonthlyData;
+  };
+}
+
+export const progressData: MonthlyData[] = ${JSON.stringify(monthlyData, null, 2)};
+`;
+
+  // Save progress data to file
+  const progressOutputPath = path.resolve(__dirname, "../data/progressData.ts");
+  fs.writeFileSync(progressOutputPath, progressTsContent, "utf-8");
+
+  console.log("\n" + "=".repeat(60));
+  console.log(`Progress data file saved to: ${progressOutputPath}`);
   console.log("=".repeat(60));
 }
 

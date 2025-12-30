@@ -1,6 +1,7 @@
 import { developments } from "../data/realDevelopments";
 import type { Development, PortfolioStats } from "../types";
 import { DevelopmentCard } from "./DevelopmentCard";
+import { ProgressMonitoring } from "./ProgressMonitoring";
 
 function calculatePortfolioStats(devs: Development[]): PortfolioStats {
   const stats: PortfolioStats = {
@@ -153,6 +154,9 @@ export function Dashboard() {
           ))}
         </div>
       </section>
+
+      {/* Progress Monitoring Section */}
+      <ProgressMonitoring />
     </div>
   );
 }
