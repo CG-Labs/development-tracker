@@ -1,6 +1,8 @@
 export type ConstructionStatus = "Not Started" | "In Progress" | "Complete";
 
-export type SalesStatus = "Available" | "Reserved" | "Sale Agreed" | "Sold";
+export type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contracted" | "Complete";
+
+export type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
 export interface DocumentationChecklist {
   contractSigned: boolean;
@@ -10,7 +12,7 @@ export interface DocumentationChecklist {
 
 export interface Unit {
   unitNumber: string;
-  type: "Detached" | "Semi-Detached" | "Terraced" | "Apartment";
+  type: UnitType;
   bedrooms: number;
   constructionStatus: ConstructionStatus;
   salesStatus: SalesStatus;
@@ -34,8 +36,9 @@ export interface Development {
 export interface PortfolioStats {
   totalDevelopments: number;
   totalUnits: number;
-  sold: number;
-  available: number;
-  reserved: number;
-  saleAgreed: number;
+  notReleased: number;
+  forSale: number;
+  underOffer: number;
+  contracted: number;
+  complete: number;
 }

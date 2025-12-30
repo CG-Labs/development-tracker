@@ -11,10 +11,11 @@ const constructionBadgeClasses: Record<ConstructionStatus, string> = {
 };
 
 const salesBadgeClasses: Record<SalesStatus, string> = {
-  Sold: "badge badge-sold",
-  "Sale Agreed": "badge badge-agreed",
-  Reserved: "badge badge-reserved",
-  Available: "badge badge-available",
+  "Not Released": "badge badge-notstarted",
+  "For Sale": "badge badge-available",
+  "Under Offer": "badge badge-reserved",
+  "Contracted": "badge badge-agreed",
+  "Complete": "badge badge-sold",
 };
 
 function formatPrice(price: number): string {
@@ -236,10 +237,11 @@ export function DevelopmentDetail() {
               className="select"
             >
               <option value="all">All Statuses</option>
-              <option value="Available">Available</option>
-              <option value="Reserved">Reserved</option>
-              <option value="Sale Agreed">Sale Agreed</option>
-              <option value="Sold">Sold</option>
+              <option value="Not Released">Not Released</option>
+              <option value="For Sale">For Sale</option>
+              <option value="Under Offer">Under Offer</option>
+              <option value="Contracted">Contracted</option>
+              <option value="Complete">Complete</option>
             </select>
           </div>
 

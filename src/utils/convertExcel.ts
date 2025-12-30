@@ -10,7 +10,8 @@ const { readFile, utils } = XLSX;
 
 // Types matching our application
 type ConstructionStatus = "Not Started" | "In Progress" | "Complete";
-type SalesStatus = "Available" | "Reserved" | "Sale Agreed" | "Sold";
+type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contracted" | "Complete";
+type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
 interface DocumentationChecklist {
   contractSigned: boolean;
@@ -20,7 +21,7 @@ interface DocumentationChecklist {
 
 interface Unit {
   unitNumber: string;
-  type: "Detached" | "Semi-Detached" | "Terraced" | "Apartment";
+  type: UnitType;
   bedrooms: number;
   constructionStatus: ConstructionStatus;
   salesStatus: SalesStatus;
@@ -164,18 +165,27 @@ const SHEET_COLUMN_MAPPINGS: Record<string, ColumnMapping> = {
 };
 
 // Map unit type from Excel to our type
-function mapUnitType(excelType: string): Unit["type"] {
-  const typeMap: Record<string, Unit["type"]> = {
-    "Detached": "Detached",
-    "Semi-Detached": "Semi-Detached",
-    "Semi Detached": "Semi-Detached",
-    "Terraced": "Terraced",
-    "Terrace": "Terraced",
+function mapUnitType(excelType: string): UnitType {
+  const typeMap: Record<string, UnitType> = {
+    // House types
+    "Detached": "House-Detached",
+    "Semi-Detached": "House-Semi",
+    "Semi Detached": "House-Semi",
+    "Semi": "House-Semi",
+    "Terraced": "House-Terrace",
+    "Terrace": "House-Terrace",
+    "House": "House-Semi",
+    // Apartment types
     "Apartment": "Apartment",
     "Apt": "Apartment",
     "Flat": "Apartment",
+    "Studio": "Apartment Studio",
+    // Duplex types
+    "Duplex GF": "Duplex Apartment",
+    "Duplex FF": "Duplex Apartment",
+    "Duplex": "Duplex Apartment",
   };
-  return typeMap[excelType] || "Detached";
+  return typeMap[excelType] || "House-Semi";
 }
 
 // Map construction status from Excel
@@ -201,23 +211,23 @@ function mapConstructionStatus(status: string): ConstructionStatus {
 // Map sales/conveyancy status from Excel
 function mapSalesStatus(status: string): SalesStatus {
   const statusMap: Record<string, SalesStatus> = {
-    // Exact matches from Excel
-    "Complete": "Sold",
-    "For Sale": "Available",
-    "Under Offer": "Sale Agreed",
-    "Contracted": "Sale Agreed",
-    "Not Released": "Available",
-    // Additional possible values
-    "Available": "Available",
-    "Reserved": "Reserved",
-    "Sale Agreed": "Sale Agreed",
-    "Sold": "Sold",
-    "Closed": "Sold",
-    "Completed": "Sold",
-    "Deposit Paid": "Sale Agreed",
-    "": "Available",
+    // Exact matches from Excel (keep as-is where possible)
+    "Complete": "Complete",
+    "For Sale": "For Sale",
+    "Under Offer": "Under Offer",
+    "Contracted": "Contracted",
+    "Not Released": "Not Released",
+    // Map old terminology to new
+    "Available": "For Sale",
+    "Reserved": "Under Offer",
+    "Sale Agreed": "Contracted",
+    "Sold": "Complete",
+    "Closed": "Complete",
+    "Completed": "Complete",
+    "Deposit Paid": "Contracted",
+    "": "For Sale",
   };
-  return statusMap[status] || "Available";
+  return statusMap[status] || "For Sale";
 }
 
 // Convert Excel date serial to ISO string
@@ -358,8 +368,8 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
       plannedCloseDate: excelDateToISO(row[COLUMNS.plannedCloseDate] as number | string),
     };
 
-    // Set soldPrice if sold
-    if (unit.salesStatus === "Sold" && unit.listPrice > 0) {
+    // Set soldPrice if complete (sold)
+    if (unit.salesStatus === "Complete" && unit.listPrice > 0) {
       unit.soldPrice = unit.listPrice;
     }
 

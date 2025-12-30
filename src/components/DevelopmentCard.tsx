@@ -17,18 +17,18 @@ function formatCurrency(value: number): string {
 }
 
 export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
-  const sold = development.units.filter((u) => u.salesStatus === "Sold").length;
-  const available = development.units.filter(
-    (u) => u.salesStatus === "Available"
+  const salesComplete = development.units.filter((u) => u.salesStatus === "Complete").length;
+  const forSale = development.units.filter(
+    (u) => u.salesStatus === "For Sale"
   ).length;
-  const reserved = development.units.filter(
-    (u) => u.salesStatus === "Reserved"
+  const underOffer = development.units.filter(
+    (u) => u.salesStatus === "Under Offer"
   ).length;
-  const saleAgreed = development.units.filter(
-    (u) => u.salesStatus === "Sale Agreed"
+  const contracted = development.units.filter(
+    (u) => u.salesStatus === "Contracted"
   ).length;
 
-  const complete = development.units.filter(
+  const constructionComplete = development.units.filter(
     (u) => u.constructionStatus === "Complete"
   ).length;
   const inProgress = development.units.filter(
@@ -36,10 +36,10 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
   ).length;
 
   const completionPercentage = Math.round(
-    (complete / development.totalUnits) * 100
+    (constructionComplete / development.totalUnits) * 100
   );
 
-  const soldPercentage = Math.round((sold / development.totalUnits) * 100);
+  const salesCompletePercentage = Math.round((salesComplete / development.totalUnits) * 100);
 
   // Financial calculations
   const gdv = development.units.reduce((sum, unit) => {
@@ -48,7 +48,7 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
   }, 0);
 
   const salesRevenue = development.units
-    .filter((u) => u.salesStatus === "Sold")
+    .filter((u) => u.salesStatus === "Complete")
     .reduce((sum, unit) => {
       const price = (unit as { priceIncVat?: number }).priceIncVat || unit.listPrice || 0;
       return sum + price;
@@ -91,26 +91,26 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
       {/* Sales Status Grid */}
       <div className="grid grid-cols-4 gap-3 mb-5">
         <SalesMetric
-          label="Sold"
-          value={sold}
+          label="Complete"
+          value={salesComplete}
           colorClass="text-[var(--accent-gold-bright)]"
           bgClass="bg-[rgba(245,158,11,0.1)]"
         />
         <SalesMetric
-          label="Agreed"
-          value={saleAgreed}
+          label="Contracted"
+          value={contracted}
           colorClass="text-[var(--accent-purple)]"
           bgClass="bg-[rgba(139,92,246,0.1)]"
         />
         <SalesMetric
-          label="Reserved"
-          value={reserved}
+          label="Under Offer"
+          value={underOffer}
           colorClass="text-[var(--accent-orange)]"
           bgClass="bg-[rgba(249,115,22,0.1)]"
         />
         <SalesMetric
-          label="Available"
-          value={available}
+          label="For Sale"
+          value={forSale}
           colorClass="text-[var(--accent-cyan)]"
           bgClass="bg-[rgba(6,214,214,0.1)]"
         />
@@ -140,7 +140,7 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
         </div>
         <div className="flex justify-between mt-2">
           <span className="font-mono text-[10px] text-[var(--text-muted)]">
-            {complete} complete
+            {constructionComplete} complete
           </span>
           <span className="font-mono text-[10px] text-[var(--text-muted)]">
             {inProgress} in progress
@@ -152,16 +152,16 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
       <div className="mb-5">
         <div className="flex justify-between items-center mb-2">
           <span className="font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">
-            Sales Progress
+            Sales Complete
           </span>
           <span className="font-mono text-sm font-bold text-[var(--accent-gold-bright)]">
-            {soldPercentage}%
+            {salesCompletePercentage}%
           </span>
         </div>
         <div className="progress-bar">
           <div
             className="progress-fill progress-gold"
-            style={{ width: `${soldPercentage}%` }}
+            style={{ width: `${salesCompletePercentage}%` }}
           />
         </div>
       </div>
