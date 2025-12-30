@@ -5,9 +5,23 @@ export type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contrac
 export type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
 export interface DocumentationChecklist {
+  // Completion Documentation
+  bcmsReceived: boolean;
+  bcmsReceivedDate?: string;
+  landRegistryApproved: boolean;
+  landRegistryApprovedDate?: string;
+  homebondReceived: boolean;
+  homebondReceivedDate?: string;
+
+  // Sales Documentation
+  sanApproved: boolean;
+  sanApprovedDate?: string;
+  contractIssued: boolean;
+  contractIssuedDate?: string;
   contractSigned: boolean;
-  loanApproved: boolean;
-  bcmsSubmitted: boolean;
+  contractSignedDate?: string;
+  saleClosed: boolean;
+  saleClosedDate?: string;
 }
 
 export interface Unit {

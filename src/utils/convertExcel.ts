@@ -14,9 +14,23 @@ type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contracted" | 
 type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
 interface DocumentationChecklist {
+  // Completion Documentation
+  bcmsReceived: boolean;
+  bcmsReceivedDate?: string;
+  landRegistryApproved: boolean;
+  landRegistryApprovedDate?: string;
+  homebondReceived: boolean;
+  homebondReceivedDate?: string;
+
+  // Sales Documentation
+  sanApproved: boolean;
+  sanApprovedDate?: string;
+  contractIssued: boolean;
+  contractIssuedDate?: string;
   contractSigned: boolean;
-  loanApproved: boolean;
-  bcmsSubmitted: boolean;
+  contractSignedDate?: string;
+  saleClosed: boolean;
+  saleClosedDate?: string;
 }
 
 interface Unit {
@@ -72,6 +86,7 @@ interface ColumnMapping {
   priceIncVat: number;
   snagDate: number;
   desnagDate: number;
+  bcmsDate: number;
   plannedCloseDate: number;
   actualCloseDate: number;
 }
@@ -98,7 +113,7 @@ const COLUMNS_WITH_TYPE: ColumnMapping = {
   // Q: Extras (skipped)
   snagDate: 17,           // R: Snag date
   desnagDate: 18,         // S: De-snag date
-  // T: BCMS Submission Date (skipped)
+  bcmsDate: 19,           // T: BCMS Submission Date
   plannedCloseDate: 20,   // U: Current Planned Closed
   actualCloseDate: 21,    // V: Actual Closed
 };
@@ -123,7 +138,7 @@ const COLUMNS_WITHOUT_TYPE: ColumnMapping = {
   // P: Extras (skipped)
   snagDate: 16,           // Q: Snag date
   desnagDate: 17,         // R: De-snag date
-  // S: BCMS Submission Date (skipped)
+  bcmsDate: 18,           // S: BCMS Submission Date
   plannedCloseDate: 19,   // T: Current Planned Closed
   actualCloseDate: 20,    // U: Actual Closed
 };
@@ -150,7 +165,7 @@ const COLUMNS_NEWTOWN: ColumnMapping = {
   // R: Extras (skipped)
   snagDate: 18,           // S: Snag date
   desnagDate: 19,         // T: De-snag date
-  // U: BCMS Submission Date (skipped)
+  bcmsDate: 20,           // U: BCMS Submission Date
   plannedCloseDate: 21,   // V: Current Planned Closed
   // W: BCMS Status (skipped)
   actualCloseDate: 23,    // X: Actual Closed
@@ -343,19 +358,45 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
     constructionStatusValues.add(rawConstructionStatus);
     salesStatusValues.add(rawSalesStatus);
 
+    // Get dates for documentation
+    const bcmsDateValue = excelDateToISO(row[COLUMNS.bcmsDate] as number | string);
+    const contractReturnedDate = excelDateToISO(contractReturned as number | string);
+    const clientSignedDate = excelDateToISO(clientSigned as number | string);
+    const actualCloseDate = excelDateToISO(row[COLUMNS.actualCloseDate] as number | string);
+
+    // Determine if sale is complete
+    const salesStatus = mapSalesStatus(rawSalesStatus);
+    const isSaleComplete = salesStatus === "Complete";
+    const isContracted = salesStatus === "Contracted" || isSaleComplete;
+    const hasContract = !!contractReturned || !!clientSigned || isContracted;
+
     const unit: Unit = {
       unitNumber: String(unitNumber),
       type: mapUnitType(String(row[COLUMNS.unitType] || "")),
       bedrooms: Number(row[COLUMNS.bedrooms]) || 0,
       constructionStatus: mapConstructionStatus(rawConstructionStatus),
-      salesStatus: mapSalesStatus(rawSalesStatus),
+      salesStatus: salesStatus,
       listPrice: parsePrice(row[COLUMNS.priceIncVat]) || parsePrice(row[COLUMNS.priceExVat]),
       snagDate: excelDateToISO(row[COLUMNS.snagDate] as number | string),
-      closeDate: excelDateToISO(row[COLUMNS.actualCloseDate] as number | string),
+      closeDate: actualCloseDate,
       documentation: {
-        contractSigned: !!contractReturned || !!clientSigned,
-        loanApproved: !!loanOfferFunds,
-        bcmsSubmitted: false, // Not in Excel, default to false
+        // Completion Documentation
+        bcmsReceived: !!bcmsDateValue,
+        bcmsReceivedDate: bcmsDateValue,
+        landRegistryApproved: false, // Not available in Excel
+        landRegistryApprovedDate: undefined,
+        homebondReceived: false, // Not available in Excel
+        homebondReceivedDate: undefined,
+
+        // Sales Documentation
+        sanApproved: hasContract, // Infer from contract status
+        sanApprovedDate: undefined, // Not directly available
+        contractIssued: hasContract,
+        contractIssuedDate: contractReturnedDate || clientSignedDate,
+        contractSigned: !!clientSigned || isContracted,
+        contractSignedDate: clientSignedDate,
+        saleClosed: isSaleComplete,
+        saleClosedDate: isSaleComplete ? actualCloseDate : undefined,
       },
       // Additional fields
       partV: row[COLUMNS.partV] === "Yes" || row[COLUMNS.partV] === true,

@@ -1,7 +1,7 @@
 import type { Development } from "../types";
 
 // Auto-generated from Sales Tracker Quick Reference.xlsx
-// Generated on: 2025-12-30T21:42:33.849Z
+// Generated on: 2025-12-30T22:13:38.740Z
 
 export const developments: Development[] = [
   {
@@ -19,9 +19,14 @@ export const developments: Development[] = [
         "listPrice": 450000,
         "closeDate": "2024-07-29",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -41,9 +46,14 @@ export const developments: Development[] = [
         "listPrice": 435000,
         "closeDate": "2024-06-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -63,9 +73,14 @@ export const developments: Development[] = [
         "listPrice": 500000,
         "closeDate": "2024-05-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-05-27"
         },
         "partV": false,
         "buyerType": "Private",
@@ -85,9 +100,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-01-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-01-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -107,9 +127,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-03-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -129,9 +154,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-03-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -151,9 +181,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-03-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -173,9 +208,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-01-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-01-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -195,9 +235,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-03-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -217,9 +262,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-07-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -239,9 +289,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-05-17",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-05-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -261,9 +316,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-06-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -283,9 +343,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-01-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-01-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -305,9 +370,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-03-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -327,9 +397,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-02-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-02-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -349,9 +424,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-03-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -371,9 +451,14 @@ export const developments: Development[] = [
         "listPrice": 335000,
         "closeDate": "2024-10-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -394,9 +479,16 @@ export const developments: Development[] = [
         "snagDate": "2024-11-13",
         "closeDate": "2024-12-06",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2001-11-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-16",
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-06"
         },
         "partV": false,
         "buyerType": "Private",
@@ -418,9 +510,16 @@ export const developments: Development[] = [
         "snagDate": "2025-07-30",
         "closeDate": "2025-08-29",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-23",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-05-15",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -442,9 +541,16 @@ export const developments: Development[] = [
         "snagDate": "2025-06-06",
         "closeDate": "2025-06-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -465,9 +571,16 @@ export const developments: Development[] = [
         "snagDate": "2025-05-21",
         "closeDate": "2025-07-02",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-02",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-02",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-02"
         },
         "partV": false,
         "buyerType": "Private",
@@ -487,9 +600,14 @@ export const developments: Development[] = [
         "listPrice": 330000,
         "closeDate": "2024-10-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -510,9 +628,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-07",
         "closeDate": "2024-11-15",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -534,9 +657,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-18",
         "closeDate": "2024-11-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -557,9 +685,16 @@ export const developments: Development[] = [
         "snagDate": "2024-11-05",
         "closeDate": "2024-12-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-11-26",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-18",
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -580,9 +715,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-17",
         "closeDate": "2024-11-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -603,9 +743,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-05",
         "closeDate": "2024-11-15",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -627,9 +772,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-28",
         "closeDate": "2024-11-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -651,9 +801,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-14",
         "closeDate": "2024-12-04",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -675,9 +831,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-06",
         "closeDate": "2025-07-29",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-31",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-31",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -698,9 +862,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-19",
         "closeDate": "2025-06-05",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -722,9 +894,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-27",
         "closeDate": "2025-07-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-31",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -745,9 +925,16 @@ export const developments: Development[] = [
         "snagDate": "2024-11-25",
         "closeDate": "2024-12-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-11-11",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -769,9 +956,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-22",
         "closeDate": "2024-09-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -793,9 +986,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-31",
         "closeDate": "2025-02-17",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2001-11-22",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2001-11-22",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -815,9 +1015,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-06-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -837,9 +1042,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-06-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -859,9 +1069,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-06-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -881,9 +1096,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-06-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -903,9 +1123,14 @@ export const developments: Development[] = [
         "listPrice": 520000,
         "closeDate": "2024-07-22",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-22"
         },
         "partV": false,
         "buyerType": "Private",
@@ -926,9 +1151,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-31",
         "closeDate": "2025-03-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-10-25",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-25",
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -949,9 +1181,14 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2024-07-29",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -971,9 +1208,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-07-29",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -993,9 +1235,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-08-15",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -1015,9 +1262,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-08-01",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -1037,9 +1289,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-08-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -1059,9 +1316,14 @@ export const developments: Development[] = [
         "listPrice": 399000,
         "closeDate": "2024-08-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -1081,9 +1343,14 @@ export const developments: Development[] = [
         "listPrice": 499000,
         "closeDate": "2024-08-23",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -1110,9 +1377,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1130,9 +1401,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -1150,9 +1425,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -1170,9 +1449,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 257161.56,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1190,9 +1473,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1210,9 +1497,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -1230,9 +1521,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 257161.56,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1250,9 +1545,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 257161.56,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1270,9 +1569,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -1290,9 +1593,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1310,9 +1617,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1330,9 +1641,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 306284.27,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1350,9 +1665,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1370,9 +1689,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1390,9 +1713,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1410,9 +1737,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1430,9 +1761,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1450,9 +1785,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1470,9 +1809,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1490,9 +1833,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1510,9 +1857,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1530,9 +1881,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1550,9 +1905,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1570,9 +1929,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1590,9 +1953,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1610,9 +1977,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1630,9 +2001,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1650,9 +2025,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1670,9 +2049,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1690,9 +2073,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1710,9 +2097,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1730,9 +2121,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1750,9 +2145,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1770,9 +2169,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1790,9 +2193,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1810,9 +2217,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1830,9 +2241,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1850,9 +2265,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1870,9 +2289,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1890,9 +2313,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 407500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1910,9 +2337,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 415000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1930,9 +2361,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 415000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1950,9 +2385,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 415000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1970,9 +2409,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 415000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -1999,9 +2442,14 @@ export const developments: Development[] = [
         "listPrice": 440000,
         "closeDate": "2024-06-24",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2021,9 +2469,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2043,9 +2496,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-04-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2065,9 +2523,14 @@ export const developments: Development[] = [
         "listPrice": 405000,
         "closeDate": "2024-06-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2087,9 +2550,14 @@ export const developments: Development[] = [
         "listPrice": 415000,
         "closeDate": "2024-07-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2109,9 +2577,14 @@ export const developments: Development[] = [
         "listPrice": 407500,
         "closeDate": "2024-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2131,9 +2604,14 @@ export const developments: Development[] = [
         "listPrice": 405000,
         "closeDate": "2024-04-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2153,9 +2631,14 @@ export const developments: Development[] = [
         "listPrice": 407500,
         "closeDate": "2024-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2175,9 +2658,14 @@ export const developments: Development[] = [
         "listPrice": 405000,
         "closeDate": "2024-04-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2197,9 +2685,14 @@ export const developments: Development[] = [
         "listPrice": 405000,
         "closeDate": "2024-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2219,9 +2712,14 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2024-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2241,9 +2739,14 @@ export const developments: Development[] = [
         "listPrice": 320000,
         "closeDate": "2024-10-29",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2263,9 +2766,14 @@ export const developments: Development[] = [
         "listPrice": 365000,
         "closeDate": "2024-10-02",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-02"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2285,9 +2793,14 @@ export const developments: Development[] = [
         "listPrice": 262500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2307,9 +2820,14 @@ export const developments: Development[] = [
         "listPrice": 307500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2330,9 +2848,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-14",
         "closeDate": "2024-11-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2353,9 +2876,14 @@ export const developments: Development[] = [
         "listPrice": 320000,
         "closeDate": "2024-10-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2375,9 +2903,14 @@ export const developments: Development[] = [
         "listPrice": 262500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2397,9 +2930,14 @@ export const developments: Development[] = [
         "listPrice": 307500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2419,9 +2957,14 @@ export const developments: Development[] = [
         "listPrice": 307500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2441,9 +2984,14 @@ export const developments: Development[] = [
         "listPrice": 262500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2464,9 +3012,16 @@ export const developments: Development[] = [
         "snagDate": "2024-12-10",
         "closeDate": "2025-02-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-01-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2487,9 +3042,14 @@ export const developments: Development[] = [
         "listPrice": 365000,
         "closeDate": "2024-10-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2509,9 +3069,14 @@ export const developments: Development[] = [
         "listPrice": 307500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2531,9 +3096,14 @@ export const developments: Development[] = [
         "listPrice": 262500,
         "closeDate": "2024-12-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-12"
         },
         "partV": false,
         "buyerType": "KC",
@@ -2554,9 +3124,14 @@ export const developments: Development[] = [
         "snagDate": "2024-09-23",
         "closeDate": "2025-04-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2577,9 +3152,14 @@ export const developments: Development[] = [
         "listPrice": 320000,
         "closeDate": "2024-10-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2599,9 +3179,14 @@ export const developments: Development[] = [
         "listPrice": 415000,
         "closeDate": "2024-07-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2621,9 +3206,14 @@ export const developments: Development[] = [
         "listPrice": 377500,
         "closeDate": "2024-06-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2643,9 +3233,14 @@ export const developments: Development[] = [
         "listPrice": 405000,
         "closeDate": "2024-06-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2665,9 +3260,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-06-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2687,9 +3287,14 @@ export const developments: Development[] = [
         "listPrice": 377500,
         "closeDate": "2024-06-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2709,9 +3314,14 @@ export const developments: Development[] = [
         "listPrice": 377500,
         "closeDate": "2024-06-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2731,9 +3341,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-06-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2753,9 +3368,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-07-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2775,9 +3395,14 @@ export const developments: Development[] = [
         "listPrice": 376000,
         "closeDate": "2024-07-24",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2797,9 +3422,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-06-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2819,9 +3449,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-08-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2841,9 +3476,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-06-28",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-28"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2863,9 +3503,14 @@ export const developments: Development[] = [
         "listPrice": 377500,
         "closeDate": "2024-07-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2885,9 +3530,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-07-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2908,9 +3558,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2025-01-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2932,9 +3588,15 @@ export const developments: Development[] = [
         "snagDate": "2027-11-29",
         "closeDate": "2025-02-06",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-06"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2956,9 +3618,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2024-12-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -2980,9 +3648,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-28",
         "closeDate": "2025-01-23",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3004,9 +3678,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-28",
         "closeDate": "2025-01-21",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3028,9 +3708,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2025-01-17",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3052,9 +3738,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2025-01-23",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3076,9 +3768,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-29",
         "closeDate": "2025-01-21",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3099,9 +3797,14 @@ export const developments: Development[] = [
         "listPrice": 480000,
         "closeDate": "2024-10-30",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-30"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3121,9 +3824,14 @@ export const developments: Development[] = [
         "listPrice": 480000,
         "closeDate": "2024-09-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3143,9 +3851,15 @@ export const developments: Development[] = [
         "listPrice": 415000,
         "closeDate": "2024-09-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-09-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3165,9 +3879,14 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2024-09-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3187,9 +3906,14 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2024-09-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3209,9 +3933,14 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2024-08-28",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-28"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3232,9 +3961,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2025-01-23",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3256,9 +3991,15 @@ export const developments: Development[] = [
         "snagDate": "2024-11-28",
         "closeDate": "2025-01-21",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3280,9 +4021,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-27",
         "closeDate": "2025-03-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3304,9 +4050,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-10",
         "closeDate": "2025-03-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3328,9 +4079,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-27",
         "closeDate": "2025-03-06",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-06"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3352,9 +4108,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-27",
         "closeDate": "2025-02-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3376,9 +4137,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-28",
         "closeDate": "2025-03-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3400,9 +4166,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-27",
         "closeDate": "2025-03-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3424,9 +4195,16 @@ export const developments: Development[] = [
         "snagDate": "2025-05-19",
         "closeDate": "2025-07-01",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3447,9 +4225,16 @@ export const developments: Development[] = [
         "listPrice": 560000,
         "closeDate": "2025-10-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-29",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-29",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3470,9 +4255,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-15",
         "closeDate": "2024-12-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3494,9 +4284,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-04",
         "closeDate": "2024-12-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3518,9 +4313,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-04",
         "closeDate": "2024-11-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3542,9 +4342,14 @@ export const developments: Development[] = [
         "snagDate": "2027-10-07",
         "closeDate": "2024-11-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3566,9 +4371,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-22",
         "closeDate": "2024-11-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3590,9 +4400,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-22",
         "closeDate": "2024-11-13",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-13"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3614,9 +4429,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-18",
         "closeDate": "2024-11-22",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-22"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3638,9 +4458,14 @@ export const developments: Development[] = [
         "snagDate": "2024-10-29",
         "closeDate": "2024-11-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-11-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3662,9 +4487,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-25",
         "closeDate": "2025-07-30",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-30"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3686,9 +4519,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-11",
         "closeDate": "2025-07-22",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-23",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-05-11",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-22"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3708,9 +4549,16 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-07-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-07",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-07",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -3728,9 +4576,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -3750,9 +4603,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-10",
         "closeDate": "2025-10-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-19",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-08-18",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3774,9 +4635,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-04",
         "closeDate": "2025-09-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-22",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3798,9 +4667,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-16",
         "closeDate": "2025-07-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-07-24",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-08",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3820,9 +4697,16 @@ export const developments: Development[] = [
         "listPrice": 535000,
         "snagDate": "2025-11-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-10",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-21",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -3842,9 +4726,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-28",
         "closeDate": "2025-08-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3866,9 +4758,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3890,9 +4788,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3914,9 +4818,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-30",
         "closeDate": "2025-07-17",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-25",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-31",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3938,9 +4850,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-25",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3962,9 +4880,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-28",
         "closeDate": "2025-07-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -3986,9 +4910,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-13",
         "closeDate": "2025-07-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-25",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-31",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4010,9 +4942,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-29",
         "closeDate": "2025-07-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4034,9 +4972,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-27",
         "closeDate": "2025-07-29",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4058,9 +5002,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-19",
         "closeDate": "2025-09-29",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-29"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4082,9 +5034,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-28",
         "closeDate": "2025-08-08",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4104,9 +5062,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 560000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4126,9 +5089,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-14",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4149,9 +5118,17 @@ export const developments: Development[] = [
         "listPrice": 475000,
         "closeDate": "2025-09-04",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-18",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-23",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4172,9 +5149,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-27",
         "closeDate": "2025-07-22",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-22"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4196,9 +5179,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-27",
         "closeDate": "2025-07-25",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4220,9 +5209,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-18",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4244,9 +5239,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-28",
         "closeDate": "2025-07-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4268,9 +5269,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-27",
         "closeDate": "2025-07-15",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4292,9 +5299,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4316,9 +5329,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4340,9 +5359,15 @@ export const developments: Development[] = [
         "snagDate": "2025-06-06",
         "closeDate": "2025-07-25",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4364,9 +5389,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-08",
         "closeDate": "2025-09-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-29",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4386,9 +5419,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4408,9 +5446,15 @@ export const developments: Development[] = [
         "snagDate": "2025-06-27",
         "closeDate": "2025-07-30",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-30"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4432,9 +5476,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-18",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4456,9 +5506,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-28",
         "closeDate": "2025-07-14",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4480,9 +5536,16 @@ export const developments: Development[] = [
         "snagDate": "2025-06-27",
         "closeDate": "2025-08-18",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-07-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4504,9 +5567,15 @@ export const developments: Development[] = [
         "snagDate": "2025-05-26",
         "closeDate": "2025-07-17",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4528,9 +5597,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-11",
         "closeDate": "2025-08-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-05-01",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4550,9 +5627,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4570,9 +5652,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-15",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-15",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4592,9 +5681,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-04",
         "closeDate": "2025-03-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4616,9 +5710,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-07",
         "closeDate": "2025-03-06",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-06"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4640,9 +5739,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-07",
         "closeDate": "2025-03-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4664,9 +5768,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-04",
         "closeDate": "2025-03-31",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-31"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4687,9 +5796,17 @@ export const developments: Development[] = [
         "listPrice": 535000,
         "closeDate": "2025-11-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4711,9 +5828,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-26",
         "closeDate": "2025-04-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4735,9 +5857,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-04",
         "closeDate": "2025-03-13",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-13"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4759,9 +5886,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-03",
         "closeDate": "2025-03-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4783,9 +5915,14 @@ export const developments: Development[] = [
         "snagDate": "2025-02-07",
         "closeDate": "2025-03-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -4805,9 +5942,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4825,9 +5966,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4845,9 +5990,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4865,9 +6014,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4885,9 +6038,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4905,9 +6062,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4925,9 +6086,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4945,9 +6110,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4965,9 +6134,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -4985,9 +6158,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5005,9 +6182,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5025,9 +6206,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5045,9 +6230,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5065,9 +6254,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5085,9 +6278,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5105,9 +6302,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5125,9 +6326,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5145,9 +6350,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5165,9 +6374,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5185,9 +6398,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5205,9 +6422,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5225,9 +6446,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5245,9 +6470,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5265,9 +6494,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5285,9 +6518,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5305,9 +6542,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5325,9 +6566,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5345,9 +6590,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5365,9 +6614,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5385,9 +6638,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5405,9 +6662,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5425,9 +6686,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5445,9 +6710,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5465,9 +6734,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5485,9 +6758,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5505,9 +6782,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5525,9 +6806,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5545,9 +6830,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5565,9 +6854,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5585,9 +6878,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5605,9 +6902,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5625,9 +6926,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5645,9 +6950,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5665,9 +6974,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5685,9 +6998,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5705,9 +7022,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5725,9 +7046,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5745,9 +7070,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5765,9 +7094,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5785,9 +7118,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5805,9 +7142,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5825,9 +7166,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5845,9 +7190,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5865,9 +7214,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5885,9 +7238,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5905,9 +7262,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5925,9 +7286,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5945,9 +7310,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5965,9 +7334,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -5985,9 +7358,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6005,9 +7382,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6025,9 +7406,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6045,9 +7430,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6065,9 +7454,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6085,9 +7478,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6105,9 +7502,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6125,9 +7526,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6145,9 +7550,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6165,9 +7574,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6185,9 +7598,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6205,9 +7622,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6225,9 +7646,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6245,9 +7670,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6265,9 +7694,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6285,9 +7718,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6305,9 +7742,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6325,9 +7766,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6345,9 +7790,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6365,9 +7814,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6385,9 +7838,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6405,9 +7862,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6425,9 +7886,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6445,9 +7910,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6465,9 +7934,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6485,9 +7958,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6505,9 +7982,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6525,9 +8006,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6545,9 +8030,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6565,9 +8054,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6585,9 +8078,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6605,9 +8102,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6625,9 +8126,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6645,9 +8150,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6665,9 +8174,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6685,9 +8198,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6705,9 +8222,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6725,9 +8246,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6745,9 +8270,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6765,9 +8294,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6785,9 +8318,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6805,9 +8342,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6825,9 +8366,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6845,9 +8390,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6865,9 +8414,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6885,9 +8438,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6905,9 +8462,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6925,9 +8486,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6945,9 +8510,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6965,9 +8534,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -6985,9 +8558,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7005,9 +8582,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7025,9 +8606,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7045,9 +8630,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7065,9 +8654,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7085,9 +8678,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7105,9 +8702,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7125,9 +8726,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7145,9 +8750,13 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7165,9 +8774,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7185,9 +8799,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7205,9 +8824,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7225,9 +8849,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7245,9 +8874,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7265,9 +8899,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-10",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -7285,9 +8924,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 380000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-24",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-23",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7305,9 +8951,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 315000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-24",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-13",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-13",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7325,9 +8978,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7345,9 +9003,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7365,9 +9028,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 380000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-07",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7385,9 +9055,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 315000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-10-06",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7405,9 +9082,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-15",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-08-06",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7425,9 +9109,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 380000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7445,9 +9134,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7465,9 +9159,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7485,9 +9184,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7505,9 +9209,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7525,9 +9234,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7545,9 +9259,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7565,9 +9284,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7585,9 +9309,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7607,9 +9336,17 @@ export const developments: Development[] = [
         "snagDate": "2025-11-04",
         "closeDate": "2025-12-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-04",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7631,9 +9368,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-31",
         "closeDate": "2025-12-05",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7655,9 +9400,17 @@ export const developments: Development[] = [
         "snagDate": "2025-11-05",
         "closeDate": "2025-12-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-06",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-29",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-15",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7679,9 +9432,17 @@ export const developments: Development[] = [
         "snagDate": "2025-11-05",
         "closeDate": "2025-12-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-06",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7702,9 +9463,16 @@ export const developments: Development[] = [
         "listPrice": 475000,
         "snagDate": "2025-11-07",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-09",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7725,9 +9493,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-31",
         "closeDate": "2025-12-03",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-10",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-19",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7749,9 +9525,17 @@ export const developments: Development[] = [
         "snagDate": "2025-11-06",
         "closeDate": "2025-12-15",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-25",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7773,9 +9557,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-31",
         "closeDate": "2025-12-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-26",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-08",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -7795,9 +9587,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7815,9 +9612,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7835,9 +9637,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7855,9 +9662,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7875,9 +9687,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7895,9 +9712,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7915,9 +9737,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-19",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-19",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7935,9 +9764,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-24",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7955,9 +9789,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7975,9 +9814,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -7995,9 +9839,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8015,9 +9864,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8035,9 +9889,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 560000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-11",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-01",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8055,9 +9916,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 560000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8075,9 +9941,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-19",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-29",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-27",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8095,9 +9968,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-06",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-03",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-15",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8115,9 +9995,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8135,9 +10020,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8155,9 +10045,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8175,9 +10070,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8195,9 +10095,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8215,9 +10120,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8235,9 +10145,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8255,9 +10170,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8275,9 +10195,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8295,9 +10220,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8315,9 +10245,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8335,9 +10270,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-01-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8355,9 +10295,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8375,9 +10320,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8395,9 +10345,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8415,9 +10370,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8435,9 +10395,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8455,9 +10420,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8475,9 +10445,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8495,9 +10470,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8515,9 +10495,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 295000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8535,9 +10520,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8555,9 +10545,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8575,9 +10570,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "KC",
@@ -8595,9 +10595,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-12-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-16",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8615,9 +10622,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-12-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-03",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8635,9 +10649,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-12-06",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-10",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-08",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8655,9 +10676,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-12-06",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-27",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-15",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8675,9 +10703,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-19",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-04",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8695,9 +10730,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-21",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8715,9 +10757,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-10",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-15",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8735,9 +10784,16 @@ export const developments: Development[] = [
         "salesStatus": "Contracted",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-08-28",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8755,9 +10811,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8775,9 +10836,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8795,9 +10861,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-18",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-18",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8815,9 +10888,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-15",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-15",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8835,9 +10915,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-08",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8855,9 +10940,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-08",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-16",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-16",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8875,9 +10967,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8895,9 +10992,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-13",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8915,9 +11017,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-02",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8935,9 +11042,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-02",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8955,9 +11067,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-23",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8975,9 +11092,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -8995,9 +11117,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 305000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-18",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9015,9 +11142,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9035,9 +11167,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9055,9 +11192,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9075,9 +11217,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 305000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-16",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9095,9 +11242,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-16",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9115,9 +11267,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-16",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9135,9 +11292,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9155,9 +11317,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-16",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9175,9 +11342,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-21",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9195,9 +11367,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-16",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9215,9 +11392,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 430000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-02",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9235,9 +11417,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-23",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9255,9 +11442,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 535000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-23",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9275,9 +11467,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-04",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9295,9 +11492,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-18",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9315,9 +11517,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9335,9 +11542,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9355,9 +11567,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9375,9 +11592,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 480000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-05-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9395,9 +11617,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9415,9 +11642,14 @@ export const developments: Development[] = [
         "salesStatus": "Not Released",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-05",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9435,9 +11667,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 485000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9455,9 +11692,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9475,9 +11717,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-10",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-10",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9495,9 +11744,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-22",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-16",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-16",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9515,9 +11771,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-22",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9535,9 +11796,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9555,9 +11821,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9575,9 +11846,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9595,9 +11871,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-06-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9615,9 +11896,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 470000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-07-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9635,9 +11921,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-08",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-08",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9655,9 +11948,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9675,9 +11973,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9695,9 +11998,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-09",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-09",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9715,9 +12025,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9735,9 +12050,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-09",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-09",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9755,9 +12077,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-09-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-08",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-08",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9775,9 +12104,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 450000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-07-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9795,9 +12129,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-07-29",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-11",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-11",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9815,9 +12156,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9835,9 +12180,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9855,9 +12204,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9875,9 +12228,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -9903,9 +12260,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -9920,9 +12281,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -9937,9 +12302,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -9954,9 +12323,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -9971,9 +12344,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -9988,9 +12365,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10005,9 +12386,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10022,9 +12407,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10039,9 +12428,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10056,9 +12449,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10073,9 +12470,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10090,9 +12491,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10107,9 +12512,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10124,9 +12533,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10141,9 +12554,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10158,9 +12575,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10175,9 +12596,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10192,9 +12617,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10209,9 +12638,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10226,9 +12659,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10243,9 +12680,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10260,9 +12701,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10277,9 +12722,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10294,9 +12743,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10311,9 +12764,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10328,9 +12785,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10345,9 +12806,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10362,9 +12827,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10379,9 +12848,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10396,9 +12869,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10413,9 +12890,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10430,9 +12911,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10450,9 +12935,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10470,9 +12959,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10490,9 +12983,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10510,9 +13007,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10530,9 +13031,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10550,9 +13055,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10570,9 +13079,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10590,9 +13103,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10610,9 +13127,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10630,9 +13151,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10650,9 +13175,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10670,9 +13199,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10690,9 +13223,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10710,9 +13247,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10730,9 +13271,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10750,9 +13295,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10770,9 +13319,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10790,9 +13343,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10810,9 +13367,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10830,9 +13391,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10850,9 +13415,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10870,9 +13439,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10890,9 +13463,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10910,9 +13487,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10930,9 +13511,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10950,9 +13535,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10970,9 +13559,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -10990,9 +13583,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -11010,9 +13607,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -11030,9 +13631,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -11050,9 +13655,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 300090.595,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "CLUID",
@@ -11070,9 +13679,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11090,9 +13703,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11110,9 +13727,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11130,9 +13751,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11150,9 +13775,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11170,9 +13799,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11190,9 +13823,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11210,9 +13847,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11230,9 +13871,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11250,9 +13895,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11270,9 +13919,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11290,9 +13943,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11310,9 +13967,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11330,9 +13991,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11350,9 +14015,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11370,9 +14039,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11390,9 +14063,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11410,9 +14087,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11430,9 +14111,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11450,9 +14135,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11470,9 +14159,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11490,9 +14183,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11510,9 +14207,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11530,9 +14231,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11550,9 +14255,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11570,9 +14279,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11590,9 +14303,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11610,9 +14327,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11630,9 +14351,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11650,9 +14375,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11670,9 +14399,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11690,9 +14423,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11710,9 +14447,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11730,9 +14471,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11750,9 +14495,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11770,9 +14519,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11790,9 +14543,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 298738,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11810,9 +14567,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11830,9 +14591,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11850,9 +14615,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 298738,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11870,9 +14639,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 298738,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11890,9 +14663,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11910,9 +14687,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11930,9 +14711,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 298738,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11950,9 +14735,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 350000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -11970,9 +14759,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -11990,9 +14783,13 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 334499,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -12010,9 +14807,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12030,9 +14831,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12050,9 +14855,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12070,9 +14879,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12090,9 +14903,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12110,9 +14927,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12130,9 +14951,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12150,9 +14975,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12170,9 +14999,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12190,9 +15023,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12210,9 +15047,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12230,9 +15071,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12250,9 +15095,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12270,9 +15119,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12290,9 +15143,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12310,9 +15167,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12330,9 +15191,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12350,9 +15215,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12370,9 +15239,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12390,9 +15263,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12410,9 +15287,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12430,9 +15311,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12450,9 +15335,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12470,9 +15359,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12490,9 +15383,13 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 400000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -12510,9 +15407,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "BOC",
@@ -12527,9 +15428,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 365000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12547,9 +15452,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 376000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12567,9 +15476,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 386000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12587,9 +15500,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 387500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12607,9 +15524,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 395000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12627,9 +15548,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "BOC",
@@ -12644,9 +15569,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 320000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12664,9 +15593,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 355000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12684,9 +15617,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12704,9 +15641,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12724,9 +15665,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12744,9 +15689,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12764,9 +15713,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12784,9 +15737,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 357500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12804,9 +15761,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 320000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12824,9 +15785,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 355000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12844,9 +15809,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12864,9 +15833,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 365000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12884,9 +15857,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 375000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12904,9 +15881,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 386000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12924,9 +15905,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 386000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12944,9 +15929,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 375000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12964,9 +15953,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 365000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -12984,9 +15977,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 0,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "BOC",
@@ -13001,9 +15998,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 475000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13021,9 +16022,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 393500,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13041,9 +16046,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 386000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13061,9 +16070,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 390000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13081,9 +16094,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 510000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13101,9 +16118,13 @@ export const developments: Development[] = [
         "salesStatus": "Complete",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true
         },
         "partV": false,
         "buyerType": "Private",
@@ -13122,9 +16143,14 @@ export const developments: Development[] = [
         "listPrice": 475000,
         "closeDate": "2024-01-05",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-01-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13143,9 +16169,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-01-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-01-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13164,9 +16195,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-03-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13185,9 +16221,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-05-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-05-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13206,9 +16247,14 @@ export const developments: Development[] = [
         "listPrice": 933526.16,
         "closeDate": "2024-06-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-27"
         },
         "partV": false,
         "buyerType": "BOC",
@@ -13227,9 +16273,14 @@ export const developments: Development[] = [
         "listPrice": 0,
         "closeDate": "2024-06-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-27"
         },
         "partV": false,
         "buyerType": "BOC",
@@ -13245,9 +16296,14 @@ export const developments: Development[] = [
         "listPrice": 322500,
         "closeDate": "2024-07-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13266,9 +16322,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-07-17",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13287,9 +16348,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-06-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13308,9 +16374,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-06-14",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13329,9 +16400,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-07-24",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13350,9 +16426,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-06-24",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13371,9 +16452,14 @@ export const developments: Development[] = [
         "listPrice": 377000,
         "closeDate": "2024-09-23",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13392,9 +16478,14 @@ export const developments: Development[] = [
         "listPrice": 357500,
         "closeDate": "2024-06-14",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13414,9 +16505,15 @@ export const developments: Development[] = [
         "snagDate": "2024-12-02",
         "closeDate": "2024-12-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2024-11-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13436,9 +16533,14 @@ export const developments: Development[] = [
         "listPrice": 355000,
         "closeDate": "2024-07-25",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13457,9 +16559,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-04-05",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13478,9 +16585,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-05-17",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-05-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13499,9 +16611,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-04-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13520,9 +16637,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-03-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-27"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13541,9 +16663,14 @@ export const developments: Development[] = [
         "listPrice": 445000,
         "closeDate": "2024-03-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-03-27"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13562,9 +16689,14 @@ export const developments: Development[] = [
         "listPrice": 475000,
         "closeDate": "2024-04-05",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -13582,9 +16714,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 390000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13602,9 +16739,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13622,9 +16764,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13642,9 +16789,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13662,9 +16814,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13682,9 +16839,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13702,9 +16864,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 438530.67,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -13722,9 +16889,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 390000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-03-27",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13742,9 +16914,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 390000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13762,9 +16939,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13782,9 +16964,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13802,9 +16989,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13822,9 +17014,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13842,9 +17039,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13862,9 +17064,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13882,9 +17089,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-04-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13902,9 +17114,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13922,9 +17139,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 525000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13942,9 +17164,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 525000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13962,9 +17189,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 525000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -13982,9 +17214,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 447500,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14002,9 +17239,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 438500,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14022,9 +17264,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 452000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14042,9 +17289,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 452000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14062,9 +17314,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 348007.4,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14082,9 +17339,14 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 447500,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14102,9 +17364,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14121,9 +17388,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-08",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-08",
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14140,9 +17414,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-03",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-03",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14160,9 +17441,14 @@ export const developments: Development[] = [
         "salesStatus": "For Sale",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2026-02-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14181,9 +17467,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-26",
         "closeDate": "2025-11-03",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-08",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-03"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14204,9 +17498,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-05",
         "closeDate": "2025-10-02",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-15",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-23",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-02"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14228,9 +17530,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-16",
         "closeDate": "2025-09-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-15",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-24",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14251,9 +17561,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-07",
         "closeDate": "2025-08-28",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-22",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-24",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-28"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14275,9 +17593,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-26",
         "closeDate": "2025-11-03",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-22",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-03"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14298,9 +17624,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-18",
         "closeDate": "2025-08-13",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-03-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-16",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-13"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14321,9 +17655,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-14",
         "closeDate": "2025-09-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-03-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-27",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-23",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14344,9 +17686,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-26",
         "closeDate": "2025-11-03",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-03-08",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-03"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14367,9 +17717,17 @@ export const developments: Development[] = [
         "snagDate": "2025-12-10",
         "closeDate": "2025-12-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-05",
+          "saleClosed": true,
+          "saleClosedDate": "2025-12-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14388,9 +17746,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-18",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-18",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14408,9 +17773,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-14",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-14",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14428,9 +17800,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 460000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-05",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-05",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14448,9 +17827,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 447500,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-14",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-14",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14469,9 +17855,14 @@ export const developments: Development[] = [
         "listPrice": 438500,
         "snagDate": "2025-11-28",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14489,9 +17880,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 452000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-29",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-10-29",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14509,9 +17907,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 452000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-10-29",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-10-29",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14530,9 +17935,16 @@ export const developments: Development[] = [
         "listPrice": 348007.4,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14550,9 +17962,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 447500,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-10",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-10",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14571,9 +17990,14 @@ export const developments: Development[] = [
         "listPrice": 545000,
         "snagDate": "2025-10-31",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14591,9 +18015,14 @@ export const developments: Development[] = [
         "listPrice": 545000,
         "snagDate": "2025-10-31",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14611,9 +18040,16 @@ export const developments: Development[] = [
         "listPrice": 460000,
         "snagDate": "2025-10-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-03",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-23",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14633,9 +18069,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-24",
         "closeDate": "2025-11-27",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-05",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-17",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-27"
         },
         "partV": false,
         "occupancy": "6",
@@ -14655,9 +18099,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-12",
         "closeDate": "2025-11-07",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-27",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-07"
         },
         "partV": false,
         "occupancy": "8",
@@ -14678,9 +18130,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-12",
         "closeDate": "2025-10-23",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-23"
         },
         "partV": false,
         "occupancy": "8",
@@ -14700,9 +18160,14 @@ export const developments: Development[] = [
         "listPrice": 545000,
         "snagDate": "2025-10-31",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "occupancy": "6",
@@ -14720,9 +18185,16 @@ export const developments: Development[] = [
         "listPrice": 545000,
         "snagDate": "2025-10-31",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-11-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-03",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-03",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14741,9 +18213,14 @@ export const developments: Development[] = [
         "listPrice": 369372.83,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14762,9 +18239,14 @@ export const developments: Development[] = [
         "listPrice": 361155.44,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14783,9 +18265,14 @@ export const developments: Development[] = [
         "listPrice": 373481.54,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14804,9 +18291,14 @@ export const developments: Development[] = [
         "listPrice": 373481.54,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14825,9 +18317,16 @@ export const developments: Development[] = [
         "listPrice": 373481.54,
         "snagDate": "2025-12-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14846,9 +18345,14 @@ export const developments: Development[] = [
         "listPrice": 369372.83,
         "snagDate": "2025-10-10",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": false,
+          "contractIssued": false,
           "contractSigned": false,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14868,9 +18372,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-10",
         "closeDate": "2025-10-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14891,9 +18403,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-17",
         "closeDate": "2025-11-11",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14914,9 +18434,16 @@ export const developments: Development[] = [
         "listPrice": 460000,
         "snagDate": "2025-10-17",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-12-09",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-12-09",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",
@@ -14936,9 +18463,17 @@ export const developments: Development[] = [
         "snagDate": "2025-10-17",
         "closeDate": "2025-11-05",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-10-03",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-19",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-09-09",
+          "saleClosed": true,
+          "saleClosedDate": "2025-11-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -14958,9 +18493,17 @@ export const developments: Development[] = [
         "listPrice": 337451.22,
         "closeDate": "2025-08-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-01"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -14980,9 +18523,17 @@ export const developments: Development[] = [
         "listPrice": 400000,
         "closeDate": "2025-07-17",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-10",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-18",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-17"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15003,9 +18554,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-30",
         "closeDate": "2025-05-30",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-24",
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-30"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15027,9 +18586,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-30",
         "closeDate": "2025-06-04",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-11",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-18",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15051,9 +18618,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-08",
         "closeDate": "2025-06-05",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-05"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15074,9 +18649,17 @@ export const developments: Development[] = [
         "listPrice": 410000,
         "closeDate": "2025-07-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-20",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15096,9 +18679,17 @@ export const developments: Development[] = [
         "listPrice": 400000,
         "closeDate": "2025-07-14",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-18",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15118,9 +18709,17 @@ export const developments: Development[] = [
         "listPrice": 299016.99,
         "closeDate": "2025-08-01",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-20",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-01"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -15141,9 +18740,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-08",
         "closeDate": "2025-03-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15165,9 +18769,14 @@ export const developments: Development[] = [
         "snagDate": "2025-01-10",
         "closeDate": "2025-02-21",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15189,9 +18798,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-14",
         "closeDate": "2025-02-14",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-10-31",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-31",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15213,9 +18829,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-17",
         "closeDate": "2025-02-14",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-10-17",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-17",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15237,9 +18860,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-22",
         "closeDate": "2025-02-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-11-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-11-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15261,9 +18891,16 @@ export const developments: Development[] = [
         "snagDate": "2025-01-27",
         "closeDate": "2025-02-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-17",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-02",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15285,9 +18922,16 @@ export const developments: Development[] = [
         "snagDate": "2025-02-07",
         "closeDate": "2025-02-24",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-10-30",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-02-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15309,9 +18953,16 @@ export const developments: Development[] = [
         "snagDate": "2025-02-25",
         "closeDate": "2025-05-01",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-12-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-11-10",
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15333,9 +18984,17 @@ export const developments: Development[] = [
         "snagDate": "2025-02-27",
         "closeDate": "2025-07-07",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-02-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-12",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-12",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-07"
         },
         "partV": false,
         "buyerType": "LCCC",
@@ -15356,9 +19015,16 @@ export const developments: Development[] = [
         "snagDate": "2025-04-22",
         "closeDate": "2025-05-28",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-21",
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-28"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15380,9 +19046,16 @@ export const developments: Development[] = [
         "snagDate": "2025-03-07",
         "closeDate": "2025-04-14",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-06",
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15404,9 +19077,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-20",
         "closeDate": "2025-07-11",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-03-17",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-05-07",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15427,9 +19108,16 @@ export const developments: Development[] = [
         "snagDate": "2025-04-18",
         "closeDate": "2025-05-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-24",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-15",
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-27"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15451,9 +19139,16 @@ export const developments: Development[] = [
         "snagDate": "2025-04-22",
         "closeDate": "2025-05-15",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-24",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-11-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15475,9 +19170,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-11",
         "closeDate": "2025-01-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15498,9 +19198,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-11",
         "closeDate": "2024-12-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15521,9 +19226,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-15",
         "closeDate": "2024-12-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15544,9 +19254,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-18",
         "closeDate": "2025-01-20",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-01-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15567,9 +19282,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-18",
         "closeDate": "2024-12-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15590,9 +19310,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-22",
         "closeDate": "2024-12-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15613,9 +19338,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-22",
         "closeDate": "2024-12-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15636,9 +19366,14 @@ export const developments: Development[] = [
         "snagDate": "2024-11-27",
         "closeDate": "2024-12-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15658,9 +19393,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-09-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15679,9 +19419,14 @@ export const developments: Development[] = [
         "listPrice": 372200,
         "closeDate": "2024-08-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15700,9 +19445,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-08-12",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15721,9 +19471,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-04-07",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-04-07"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15742,9 +19497,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-07-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15763,9 +19523,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-06-21",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15784,9 +19549,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-06-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-06-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15806,9 +19576,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-10",
         "closeDate": "2025-04-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15830,9 +19605,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-21",
         "closeDate": "2025-05-01",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-05-01"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15854,9 +19634,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-03",
         "closeDate": "2025-03-27",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-27"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15878,9 +19663,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-03",
         "closeDate": "2025-03-26",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-03-26"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15902,9 +19692,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-11",
         "closeDate": "2025-04-09",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15926,9 +19721,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-11",
         "closeDate": "2025-04-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15950,9 +19750,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-19",
         "closeDate": "2025-04-03",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-03"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15974,9 +19779,14 @@ export const developments: Development[] = [
         "snagDate": "2025-03-19",
         "closeDate": "2025-04-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-04-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -15997,9 +19807,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-08-19",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-08-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16018,9 +19833,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-07-18",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-18"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16039,9 +19859,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-09-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16060,9 +19885,14 @@ export const developments: Development[] = [
         "listPrice": 390000,
         "closeDate": "2024-07-16",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16081,9 +19911,14 @@ export const developments: Development[] = [
         "listPrice": 382500,
         "closeDate": "2024-07-31",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-07-31"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16102,9 +19937,14 @@ export const developments: Development[] = [
         "listPrice": 372500,
         "closeDate": "2024-09-11",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16123,9 +19963,14 @@ export const developments: Development[] = [
         "listPrice": 382500,
         "closeDate": "2024-09-08",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-09-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16144,9 +19989,14 @@ export const developments: Development[] = [
         "listPrice": 375000,
         "closeDate": "2024-10-04",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-04"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16166,9 +20016,14 @@ export const developments: Development[] = [
         "snagDate": "2024-06-08",
         "closeDate": "2024-12-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-12-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16188,9 +20043,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-10-15",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16209,9 +20069,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-10-10",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-10"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16230,9 +20095,14 @@ export const developments: Development[] = [
         "listPrice": 395000,
         "closeDate": "2024-10-22",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-22"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16251,9 +20121,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-10-16",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16272,9 +20147,14 @@ export const developments: Development[] = [
         "listPrice": 372500,
         "closeDate": "2024-10-16",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16293,9 +20173,14 @@ export const developments: Development[] = [
         "listPrice": 385000,
         "closeDate": "2024-10-21",
         "documentation": {
+          "bcmsReceived": false,
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2024-10-21"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16315,9 +20200,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-02",
         "closeDate": "2025-06-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-04-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-01-27",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-01",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16339,9 +20232,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-24",
         "closeDate": "2025-06-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-04-14",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-07",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-01",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16363,9 +20264,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-15",
         "closeDate": "2025-06-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-04-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2024-12-20",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-10-24",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16387,9 +20296,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-30",
         "closeDate": "2025-06-11",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-04-28",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-01-22",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-10-03",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16411,9 +20328,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-30",
         "closeDate": "2025-07-11",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-05-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-26",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16435,9 +20360,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-12",
         "closeDate": "2025-07-14",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-05-12",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-20",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16459,9 +20392,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-12",
         "closeDate": "2025-06-25",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-05-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-04-28",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-18",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-25"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16483,9 +20424,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-19",
         "closeDate": "2025-06-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-05-26",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-02-17",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2024-11-13",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16507,9 +20456,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-20",
         "closeDate": "2025-10-02",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-09",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-05-27",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-02"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16531,9 +20488,17 @@ export const developments: Development[] = [
         "snagDate": "2025-04-22",
         "closeDate": "2025-06-23",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-03-31",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-26",
+          "saleClosed": true,
+          "saleClosedDate": "2025-06-23"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16555,9 +20520,17 @@ export const developments: Development[] = [
         "snagDate": "2025-05-30",
         "closeDate": "2025-07-16",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-09",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-02",
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-16"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16579,9 +20552,15 @@ export const developments: Development[] = [
         "snagDate": "2025-06-11",
         "closeDate": "2025-07-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "saleClosed": true,
+          "saleClosedDate": "2025-07-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16603,9 +20582,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-09",
         "closeDate": "2025-08-15",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-06-30",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-05",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-05",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-15"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16627,9 +20614,17 @@ export const developments: Development[] = [
         "snagDate": "2025-06-13",
         "closeDate": "2025-08-11",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-07-07",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-02",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-25",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-11"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16651,9 +20646,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-08",
         "closeDate": "2025-08-12",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-07-07",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-18",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-05",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-12"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16674,9 +20677,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-02",
         "closeDate": "2025-08-14",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-04",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-06-13",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-03-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-08-14"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16698,9 +20709,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-11",
         "closeDate": "2025-09-09",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-04",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-01",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-02-26",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-09"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16722,9 +20741,17 @@ export const developments: Development[] = [
         "snagDate": "2025-07-18",
         "closeDate": "2025-09-24",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-11",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-05-21",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-04-15",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-24"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16746,9 +20773,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-02",
         "closeDate": "2025-10-08",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-11",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-09-12",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-30",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-08"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16769,9 +20804,17 @@ export const developments: Development[] = [
         "snagDate": "2025-09-04",
         "closeDate": "2025-10-20",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-18",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-29",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-23",
+          "saleClosed": true,
+          "saleClosedDate": "2025-10-20"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16792,9 +20835,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-14",
         "closeDate": "2025-09-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-18",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-17",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16815,9 +20866,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-27",
         "closeDate": "2025-09-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-09",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16838,9 +20897,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-29",
         "closeDate": "2025-09-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-08-25",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-08-08",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-07-09",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16861,9 +20928,17 @@ export const developments: Development[] = [
         "snagDate": "2025-08-29",
         "closeDate": "2025-09-19",
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-07-14",
           "contractSigned": true,
-          "loanApproved": true,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-06-17",
+          "saleClosed": true,
+          "saleClosedDate": "2025-09-19"
         },
         "partV": false,
         "buyerType": "Private",
@@ -16882,9 +20957,16 @@ export const developments: Development[] = [
         "salesStatus": "Under Offer",
         "listPrice": 500000,
         "documentation": {
+          "bcmsReceived": true,
+          "bcmsReceivedDate": "2025-09-01",
+          "landRegistryApproved": false,
+          "homebondReceived": false,
+          "sanApproved": true,
+          "contractIssued": true,
+          "contractIssuedDate": "2025-11-03",
           "contractSigned": true,
-          "loanApproved": false,
-          "bcmsSubmitted": false
+          "contractSignedDate": "2025-11-03",
+          "saleClosed": false
         },
         "partV": false,
         "buyerType": "Private",

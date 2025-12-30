@@ -13,10 +13,11 @@ const constructionBadgeClasses: Record<ConstructionStatus, string> = {
 };
 
 const salesBadgeClasses: Record<SalesStatus, string> = {
-  Sold: "badge badge-sold",
-  "Sale Agreed": "badge badge-agreed",
-  Reserved: "badge badge-reserved",
-  Available: "badge badge-available",
+  "Not Released": "badge badge-notstarted",
+  "For Sale": "badge badge-available",
+  "Under Offer": "badge badge-reserved",
+  "Contracted": "badge badge-agreed",
+  "Complete": "badge badge-sold",
 };
 
 const constructionProgress: Record<ConstructionStatus, number> = {
@@ -26,9 +27,9 @@ const constructionProgress: Record<ConstructionStatus, number> = {
 };
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-GB", {
+  return new Intl.NumberFormat("en-IE", {
     style: "currency",
-    currency: "GBP",
+    currency: "EUR",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);
@@ -164,21 +165,51 @@ export function UnitDetailModal({
             </div>
           </section>
 
-          {/* Documentation Checklist */}
+          {/* Completion Documentation */}
           <section>
-            <SectionHeader title="Documentation" />
-            <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-4">
-              <ChecklistItem
+            <SectionHeader title="Completion Documentation" />
+            <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-3">
+              <DocumentationItem
+                label="BCMS Received"
+                completed={unit.documentation.bcmsReceived}
+                date={unit.documentation.bcmsReceivedDate}
+              />
+              <DocumentationItem
+                label="Land Registry Map Approved"
+                completed={unit.documentation.landRegistryApproved}
+                date={unit.documentation.landRegistryApprovedDate}
+              />
+              <DocumentationItem
+                label="Homebond Warranty Received"
+                completed={unit.documentation.homebondReceived}
+                date={unit.documentation.homebondReceivedDate}
+              />
+            </div>
+          </section>
+
+          {/* Sales Documentation */}
+          <section>
+            <SectionHeader title="Sales Documentation" />
+            <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-3">
+              <DocumentationItem
+                label="SAN (Sales Advice Notice) Approved"
+                completed={unit.documentation.sanApproved}
+                date={unit.documentation.sanApprovedDate}
+              />
+              <DocumentationItem
+                label="Contract Issued"
+                completed={unit.documentation.contractIssued}
+                date={unit.documentation.contractIssuedDate}
+              />
+              <DocumentationItem
                 label="Contract Signed"
-                checked={unit.documentation.contractSigned}
+                completed={unit.documentation.contractSigned}
+                date={unit.documentation.contractSignedDate}
               />
-              <ChecklistItem
-                label="Loan Approved"
-                checked={unit.documentation.loanApproved}
-              />
-              <ChecklistItem
-                label="BCMS Submitted"
-                checked={unit.documentation.bcmsSubmitted}
+              <DocumentationItem
+                label="Sale Closed"
+                completed={unit.documentation.saleClosed}
+                date={unit.documentation.saleClosedDate}
               />
             </div>
           </section>
@@ -279,40 +310,59 @@ function ProgressMarker({ label, active }: { label: string; active: boolean }) {
   );
 }
 
-function ChecklistItem({
+function DocumentationItem({
   label,
-  checked,
+  completed,
+  date,
 }: {
   label: string;
-  checked: boolean;
+  completed: boolean;
+  date?: string;
 }) {
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "-";
+
   return (
-    <div className="flex items-center gap-3">
-      <div
-        className={`checkbox-custom ${checked ? "checked" : ""}`}
-      >
-        {checked && (
-          <svg className="w-3 h-3 text-[var(--bg-deep)]" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fillRule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
+    <div className="flex items-center justify-between py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+      <div className="flex items-center gap-3">
+        {completed ? (
+          <div className="w-5 h-5 rounded-full bg-[var(--accent-emerald)] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        ) : (
+          <div className="w-5 h-5 rounded-full bg-[var(--accent-rose)] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         )}
-      </div>
-      <span
-        className={`font-display ${
-          checked ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"
-        }`}
-      >
-        {label}
-      </span>
-      {checked && (
-        <span className="ml-auto font-mono text-xs text-[var(--accent-emerald)]">
-          Complete
+        <span className="font-display text-sm text-[var(--text-primary)]">
+          {label}
         </span>
-      )}
+      </div>
+      <div className="flex items-center gap-3">
+        <span className={`font-mono text-xs font-semibold ${completed ? "text-[var(--accent-emerald)]" : "text-[var(--accent-rose)]"}`}>
+          {completed ? "Yes" : "No"}
+        </span>
+        <span className="font-mono text-xs text-[var(--text-muted)] min-w-[90px] text-right">
+          {formattedDate}
+        </span>
+      </div>
     </div>
   );
 }
