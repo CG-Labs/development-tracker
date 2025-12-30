@@ -18,12 +18,26 @@ const salesBadgeClasses: Record<SalesStatus, string> = {
 };
 
 function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-GB", {
+  return new Intl.NumberFormat("en-IE", {
     style: "currency",
-    currency: "GBP",
+    currency: "EUR",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(price);
+}
+
+function formatDate(dateString: string | undefined): string {
+  if (!dateString) return "-";
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  } catch {
+    return "-";
+  }
 }
 
 export function DevelopmentDetail() {
@@ -249,22 +263,28 @@ export function DevelopmentDetail() {
           <table className="w-full">
             <thead>
               <tr className="bg-[var(--bg-deep)] border-b border-[var(--border-subtle)]">
-                <th className="px-6 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Unit #
                 </th>
-                <th className="px-6 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                  Area
+                </th>
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Type
                 </th>
-                <th className="px-6 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Beds
                 </th>
-                <th className="px-6 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Construction
                 </th>
-                <th className="px-6 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Sales Status
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                  Sales
                 </th>
-                <th className="px-6 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                  Planned Close
+                </th>
+                <th className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Price
                 </th>
               </tr>
@@ -281,30 +301,40 @@ export function DevelopmentDetail() {
                     opacity: 0,
                   }}
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
                       {unit.unitNumber}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className="font-mono text-sm text-[var(--text-secondary)]">
+                      {(unit as { size?: number }).size ? `${(unit as { size?: number }).size}m²` : "-"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                     {unit.type}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-4 whitespace-nowrap text-center">
                     <span className="font-mono text-sm text-[var(--text-primary)]">
                       {unit.bedrooms}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className={constructionBadgeClasses[unit.constructionStatus]}>
                       {unit.constructionStatus}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className={salesBadgeClasses[unit.salesStatus]}>
                       {unit.salesStatus}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className="font-mono text-xs text-[var(--text-secondary)]">
+                      {formatDate((unit as { plannedCloseDate?: string }).plannedCloseDate)}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-right">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">
                       {unit.soldPrice
                         ? formatPrice(unit.soldPrice)
@@ -320,7 +350,7 @@ export function DevelopmentDetail() {
               ))}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-6 py-12 text-center">
+                  <td colSpan={8} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"
