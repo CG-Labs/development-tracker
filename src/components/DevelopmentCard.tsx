@@ -6,6 +6,16 @@ interface DevelopmentCardProps {
   index: number;
 }
 
+// Format currency in EUR
+function formatCurrency(value: number): string {
+  return new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
 export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
   const sold = development.units.filter((u) => u.salesStatus === "Sold").length;
   const available = development.units.filter(
@@ -30,6 +40,21 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
   );
 
   const soldPercentage = Math.round((sold / development.totalUnits) * 100);
+
+  // Financial calculations
+  const gdv = development.units.reduce((sum, unit) => {
+    const price = (unit as { priceIncVat?: number }).priceIncVat || unit.listPrice || 0;
+    return sum + price;
+  }, 0);
+
+  const salesRevenue = development.units
+    .filter((u) => u.salesStatus === "Sold")
+    .reduce((sum, unit) => {
+      const price = (unit as { priceIncVat?: number }).priceIncVat || unit.listPrice || 0;
+      return sum + price;
+    }, 0);
+
+  const salesPercentageOfGdv = gdv > 0 ? Math.round((salesRevenue / gdv) * 100) : 0;
 
   return (
     <div
@@ -138,6 +163,47 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
             className="progress-fill progress-gold"
             style={{ width: `${soldPercentage}%` }}
           />
+        </div>
+      </div>
+
+      {/* Financial Summary */}
+      <div className="mb-5 p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+        <div className="flex items-center gap-2 mb-3">
+          <svg
+            className="w-4 h-4 text-[var(--accent-emerald)]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+            />
+          </svg>
+          <span className="font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">
+            Financial Summary
+          </span>
+        </div>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <span className="font-mono text-xs text-[var(--text-muted)]">GDV</span>
+            <span className="font-mono text-sm font-bold text-[var(--text-primary)]">
+              {formatCurrency(gdv)}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="font-mono text-xs text-[var(--text-muted)]">Sales to Date</span>
+            <div className="text-right">
+              <span className="font-mono text-sm font-bold text-[var(--accent-emerald)]">
+                {formatCurrency(salesRevenue)}
+              </span>
+              <span className="font-mono text-xs text-[var(--text-muted)] ml-2">
+                ({salesPercentageOfGdv}%)
+              </span>
+            </div>
+          </div>
         </div>
       </div>
 
