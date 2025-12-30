@@ -1,4 +1,4 @@
-import { developments } from "../data/developments";
+import { developments } from "../data/realDevelopments";
 import type { Development, PortfolioStats } from "../types";
 import { DevelopmentCard } from "./DevelopmentCard";
 

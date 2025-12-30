@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import { developments } from "../data/developments";
+import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
 import { UnitDetailModal } from "./UnitDetailModal";
 
