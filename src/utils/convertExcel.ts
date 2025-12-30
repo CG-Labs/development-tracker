@@ -450,7 +450,7 @@ function main() {
 // Auto-generated from Sales Tracker Quick Reference.xlsx
 // Generated on: ${new Date().toISOString()}
 
-export const realDevelopments: Development[] = ${JSON.stringify(developments, null, 2)};
+export const developments: Development[] = ${JSON.stringify(developments, null, 2)};
 `;
 
   // Save to file

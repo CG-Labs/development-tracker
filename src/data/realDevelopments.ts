@@ -3,7 +3,7 @@ import type { Development } from "../types";
 // Auto-generated from Sales Tracker Quick Reference.xlsx
 // Generated on: 2025-12-30T21:42:33.849Z
 
-export const realDevelopments: Development[] = [
+export const developments: Development[] = [
   {
     "id": "knockhill-ph-1",
     "name": "Knockhill Ph 1",
