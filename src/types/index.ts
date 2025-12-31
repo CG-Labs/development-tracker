@@ -4,6 +4,8 @@ export type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contrac
 
 export type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
+export type PurchaserType = "Private" | "Council" | "AHB" | "Other";
+
 export interface DocumentationChecklist {
   // Completion Documentation
   bcmsReceived: boolean;
@@ -46,6 +48,12 @@ export interface Unit {
   priceIncVat?: number;
   desnagDate?: string;
   plannedCloseDate?: string;
+  // Purchaser information
+  address?: string;
+  purchaserType?: PurchaserType;
+  purchaserName?: string;
+  purchaserPhone?: string;
+  purchaserEmail?: string;
 }
 
 export interface Development {

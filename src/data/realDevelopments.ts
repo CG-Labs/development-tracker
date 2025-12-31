@@ -1,7 +1,7 @@
 import type { Development } from "../types";
 
 // Auto-generated from Sales Tracker Quick Reference.xlsx
-// Generated on: 2025-12-30T23:42:52.308Z
+// Generated on: 2025-12-31T11:06:15.443Z
 
 export const developments: Development[] = [
   {
@@ -28,13 +28,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 94,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 450000,
         "plannedCloseDate": "2024-06-22",
+        "address": "Unit 1, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 450000
       },
       {
@@ -55,13 +57,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 94,
         "priceExVat": 383259.91189427313,
         "priceIncVat": 435000,
         "plannedCloseDate": "2024-06-22",
+        "address": "Unit 2, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 435000
       },
       {
@@ -82,13 +86,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-05-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123.8,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 3, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -109,13 +115,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-01-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 4, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -136,13 +144,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 5, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -163,13 +173,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 6, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -190,13 +202,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 7, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -217,13 +231,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-01-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 8, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -244,13 +260,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 9, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -271,13 +289,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 10, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -298,13 +318,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-05-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 11, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -325,13 +347,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 12, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -352,13 +376,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-01-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 13, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -379,13 +405,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 14, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -406,13 +434,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-02-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 15, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -433,13 +463,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-06-08",
+        "address": "Unit 16, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -460,13 +492,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
         "priceExVat": 295154.1850220264,
         "priceIncVat": 335000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 17, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 335000
       },
       {
@@ -490,7 +524,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-06"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
@@ -498,6 +532,8 @@ export const developments: Development[] = [
         "priceIncVat": 382500,
         "desnagDate": "2024-11-26",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 18, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 382500
       },
       {
@@ -521,7 +557,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
@@ -529,6 +565,8 @@ export const developments: Development[] = [
         "priceIncVat": 360000,
         "desnagDate": "2025-08-12",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 19, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 360000
       },
       {
@@ -552,13 +590,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 20, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -582,13 +622,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-02"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 21, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -609,13 +651,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
         "priceExVat": 290748.8986784141,
         "priceIncVat": 330000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 22, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 330000
       },
       {
@@ -637,7 +681,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
@@ -645,6 +689,8 @@ export const developments: Development[] = [
         "priceIncVat": 375000,
         "desnagDate": "2024-06-10",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 23, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -666,13 +712,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 331718.0616740088,
         "priceIncVat": 376500,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 24, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 376500
       },
       {
@@ -696,13 +744,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 25, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -724,13 +774,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 26, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -752,7 +804,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
@@ -760,6 +812,8 @@ export const developments: Development[] = [
         "priceIncVat": 395000,
         "desnagDate": "2024-11-08",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 27, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -781,7 +835,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 109,
@@ -789,6 +843,8 @@ export const developments: Development[] = [
         "priceIncVat": 388500,
         "desnagDate": "2024-11-08",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 28, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 388500
       },
       {
@@ -811,7 +867,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
@@ -819,6 +875,8 @@ export const developments: Development[] = [
         "priceIncVat": 330000,
         "desnagDate": "2024-11-28",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 29, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 330000
       },
       {
@@ -843,13 +901,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 30, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -874,7 +934,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
@@ -882,6 +942,8 @@ export const developments: Development[] = [
         "priceIncVat": 360000,
         "desnagDate": "2025-05-29",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 31, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 360000
       },
       {
@@ -906,13 +968,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
         "priceExVat": 332599.1189427313,
         "priceIncVat": 377500,
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 32, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 377500
       },
       {
@@ -936,7 +1000,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 82.4,
@@ -944,6 +1008,8 @@ export const developments: Development[] = [
         "priceIncVat": 382500,
         "desnagDate": "2024-12-09",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 33, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 382500
       },
       {
@@ -966,7 +1032,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124.8,
@@ -974,6 +1040,8 @@ export const developments: Development[] = [
         "priceIncVat": 335000,
         "desnagDate": "2024-12-05",
         "plannedCloseDate": "2025-01-09",
+        "address": "Unit 34, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 335000
       },
       {
@@ -997,13 +1065,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123.8,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 35, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -1024,13 +1094,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 36, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1051,13 +1123,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 37, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1078,13 +1152,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 38, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1105,13 +1181,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 39, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1132,13 +1210,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-22"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123.8,
         "priceExVat": 458149.7797356828,
         "priceIncVat": 520000,
         "plannedCloseDate": "2024-09-12",
+        "address": "Unit 40, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 520000
       },
       {
@@ -1162,7 +1242,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123.8,
@@ -1170,6 +1250,8 @@ export const developments: Development[] = [
         "priceIncVat": 500000,
         "desnagDate": "2025-02-21",
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 41, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -1190,13 +1272,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 42, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -1217,13 +1301,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 43, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1244,13 +1330,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 44, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1271,13 +1359,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 45, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1298,13 +1388,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 46, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1325,13 +1417,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 107.4,
         "priceExVat": 351541.85022026434,
         "priceIncVat": 399000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 47, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 399000
       },
       {
@@ -1352,13 +1446,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123.8,
         "priceExVat": 439647.577092511,
         "priceIncVat": 499000,
         "plannedCloseDate": "2024-10-17",
+        "address": "Unit 48, Knockhill Estate, Phase 1",
+        "purchaserType": "Private",
         "soldPrice": 499000
       }
     ]
@@ -1385,13 +1481,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit Block F - 49, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "50",
@@ -1409,13 +1507,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.74449339206,
         "priceIncVat": 306284,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 50, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "51",
@@ -1433,13 +1533,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.74449339206,
         "priceIncVat": 306284,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 51, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "52",
@@ -1457,13 +1559,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 226574.06167400882,
         "priceIncVat": 257161.56,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 52, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "53",
@@ -1481,13 +1585,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 53, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "54",
@@ -1505,13 +1611,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 54, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "55",
@@ -1529,13 +1637,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 226574.06167400882,
         "priceIncVat": 257161.56,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 55, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "56",
@@ -1553,13 +1663,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 226574.06167400882,
         "priceIncVat": 257161.56,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 56, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "57",
@@ -1577,13 +1689,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 57, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "58",
@@ -1601,13 +1715,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 58, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "59",
@@ -1625,13 +1741,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 59, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "60",
@@ -1649,13 +1767,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 269853.98237885465,
         "priceIncVat": 306284.27,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 60, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "61",
@@ -1673,13 +1793,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 61, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "62",
@@ -1697,13 +1819,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 62, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "63",
@@ -1721,13 +1845,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 63, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "64",
@@ -1745,13 +1871,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 64, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "65",
@@ -1769,13 +1897,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 65, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "66",
@@ -1793,13 +1923,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 66, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "67",
@@ -1817,13 +1949,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 67, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "68",
@@ -1841,13 +1975,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 68, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "69",
@@ -1865,13 +2001,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 69, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "70",
@@ -1889,13 +2027,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 70, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "71",
@@ -1913,13 +2053,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 71, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "72",
@@ -1937,13 +2079,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 72, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "73",
@@ -1961,13 +2105,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 73, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "74",
@@ -1985,13 +2131,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 74, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "75",
@@ -2009,13 +2157,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 75, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "76",
@@ -2033,13 +2183,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 76, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "77",
@@ -2057,13 +2209,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 77, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "78",
@@ -2081,13 +2235,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 78, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "79",
@@ -2105,13 +2261,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 79, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "80",
@@ -2129,13 +2287,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 80, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "81",
@@ -2153,13 +2313,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 81, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "82",
@@ -2177,13 +2339,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 82, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "83",
@@ -2201,13 +2365,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 83, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "84",
@@ -2225,13 +2391,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 84, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "85",
@@ -2249,13 +2417,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 85, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "86",
@@ -2273,13 +2443,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 86, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "87",
@@ -2297,13 +2469,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 87, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "88",
@@ -2321,13 +2495,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 88, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "89",
@@ -2345,13 +2521,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 89, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "90",
@@ -2369,13 +2547,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 90, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "91",
@@ -2393,13 +2573,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 91, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "92",
@@ -2417,13 +2599,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
-        "plannedCloseDate": "2026-07-11"
+        "plannedCloseDate": "2026-07-11",
+        "address": "Unit 92, Knockhill Estate, Phase 2",
+        "purchaserType": "Private"
       }
     ]
   },
@@ -2451,13 +2635,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 387665.1982378855,
         "priceIncVat": 440000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 1, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 440000
       },
       {
@@ -2478,13 +2664,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 2, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -2505,13 +2693,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 3, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -2532,13 +2722,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 356828.1938325991,
         "priceIncVat": 405000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 4, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -2559,13 +2751,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 5, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -2586,13 +2780,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 6, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 407500
       },
       {
@@ -2613,13 +2809,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 356828.1938325991,
         "priceIncVat": 405000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 7, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -2640,13 +2838,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
         "priceExVat": 359030.8370044053,
         "priceIncVat": 407500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 8, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 407500
       },
       {
@@ -2667,13 +2867,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 356828.1938325991,
         "priceIncVat": 405000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 9, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -2694,13 +2896,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 356828.1938325991,
         "priceIncVat": 405000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 10, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -2721,13 +2925,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 11, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -2748,13 +2954,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 281938.3259911894,
         "priceIncVat": 320000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 12, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 320000
       },
       {
@@ -2775,13 +2983,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-02"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 321585.90308370045,
         "priceIncVat": 365000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 13, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 365000
       },
       {
@@ -2802,13 +3012,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 231277.53303964756,
         "priceIncVat": 262500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 14, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 262500
       },
       {
@@ -2829,13 +3041,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 270925.11013215856,
         "priceIncVat": 307500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 15, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 307500
       },
       {
@@ -2857,7 +3071,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 123,
@@ -2865,6 +3079,8 @@ export const developments: Development[] = [
         "priceIncVat": 375000,
         "desnagDate": "2024-10-25",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 16, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -2885,13 +3101,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 90,
         "priceExVat": 281938.3259911894,
         "priceIncVat": 320000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 17, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 320000
       },
       {
@@ -2912,13 +3130,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 231277.53303964756,
         "priceIncVat": 262500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 18, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 262500
       },
       {
@@ -2939,13 +3159,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 270925.11013215856,
         "priceIncVat": 307500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 19, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 307500
       },
       {
@@ -2966,13 +3188,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 270925.11013215856,
         "priceIncVat": 307500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 20, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 307500
       },
       {
@@ -2993,13 +3217,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 231277.53303964756,
         "priceIncVat": 262500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 21, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 262500
       },
       {
@@ -3023,7 +3249,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
@@ -3031,6 +3257,8 @@ export const developments: Development[] = [
         "priceIncVat": 325000,
         "desnagDate": "2025-01-28",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 22, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 325000
       },
       {
@@ -3051,13 +3279,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 115,
         "priceExVat": 321585.90308370045,
         "priceIncVat": 365000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 23, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 365000
       },
       {
@@ -3078,13 +3308,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 270925.11013215856,
         "priceIncVat": 307500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 24, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 307500
       },
       {
@@ -3105,13 +3337,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 231277.53303964756,
         "priceIncVat": 262500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 25, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 262500
       },
       {
@@ -3133,7 +3367,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 123,
@@ -3141,6 +3375,8 @@ export const developments: Development[] = [
         "priceIncVat": 370000,
         "desnagDate": "2024-10-04",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 26, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 370000
       },
       {
@@ -3161,13 +3397,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 90,
         "priceExVat": 281938.3259911894,
         "priceIncVat": 320000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 27, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 320000
       },
       {
@@ -3188,13 +3426,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 28, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -3215,13 +3455,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 332599.1189427313,
         "priceIncVat": 377500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 29, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 377500
       },
       {
@@ -3242,13 +3484,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 356828.1938325991,
         "priceIncVat": 405000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 30, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -3269,13 +3513,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 31, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3296,13 +3542,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 332599.1189427313,
         "priceIncVat": 377500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 32, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 377500
       },
       {
@@ -3323,13 +3571,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 332599.1189427313,
         "priceIncVat": 377500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 33, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 377500
       },
       {
@@ -3350,13 +3600,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 34, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3377,13 +3629,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 35, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3404,13 +3658,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 331277.53303964756,
         "priceIncVat": 376000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 36, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 376000
       },
       {
@@ -3431,13 +3687,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 37, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3458,13 +3716,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 38, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3485,13 +3745,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-28"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 39, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -3512,13 +3774,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 332599.1189427313,
         "priceIncVat": 377500,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 40, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 377500
       },
       {
@@ -3539,13 +3803,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 41, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -3568,7 +3834,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
@@ -3576,6 +3842,8 @@ export const developments: Development[] = [
         "priceIncVat": 405000,
         "desnagDate": "2024-12-10",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 42, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -3598,7 +3866,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-06"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
@@ -3606,6 +3874,8 @@ export const developments: Development[] = [
         "priceIncVat": 385000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 43, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -3628,7 +3898,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
@@ -3636,6 +3906,8 @@ export const developments: Development[] = [
         "priceIncVat": 405000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 44, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -3658,7 +3930,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
@@ -3666,6 +3938,8 @@ export const developments: Development[] = [
         "priceIncVat": 405000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 45, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -3688,7 +3962,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
@@ -3696,6 +3970,8 @@ export const developments: Development[] = [
         "priceIncVat": 385000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 46, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -3718,7 +3994,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
@@ -3726,6 +4002,8 @@ export const developments: Development[] = [
         "priceIncVat": 405000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 47, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 405000
       },
       {
@@ -3748,7 +4026,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -3756,6 +4034,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 48, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -3778,7 +4058,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -3786,6 +4066,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 49, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -3806,13 +4088,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-30"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 50, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -3833,13 +4117,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 51, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -3861,13 +4147,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 365638.7665198238,
         "priceIncVat": 415000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 52, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -3888,13 +4176,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 53, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -3915,13 +4205,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 54, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -3942,13 +4234,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-28"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 55, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -3971,7 +4265,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -3979,6 +4273,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-12-13",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 56, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4001,7 +4297,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4009,6 +4305,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-01-06",
         "plannedCloseDate": "2025-02-05",
+        "address": "Unit 57, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4030,7 +4328,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4038,6 +4336,8 @@ export const developments: Development[] = [
         "priceIncVat": 499000,
         "desnagDate": "2025-02-12",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 58, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 499000
       },
       {
@@ -4059,7 +4359,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4067,6 +4367,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-24",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 59, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -4088,7 +4390,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-06"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4096,6 +4398,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-11",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 60, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -4117,7 +4421,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4125,6 +4429,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-12",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 61, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -4146,7 +4452,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4154,6 +4460,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-12",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 62, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -4175,7 +4483,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4183,6 +4491,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-10",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 63, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -4206,7 +4516,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4214,6 +4524,8 @@ export const developments: Development[] = [
         "priceIncVat": 470000,
         "desnagDate": "2025-05-29",
         "plannedCloseDate": "2025-02-09",
+        "address": "Unit 64, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 470000
       },
       {
@@ -4236,13 +4548,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 493392.0704845815,
         "priceIncVat": 560000,
         "plannedCloseDate": "2025-10-31",
+        "address": "Unit 65, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 560000
       },
       {
@@ -4264,7 +4578,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4272,6 +4586,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-11-21",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 66, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4293,7 +4609,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4301,6 +4617,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-10-18",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 67, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4322,7 +4640,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
@@ -4330,6 +4648,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2024-10-16",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 68, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -4351,7 +4671,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4359,6 +4679,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2024-10-18",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 69, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -4380,7 +4702,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4388,6 +4710,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2024-10-22",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 70, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -4409,7 +4733,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-13"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4417,6 +4741,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2024-10-22",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 71, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -4438,7 +4764,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-22"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4446,6 +4772,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-11-18",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 72, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4467,7 +4795,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-11-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4475,6 +4803,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2024-11-06",
         "plannedCloseDate": "2024-10-31",
+        "address": "Unit 73, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -4499,7 +4829,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-30"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4507,6 +4837,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 74, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -4531,7 +4863,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-22"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4539,6 +4871,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-07-08",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 75, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -4560,13 +4894,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-07",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-12-15"
+        "plannedCloseDate": "2025-12-15",
+        "address": "Unit 76, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "77",
@@ -4585,13 +4921,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-12-15"
+        "plannedCloseDate": "2025-12-15",
+        "address": "Unit 77, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "78",
@@ -4615,7 +4953,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4623,6 +4961,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-09-26",
         "plannedCloseDate": "2025-09-30",
+        "address": "Unit 78, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -4647,7 +4987,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4655,6 +4995,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-09-09",
         "plannedCloseDate": "2025-11-15",
+        "address": "Unit 79, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -4679,13 +5021,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 80, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -4708,13 +5052,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-07-21",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-09-30"
+        "plannedCloseDate": "2025-09-30",
+        "address": "Unit 81, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "82",
@@ -4738,7 +5084,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -4746,6 +5092,8 @@ export const developments: Development[] = [
         "priceIncVat": 560000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-08-15",
+        "address": "Unit 82, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 560000
       },
       {
@@ -4768,7 +5116,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4776,6 +5124,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-06-30",
         "plannedCloseDate": "2025-07-10",
+        "address": "Unit 83, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -4798,7 +5148,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4806,6 +5156,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-07-10",
+        "address": "Unit 84, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -4830,7 +5182,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4838,6 +5190,8 @@ export const developments: Development[] = [
         "priceIncVat": 465000,
         "desnagDate": "2025-06-27",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 85, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 465000
       },
       {
@@ -4860,7 +5214,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4868,6 +5222,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-06-26",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 86, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -4890,7 +5246,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4898,6 +5254,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 87, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -4922,7 +5280,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
@@ -4930,6 +5288,8 @@ export const developments: Development[] = [
         "priceIncVat": 465000,
         "desnagDate": "2025-06-27",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 88, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 465000
       },
       {
@@ -4952,7 +5312,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -4960,6 +5320,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "1900-01-24",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 89, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -4982,7 +5344,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
@@ -4990,6 +5352,8 @@ export const developments: Development[] = [
         "priceIncVat": 422500,
         "desnagDate": "2025-06-27",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 90, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 422500
       },
       {
@@ -5014,7 +5378,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-29"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5022,6 +5386,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-09-01",
         "plannedCloseDate": "2025-09-29",
+        "address": "Unit 91, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -5044,7 +5410,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5052,6 +5418,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-08-15",
+        "address": "Unit 92, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -5071,13 +5439,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 493392.0704845815,
         "priceIncVat": 560000,
-        "plannedCloseDate": "2025-12-15"
+        "plannedCloseDate": "2025-12-15",
+        "address": "Unit 93, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "94",
@@ -5099,7 +5469,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5107,6 +5477,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-07",
+        "address": "Unit 94, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5130,13 +5502,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 95, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -5159,7 +5533,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-22"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5167,6 +5541,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-27",
         "plannedCloseDate": "2025-07-02",
+        "address": "Unit 96, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5189,7 +5565,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5197,6 +5573,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-27",
         "plannedCloseDate": "2025-07-02",
+        "address": "Unit 97, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5219,7 +5597,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5227,6 +5605,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 98, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5249,7 +5629,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5257,6 +5637,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-24",
         "plannedCloseDate": "2025-07-10",
+        "address": "Unit 99, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5279,7 +5661,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5287,6 +5669,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-06-30",
         "plannedCloseDate": "2025-07-15",
+        "address": "Unit 100, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -5309,7 +5693,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5317,6 +5701,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 101, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5339,7 +5725,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5347,6 +5733,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-07-24",
         "plannedCloseDate": "2025-07-10",
+        "address": "Unit 102, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5369,7 +5757,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5377,6 +5765,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 103, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5401,7 +5791,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5409,6 +5799,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-08-22",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 104, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -5428,13 +5820,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-12-15"
+        "plannedCloseDate": "2025-12-15",
+        "address": "Unit 105, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "106",
@@ -5456,7 +5850,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-30"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5464,6 +5858,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 106, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -5486,7 +5882,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5494,6 +5890,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-30",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 107, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5516,7 +5914,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5524,6 +5922,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-07-14",
+        "address": "Unit 108, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -5547,7 +5947,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -5555,6 +5955,8 @@ export const developments: Development[] = [
         "priceIncVat": 420000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-08-15",
+        "address": "Unit 109, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 420000
       },
       {
@@ -5577,7 +5979,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5585,6 +5987,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-06-25",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 110, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5609,7 +6013,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5617,6 +6021,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-07-09",
         "plannedCloseDate": "2025-07-31",
+        "address": "Unit 111, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -5636,13 +6042,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-12-15"
+        "plannedCloseDate": "2025-12-15",
+        "address": "Unit 112, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "113",
@@ -5663,13 +6071,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-15",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-11-15"
+        "plannedCloseDate": "2025-11-15",
+        "address": "Unit 113, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "114",
@@ -5690,7 +6100,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5698,6 +6108,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-02-25",
         "plannedCloseDate": "2025-03-10",
+        "address": "Unit 114, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5719,7 +6131,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-06"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5727,6 +6139,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-02-25",
         "plannedCloseDate": "2025-03-10",
+        "address": "Unit 115, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5748,7 +6162,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5756,6 +6170,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-02-25",
         "plannedCloseDate": "2025-03-17",
+        "address": "Unit 116, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5777,7 +6193,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-31"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5785,6 +6201,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-02-27",
         "plannedCloseDate": "2025-03-17",
+        "address": "Unit 117, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5808,7 +6226,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5816,6 +6234,8 @@ export const developments: Development[] = [
         "priceIncVat": 535000,
         "desnagDate": "2025-11-05",
         "plannedCloseDate": "2025-11-15",
+        "address": "Unit 118, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 535000
       },
       {
@@ -5837,7 +6257,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5845,6 +6265,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-03-27",
         "plannedCloseDate": "2025-03-24",
+        "address": "Unit 119, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5866,7 +6288,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-13"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5874,6 +6296,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-03-04",
         "plannedCloseDate": "2025-03-31",
+        "address": "Unit 120, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5895,7 +6319,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5903,6 +6327,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-02-25",
         "plannedCloseDate": "2025-03-31",
+        "address": "Unit 121, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -5924,7 +6350,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
@@ -5932,6 +6358,8 @@ export const developments: Development[] = [
         "priceIncVat": 499000,
         "desnagDate": "2025-02-28",
         "plannedCloseDate": "2025-04-07",
+        "address": "Unit 122, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 499000
       },
       {
@@ -5950,13 +6378,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 124, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "125",
@@ -5974,13 +6404,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 125, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "126",
@@ -5998,13 +6430,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 126, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "127",
@@ -6022,13 +6456,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 127, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "128",
@@ -6046,13 +6482,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 128, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "129",
@@ -6070,13 +6508,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 129, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "130",
@@ -6094,13 +6534,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 130, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "131",
@@ -6118,13 +6560,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 131, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "132",
@@ -6142,13 +6586,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 132, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "133",
@@ -6166,13 +6612,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 133, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "134",
@@ -6190,13 +6638,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 134, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "135",
@@ -6214,13 +6664,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 135, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "136",
@@ -6238,13 +6690,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 136, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "137",
@@ -6262,13 +6716,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 137, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "138",
@@ -6286,13 +6742,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 138, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "139",
@@ -6310,13 +6768,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 139, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "140",
@@ -6334,13 +6794,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 140, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "141",
@@ -6358,13 +6820,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 141, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "142",
@@ -6382,13 +6846,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 142, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "143",
@@ -6406,13 +6872,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 143, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "144",
@@ -6430,13 +6898,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.2,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 144, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "145",
@@ -6454,13 +6924,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 51.8,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 145, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "146",
@@ -6478,13 +6950,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 57.8,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 146, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "147",
@@ -6502,13 +6976,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 147, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "148",
@@ -6526,13 +7002,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 148, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "149",
@@ -6550,13 +7028,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 149, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "151",
@@ -6574,13 +7054,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 151, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "152",
@@ -6598,13 +7080,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 152, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "153",
@@ -6622,13 +7106,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 153, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "154",
@@ -6646,13 +7132,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 154, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "155",
@@ -6670,13 +7158,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.2,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 155, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "156",
@@ -6694,13 +7184,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 156, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "157",
@@ -6718,13 +7210,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 157, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "158",
@@ -6742,13 +7236,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 158, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "159",
@@ -6766,13 +7262,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 159, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "160",
@@ -6790,13 +7288,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 160, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "161",
@@ -6814,13 +7314,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 161, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "162",
@@ -6838,13 +7340,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 162, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "163",
@@ -6862,13 +7366,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 163, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "164",
@@ -6886,13 +7392,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 164, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "165",
@@ -6910,13 +7418,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 165, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "166",
@@ -6934,13 +7444,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 166, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "167",
@@ -6958,13 +7470,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 167, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "168",
@@ -6982,13 +7496,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 168, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "169",
@@ -7006,13 +7522,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 169, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "170",
@@ -7030,13 +7548,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 170, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "171",
@@ -7054,13 +7574,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 171, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "172",
@@ -7078,13 +7600,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 172, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "173",
@@ -7102,13 +7626,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 173, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "174",
@@ -7126,13 +7652,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 174, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "175",
@@ -7150,13 +7678,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 175, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "176",
@@ -7174,13 +7704,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 176, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "177",
@@ -7198,13 +7730,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 177, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "178",
@@ -7222,13 +7756,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.2,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 178, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "179",
@@ -7246,13 +7782,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 51.8,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 179, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "180",
@@ -7270,13 +7808,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 57.8,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 180, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "181",
@@ -7294,13 +7834,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 181, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "182",
@@ -7318,13 +7860,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 182, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "183",
@@ -7342,13 +7886,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 183, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "185",
@@ -7366,13 +7912,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 185, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "186",
@@ -7390,13 +7938,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 186, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "187",
@@ -7414,13 +7964,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 187, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "188",
@@ -7438,13 +7990,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 188, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "189",
@@ -7462,13 +8016,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.2,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 189, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "190",
@@ -7486,13 +8042,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 190, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "191",
@@ -7510,13 +8068,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 191, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "192",
@@ -7534,13 +8094,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 192, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "193",
@@ -7558,13 +8120,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 193, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "194",
@@ -7582,13 +8146,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 194, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "195",
@@ -7606,13 +8172,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 195, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "196",
@@ -7630,13 +8198,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 196, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "197",
@@ -7654,13 +8224,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 197, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "198",
@@ -7678,13 +8250,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 198, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "199",
@@ -7702,13 +8276,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 199, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "200",
@@ -7726,13 +8302,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 200, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "201",
@@ -7750,13 +8328,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 201, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "202",
@@ -7774,13 +8354,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 202, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "203",
@@ -7798,13 +8380,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 203, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "204",
@@ -7822,13 +8406,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 204, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "205",
@@ -7846,13 +8432,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 205, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "206",
@@ -7870,13 +8458,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 206, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "207",
@@ -7894,13 +8484,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 207, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "208",
@@ -7918,13 +8510,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 208, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "209",
@@ -7942,13 +8536,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 209, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "210",
@@ -7966,13 +8562,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 210, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "211",
@@ -7990,13 +8588,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 211, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "212",
@@ -8014,13 +8614,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.2,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 212, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "213",
@@ -8038,13 +8640,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 51.8,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 213, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "214",
@@ -8062,13 +8666,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 57.8,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 214, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "215",
@@ -8086,13 +8692,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 215, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "216",
@@ -8110,13 +8718,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 216, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "217",
@@ -8134,13 +8744,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 217, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "219",
@@ -8158,13 +8770,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 219, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "220",
@@ -8182,13 +8796,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 220, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "221",
@@ -8206,13 +8822,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 221, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "222",
@@ -8230,13 +8848,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 222, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "223",
@@ -8254,13 +8874,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 223, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "224",
@@ -8278,13 +8900,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 224, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "225",
@@ -8302,13 +8926,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 225, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "226",
@@ -8326,13 +8952,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 226, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "227",
@@ -8350,13 +8978,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 227, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "228",
@@ -8374,13 +9004,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 228, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "229",
@@ -8398,13 +9030,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 229, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "230",
@@ -8422,13 +9056,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 230, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "231",
@@ -8446,13 +9082,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 231, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "232",
@@ -8470,13 +9108,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 232, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "233",
@@ -8494,13 +9134,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 233, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "234",
@@ -8518,13 +9160,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 87.7,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 234, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "235",
@@ -8542,13 +9186,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 53.7,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 235, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "236",
@@ -8566,13 +9212,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 89.9,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 236, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "237",
@@ -8590,13 +9238,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 237, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "238",
@@ -8614,13 +9264,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 238, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "239",
@@ -8638,13 +9290,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.2,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 239, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "240",
@@ -8662,13 +9316,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 51.8,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 240, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "241",
@@ -8686,13 +9342,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 57.8,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 241, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "242",
@@ -8710,13 +9368,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 54.4,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 242, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "243",
@@ -8734,13 +9394,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 91.5,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 243, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "244",
@@ -8758,13 +9420,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 83.4,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 244, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "245",
@@ -8783,13 +9447,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 245, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "246",
@@ -8808,13 +9474,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 246, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "247",
@@ -8833,13 +9501,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 247, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "248",
@@ -8858,13 +9528,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 248, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "249",
@@ -8883,13 +9555,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 249, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "250",
@@ -8908,13 +9582,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 250, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "251",
@@ -8935,13 +9611,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-23",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 334801.7621145374,
         "priceIncVat": 380000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 251, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "252",
@@ -8962,13 +9640,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-13",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 277533.0396475771,
         "priceIncVat": 315000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 252, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "253",
@@ -8987,13 +9667,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 253, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "254",
@@ -9012,13 +9694,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 378854.62555066077,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 254, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "255",
@@ -9039,13 +9723,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-07",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 334801.7621145374,
         "priceIncVat": 380000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 255, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "256",
@@ -9066,13 +9752,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-10-06",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 277533.0396475771,
         "priceIncVat": 315000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 256, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "257",
@@ -9093,13 +9781,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-08-06",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 123,
         "priceExVat": 378854.62555066077,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 257, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "258",
@@ -9118,13 +9808,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 334801.7621145374,
         "priceIncVat": 380000,
-        "plannedCloseDate": "2025-12-03"
+        "plannedCloseDate": "2025-12-03",
+        "address": "Unit 258, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "259",
@@ -9143,13 +9835,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 259, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "260",
@@ -9168,13 +9862,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 260, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "261",
@@ -9193,13 +9889,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 261, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "262",
@@ -9218,13 +9916,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 262, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "263",
@@ -9243,13 +9943,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-27"
+        "plannedCloseDate": "2025-10-27",
+        "address": "Unit 263, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "264",
@@ -9268,13 +9970,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-27"
+        "plannedCloseDate": "2025-10-27",
+        "address": "Unit 264, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "265",
@@ -9293,13 +9997,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-20"
+        "plannedCloseDate": "2025-10-20",
+        "address": "Unit 265, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "266",
@@ -9318,13 +10024,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-20"
+        "plannedCloseDate": "2025-10-20",
+        "address": "Unit 266, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "267",
@@ -9348,7 +10056,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
@@ -9356,6 +10064,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-11-17",
         "plannedCloseDate": "2025-10-13",
+        "address": "Unit 267, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -9380,7 +10090,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -9388,6 +10098,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-11-11",
         "plannedCloseDate": "2025-10-13",
+        "address": "Unit 268, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -9412,7 +10124,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -9420,6 +10132,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-11-18",
         "plannedCloseDate": "2025-10-07",
+        "address": "Unit 269, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -9444,7 +10158,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -9452,6 +10166,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-11-18",
         "plannedCloseDate": "2025-10-07",
+        "address": "Unit 270, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -9474,14 +10190,16 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-07-09",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
         "desnagDate": "2025-11-17",
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 271, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "272",
@@ -9505,7 +10223,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -9513,6 +10231,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-11-10",
         "plannedCloseDate": "2025-10-07",
+        "address": "Unit 272, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -9537,7 +10257,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
@@ -9545,6 +10265,8 @@ export const developments: Development[] = [
         "priceIncVat": 475000,
         "desnagDate": "2025-11-20",
         "plannedCloseDate": "2025-10-07",
+        "address": "Unit 273, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -9569,7 +10291,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
@@ -9577,6 +10299,8 @@ export const developments: Development[] = [
         "priceIncVat": 480000,
         "desnagDate": "2025-11-14",
         "plannedCloseDate": "2025-10-07",
+        "address": "Unit 274, Magee Development",
+        "purchaserType": "Private",
         "soldPrice": 480000
       },
       {
@@ -9596,13 +10320,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-10-09"
+        "plannedCloseDate": "2025-10-09",
+        "address": "Unit 275, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "276",
@@ -9621,13 +10347,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-09"
+        "plannedCloseDate": "2025-10-09",
+        "address": "Unit 276, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "277",
@@ -9646,13 +10374,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-10-08"
+        "plannedCloseDate": "2025-10-08",
+        "address": "Unit 277, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "278",
@@ -9671,13 +10401,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-10-08"
+        "plannedCloseDate": "2025-10-08",
+        "address": "Unit 278, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "279",
@@ -9696,13 +10428,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-10-08"
+        "plannedCloseDate": "2025-10-08",
+        "address": "Unit 279, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "280",
@@ -9721,13 +10455,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2025-10-08"
+        "plannedCloseDate": "2025-10-08",
+        "address": "Unit 280, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "281",
@@ -9748,13 +10484,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-19",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-08"
+        "plannedCloseDate": "2025-10-08",
+        "address": "Unit 281, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "282",
@@ -9773,13 +10511,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-07"
+        "plannedCloseDate": "2025-10-07",
+        "address": "Unit 282, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "283",
@@ -9798,13 +10538,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-02-28"
+        "plannedCloseDate": "2026-02-28",
+        "address": "Unit 283, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "284",
@@ -9823,13 +10565,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-02-28"
+        "plannedCloseDate": "2026-02-28",
+        "address": "Unit 284, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "285",
@@ -9848,13 +10592,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-03-30"
+        "plannedCloseDate": "2026-03-30",
+        "address": "Unit 285, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "286",
@@ -9873,13 +10619,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-03-30"
+        "plannedCloseDate": "2026-03-30",
+        "address": "Unit 286, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "287",
@@ -9900,13 +10648,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-01",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 493392.0704845815,
         "priceIncVat": 560000,
-        "plannedCloseDate": "2026-03-30"
+        "plannedCloseDate": "2026-03-30",
+        "address": "Unit 287, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "288",
@@ -9925,13 +10675,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 493392.0704845815,
         "priceIncVat": 560000,
-        "plannedCloseDate": "2025-11-20"
+        "plannedCloseDate": "2025-11-20",
+        "address": "Unit 288, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "289",
@@ -9952,13 +10704,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-06-27",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2025-12-02"
+        "plannedCloseDate": "2025-12-02",
+        "address": "Unit 289, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "290",
@@ -9979,13 +10733,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-06-15",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2025-11-19"
+        "plannedCloseDate": "2025-11-19",
+        "address": "Unit 290, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "291",
@@ -10004,13 +10760,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 291, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "292",
@@ -10029,13 +10787,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 292, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "293",
@@ -10054,13 +10814,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "3",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 293, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "294",
@@ -10079,13 +10841,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 294, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "295",
@@ -10104,13 +10868,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 295, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "296",
@@ -10129,13 +10895,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 296, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "297",
@@ -10154,13 +10922,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 297, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "298",
@@ -10179,13 +10949,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 298, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "299",
@@ -10204,13 +10976,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 299, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "300",
@@ -10229,13 +11003,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 300, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "301",
@@ -10254,13 +11030,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 301, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "302",
@@ -10279,13 +11057,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-02-27"
+        "plannedCloseDate": "2026-02-27",
+        "address": "Unit 302, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "303",
@@ -10304,13 +11084,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 303, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "304",
@@ -10329,13 +11111,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 304, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "305",
@@ -10354,13 +11138,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 305, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "306",
@@ -10379,13 +11165,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 306, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "307",
@@ -10404,13 +11192,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 307, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "308",
@@ -10429,13 +11219,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 308, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "309",
@@ -10454,13 +11246,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 309, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "310",
@@ -10479,13 +11273,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 310, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "311",
@@ -10504,13 +11300,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 259911.89427312775,
         "priceIncVat": 295000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 311, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "312",
@@ -10529,13 +11327,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 312, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "313",
@@ -10554,13 +11354,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 313, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "314",
@@ -10579,13 +11381,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "KC",
         "occupancy": "6",
         "size": 115,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
-        "plannedCloseDate": "2026-04-17"
+        "plannedCloseDate": "2026-04-17",
+        "address": "Unit 314, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "315",
@@ -10606,13 +11410,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-07-16",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2025-12-18"
+        "plannedCloseDate": "2025-12-18",
+        "address": "Unit 315, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "316",
@@ -10633,13 +11439,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-07-03",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2025-12-18"
+        "plannedCloseDate": "2025-12-18",
+        "address": "Unit 316, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "317",
@@ -10660,13 +11468,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-08",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2025-12-18"
+        "plannedCloseDate": "2025-12-18",
+        "address": "Unit 317, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "318",
@@ -10687,13 +11497,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-07-15",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2025-12-18"
+        "plannedCloseDate": "2025-12-18",
+        "address": "Unit 318, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "319",
@@ -10714,13 +11526,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-04",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2025-12-11"
+        "plannedCloseDate": "2025-12-11",
+        "address": "Unit 319, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "320",
@@ -10741,13 +11555,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-21",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2025-12-11"
+        "plannedCloseDate": "2025-12-11",
+        "address": "Unit 320, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "321",
@@ -10768,13 +11584,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-15",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2025-11-26"
+        "plannedCloseDate": "2025-11-26",
+        "address": "Unit 321, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "322",
@@ -10795,13 +11613,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-08-28",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 422907.4889867841,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2025-11-26"
+        "plannedCloseDate": "2025-11-26",
+        "address": "Unit 322, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "323",
@@ -10820,13 +11640,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-05-28"
+        "plannedCloseDate": "2026-05-28",
+        "address": "Unit 323, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "324",
@@ -10845,13 +11667,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-05-28"
+        "plannedCloseDate": "2026-05-28",
+        "address": "Unit 324, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "325",
@@ -10872,13 +11696,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-18",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-19"
+        "plannedCloseDate": "2026-05-19",
+        "address": "Unit 325, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "326",
@@ -10899,13 +11725,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-15",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-19"
+        "plannedCloseDate": "2026-05-19",
+        "address": "Unit 326, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "327",
@@ -10924,13 +11752,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
         "priceExVat": 409691.6299559471,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-22"
+        "plannedCloseDate": "2026-05-22",
+        "address": "Unit 327, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "328",
@@ -10951,13 +11781,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-16",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-22"
+        "plannedCloseDate": "2026-05-22",
+        "address": "Unit 328, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "329",
@@ -10976,13 +11808,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-27"
+        "plannedCloseDate": "2026-05-27",
+        "address": "Unit 329, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "330",
@@ -11001,13 +11835,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-05-27"
+        "plannedCloseDate": "2026-05-27",
+        "address": "Unit 330, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "331",
@@ -11026,13 +11862,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-06-16"
+        "plannedCloseDate": "2026-06-16",
+        "address": "Unit 331, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "332",
@@ -11051,13 +11889,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-06-16"
+        "plannedCloseDate": "2026-06-16",
+        "address": "Unit 332, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "333",
@@ -11076,13 +11916,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-07-07"
+        "plannedCloseDate": "2026-07-07",
+        "address": "Unit 333, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "334",
@@ -11101,13 +11943,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2026-06-08"
+        "plannedCloseDate": "2026-06-08",
+        "address": "Unit 334, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "335",
@@ -11126,13 +11970,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 65,
         "priceExVat": 268722.46696035244,
         "priceIncVat": 305000,
-        "plannedCloseDate": "2026-07-02"
+        "plannedCloseDate": "2026-07-02",
+        "address": "Unit 335, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "336",
@@ -11151,13 +11997,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-12"
+        "plannedCloseDate": "2026-06-12",
+        "address": "Unit 336, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "337",
@@ -11176,13 +12024,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-12"
+        "plannedCloseDate": "2026-06-12",
+        "address": "Unit 337, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "338",
@@ -11201,13 +12051,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2026-06-10"
+        "plannedCloseDate": "2026-06-10",
+        "address": "Unit 338, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "339",
@@ -11226,13 +12078,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 90,
         "priceExVat": 268722.46696035244,
         "priceIncVat": 305000,
-        "plannedCloseDate": "2026-06-30"
+        "plannedCloseDate": "2026-06-30",
+        "address": "Unit 339, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "340",
@@ -11251,13 +12105,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 65,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-30"
+        "plannedCloseDate": "2026-06-30",
+        "address": "Unit 340, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "341",
@@ -11276,13 +12132,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-30"
+        "plannedCloseDate": "2026-06-30",
+        "address": "Unit 341, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "342",
@@ -11301,13 +12159,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 123,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2026-06-12"
+        "plannedCloseDate": "2026-06-12",
+        "address": "Unit 342, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "343",
@@ -11326,13 +12186,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 90,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-30"
+        "plannedCloseDate": "2026-06-30",
+        "address": "Unit 343, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "344",
@@ -11351,13 +12213,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 65,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2026-06-04"
+        "plannedCloseDate": "2026-06-04",
+        "address": "Unit 344, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "345",
@@ -11376,13 +12240,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 123,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2026-06-30"
+        "plannedCloseDate": "2026-06-30",
+        "address": "Unit 345, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "346",
@@ -11401,13 +12267,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 90,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 430000,
-        "plannedCloseDate": "2026-06-16"
+        "plannedCloseDate": "2026-06-16",
+        "address": "Unit 346, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "347",
@@ -11426,13 +12294,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-07-07"
+        "plannedCloseDate": "2026-07-07",
+        "address": "Unit 347, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "348",
@@ -11451,13 +12321,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 471365.63876651984,
         "priceIncVat": 535000,
-        "plannedCloseDate": "2026-07-07"
+        "plannedCloseDate": "2026-07-07",
+        "address": "Unit 348, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "349",
@@ -11476,13 +12348,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-06-18"
+        "plannedCloseDate": "2026-06-18",
+        "address": "Unit 349, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "350",
@@ -11501,13 +12375,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-07-02"
+        "plannedCloseDate": "2026-07-02",
+        "address": "Unit 350, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "351",
@@ -11526,13 +12402,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 122,
         "priceExVat": 409691.6299559471,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-06-12"
+        "plannedCloseDate": "2026-06-12",
+        "address": "Unit 351, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "352",
@@ -11551,13 +12429,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-06-12"
+        "plannedCloseDate": "2026-06-12",
+        "address": "Unit 352, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "353",
@@ -11576,13 +12456,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-06-09"
+        "plannedCloseDate": "2026-06-09",
+        "address": "Unit 353, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "354",
@@ -11601,13 +12483,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 480000,
-        "plannedCloseDate": "2026-06-10"
+        "plannedCloseDate": "2026-06-10",
+        "address": "Unit 354, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "355",
@@ -11626,13 +12510,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2026-06-19"
+        "plannedCloseDate": "2026-06-19",
+        "address": "Unit 355, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "356",
@@ -11651,13 +12537,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 154,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2026-06-19"
+        "plannedCloseDate": "2026-06-19",
+        "address": "Unit 356, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "357",
@@ -11676,13 +12564,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 400881.05726872245,
         "priceIncVat": 485000,
-        "plannedCloseDate": "2026-06-26"
+        "plannedCloseDate": "2026-06-26",
+        "address": "Unit 357, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "358",
@@ -11701,13 +12591,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-06-26"
+        "plannedCloseDate": "2026-06-26",
+        "address": "Unit 358, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "359",
@@ -11728,13 +12620,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-10",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 475000,
-        "plannedCloseDate": "2026-07-01"
+        "plannedCloseDate": "2026-07-01",
+        "address": "Unit 359, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "360",
@@ -11755,13 +12649,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-16",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2026-07-06"
+        "plannedCloseDate": "2026-07-06",
+        "address": "Unit 360, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "361",
@@ -11780,13 +12676,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-07-06"
+        "plannedCloseDate": "2026-07-06",
+        "address": "Unit 361, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "362",
@@ -11805,13 +12703,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-07-09"
+        "plannedCloseDate": "2026-07-09",
+        "address": "Unit 362, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "363",
@@ -11830,13 +12730,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2026-07-09"
+        "plannedCloseDate": "2026-07-09",
+        "address": "Unit 363, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "364",
@@ -11855,13 +12757,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2026-07-14"
+        "plannedCloseDate": "2026-07-14",
+        "address": "Unit 364, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "365",
@@ -11880,13 +12784,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-07-14"
+        "plannedCloseDate": "2026-07-14",
+        "address": "Unit 365, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "366",
@@ -11905,13 +12811,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 470000,
-        "plannedCloseDate": "2026-07-17"
+        "plannedCloseDate": "2026-07-17",
+        "address": "Unit 366, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "367",
@@ -11932,13 +12840,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-08",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 367, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "368",
@@ -11957,13 +12867,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 368, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "369",
@@ -11982,13 +12894,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 369, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "370",
@@ -12009,13 +12923,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-09",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 370, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "371",
@@ -12034,13 +12950,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 371, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "372",
@@ -12061,13 +12979,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-09",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 372, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "373",
@@ -12088,13 +13008,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-08",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 124,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-10-10"
+        "plannedCloseDate": "2026-10-10",
+        "address": "Unit 373, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "374",
@@ -12113,13 +13035,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121,
         "priceExVat": 414096.91629955947,
         "priceIncVat": 450000,
-        "plannedCloseDate": "2026-08-10"
+        "plannedCloseDate": "2026-08-10",
+        "address": "Unit 374, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "375",
@@ -12140,13 +13064,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-11",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 120,
         "priceExVat": 396475.77092511015,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-08-12"
+        "plannedCloseDate": "2026-08-12",
+        "address": "Unit 375, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "123 Block A",
@@ -12164,13 +13090,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-23"
+        "plannedCloseDate": "2027-08-23",
+        "address": "Unit 123 Block A, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "150 Block B",
@@ -12188,13 +13116,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-10-22"
+        "plannedCloseDate": "2027-10-22",
+        "address": "Unit 150 Block B, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "184 Block C",
@@ -12212,13 +13142,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-06-24"
+        "plannedCloseDate": "2027-06-24",
+        "address": "Unit 184 Block C, Magee Development",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "218 Block D",
@@ -12236,13 +13168,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 88.1,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-04-25"
+        "plannedCloseDate": "2027-04-25",
+        "address": "Unit 218 Block D, Magee Development",
+        "purchaserType": "Private"
       }
     ]
   },
@@ -12268,10 +13202,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
-        "size": 45
+        "size": 45,
+        "address": "Unit Block 1 - 1, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "2",
@@ -12289,10 +13225,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 2, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "3",
@@ -12310,10 +13248,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 3, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "4",
@@ -12331,10 +13271,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
-        "size": 45
+        "size": 45,
+        "address": "Unit 4, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "5",
@@ -12352,10 +13294,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 5, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "6",
@@ -12373,10 +13317,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 6, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "7",
@@ -12394,10 +13340,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
-        "size": 45
+        "size": 45,
+        "address": "Unit 7, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "8",
@@ -12415,10 +13363,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 8, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "9",
@@ -12436,10 +13386,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 9, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "10",
@@ -12457,10 +13409,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 10, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "11",
@@ -12478,10 +13432,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 11, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "12",
@@ -12499,10 +13455,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 12, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "13",
@@ -12520,10 +13478,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 13, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "14",
@@ -12541,10 +13501,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 14, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "15",
@@ -12562,10 +13524,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 15, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "16",
@@ -12583,10 +13547,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 16, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "17",
@@ -12604,10 +13570,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 17, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "18",
@@ -12625,10 +13593,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 18, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "19",
@@ -12646,10 +13616,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 19, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "20",
@@ -12667,10 +13639,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 20, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "21",
@@ -12688,10 +13662,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 21, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "22",
@@ -12709,10 +13685,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 22, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "23",
@@ -12730,10 +13708,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 23, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "24",
@@ -12751,10 +13731,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 24, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "25",
@@ -12772,10 +13754,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 25, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "26",
@@ -12793,10 +13777,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 26, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "27",
@@ -12814,10 +13800,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 27, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "28",
@@ -12835,10 +13823,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 28, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "29",
@@ -12856,10 +13846,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 29, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "30",
@@ -12877,10 +13869,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 30, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "31",
@@ -12898,10 +13892,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
-        "size": 73
+        "size": 73,
+        "address": "Unit 31, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "Block 2 - 1",
@@ -12919,12 +13915,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit Block 2 - 1, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -12943,12 +13941,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 2, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -12967,12 +13967,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 3, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -12991,12 +13993,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 4, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13015,12 +14019,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 5, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13039,12 +14045,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 6, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13063,12 +14071,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 7, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13087,12 +14097,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 8, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13111,12 +14123,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 9, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13135,12 +14149,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 10, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13159,12 +14175,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 11, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13183,12 +14201,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 12, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13207,12 +14227,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 13, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13231,12 +14253,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 14, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13255,12 +14279,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 15, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13279,12 +14305,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 16, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13303,12 +14331,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 17, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13327,12 +14357,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 18, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13351,12 +14383,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 19, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13375,12 +14409,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 20, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13399,12 +14435,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 21, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13423,12 +14461,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 22, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13447,12 +14487,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 23, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13471,12 +14513,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 24, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13495,12 +14539,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 25, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13519,12 +14565,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 26, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13543,12 +14591,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 27, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13567,12 +14617,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 28, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13591,12 +14643,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 29, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13615,12 +14669,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 30, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13639,12 +14695,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 31, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13663,12 +14721,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "CLUID",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 264397,
         "priceIncVat": 300090.595,
+        "address": "Unit 32, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 300090.595
       },
       {
@@ -13687,13 +14747,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit Block 3 - 1, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "2",
@@ -13711,13 +14773,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 2, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "3",
@@ -13735,13 +14799,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 3, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "4",
@@ -13759,13 +14825,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 4, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "5",
@@ -13783,13 +14851,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 5, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "6",
@@ -13807,13 +14877,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 6, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "7",
@@ -13831,13 +14903,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 7, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "8",
@@ -13855,13 +14929,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 8, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "9",
@@ -13879,13 +14955,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 9, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "10",
@@ -13903,13 +14981,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 10, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "11",
@@ -13927,13 +15007,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 11, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "12",
@@ -13951,13 +15033,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 12, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "13",
@@ -13975,13 +15059,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 13, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "14",
@@ -13999,13 +15085,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 14, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "15",
@@ -14023,13 +15111,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 15, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "16",
@@ -14047,13 +15137,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 16, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "17",
@@ -14071,13 +15163,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 17, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "18",
@@ -14095,13 +15189,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 18, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "19",
@@ -14119,13 +15215,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 19, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "20",
@@ -14143,13 +15241,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 20, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "21",
@@ -14167,13 +15267,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 21, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "22",
@@ -14191,13 +15293,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 22, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "23",
@@ -14215,13 +15319,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 23, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "24",
@@ -14239,13 +15345,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 24, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "25",
@@ -14263,13 +15371,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 25, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "26",
@@ -14287,13 +15397,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 26, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "27",
@@ -14311,13 +15423,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 27, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "28",
@@ -14335,13 +15449,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 28, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "29",
@@ -14359,13 +15475,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 29, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "30",
@@ -14383,13 +15501,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 30, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "31",
@@ -14407,13 +15527,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 31, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "32",
@@ -14431,13 +15553,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 32, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "33",
@@ -14455,13 +15579,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 33, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "34",
@@ -14479,13 +15605,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 34, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "35",
@@ -14503,13 +15631,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 35, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "36",
@@ -14527,13 +15657,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-01"
+        "plannedCloseDate": "2027-08-01",
+        "address": "Unit 36, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "Block 4 - 1",
@@ -14551,13 +15683,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 263205.28634361236,
         "priceIncVat": 298738,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit Block 4 - 1, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "2",
@@ -14575,13 +15709,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 2, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "3",
@@ -14599,13 +15735,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 3, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "4",
@@ -14623,13 +15761,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 263205.28634361236,
         "priceIncVat": 298738,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 4, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "5",
@@ -14647,13 +15787,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 263205.28634361236,
         "priceIncVat": 298738,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 5, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "6",
@@ -14671,13 +15813,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 6, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "7",
@@ -14695,13 +15839,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 7, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "8",
@@ -14719,13 +15865,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "2",
         "size": 45,
         "priceExVat": 263205.28634361236,
         "priceIncVat": 298738,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 8, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "9",
@@ -14743,13 +15891,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 308370.04405286344,
         "priceIncVat": 350000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 9, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "10",
@@ -14767,13 +15917,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 10, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "11",
@@ -14791,13 +15943,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 294712.7753303965,
         "priceIncVat": 334499,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 11, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "12",
@@ -14815,13 +15969,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 12, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "13",
@@ -14839,13 +15995,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 13, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "14",
@@ -14863,13 +16021,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 14, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "15",
@@ -14887,13 +16047,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 15, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "16",
@@ -14911,13 +16073,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 16, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "17",
@@ -14935,13 +16099,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 17, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "18",
@@ -14959,13 +16125,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 18, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "19",
@@ -14983,13 +16151,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 19, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "20",
@@ -15007,13 +16177,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 20, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "21",
@@ -15031,13 +16203,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 21, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "22",
@@ -15055,13 +16229,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 22, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "23",
@@ -15079,13 +16255,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 23, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "24",
@@ -15103,13 +16281,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 24, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "25",
@@ -15127,13 +16307,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 25, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "26",
@@ -15151,13 +16333,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 26, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "27",
@@ -15175,13 +16359,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 27, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "28",
@@ -15199,13 +16385,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 28, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "29",
@@ -15223,13 +16411,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 29, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "30",
@@ -15247,13 +16437,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 30, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "31",
@@ -15271,13 +16463,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 31, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "32",
@@ -15295,13 +16489,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 32, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "33",
@@ -15319,13 +16515,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 33, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "34",
@@ -15343,13 +16541,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 34, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "35",
@@ -15367,13 +16567,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 35, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "36",
@@ -15391,13 +16593,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 73,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
-        "plannedCloseDate": "2027-08-02"
+        "plannedCloseDate": "2027-08-02",
+        "address": "Unit 36, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "32",
@@ -15415,10 +16619,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "BOC",
         "occupancy": "6",
-        "size": 151
+        "size": 151,
+        "address": "Unit 32, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "33",
@@ -15436,12 +16642,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 321585.90308370045,
         "priceIncVat": 365000,
+        "address": "Unit 33, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 365000
       },
       {
@@ -15460,12 +16668,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 331277.53303964756,
         "priceIncVat": 376000,
+        "address": "Unit 34, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 376000
       },
       {
@@ -15484,12 +16694,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 340088.1057268722,
         "priceIncVat": 386000,
+        "address": "Unit 35, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 386000
       },
       {
@@ -15508,12 +16720,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 341409.69162995595,
         "priceIncVat": 387500,
+        "address": "Unit 36, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 387500
       },
       {
@@ -15532,12 +16746,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
+        "address": "Unit 37, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -15556,10 +16772,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "BOC",
         "occupancy": "6",
-        "size": 151
+        "size": 151,
+        "address": "Unit 38, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "39",
@@ -15577,12 +16795,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 281938.3259911894,
         "priceIncVat": 320000,
+        "address": "Unit 39, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 320000
       },
       {
@@ -15601,12 +16821,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
         "priceExVat": 312775.3303964758,
         "priceIncVat": 355000,
+        "address": "Unit 40, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 355000
       },
       {
@@ -15625,12 +16847,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 41, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -15649,12 +16873,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 42, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -15673,12 +16899,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 43, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -15697,12 +16925,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 44, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -15721,12 +16951,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314537.4449339207,
         "priceIncVat": 357000,
+        "address": "Unit 45, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357000
       },
       {
@@ -15745,12 +16977,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 46, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -15769,12 +17003,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 281938.3259911894,
         "priceIncVat": 320000,
+        "address": "Unit 47, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 320000
       },
       {
@@ -15793,12 +17029,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "3",
         "size": 132,
         "priceExVat": 312775.3303964758,
         "priceIncVat": 355000,
+        "address": "Unit 48, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 355000
       },
       {
@@ -15817,12 +17055,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 151,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
+        "address": "Unit 49, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -15841,12 +17081,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 321585.90308370045,
         "priceIncVat": 365000,
+        "address": "Unit 50, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 365000
       },
       {
@@ -15865,12 +17107,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
+        "address": "Unit 51, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -15889,12 +17133,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 340088.1057268722,
         "priceIncVat": 386000,
+        "address": "Unit 52, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 386000
       },
       {
@@ -15913,12 +17159,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 340088.1057268722,
         "priceIncVat": 386000,
+        "address": "Unit 53, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 386000
       },
       {
@@ -15937,12 +17185,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
+        "address": "Unit 54, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -15961,12 +17211,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 321585.90308370045,
         "priceIncVat": 365000,
+        "address": "Unit 55, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 365000
       },
       {
@@ -15985,10 +17237,12 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "BOC",
         "occupancy": "6",
-        "size": 151
+        "size": 151,
+        "address": "Unit 56, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "57",
@@ -16006,12 +17260,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 151,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
+        "address": "Unit 57, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -16030,12 +17286,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 346696.03524229076,
         "priceIncVat": 393500,
+        "address": "Unit 58, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 393500
       },
       {
@@ -16054,12 +17312,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 340088.1057268722,
         "priceIncVat": 386000,
+        "address": "Unit 59, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 386000
       },
       {
@@ -16078,12 +17338,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 60, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -16102,12 +17364,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 449339.20704845816,
         "priceIncVat": 510000,
+        "address": "Unit 61, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 510000
       },
       {
@@ -16126,12 +17390,14 @@ export const developments: Development[] = [
           "contractSigned": true,
           "saleClosed": true
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 118,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
+        "address": "Unit 62, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -16152,12 +17418,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-01-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 151,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
+        "address": "Unit 63, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -16178,12 +17446,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-01-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 64, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16204,12 +17474,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 65, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16230,12 +17502,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-05-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 66, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16256,12 +17530,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "BOC",
         "occupancy": "8",
         "size": 268,
         "priceExVat": 822490.0088105727,
         "priceIncVat": 933526.16,
+        "address": "Unit 67, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 933526.16
       },
       {
@@ -16282,10 +17558,12 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "BOC",
         "occupancy": "8",
-        "size": 268
+        "size": 268,
+        "address": "Unit 68, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "69",
@@ -16305,12 +17583,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 284140.9691629956,
         "priceIncVat": 322500,
+        "address": "Unit 69, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 322500
       },
       {
@@ -16331,12 +17611,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 70, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16357,12 +17639,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 71, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16383,12 +17667,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 72, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16409,12 +17695,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 73, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16435,12 +17723,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 74, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16461,12 +17751,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 332158.59030837007,
         "priceIncVat": 377000,
+        "address": "Unit 75, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 377000
       },
       {
@@ -16487,12 +17779,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 314977.9735682819,
         "priceIncVat": 357500,
+        "address": "Unit 76, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 357500
       },
       {
@@ -16515,13 +17809,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 362750.4845814978,
         "priceIncVat": 411721.8,
         "desnagDate": "2024-12-06",
+        "address": "Unit 77, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 411721.8
       },
       {
@@ -16542,12 +17838,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
         "priceExVat": 312775.3303964758,
         "priceIncVat": 355000,
+        "address": "Unit 78, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 355000
       },
       {
@@ -16568,12 +17866,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 79, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16594,12 +17894,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-05-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 80, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16620,12 +17922,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 81, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16646,12 +17950,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 82, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16672,12 +17978,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-03-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 134,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
+        "address": "Unit 83, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -16698,12 +18006,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 151,
         "priceExVat": 418502.2026431718,
         "priceIncVat": 475000,
+        "address": "Unit 84, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 475000
       },
       {
@@ -16723,13 +18033,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 152,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 85, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "86",
@@ -16748,13 +18060,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 86, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "87",
@@ -16773,13 +18087,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 87, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "88",
@@ -16798,13 +18114,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 88, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "89",
@@ -16823,13 +18141,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 89, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "90",
@@ -16848,13 +18168,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 90, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "91",
@@ -16873,13 +18195,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 386370.63436123345,
         "priceIncVat": 438530.67,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 91, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "92",
@@ -16898,13 +18222,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 152,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
-        "plannedCloseDate": "2026-04-26"
+        "plannedCloseDate": "2026-04-26",
+        "address": "Unit 92, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "93",
@@ -16923,13 +18249,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 152,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 93, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "94",
@@ -16948,13 +18276,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 94, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "95",
@@ -16973,13 +18303,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 95, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "96",
@@ -16998,13 +18330,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 96, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "97",
@@ -17023,13 +18357,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 97, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "98",
@@ -17048,13 +18384,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 98, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "99",
@@ -17073,13 +18411,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 99, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "100",
@@ -17098,13 +18438,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 152,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2026-05-17"
+        "plannedCloseDate": "2026-05-17",
+        "address": "Unit 100, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "101",
@@ -17123,13 +18465,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 152,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 101, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "102",
@@ -17148,13 +18492,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 106,
         "priceExVat": 462555.0660792951,
         "priceIncVat": 525000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 102, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "103",
@@ -17173,13 +18519,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 144,
         "priceExVat": 462555.0660792951,
         "priceIncVat": 525000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 103, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "104",
@@ -17198,13 +18546,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 144,
         "priceExVat": 462555.0660792951,
         "priceIncVat": 525000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 104, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "105",
@@ -17223,13 +18573,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 394273.12775330397,
         "priceIncVat": 447500,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 105, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "106",
@@ -17248,13 +18600,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 386343.61233480176,
         "priceIncVat": 438500,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 106, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "107",
@@ -17273,13 +18627,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 398237.88546255504,
         "priceIncVat": 452000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 107, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "108",
@@ -17298,13 +18654,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 398237.88546255504,
         "priceIncVat": 452000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 108, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "109",
@@ -17323,13 +18681,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 306614.4493392071,
         "priceIncVat": 348007.4,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 109, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "110",
@@ -17348,13 +18708,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 394273.12775330397,
         "priceIncVat": 447500,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 110, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "111",
@@ -17378,7 +18740,9 @@ export const developments: Development[] = [
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 111, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "112",
@@ -17404,7 +18768,9 @@ export const developments: Development[] = [
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 112, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "113",
@@ -17425,13 +18791,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-03",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 113, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "114",
@@ -17455,7 +18823,9 @@ export const developments: Development[] = [
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2026-03-11"
+        "plannedCloseDate": "2026-03-11",
+        "address": "Unit 114, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "115",
@@ -17479,13 +18849,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 263451.0925110132,
         "priceIncVat": 299016.99,
         "plannedCloseDate": "2025-09-16",
+        "address": "Unit 115, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 299016.99
       },
       {
@@ -17510,7 +18882,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-02"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
@@ -17518,6 +18890,8 @@ export const developments: Development[] = [
         "priceIncVat": 400000,
         "desnagDate": "2025-08-13",
         "plannedCloseDate": "2025-09-16",
+        "address": "Unit 116, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 400000
       },
       {
@@ -17542,13 +18916,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2025-09-15",
+        "address": "Unit 117, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -17573,7 +18949,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-28"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -17581,6 +18957,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2025-07-23",
         "plannedCloseDate": "2025-09-15",
+        "address": "Unit 118, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -17605,13 +18983,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 297313.8502202643,
         "priceIncVat": 337451.22,
         "plannedCloseDate": "2025-09-15",
+        "address": "Unit 119, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 337451.22
       },
       {
@@ -17636,13 +19016,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-13"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2025-09-15",
+        "address": "Unit 120, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -17667,13 +19049,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 132,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
         "plannedCloseDate": "2025-09-14",
+        "address": "Unit 121, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 400000
       },
       {
@@ -17698,13 +19082,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 89,
         "priceExVat": 263451.0925110132,
         "priceIncVat": 299016.99,
         "plannedCloseDate": "2025-09-14",
+        "address": "Unit 122, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 299016.99
       },
       {
@@ -17729,13 +19115,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-12-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
         "plannedCloseDate": "2025-12-14",
+        "address": "Unit 123, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 460000
       },
       {
@@ -17757,13 +19145,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-18",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 124, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "125",
@@ -17784,13 +19174,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-14",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 125, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "126",
@@ -17811,13 +19203,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-05",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 126, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "127",
@@ -17838,13 +19232,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-14",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 394273.12775330397,
         "priceIncVat": 447500,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 127, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "128",
@@ -17864,13 +19260,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 386343.61233480176,
         "priceIncVat": 438500,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 128, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "129",
@@ -17891,13 +19289,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-10-29",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 398237.88546255504,
         "priceIncVat": 452000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 129, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "130",
@@ -17918,13 +19318,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-10-29",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 398237.88546255504,
         "priceIncVat": 452000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 130, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "131",
@@ -17946,13 +19348,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-02-12",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 306614.4493392071,
         "priceIncVat": 348007.4,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 131, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "132",
@@ -17973,13 +19377,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-10",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 394273.12775330397,
         "priceIncVat": 447500,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 132, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "133",
@@ -18004,7 +19410,9 @@ export const developments: Development[] = [
         "size": 144,
         "priceExVat": 480176.2114537445,
         "priceIncVat": 545000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 133, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "134",
@@ -18029,7 +19437,9 @@ export const developments: Development[] = [
         "size": 144,
         "priceExVat": 480176.2114537445,
         "priceIncVat": 545000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 134, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "135",
@@ -18051,13 +19461,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-09-23",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 152,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 135, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "136",
@@ -18081,12 +19493,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-27"
         },
-        "partV": false,
+        "partV": true,
         "occupancy": "6",
         "size": 152,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
         "plannedCloseDate": "2025-12-14",
+        "address": "Unit 136, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -18111,13 +19525,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-07"
         },
-        "partV": false,
+        "partV": true,
         "occupancy": "8",
         "size": 152,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
         "desnagDate": "2025-10-07",
         "plannedCloseDate": "2025-11-02",
+        "address": "Unit 137, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -18142,13 +19558,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-23"
         },
-        "partV": false,
+        "partV": true,
         "occupancy": "8",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
         "desnagDate": "2025-10-01",
         "plannedCloseDate": "2025-11-02",
+        "address": "Unit 138, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 460000
       },
       {
@@ -18174,7 +19592,9 @@ export const developments: Development[] = [
         "size": 144,
         "priceExVat": 480176.2114537445,
         "priceIncVat": 545000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 139, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "140",
@@ -18196,13 +19616,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-03",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 144,
         "priceExVat": 480176.2114537445,
         "priceIncVat": 545000,
-        "plannedCloseDate": "2025-12-14"
+        "plannedCloseDate": "2025-12-14",
+        "address": "Unit 140, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "141",
@@ -18222,13 +19644,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 325438.6167400881,
         "priceIncVat": 369372.83,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 141, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "142",
@@ -18248,13 +19672,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 318198.62555066077,
         "priceIncVat": 361155.44,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 142, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "143",
@@ -18274,13 +19700,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 329058.62555066077,
         "priceIncVat": 373481.54,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 143, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "144",
@@ -18300,13 +19728,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 121.5,
         "priceExVat": 329058.62555066077,
         "priceIncVat": 373481.54,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 144, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "145",
@@ -18328,13 +19758,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-02-12",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 329058.62555066077,
         "priceIncVat": 373481.54,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 145, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "146",
@@ -18354,13 +19786,15 @@ export const developments: Development[] = [
           "contractSigned": false,
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 325438.6167400881,
         "priceIncVat": 369372.83,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 146, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "147",
@@ -18384,13 +19818,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
         "plannedCloseDate": "2025-11-02",
+        "address": "Unit 147, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 460000
       },
       {
@@ -18415,7 +19851,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -18423,6 +19859,8 @@ export const developments: Development[] = [
         "priceIncVat": 460000,
         "desnagDate": "2025-10-29",
         "plannedCloseDate": "2025-11-02",
+        "address": "Unit 148, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 460000
       },
       {
@@ -18445,13 +19883,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-12-09",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
-        "plannedCloseDate": "2025-11-02"
+        "plannedCloseDate": "2025-11-02",
+        "address": "Unit 149, Newtown Meadows",
+        "purchaserType": "Private"
       },
       {
         "unitNumber": "150",
@@ -18475,13 +19915,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-11-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 405286.3436123348,
         "priceIncVat": 460000,
         "plannedCloseDate": "2025-11-02",
+        "address": "Unit 150, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 460000
       },
       {
@@ -18505,13 +19947,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 89,
         "priceExVat": 297313.8502202643,
         "priceIncVat": 337451.22,
         "plannedCloseDate": "2025-07-20",
+        "address": "Unit 151, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 337451.22
       },
       {
@@ -18535,13 +19979,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-17"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 132,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
         "plannedCloseDate": "2025-07-20",
+        "address": "Unit 152, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 400000
       },
       {
@@ -18566,7 +20012,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-30"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -18574,6 +20020,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2025-05-08",
         "plannedCloseDate": "2025-05-30",
+        "address": "Unit 153, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -18598,7 +20046,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -18606,6 +20054,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2025-05-06",
         "plannedCloseDate": "2025-06-04",
+        "address": "Unit 154, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -18630,7 +20080,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-05"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -18638,6 +20088,8 @@ export const developments: Development[] = [
         "priceIncVat": 410000,
         "desnagDate": "2025-05-12",
         "plannedCloseDate": "2025-06-05",
+        "address": "Unit 155, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -18661,13 +20113,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 361233.48017621145,
         "priceIncVat": 410000,
         "plannedCloseDate": "2025-07-01",
+        "address": "Unit 156, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 410000
       },
       {
@@ -18691,13 +20145,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 132,
         "priceExVat": 352422.9074889868,
         "priceIncVat": 400000,
         "plannedCloseDate": "2025-07-14",
+        "address": "Unit 157, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 400000
       },
       {
@@ -18721,13 +20177,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "4",
         "size": 89,
         "priceExVat": 263451.0925110132,
         "priceIncVat": 299016.99,
         "plannedCloseDate": "2025-07-20",
+        "address": "Unit 158, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 299016.99
       },
       {
@@ -18749,7 +20207,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -18757,6 +20215,8 @@ export const developments: Development[] = [
         "priceIncVat": 399500,
         "desnagDate": "2025-01-30",
         "plannedCloseDate": "2025-02-19",
+        "address": "Unit 159, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 399500
       },
       {
@@ -18778,7 +20238,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -18786,6 +20246,8 @@ export const developments: Development[] = [
         "priceIncVat": 395000,
         "desnagDate": "2025-02-05",
         "plannedCloseDate": "2025-02-19",
+        "address": "Unit 160, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -18809,7 +20271,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -18817,6 +20279,8 @@ export const developments: Development[] = [
         "priceIncVat": 430000,
         "desnagDate": "2025-01-30",
         "plannedCloseDate": "2025-02-19",
+        "address": "Unit 161, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 430000
       },
       {
@@ -18840,7 +20304,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -18848,6 +20312,8 @@ export const developments: Development[] = [
         "priceIncVat": 399500,
         "desnagDate": "2025-01-28",
         "plannedCloseDate": "2025-02-19",
+        "address": "Unit 162, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 399500
       },
       {
@@ -18871,7 +20337,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 117,
@@ -18879,6 +20345,8 @@ export const developments: Development[] = [
         "priceIncVat": 400000,
         "desnagDate": "2025-02-10",
         "plannedCloseDate": "2025-03-05",
+        "address": "Unit 163, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 400000
       },
       {
@@ -18902,7 +20370,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 117,
@@ -18910,6 +20378,8 @@ export const developments: Development[] = [
         "priceIncVat": 390000,
         "desnagDate": "2025-02-14",
         "plannedCloseDate": "2025-03-05",
+        "address": "Unit 164, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -18933,7 +20403,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-02-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121.5,
@@ -18941,6 +20411,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-02-17",
         "plannedCloseDate": "2025-03-05",
+        "address": "Unit 165, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -18964,7 +20436,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 121.5,
@@ -18972,6 +20444,8 @@ export const developments: Development[] = [
         "priceIncVat": 415000,
         "desnagDate": "2025-03-07",
         "plannedCloseDate": "2025-03-19",
+        "address": "Unit 166, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 415000
       },
       {
@@ -18996,13 +20470,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "LCCC",
         "occupancy": "6",
         "size": 117,
         "priceExVat": 306614.4493392071,
         "priceIncVat": 348007.4,
         "plannedCloseDate": "2025-03-19",
+        "address": "Unit 167, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 348007.4
       },
       {
@@ -19026,7 +20502,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-28"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 117,
@@ -19034,6 +20510,8 @@ export const developments: Development[] = [
         "priceIncVat": 440000,
         "desnagDate": "2025-04-28",
         "plannedCloseDate": "2025-05-23",
+        "address": "Unit 168, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 440000
       },
       {
@@ -19057,7 +20535,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 144,
@@ -19065,6 +20543,8 @@ export const developments: Development[] = [
         "priceIncVat": 525000,
         "desnagDate": "2025-03-18",
         "plannedCloseDate": "2025-04-02",
+        "address": "Unit 169, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 525000
       },
       {
@@ -19089,13 +20569,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "3",
         "size": 144,
         "priceExVat": 462555.0660792951,
         "priceIncVat": 525000,
         "plannedCloseDate": "2025-04-16",
+        "address": "Unit 170, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 525000
       },
       {
@@ -19119,7 +20601,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -19127,6 +20609,8 @@ export const developments: Development[] = [
         "priceIncVat": 430000,
         "desnagDate": "2025-04-28",
         "plannedCloseDate": "2025-04-30",
+        "address": "Unit 171, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 430000
       },
       {
@@ -19150,7 +20634,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 152,
@@ -19158,6 +20642,8 @@ export const developments: Development[] = [
         "priceIncVat": 500000,
         "desnagDate": "2025-04-29",
         "plannedCloseDate": "2025-04-30",
+        "address": "Unit 172, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 500000
       },
       {
@@ -19179,13 +20665,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 337004.4052863436,
         "priceIncVat": 382500,
         "desnagDate": "2024-11-21",
+        "address": "Unit 173, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 382500
       },
       {
@@ -19207,13 +20695,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 328193.83259911893,
         "priceIncVat": 372500,
         "desnagDate": "2024-11-21",
+        "address": "Unit 174, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 372500
       },
       {
@@ -19235,13 +20725,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
         "desnagDate": "2024-11-27",
+        "address": "Unit 175, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -19263,13 +20755,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-01-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "desnagDate": "2024-11-29",
+        "address": "Unit 176, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -19291,13 +20785,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
         "desnagDate": "2024-12-02",
+        "address": "Unit 177, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -19319,13 +20815,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
         "desnagDate": "2024-11-27",
+        "address": "Unit 178, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -19347,13 +20845,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 328193.83259911893,
         "priceIncVat": 372500,
         "desnagDate": "2024-12-09",
+        "address": "Unit 179, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 372500
       },
       {
@@ -19375,13 +20875,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
         "desnagDate": "2024-12-05",
+        "address": "Unit 180, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -19402,12 +20904,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
+        "address": "Unit 181, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -19428,12 +20932,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 327929.5154185022,
         "priceIncVat": 372200,
+        "address": "Unit 182, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 372200
       },
       {
@@ -19454,12 +20960,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
+        "address": "Unit 183, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -19480,12 +20988,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-04-07"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 184, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19506,12 +21016,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 185, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19532,12 +21044,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 186, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19558,12 +21072,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-06-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 187, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19585,7 +21101,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
@@ -19593,6 +21109,8 @@ export const developments: Development[] = [
         "priceIncVat": 322500,
         "desnagDate": "2025-03-19",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 188, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 322500
       },
       {
@@ -19614,7 +21132,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-05-01"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
@@ -19622,6 +21140,8 @@ export const developments: Development[] = [
         "priceIncVat": 370000,
         "desnagDate": "2025-04-01",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 189, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 370000
       },
       {
@@ -19643,7 +21163,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-27"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -19651,6 +21171,8 @@ export const developments: Development[] = [
         "priceIncVat": 362500,
         "desnagDate": "2025-03-13",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 190, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 362500
       },
       {
@@ -19672,7 +21194,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-03-26"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -19680,6 +21202,8 @@ export const developments: Development[] = [
         "priceIncVat": 362500,
         "desnagDate": "2025-03-13",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 191, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 362500
       },
       {
@@ -19701,7 +21225,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -19709,6 +21233,8 @@ export const developments: Development[] = [
         "priceIncVat": 362500,
         "desnagDate": "2025-03-20",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 192, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 362500
       },
       {
@@ -19730,7 +21256,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -19738,6 +21264,8 @@ export const developments: Development[] = [
         "priceIncVat": 362500,
         "desnagDate": "2025-03-21",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 193, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 362500
       },
       {
@@ -19759,7 +21287,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-03"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 89,
@@ -19767,6 +21295,8 @@ export const developments: Development[] = [
         "priceIncVat": 322500,
         "desnagDate": "2025-03-24",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 195, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 322500
       },
       {
@@ -19788,7 +21318,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-04-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "4",
         "size": 132,
@@ -19796,6 +21326,8 @@ export const developments: Development[] = [
         "priceIncVat": 375000,
         "desnagDate": "2025-04-01",
         "plannedCloseDate": "2025-03-12",
+        "address": "Unit 194, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -19816,12 +21348,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-08-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 196, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19842,12 +21376,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-18"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 197, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19868,12 +21404,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 198, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19894,12 +21432,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 343612.33480176213,
         "priceIncVat": 390000,
+        "address": "Unit 199, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 390000
       },
       {
@@ -19920,12 +21460,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-07-31"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 337004.4052863436,
         "priceIncVat": 382500,
+        "address": "Unit 200, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 382500
       },
       {
@@ -19946,12 +21488,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 328193.83259911893,
         "priceIncVat": 372500,
+        "address": "Unit 201, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 372500
       },
       {
@@ -19972,12 +21516,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-09-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 337004.4052863436,
         "priceIncVat": 382500,
+        "address": "Unit 202, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 382500
       },
       {
@@ -19998,12 +21544,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-04"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 330396.4757709251,
         "priceIncVat": 375000,
+        "address": "Unit 203, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 375000
       },
       {
@@ -20025,13 +21573,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-12-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 325991.18942731275,
         "priceIncVat": 370000,
         "desnagDate": "2024-08-09",
+        "address": "Unit 204, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 370000
       },
       {
@@ -20052,12 +21602,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
+        "address": "Unit 205, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -20078,12 +21630,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-10"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
+        "address": "Unit 206, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -20104,12 +21658,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-22"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 348017.62114537443,
         "priceIncVat": 395000,
+        "address": "Unit 207, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 395000
       },
       {
@@ -20130,12 +21686,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
+        "address": "Unit 208, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -20156,12 +21714,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 328193.83259911893,
         "priceIncVat": 372500,
+        "address": "Unit 209, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 372500
       },
       {
@@ -20182,12 +21742,14 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2024-10-21"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
         "priceExVat": 339207.0484581498,
         "priceIncVat": 385000,
+        "address": "Unit 210, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 385000
       },
       {
@@ -20212,7 +21774,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20220,6 +21782,8 @@ export const developments: Development[] = [
         "priceIncVat": 425000,
         "desnagDate": "2025-05-23",
         "plannedCloseDate": "2025-05-14",
+        "address": "Unit 211, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 425000
       },
       {
@@ -20244,7 +21808,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20252,6 +21816,8 @@ export const developments: Development[] = [
         "priceIncVat": 422500,
         "desnagDate": "2025-05-07",
         "plannedCloseDate": "2025-05-14",
+        "address": "Unit 212, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 422500
       },
       {
@@ -20276,7 +21842,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20284,6 +21850,8 @@ export const developments: Development[] = [
         "priceIncVat": 422500,
         "desnagDate": "2025-05-29",
         "plannedCloseDate": "2025-05-28",
+        "address": "Unit 213, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 422500
       },
       {
@@ -20308,7 +21876,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20316,6 +21884,8 @@ export const developments: Development[] = [
         "priceIncVat": 422500,
         "desnagDate": "2025-05-12",
         "plannedCloseDate": "2025-05-28",
+        "address": "Unit 214, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 422500
       },
       {
@@ -20340,7 +21910,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20348,6 +21918,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-06-04",
         "plannedCloseDate": "2025-07-11",
+        "address": "Unit 215, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20372,7 +21944,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20380,6 +21952,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-06-03",
         "plannedCloseDate": "2025-07-14",
+        "address": "Unit 216, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20404,7 +21978,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-25"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20412,6 +21986,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-06-03",
         "plannedCloseDate": "2025-06-25",
+        "address": "Unit 217, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20436,7 +22012,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20444,6 +22020,8 @@ export const developments: Development[] = [
         "priceIncVat": 422500,
         "desnagDate": "2025-06-04",
         "plannedCloseDate": "2025-06-19",
+        "address": "Unit 218, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 422500
       },
       {
@@ -20468,7 +22046,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-02"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20476,6 +22054,8 @@ export const developments: Development[] = [
         "priceIncVat": 440000,
         "desnagDate": "2025-06-17",
         "plannedCloseDate": "2025-09-30",
+        "address": "Unit 219, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 440000
       },
       {
@@ -20500,7 +22080,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-06-23"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20508,6 +22088,8 @@ export const developments: Development[] = [
         "priceIncVat": 430000,
         "desnagDate": "2025-04-28",
         "plannedCloseDate": "2025-06-23",
+        "address": "Unit 220, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 430000
       },
       {
@@ -20532,7 +22114,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-16"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 112,
@@ -20540,6 +22122,8 @@ export const developments: Development[] = [
         "priceIncVat": 440000,
         "desnagDate": "2025-06-17",
         "plannedCloseDate": "2025-07-16",
+        "address": "Unit 221, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 440000
       },
       {
@@ -20562,7 +22146,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-07-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 151,
@@ -20570,6 +22154,8 @@ export const developments: Development[] = [
         "priceIncVat": 485000,
         "desnagDate": "2025-06-17",
         "plannedCloseDate": "2025-07-09",
+        "address": "Unit 222, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 485000
       },
       {
@@ -20594,7 +22180,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-15"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -20602,6 +22188,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-07-18",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 223, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20626,7 +22214,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-11"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -20634,6 +22222,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-07-25",
         "plannedCloseDate": "2025-08-06",
+        "address": "Unit 224, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20658,13 +22248,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-12"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 225, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20689,7 +22281,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-08-14"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -20697,6 +22289,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-07-18",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 226, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20721,7 +22315,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-09"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -20729,6 +22323,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-07-30",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 227, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20753,7 +22349,7 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-24"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
@@ -20761,6 +22357,8 @@ export const developments: Development[] = [
         "priceIncVat": 445000,
         "desnagDate": "2025-08-26",
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 228, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20785,13 +22383,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-08"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 229, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20816,13 +22416,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-10-20"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 230, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20847,13 +22449,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-08-29",
+        "address": "Unit 231, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20878,13 +22482,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-09-24",
+        "address": "Unit 232, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20909,13 +22515,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-09-24",
+        "address": "Unit 233, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20940,13 +22548,15 @@ export const developments: Development[] = [
           "saleClosed": true,
           "saleClosedDate": "2025-09-19"
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "6",
         "size": 106,
         "priceExVat": 392070.4845814978,
         "priceIncVat": 445000,
         "plannedCloseDate": "2025-09-30",
+        "address": "Unit 234, Newtown Meadows",
+        "purchaserType": "Private",
         "soldPrice": 445000
       },
       {
@@ -20968,13 +22578,15 @@ export const developments: Development[] = [
           "contractSignedDate": "2025-11-03",
           "saleClosed": false
         },
-        "partV": false,
+        "partV": true,
         "buyerType": "Private",
         "occupancy": "8",
         "size": 151,
         "priceExVat": 440528.6343612335,
         "priceIncVat": 500000,
-        "plannedCloseDate": "2025-10-01"
+        "plannedCloseDate": "2025-10-01",
+        "address": "Unit 235, Newtown Meadows",
+        "purchaserType": "Private"
       }
     ]
   }

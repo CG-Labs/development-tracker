@@ -332,6 +332,35 @@ function mapSalesStatus(status: string): SalesStatus {
   return statusMap[status] || "For Sale";
 }
 
+// Map buyer type to purchaser type
+type PurchaserType = "Private" | "Council" | "AHB" | "Other";
+
+function mapPurchaserType(buyerType: string | undefined): PurchaserType {
+  if (!buyerType) return "Private";
+  const type = buyerType.toLowerCase().trim();
+
+  if (type === "private" || type === "priv") return "Private";
+  if (type === "council" || type === "local authority" || type === "la") return "Council";
+  if (type === "ahb" || type === "approved housing body" || type === "housing body") return "AHB";
+  if (type === "part v") return "Council"; // Part V units typically go to council/AHB
+
+  return "Private"; // Default to Private
+}
+
+// Generate address from development and unit number
+function generateAddress(developmentName: string, unitNumber: string): string {
+  // Create a placeholder address based on development name
+  const addressMap: Record<string, string> = {
+    "Knockhill Ph 1": "Knockhill Estate, Phase 1",
+    "Knockhill Ph2": "Knockhill Estate, Phase 2",
+    "Magee": "Magee Development",
+    "Newtown Meadows": "Newtown Meadows",
+  };
+
+  const baseName = addressMap[developmentName] || developmentName;
+  return `Unit ${unitNumber}, ${baseName}`;
+}
+
 // Convert Excel date serial to ISO string
 function excelDateToISO(excelDate: number | string | undefined): string | undefined {
   if (excelDate === undefined || excelDate === null || excelDate === "") {
@@ -495,7 +524,7 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
         saleClosedDate: isSaleComplete ? actualCloseDate : undefined,
       },
       // Additional fields
-      partV: row[COLUMNS.partV] === "Yes" || row[COLUMNS.partV] === true,
+      partV: row[COLUMNS.partV] === "Yes" || row[COLUMNS.partV] === true || String(row[COLUMNS.partV]).toLowerCase().includes("part v"),
       buyerType: row[COLUMNS.buyerType] ? String(row[COLUMNS.buyerType]) : undefined,
       occupancy: row[COLUMNS.occupancy] ? String(row[COLUMNS.occupancy]) : undefined,
       size: row[COLUMNS.size] ? Number(row[COLUMNS.size]) : undefined,
@@ -503,6 +532,9 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
       priceIncVat: parsePrice(row[COLUMNS.priceIncVat]) || undefined,
       desnagDate: excelDateToISO(row[COLUMNS.desnagDate] as number | string),
       plannedCloseDate: excelDateToISO(row[COLUMNS.plannedCloseDate] as number | string),
+      // Purchaser information
+      address: generateAddress(sheetName, String(unitNumber)),
+      purchaserType: mapPurchaserType(row[COLUMNS.buyerType] ? String(row[COLUMNS.buyerType]) : undefined),
     };
 
     // Set soldPrice if complete (sold)
