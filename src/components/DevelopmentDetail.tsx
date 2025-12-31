@@ -108,8 +108,8 @@ export function DevelopmentDetail() {
     );
   }
 
-  const sold = development.units.filter((u) => u.salesStatus === "Sold").length;
-  const available = development.units.filter((u) => u.salesStatus === "Available").length;
+  const sold = development.units.filter((u) => u.salesStatus === "Complete").length;
+  const available = development.units.filter((u) => u.salesStatus === "For Sale").length;
   const complete = development.units.filter((u) => u.constructionStatus === "Complete").length;
 
   return (

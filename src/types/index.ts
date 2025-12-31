@@ -37,6 +37,15 @@ export interface Unit {
   snagDate?: string;
   closeDate?: string;
   documentation: DocumentationChecklist;
+  // Additional fields from Excel
+  partV?: boolean;
+  buyerType?: string;
+  occupancy?: string;
+  size?: number;
+  priceExVat?: number;
+  priceIncVat?: number;
+  desnagDate?: string;
+  plannedCloseDate?: string;
 }
 
 export interface Development {

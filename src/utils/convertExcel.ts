@@ -657,21 +657,22 @@ function main() {
     console.log(`\n${dev.name} (${dev.projectNumber})`);
     console.log(`  Total Units: ${dev.totalUnits}`);
 
-    const statusCounts = {
-      Available: 0,
-      Reserved: 0,
-      "Sale Agreed": 0,
-      Sold: 0,
+    const statusCounts: Record<SalesStatus, number> = {
+      "Not Released": 0,
+      "For Sale": 0,
+      "Under Offer": 0,
+      "Contracted": 0,
+      "Complete": 0,
     };
 
     for (const unit of dev.units) {
       statusCounts[unit.salesStatus]++;
     }
 
-    console.log(`  Available: ${statusCounts.Available}`);
-    console.log(`  Reserved: ${statusCounts.Reserved}`);
-    console.log(`  Sale Agreed: ${statusCounts["Sale Agreed"]}`);
-    console.log(`  Sold: ${statusCounts.Sold}`);
+    console.log(`  For Sale: ${statusCounts["For Sale"]}`);
+    console.log(`  Under Offer: ${statusCounts["Under Offer"]}`);
+    console.log(`  Contracted: ${statusCounts["Contracted"]}`);
+    console.log(`  Complete: ${statusCounts["Complete"]}`);
   }
 
   // Log full data
