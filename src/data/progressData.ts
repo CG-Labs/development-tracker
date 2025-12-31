@@ -1,5 +1,5 @@
 // Auto-generated from Sales Tracker Quick Reference.xlsx
-// Generated on: 2025-12-30T22:44:18.865Z
+// Generated on: 2025-12-30T23:42:52.324Z
 
 export interface DevelopmentMonthlyData {
   plannedQty: number;

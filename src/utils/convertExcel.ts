@@ -95,6 +95,7 @@ interface ColumnMapping {
   buyerType: number;
   occupancy: number;
   bedrooms: number;
+  typeCode: number;  // Layout/design type code (for house categorization)
   size: number;
   constructionStatus: number;
   conveyancyStatus: number;
@@ -119,7 +120,7 @@ const COLUMNS_WITH_TYPE: ColumnMapping = {
   buyerType: 3,         // D: Buyer Type
   occupancy: 4,         // E: Occupancy
   bedrooms: 5,          // F: Bedrooms
-  // G: Type (skipped)
+  typeCode: 6,          // G: Type (layout code)
   size: 7,              // H: Size
   constructionStatus: 8,  // I: Construction Status
   conveyancyStatus: 9,    // J: Conveyacy Status
@@ -145,6 +146,7 @@ const COLUMNS_WITHOUT_TYPE: ColumnMapping = {
   buyerType: 3,         // D: Buyer Type
   occupancy: 4,         // E: Occupancy
   bedrooms: 5,          // F: Bedrooms
+  typeCode: -1,         // No Type column in this sheet
   size: 6,              // G: Size (no Type column!)
   constructionStatus: 7,  // H: Construction Status
   conveyancyStatus: 8,    // I: Conveyacy Status
@@ -171,7 +173,7 @@ const COLUMNS_NEWTOWN: ColumnMapping = {
   // E: <empty>
   occupancy: 5,         // F: Occupancy
   bedrooms: 6,          // G: Bedrooms
-  // H: Type (skipped)
+  typeCode: 7,          // H: Type (layout code)
   size: 8,              // I: Size
   constructionStatus: 9,  // J: Construction Status
   conveyancyStatus: 10,   // K: Conveyacy Status
@@ -198,28 +200,94 @@ const SHEET_COLUMN_MAPPINGS: Record<string, ColumnMapping> = {
   "Newtown Meadows": COLUMNS_NEWTOWN,
 };
 
+// Type code to house type mapping
+// These are the layout codes from the Type column in the Excel file
+// Map them to Semi-Detached, Detached, or Terrace based on development knowledge
+const HOUSE_TYPE_CODE_MAP: Record<string, "House-Semi" | "House-Detached" | "House-Terrace"> = {
+  // Knockhill Ph 1 type codes
+  "A": "House-Semi",
+  "G": "House-Semi",
+  "G1": "House-Semi",
+  "E": "House-Semi",
+  "B2": "House-Semi",
+  "B3": "House-Semi",
+
+  // Magee type codes
+  "B4": "House-Semi",
+  "A1a": "House-Semi",
+  "A3": "House-Semi",
+  "A2": "House-Semi",
+  "E2": "House-Semi",
+  "F2": "House-Semi",
+  "D": "House-Detached",  // D types are often detached
+  "E1": "House-Semi",
+  "F1": "House-Semi",
+  "B1": "House-Semi",
+  "C1": "House-Semi",
+  "C1a": "House-Semi",
+  "C2": "House-Semi",
+  "A1": "House-Semi",
+  "B": "House-Semi",
+  "C": "House-Semi",
+  "F": "House-Semi",
+
+  // Newtown Meadows type codes
+  "H": "House-Detached",  // H types might be larger detached
+  "M": "House-Semi",
+  "N": "House-Semi",
+  "L": "House-Semi",
+  "L1": "House-Semi",
+  "i": "House-Semi",
+  "i1": "House-Semi",
+  "O": "House-Semi",
+  "J": "House-Semi",
+  "G2": "House-Semi",
+  "G3": "House-Semi",
+  "G4": "House-Semi",
+};
+
 // Map unit type from Excel to our type
-function mapUnitType(excelType: string): UnitType {
-  const typeMap: Record<string, UnitType> = {
-    // House types
-    "Detached": "House-Detached",
-    "Semi-Detached": "House-Semi",
-    "Semi Detached": "House-Semi",
-    "Semi": "House-Semi",
-    "Terraced": "House-Terrace",
-    "Terrace": "House-Terrace",
-    "House": "House-Semi",
-    // Apartment types
-    "Apartment": "Apartment",
-    "Apt": "Apartment",
-    "Flat": "Apartment",
-    "Studio": "Apartment Studio",
-    // Duplex types
-    "Duplex GF": "Duplex Apartment",
-    "Duplex FF": "Duplex Apartment",
-    "Duplex": "Duplex Apartment",
-  };
-  return typeMap[excelType] || "House-Semi";
+// Takes the base unit type (House, Apartment, etc.) and optionally the type code for houses
+function mapUnitType(excelType: string, typeCode?: string): UnitType {
+  const normalizedType = excelType.trim();
+
+  // Apartment types
+  if (normalizedType === "Apartment" || normalizedType === "Apt" || normalizedType === "Flat") {
+    return "Apartment";
+  }
+  if (normalizedType === "Studio") {
+    return "Apartment Studio";
+  }
+
+  // Duplex types
+  if (normalizedType === "Duplex GF" || normalizedType === "Duplex FF" || normalizedType === "Duplex") {
+    return "Duplex Apartment";
+  }
+
+  // House types - use type code if available
+  if (normalizedType === "House" || normalizedType === "Detached" ||
+      normalizedType === "Semi-Detached" || normalizedType === "Semi Detached" ||
+      normalizedType === "Semi" || normalizedType === "Terraced" || normalizedType === "Terrace") {
+
+    // Check for explicit type names first
+    if (normalizedType === "Detached") return "House-Detached";
+    if (normalizedType === "Semi-Detached" || normalizedType === "Semi Detached" || normalizedType === "Semi") return "House-Semi";
+    if (normalizedType === "Terraced" || normalizedType === "Terrace") return "House-Terrace";
+
+    // Use type code mapping if available
+    if (typeCode) {
+      const normalizedCode = typeCode.trim();
+      if (HOUSE_TYPE_CODE_MAP[normalizedCode]) {
+        return HOUSE_TYPE_CODE_MAP[normalizedCode];
+      }
+    }
+
+    // Default to semi-detached for houses without specific mapping
+    return "House-Semi";
+  }
+
+  // Default fallback
+  return "House-Semi";
 }
 
 // Map construction status from Excel
@@ -356,6 +424,8 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
   // Track unique status values for debugging
   const constructionStatusValues = new Set<string>();
   const salesStatusValues = new Set<string>();
+  const unitTypeValues = new Set<string>();
+  const typeCodeValues = new Set<string>();
 
   // Start from row 12 (index 11)
   for (let i = 11; i < data.length; i++) {
@@ -377,6 +447,13 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
     constructionStatusValues.add(rawConstructionStatus);
     salesStatusValues.add(rawSalesStatus);
 
+    // Get unit type and type code for house categorization
+    const rawUnitType = String(row[COLUMNS.unitType] || "");
+    const rawTypeCode = COLUMNS.typeCode >= 0 ? String(row[COLUMNS.typeCode] || "") : "";
+
+    unitTypeValues.add(rawUnitType);
+    if (rawTypeCode) typeCodeValues.add(rawTypeCode);
+
     // Get dates for documentation
     const bcmsDateValue = excelDateToISO(row[COLUMNS.bcmsDate] as number | string);
     const contractReturnedDate = excelDateToISO(contractReturned as number | string);
@@ -391,7 +468,7 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
 
     const unit: Unit = {
       unitNumber: String(unitNumber),
-      type: mapUnitType(String(row[COLUMNS.unitType] || "")),
+      type: mapUnitType(rawUnitType, rawTypeCode),
       bedrooms: Number(row[COLUMNS.bedrooms]) || 0,
       constructionStatus: mapConstructionStatus(rawConstructionStatus),
       salesStatus: salesStatus,
@@ -437,8 +514,17 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
   }
 
   console.log(`Units found: ${units.length}`);
+  console.log(`Unique Unit Types (column B):`, Array.from(unitTypeValues));
+  console.log(`Unique Type Codes (Type column):`, Array.from(typeCodeValues));
   console.log(`Unique Construction Status values:`, Array.from(constructionStatusValues));
   console.log(`Unique Sales Status values:`, Array.from(salesStatusValues));
+
+  // Count by mapped unit type
+  const mappedTypeCounts: Record<string, number> = {};
+  units.forEach(u => {
+    mappedTypeCounts[u.type] = (mappedTypeCounts[u.type] || 0) + 1;
+  });
+  console.log(`Mapped Unit Type counts:`, mappedTypeCounts);
 
   return {
     id: sheetNameToId(sheetName),

@@ -1,7 +1,7 @@
 import type { Development } from "../types";
 
 // Auto-generated from Sales Tracker Quick Reference.xlsx
-// Generated on: 2025-12-30T22:44:18.848Z
+// Generated on: 2025-12-30T23:42:52.308Z
 
 export const developments: Development[] = [
   {
@@ -15470,7 +15470,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "35",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15494,7 +15494,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "36",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15611,7 +15611,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "41",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15635,7 +15635,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "42",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15659,7 +15659,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "43",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15683,7 +15683,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "44",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15707,7 +15707,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "45",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15731,7 +15731,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "46",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15875,7 +15875,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "52",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -15899,7 +15899,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "53",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16040,7 +16040,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "59",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16064,7 +16064,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "60",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16341,7 +16341,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "71",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16367,7 +16367,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "72",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16393,7 +16393,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "73",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16419,7 +16419,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "74",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16445,7 +16445,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "75",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16471,7 +16471,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "76",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -16958,7 +16958,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "95",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -16983,7 +16983,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "96",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -17008,7 +17008,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "97",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -17033,7 +17033,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "98",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -17358,7 +17358,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "111",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -17382,7 +17382,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "112",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Under Offer",
@@ -17408,7 +17408,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "113",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Under Offer",
@@ -17435,7 +17435,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "114",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "For Sale",
@@ -17709,7 +17709,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "123",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Complete",
@@ -17740,7 +17740,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "124",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Under Offer",
@@ -17767,7 +17767,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "125",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Under Offer",
@@ -17794,7 +17794,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "126",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "In Progress",
         "salesStatus": "Under Offer",
@@ -18364,7 +18364,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "147",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18395,7 +18395,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "148",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18427,7 +18427,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "149",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Not Started",
         "salesStatus": "Under Offer",
@@ -18455,7 +18455,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "150",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18732,7 +18732,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "159",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18761,7 +18761,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "160",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18790,7 +18790,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "161",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -18821,7 +18821,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "162",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19246,7 +19246,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "176",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19274,7 +19274,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "177",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19464,7 +19464,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "184",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19490,7 +19490,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "185",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19516,7 +19516,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "186",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19542,7 +19542,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "187",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19800,7 +19800,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "196",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19826,7 +19826,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "197",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19852,7 +19852,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "198",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -19878,7 +19878,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "199",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20062,7 +20062,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "206",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20088,7 +20088,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "207",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20606,7 +20606,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "224",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20638,7 +20638,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "225",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20669,7 +20669,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "226",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20701,7 +20701,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "227",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20733,7 +20733,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "228",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20765,7 +20765,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "229",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20796,7 +20796,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "230",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20827,7 +20827,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "231",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20858,7 +20858,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "232",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
@@ -20889,7 +20889,7 @@ export const developments: Development[] = [
       },
       {
         "unitNumber": "233",
-        "type": "House-Semi",
+        "type": "House-Detached",
         "bedrooms": 3,
         "constructionStatus": "Complete",
         "salesStatus": "Complete",
