@@ -1,9 +1,13 @@
 import { useState } from "react";
 import type { Unit, ConstructionStatus, SalesStatus, PurchaserType } from "../types";
+import type { AuditChange } from "../types/auditLog";
+import { logChange } from "../services/auditLogService";
+import { useAuth } from "../contexts/AuthContext";
 
 interface UnitDetailModalProps {
   unit: Unit;
   developmentName: string;
+  developmentId?: string;
   onClose: () => void;
   onSave?: (updatedUnit: Unit) => void;
 }
@@ -61,24 +65,116 @@ function formatDateForInput(dateStr?: string): string {
 export function UnitDetailModal({
   unit,
   developmentName,
+  developmentId,
   onClose,
   onSave,
 }: UnitDetailModalProps) {
+  const { currentUser } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [editedUnit, setEditedUnit] = useState<Unit>({ ...unit });
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const progress = constructionProgress[unit.constructionStatus];
 
-  const handleSave = () => {
-    if (onSave) {
-      onSave(editedUnit);
+  // Compare two values for changes
+  const compareValues = (oldVal: unknown, newVal: unknown): boolean => {
+    if (oldVal === newVal) return false;
+    if (oldVal === undefined && newVal === "") return false;
+    if (oldVal === "" && newVal === undefined) return false;
+    if (oldVal === null && newVal === undefined) return false;
+    if (oldVal === undefined && newVal === null) return false;
+    return true;
+  };
+
+  // Get changes between original and edited unit
+  const getChanges = (): AuditChange[] => {
+    const changes: AuditChange[] = [];
+    const fieldsToCheck: (keyof Unit)[] = [
+      "address", "purchaserType", "purchaserName", "purchaserPhone", "purchaserEmail",
+      "partV", "startDate", "completionDate", "snagDate", "closeDate",
+      "constructionStatus", "salesStatus", "listPrice", "soldPrice"
+    ];
+
+    fieldsToCheck.forEach((field) => {
+      if (compareValues(unit[field], editedUnit[field])) {
+        changes.push({
+          field,
+          oldValue: unit[field],
+          newValue: editedUnit[field],
+        });
+      }
+    });
+
+    // Check documentation fields
+    const docFields: (keyof Unit["documentation"])[] = [
+      "bcmsReceived", "bcmsReceivedDate",
+      "landRegistryApproved", "landRegistryApprovedDate",
+      "homebondReceived", "homebondReceivedDate",
+      "sanApproved", "sanApprovedDate",
+      "contractIssued", "contractIssuedDate",
+      "contractSigned", "contractSignedDate",
+      "saleClosed", "saleClosedDate"
+    ];
+
+    docFields.forEach((field) => {
+      if (compareValues(unit.documentation[field], editedUnit.documentation[field])) {
+        changes.push({
+          field: `documentation.${field}`,
+          oldValue: unit.documentation[field],
+          newValue: editedUnit.documentation[field],
+        });
+      }
+    });
+
+    return changes;
+  };
+
+  const handleSave = async () => {
+    if (!currentUser) return;
+
+    const changes = getChanges();
+
+    if (changes.length === 0) {
+      setSaveMessage("No changes to save");
+      setTimeout(() => setSaveMessage(null), 1500);
+      return;
     }
-    setSaveMessage("Unit saved successfully!");
-    setTimeout(() => {
-      setSaveMessage(null);
-      setIsEditing(false);
-    }, 1500);
+
+    setIsSaving(true);
+
+    try {
+      // Log the changes to Firestore
+      await logChange({
+        userId: currentUser.uid,
+        userEmail: currentUser.email || "",
+        userName: currentUser.displayName || "",
+        action: "update",
+        entityType: "unit",
+        entityId: unit.unitNumber,
+        changes,
+        developmentId,
+        developmentName,
+        unitNumber: unit.unitNumber,
+      });
+
+      // Call the onSave callback if provided
+      if (onSave) {
+        onSave(editedUnit);
+      }
+
+      setSaveMessage("Changes saved and logged successfully!");
+      setTimeout(() => {
+        setSaveMessage(null);
+        setIsEditing(false);
+      }, 1500);
+    } catch (error) {
+      console.error("Failed to save changes:", error);
+      setSaveMessage("Failed to save changes. Please try again.");
+      setTimeout(() => setSaveMessage(null), 3000);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleCancel = () => {
@@ -490,11 +586,21 @@ export function UnitDetailModal({
         <div className="sticky bottom-0 glass border-t border-[var(--border-subtle)] px-6 py-4 rounded-b-xl">
           {isEditing ? (
             <div className="flex gap-3">
-              <button onClick={handleCancel} className="btn-secondary flex-1">
+              <button onClick={handleCancel} disabled={isSaving} className="btn-secondary flex-1 disabled:opacity-50">
                 Cancel
               </button>
-              <button onClick={handleSave} className="btn-primary flex-1">
-                Save Changes
+              <button onClick={handleSave} disabled={isSaving} className="btn-primary flex-1 disabled:opacity-50">
+                {isSaving ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Saving...
+                  </span>
+                ) : (
+                  "Save Changes"
+                )}
               </button>
             </div>
           ) : (

@@ -487,6 +487,7 @@ export function DevelopmentDetail() {
         <UnitDetailModal
           unit={selectedUnit}
           developmentName={development.name}
+          developmentId={development.id}
           onClose={() => setSelectedUnit(null)}
         />
       )}
