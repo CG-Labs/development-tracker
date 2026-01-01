@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Unit, ConstructionStatus, SalesStatus, PurchaserType } from "../types";
 import type { AuditChange } from "../types/auditLog";
+import type { Note } from "../types/note";
 import { logChange } from "../services/auditLogService";
+import { addNote, updateNote, deleteNote, subscribeToNotes } from "../services/notesService";
 import { useAuth } from "../contexts/AuthContext";
 
 interface UnitDetailModalProps {
@@ -75,7 +77,154 @@ export function UnitDetailModal({
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
+  // Notes state
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [newNoteContent, setNewNoteContent] = useState("");
+  const [isAddingNote, setIsAddingNote] = useState(false);
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
+  const [editingNoteContent, setEditingNoteContent] = useState("");
+  const [deletingNoteId, setDeletingNoteId] = useState<string | null>(null);
+
   const progress = constructionProgress[unit.constructionStatus];
+
+  // Subscribe to notes for this unit
+  useEffect(() => {
+    const unsubscribe = subscribeToNotes(
+      unit.unitNumber,
+      setNotes,
+      (error) => {
+        console.error("Notes subscription error:", error);
+        setSaveMessage("Error loading notes. Check console for details.");
+        setTimeout(() => setSaveMessage(null), 5000);
+      }
+    );
+    return () => unsubscribe();
+  }, [unit.unitNumber]);
+
+  const handleAddNote = async () => {
+    if (!newNoteContent.trim()) return;
+
+    if (!currentUser) {
+      setSaveMessage("You must be logged in to add notes.");
+      setTimeout(() => setSaveMessage(null), 3000);
+      return;
+    }
+
+    if (!developmentId) {
+      setSaveMessage("Error: Development ID not found.");
+      setTimeout(() => setSaveMessage(null), 3000);
+      return;
+    }
+
+    setIsAddingNote(true);
+    try {
+      await addNote({
+        unitId: unit.unitNumber,
+        developmentId,
+        content: newNoteContent.trim(),
+        userId: currentUser.uid,
+        userEmail: currentUser.email || "",
+        userName: currentUser.displayName || undefined,
+      });
+
+      // Log to audit
+      await logChange({
+        userId: currentUser.uid,
+        userEmail: currentUser.email || "",
+        userName: currentUser.displayName || "",
+        action: "note_added",
+        entityType: "note",
+        entityId: unit.unitNumber,
+        changes: [{ field: "content", oldValue: null, newValue: newNoteContent.trim() }],
+        developmentId,
+        developmentName,
+        unitNumber: unit.unitNumber,
+      });
+
+      setNewNoteContent("");
+      setSaveMessage("Note added successfully!");
+      setTimeout(() => setSaveMessage(null), 2000);
+    } catch (error) {
+      console.error("Failed to add note:", error);
+      setSaveMessage("Failed to add note. Please try again.");
+      setTimeout(() => setSaveMessage(null), 3000);
+    } finally {
+      setIsAddingNote(false);
+    }
+  };
+
+  const handleEditNote = async (noteId: string) => {
+    if (!currentUser || !editingNoteContent.trim()) return;
+
+    try {
+      const originalNote = notes.find((n) => n.id === noteId);
+      await updateNote(noteId, editingNoteContent.trim());
+
+      // Log to audit
+      await logChange({
+        userId: currentUser.uid,
+        userEmail: currentUser.email || "",
+        userName: currentUser.displayName || "",
+        action: "note_edited",
+        entityType: "note",
+        entityId: unit.unitNumber,
+        changes: [{ field: "content", oldValue: originalNote?.content, newValue: editingNoteContent.trim() }],
+        developmentId,
+        developmentName,
+        unitNumber: unit.unitNumber,
+      });
+
+      setEditingNoteId(null);
+      setEditingNoteContent("");
+      setSaveMessage("Note updated successfully!");
+      setTimeout(() => setSaveMessage(null), 2000);
+    } catch (error) {
+      console.error("Failed to update note:", error);
+      setSaveMessage("Failed to update note. Please try again.");
+      setTimeout(() => setSaveMessage(null), 3000);
+    }
+  };
+
+  const handleDeleteNote = async (noteId: string) => {
+    if (!currentUser) return;
+
+    try {
+      const originalNote = notes.find((n) => n.id === noteId);
+      await deleteNote(noteId);
+
+      // Log to audit
+      await logChange({
+        userId: currentUser.uid,
+        userEmail: currentUser.email || "",
+        userName: currentUser.displayName || "",
+        action: "note_deleted",
+        entityType: "note",
+        entityId: unit.unitNumber,
+        changes: [{ field: "content", oldValue: originalNote?.content, newValue: null }],
+        developmentId,
+        developmentName,
+        unitNumber: unit.unitNumber,
+      });
+
+      setDeletingNoteId(null);
+      setSaveMessage("Note deleted successfully!");
+      setTimeout(() => setSaveMessage(null), 2000);
+    } catch (error) {
+      console.error("Failed to delete note:", error);
+      setSaveMessage("Failed to delete note. Please try again.");
+      setTimeout(() => setSaveMessage(null), 3000);
+    }
+  };
+
+  const formatNoteTimestamp = (date: Date): string => {
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
 
   // Compare two values for changes
   const compareValues = (oldVal: unknown, newVal: unknown): boolean => {
@@ -579,6 +728,188 @@ export function UnitDetailModal({
                 onChange={(val) => updateField("closeDate", val || undefined)}
               />
             </div>
+          </section>
+
+          {/* Notes & Comments Section */}
+          <section>
+            <SectionHeader title={`Notes & Comments ${notes.length > 0 ? `(${notes.length})` : ""}`} />
+
+            {/* Add New Note */}
+            <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)] mb-4">
+              <textarea
+                value={newNoteContent}
+                onChange={(e) => setNewNoteContent(e.target.value.slice(0, 1000))}
+                placeholder="Add a note..."
+                className="input w-full min-h-[80px] resize-none"
+                disabled={isAddingNote}
+              />
+              <div className="flex items-center justify-between mt-3">
+                <span className="font-mono text-xs text-[var(--text-muted)]">
+                  {newNoteContent.length}/1000
+                </span>
+                <button
+                  onClick={handleAddNote}
+                  disabled={!newNoteContent.trim() || isAddingNote}
+                  className="btn-primary text-sm py-2 px-4 disabled:opacity-50"
+                >
+                  {isAddingNote ? (
+                    <span className="flex items-center gap-2">
+                      <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Adding...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                      </svg>
+                      Add Note
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Notes List */}
+            {notes.length === 0 ? (
+              <div className="text-center py-8">
+                <svg className="w-10 h-10 mx-auto text-[var(--text-muted)] mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <p className="text-[var(--text-muted)] text-sm">No notes yet. Be the first to add one!</p>
+              </div>
+            ) : (
+              <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                {notes.map((note) => {
+                  const isOwnNote = currentUser?.uid === note.userId;
+                  const isEditingThis = editingNoteId === note.id;
+                  const isDeletingThis = deletingNoteId === note.id;
+
+                  return (
+                    <div
+                      key={note.id}
+                      className={`p-4 rounded-lg border transition-all ${
+                        isOwnNote
+                          ? "bg-[var(--accent-cyan)]/5 border-[var(--accent-cyan)]/20 ml-8"
+                          : "bg-[var(--bg-deep)] border-[var(--border-subtle)] mr-8"
+                      }`}
+                    >
+                      {/* Note Header */}
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${
+                            isOwnNote
+                              ? "bg-[var(--accent-cyan)] text-white"
+                              : "bg-[var(--accent-purple)] text-white"
+                          }`}>
+                            {(note.userName || note.userEmail || "U").charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="font-display text-sm font-medium text-[var(--text-primary)]">
+                              {note.userName || note.userEmail}
+                              {isOwnNote && <span className="text-[var(--accent-cyan)] ml-1">(You)</span>}
+                            </p>
+                            <p className="font-mono text-[10px] text-[var(--text-muted)]">
+                              {formatNoteTimestamp(note.timestamp)}
+                              {note.edited && (
+                                <span className="ml-2 italic">(edited)</span>
+                              )}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Actions - only show for own notes */}
+                        {isOwnNote && !isEditingThis && !isDeletingThis && (
+                          <div className="flex items-center gap-1">
+                            <button
+                              onClick={() => {
+                                setEditingNoteId(note.id);
+                                setEditingNoteContent(note.content);
+                              }}
+                              className="p-1.5 rounded text-[var(--text-muted)] hover:text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/10 transition-all"
+                              title="Edit"
+                            >
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={() => setDeletingNoteId(note.id)}
+                              className="p-1.5 rounded text-[var(--text-muted)] hover:text-[var(--accent-rose)] hover:bg-[var(--accent-rose)]/10 transition-all"
+                              title="Delete"
+                            >
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Note Content or Edit Mode */}
+                      {isEditingThis ? (
+                        <div className="mt-3">
+                          <textarea
+                            value={editingNoteContent}
+                            onChange={(e) => setEditingNoteContent(e.target.value.slice(0, 1000))}
+                            className="input w-full min-h-[60px] resize-none"
+                          />
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="font-mono text-xs text-[var(--text-muted)]">
+                              {editingNoteContent.length}/1000
+                            </span>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => {
+                                  setEditingNoteId(null);
+                                  setEditingNoteContent("");
+                                }}
+                                className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                onClick={() => handleEditNote(note.id)}
+                                disabled={!editingNoteContent.trim()}
+                                className="btn-primary text-sm py-1.5 px-3 disabled:opacity-50"
+                              >
+                                Save
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ) : isDeletingThis ? (
+                        <div className="mt-3 p-3 rounded-lg bg-[var(--accent-rose)]/10 border border-[var(--accent-rose)]/20">
+                          <p className="text-[var(--text-primary)] text-sm mb-3">
+                            Are you sure you want to delete this note?
+                          </p>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => setDeletingNoteId(null)}
+                              className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={() => handleDeleteNote(note.id)}
+                              className="px-3 py-1.5 text-sm rounded bg-[var(--accent-rose)] text-white hover:opacity-90 transition-all"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <p className="text-[var(--text-secondary)] text-sm whitespace-pre-wrap">
+                          {note.content}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </section>
         </div>
 

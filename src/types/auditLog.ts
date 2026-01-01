@@ -1,5 +1,5 @@
-export type AuditAction = "create" | "update" | "delete" | "bulk_update";
-export type EntityType = "unit" | "development";
+export type AuditAction = "create" | "update" | "delete" | "bulk_update" | "note_added" | "note_edited" | "note_deleted";
+export type EntityType = "unit" | "development" | "note";
 
 export interface AuditChange {
   field: string;

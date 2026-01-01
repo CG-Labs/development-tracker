@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
 import { UnitDetailModal } from "./UnitDetailModal";
+import { getNotesCountsForDevelopment } from "../services/notesService";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
   Complete: "badge badge-complete",
@@ -50,6 +51,15 @@ export function DevelopmentDetail() {
   const [constructionFilter, setConstructionFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
+  const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
+
+  // Fetch notes counts for this development
+  useEffect(() => {
+    if (!development) return;
+    getNotesCountsForDevelopment(development.id)
+      .then(setNotesCounts)
+      .catch(console.error);
+  }, [development, selectedUnit]); // Refresh when modal closes
 
   const unitTypes = useMemo(() => {
     if (!development) return [];
@@ -392,6 +402,9 @@ export function DevelopmentDetail() {
                 <th className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Price
                 </th>
+                <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                  Notes
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -451,11 +464,23 @@ export function DevelopmentDetail() {
                       </span>
                     )}
                   </td>
+                  <td className="px-4 py-4 whitespace-nowrap text-center">
+                    {notesCounts.get(unit.unitNumber) ? (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)]">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        <span className="font-mono text-xs font-medium">{notesCounts.get(unit.unitNumber)}</span>
+                      </span>
+                    ) : (
+                      <span className="text-[var(--text-muted)]">-</span>
+                    )}
+                  </td>
                 </tr>
               ))}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-6 py-12 text-center">
+                  <td colSpan={9} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"

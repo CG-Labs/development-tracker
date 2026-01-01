@@ -16,6 +16,9 @@ const actionBadgeClasses: Record<AuditAction, string> = {
   update: "badge badge-progress",
   delete: "badge badge-notstarted",
   bulk_update: "badge badge-reserved",
+  note_added: "badge badge-available",
+  note_edited: "badge badge-agreed",
+  note_deleted: "badge badge-notstarted",
 };
 
 const actionLabels: Record<AuditAction, string> = {
@@ -23,6 +26,9 @@ const actionLabels: Record<AuditAction, string> = {
   update: "Update",
   delete: "Delete",
   bulk_update: "Bulk Update",
+  note_added: "Note Added",
+  note_edited: "Note Edited",
+  note_deleted: "Note Deleted",
 };
 
 function formatDateTime(date: Date): string {
@@ -270,6 +276,9 @@ export function AuditLog() {
               <option value="update">Update</option>
               <option value="delete">Delete</option>
               <option value="bulk_update">Bulk Update</option>
+              <option value="note_added">Note Added</option>
+              <option value="note_edited">Note Edited</option>
+              <option value="note_deleted">Note Deleted</option>
             </select>
           </div>
 
