@@ -3,7 +3,9 @@ import { useParams, Link } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
 import { UnitDetailModal } from "./UnitDetailModal";
+import { ImportModal } from "./ImportModal";
 import { getNotesCountsForDevelopment } from "../services/notesService";
+import { exportUnitsToExcel } from "../services/excelExportService";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
   Complete: "badge badge-complete",
@@ -52,6 +54,8 @@ export function DevelopmentDetail() {
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [, setRefreshKey] = useState(0);
 
   // Fetch notes counts for this development
   useEffect(() => {
@@ -166,15 +170,44 @@ export function DevelopmentDetail() {
           </svg>
           Back to Dashboard
         </Link>
-        <div className="flex items-center gap-3">
-          <div className="w-1 h-8 bg-gradient-to-b from-[var(--accent-cyan)] to-[var(--accent-purple)] rounded-full" />
-          <div>
-            <h2 className="font-display text-3xl font-bold text-[var(--text-primary)]">
-              {development.name}
-            </h2>
-            <p className="font-mono text-sm text-[var(--text-muted)] uppercase tracking-wider">
-              {development.projectNumber}
-            </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-1 h-8 bg-gradient-to-b from-[var(--accent-cyan)] to-[var(--accent-purple)] rounded-full" />
+            <div>
+              <h2 className="font-display text-3xl font-bold text-[var(--text-primary)]">
+                {development.name}
+              </h2>
+              <p className="font-mono text-sm text-[var(--text-muted)] uppercase tracking-wider">
+                {development.projectNumber}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                try {
+                  exportUnitsToExcel(development.id);
+                } catch (error) {
+                  console.error("Export failed:", error);
+                  alert("Failed to export units. Please try again.");
+                }
+              }}
+              className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Export Units
+            </button>
+            <button
+              onClick={() => setShowImportModal(true)}
+              className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Import Units
+            </button>
           </div>
         </div>
       </div>
@@ -514,6 +547,16 @@ export function DevelopmentDetail() {
           developmentName={development.name}
           developmentId={development.id}
           onClose={() => setSelectedUnit(null)}
+        />
+      )}
+
+      {/* Import Modal */}
+      {showImportModal && (
+        <ImportModal
+          onClose={() => setShowImportModal(false)}
+          onComplete={() => setRefreshKey((k) => k + 1)}
+          developmentId={development.id}
+          developmentName={development.name}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Dashboard } from "./components/Dashboard";
 import { DevelopmentDetail } from "./components/DevelopmentDetail";
@@ -6,11 +6,17 @@ import { AuditLog } from "./components/AuditLog";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { loadUnitOverrides } from "./services/excelImportService";
 
 function AppContent() {
   const { currentUser, loading, logout } = useAuth();
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
   const [loggingOut, setLoggingOut] = useState(false);
+
+  // Load any saved unit overrides from localStorage on app start
+  useEffect(() => {
+    loadUnitOverrides();
+  }, []);
 
   async function handleLogout() {
     setLoggingOut(true);
