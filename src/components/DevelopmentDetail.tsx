@@ -4,6 +4,8 @@ import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
 import { UnitDetailModal } from "./UnitDetailModal";
 import { ImportModal } from "./ImportModal";
+import { BulkUpdateToolbar } from "./BulkUpdateToolbar";
+import { BulkUpdateModal } from "./BulkUpdateModal";
 import { getNotesCountsForDevelopment } from "../services/notesService";
 import { exportUnitsToExcel } from "../services/excelExportService";
 
@@ -55,6 +57,8 @@ export function DevelopmentDetail() {
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
+  const [selectedUnitIds, setSelectedUnitIds] = useState<Set<string>>(new Set());
   const [, setRefreshKey] = useState(0);
 
   // Fetch notes counts for this development
@@ -90,6 +94,39 @@ export function DevelopmentDetail() {
       return matchesSearch && matchesType && matchesConstruction && matchesSales;
     });
   }, [development, searchQuery, typeFilter, constructionFilter, salesFilter]);
+
+  // Selection helpers
+  const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
+  const isSomeSelected = filteredUnits.some((u) => selectedUnitIds.has(u.unitNumber));
+
+  const toggleSelectAll = () => {
+    if (isAllSelected) {
+      // Deselect all filtered units
+      const newSelection = new Set(selectedUnitIds);
+      filteredUnits.forEach((u) => newSelection.delete(u.unitNumber));
+      setSelectedUnitIds(newSelection);
+    } else {
+      // Select all filtered units
+      const newSelection = new Set(selectedUnitIds);
+      filteredUnits.forEach((u) => newSelection.add(u.unitNumber));
+      setSelectedUnitIds(newSelection);
+    }
+  };
+
+  const toggleUnitSelection = (unitNumber: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newSelection = new Set(selectedUnitIds);
+    if (newSelection.has(unitNumber)) {
+      newSelection.delete(unitNumber);
+    } else {
+      newSelection.add(unitNumber);
+    }
+    setSelectedUnitIds(newSelection);
+  };
+
+  const clearSelection = () => {
+    setSelectedUnitIds(new Set());
+  };
 
   if (!development) {
     return (
@@ -411,6 +448,24 @@ export function DevelopmentDetail() {
           <table className="w-full">
             <thead>
               <tr className="bg-[var(--bg-deep)] border-b border-[var(--border-subtle)]">
+                <th className="px-4 py-4 text-center w-12">
+                  <button
+                    onClick={toggleSelectAll}
+                    className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                      isAllSelected
+                        ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
+                        : isSomeSelected
+                        ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)]/30"
+                        : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
+                    }`}
+                  >
+                    {(isAllSelected || isSomeSelected) && (
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d={isAllSelected ? "M5 13l4 4L19 7" : "M5 12h14"} />
+                      </svg>
+                    )}
+                  </button>
+                </th>
                 <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Unit #
                 </th>
@@ -441,17 +496,35 @@ export function DevelopmentDetail() {
               </tr>
             </thead>
             <tbody>
-              {filteredUnits.map((unit, index) => (
+              {filteredUnits.map((unit, index) => {
+                const isSelected = selectedUnitIds.has(unit.unitNumber);
+                return (
                 <tr
                   key={unit.unitNumber}
                   onClick={() => setSelectedUnit(unit)}
-                  className="table-row cursor-pointer group"
+                  className={`table-row cursor-pointer group ${isSelected ? "bg-[var(--accent-cyan)]/10" : ""}`}
                   style={{
                     animation: `fadeInUp 0.3s ease-out forwards`,
                     animationDelay: `${index * 0.03}s`,
                     opacity: 0,
                   }}
                 >
+                  <td className="px-4 py-4 text-center" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      onClick={(e) => toggleUnitSelection(unit.unitNumber, e)}
+                      className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                        isSelected
+                          ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
+                          : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
+                      }`}
+                    >
+                      {isSelected && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </button>
+                  </td>
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
                       {unit.unitNumber}
@@ -510,10 +583,11 @@ export function DevelopmentDetail() {
                     )}
                   </td>
                 </tr>
-              ))}
+              );
+              })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="px-6 py-12 text-center">
+                  <td colSpan={10} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"
@@ -557,6 +631,28 @@ export function DevelopmentDetail() {
           onComplete={() => setRefreshKey((k) => k + 1)}
           developmentId={development.id}
           developmentName={development.name}
+        />
+      )}
+
+      {/* Bulk Update Toolbar */}
+      <BulkUpdateToolbar
+        selectedCount={selectedUnitIds.size}
+        onBulkUpdate={() => setShowBulkUpdateModal(true)}
+        onClearSelection={clearSelection}
+      />
+
+      {/* Bulk Update Modal */}
+      {showBulkUpdateModal && (
+        <BulkUpdateModal
+          developmentId={development.id}
+          developmentName={development.name}
+          selectedUnits={Array.from(selectedUnitIds)}
+          onClose={() => setShowBulkUpdateModal(false)}
+          onComplete={() => {
+            setShowBulkUpdateModal(false);
+            clearSelection();
+            setRefreshKey((k) => k + 1);
+          }}
         />
       )}
     </div>
