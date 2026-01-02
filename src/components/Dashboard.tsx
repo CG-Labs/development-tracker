@@ -46,8 +46,11 @@ function calculatePortfolioStats(devs: Development[]): PortfolioStats {
 export function Dashboard() {
   const [showImportModal, setShowImportModal] = useState(false);
   const [, setRefreshKey] = useState(0);
-  const stats = calculatePortfolioStats(developments);
-  const completePercentage = Math.round((stats.complete / stats.totalUnits) * 100);
+
+  // Filter to show only Active developments on the dashboard
+  const activeDevelopments = developments.filter((dev) => dev.status === "Active");
+  const stats = calculatePortfolioStats(activeDevelopments);
+  const completePercentage = stats.totalUnits > 0 ? Math.round((stats.complete / stats.totalUnits) * 100) : 0;
 
   const handleExportAll = () => {
     try {
@@ -162,7 +165,7 @@ export function Dashboard() {
           <div className="flex-1 h-px bg-gradient-to-r from-[var(--border-accent)] to-transparent" />
           <div className="flex items-center gap-3">
             <span className="font-mono text-sm text-[var(--text-muted)]">
-              {developments.length} projects
+              {activeDevelopments.length} active projects
             </span>
             <button
               onClick={async () => {
@@ -199,7 +202,7 @@ export function Dashboard() {
 
         {/* Developments grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {developments.map((dev, index) => (
+          {activeDevelopments.map((dev, index) => (
             <DevelopmentCard key={dev.id} development={dev} index={index} />
           ))}
         </div>

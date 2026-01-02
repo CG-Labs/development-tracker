@@ -246,6 +246,38 @@ export function exportUnitsToExcel(developmentId?: string): void {
   saveAs(blob, filename);
 }
 
+// Export all units from provided developments array
+export function exportAllUnitsToExcel(developmentsToExport: Development[]): void {
+  const dateStr = new Date().toISOString().split("T")[0];
+  const filename = `All_Units_Export_${dateStr}.xlsx`;
+
+  // Convert all units to export rows
+  const exportRows: ExportRow[] = [];
+  developmentsToExport.forEach((development) => {
+    development.units.forEach((unit) => {
+      exportRows.push(unitToExportRow(unit, development.name));
+    });
+  });
+
+  if (exportRows.length === 0) {
+    throw new Error("No units to export");
+  }
+
+  // Create workbook and worksheet
+  const workbook = XLSX.utils.book_new();
+  const worksheet = XLSX.utils.json_to_sheet(exportRows);
+  styleWorksheet(worksheet, exportRows.length);
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Units");
+
+  // Generate file and trigger download
+  const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+  const blob = new Blob([excelBuffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+
+  saveAs(blob, filename);
+}
+
 export function getExportColumns(): string[] {
   return [
     "Development Name",

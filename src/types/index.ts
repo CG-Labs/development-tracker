@@ -2,6 +2,8 @@ export type ConstructionStatus = "Not Started" | "In Progress" | "Complete";
 
 export type SalesStatus = "Not Released" | "For Sale" | "Under Offer" | "Contracted" | "Complete";
 
+export type DevelopmentStatus = "Active" | "Completed" | "Archived";
+
 export type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apartment" | "Duplex Apartment" | "Apartment Studio";
 
 export type PurchaserType = "Private" | "Council" | "AHB" | "Other";
@@ -62,6 +64,8 @@ export interface Development {
   projectNumber: string;
   totalUnits: number;
   units: Unit[];
+  status: DevelopmentStatus;
+  description?: string;
 }
 
 export interface PortfolioStats {

@@ -9,6 +9,7 @@ export const developments: Development[] = [
     "name": "Knockhill Ph 1",
     "projectNumber": "KH-001",
     "totalUnits": 48,
+    "status": "Active",
     "units": [
       {
         "unitNumber": "1",
@@ -1464,6 +1465,7 @@ export const developments: Development[] = [
     "name": "Knockhill Ph2",
     "projectNumber": "KH-002",
     "totalUnits": 44,
+    "status": "Active",
     "units": [
       {
         "unitNumber": "Block F - 49",
@@ -2616,6 +2618,7 @@ export const developments: Development[] = [
     "name": "Magee",
     "projectNumber": "MG-001",
     "totalUnits": 375,
+    "status": "Active",
     "units": [
       {
         "unitNumber": "1",
@@ -13185,6 +13188,7 @@ export const developments: Development[] = [
     "name": "Newtown Meadows",
     "projectNumber": "NM-001",
     "totalUnits": 339,
+    "status": "Active",
     "units": [
       {
         "unitNumber": "Block 1 - 1",
