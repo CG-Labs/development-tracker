@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { developments } from "../data/realDevelopments";
 import type { Development, PortfolioStats } from "../types";
 import { DevelopmentCard } from "./DevelopmentCard";
 import { ProgressMonitoring } from "./ProgressMonitoring";
-import { ImportModal } from "./ImportModal";
-import { exportUnitsToExcel } from "../services/excelExportService";
 
 function calculatePortfolioStats(devs: Development[]): PortfolioStats {
   const stats: PortfolioStats = {
@@ -44,26 +41,10 @@ function calculatePortfolioStats(devs: Development[]): PortfolioStats {
 }
 
 export function Dashboard() {
-  const [showImportModal, setShowImportModal] = useState(false);
-  const [, setRefreshKey] = useState(0);
-
   // Filter to show only Active developments on the dashboard
   const activeDevelopments = developments.filter((dev) => dev.status === "Active");
   const stats = calculatePortfolioStats(activeDevelopments);
   const completePercentage = stats.totalUnits > 0 ? Math.round((stats.complete / stats.totalUnits) * 100) : 0;
-
-  const handleExportAll = () => {
-    try {
-      exportUnitsToExcel();
-    } catch (error) {
-      console.error("Export failed:", error);
-      alert("Failed to export units. Please try again.");
-    }
-  };
-
-  const handleImportComplete = () => {
-    setRefreshKey((k) => k + 1);
-  };
 
   return (
     <div className="space-y-10">
@@ -163,41 +144,9 @@ export function Dashboard() {
             </h2>
           </div>
           <div className="flex-1 h-px bg-gradient-to-r from-[var(--border-accent)] to-transparent" />
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-sm text-[var(--text-muted)]">
-              {activeDevelopments.length} active projects
-            </span>
-            <button
-              onClick={async () => {
-                const { downloadPortfolioReport } = await import("../services/reportService");
-                downloadPortfolioReport("pdf");
-              }}
-              className="btn-primary text-sm py-2 px-3 flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Portfolio Report
-            </button>
-            <button
-              onClick={handleExportAll}
-              className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Export All
-            </button>
-            <button
-              onClick={() => setShowImportModal(true)}
-              className="btn-secondary text-sm py-2 px-3 flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-              Import Units
-            </button>
-          </div>
+          <span className="font-mono text-sm text-[var(--text-muted)]">
+            {activeDevelopments.length} active projects
+          </span>
         </div>
 
         {/* Developments grid */}
@@ -210,14 +159,6 @@ export function Dashboard() {
 
       {/* Progress Monitoring Section */}
       <ProgressMonitoring />
-
-      {/* Import Modal */}
-      {showImportModal && (
-        <ImportModal
-          onClose={() => setShowImportModal(false)}
-          onComplete={handleImportComplete}
-        />
-      )}
     </div>
   );
 }

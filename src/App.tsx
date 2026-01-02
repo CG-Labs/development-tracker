@@ -4,9 +4,9 @@ import { Dashboard } from "./components/Dashboard";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { ImportModal } from "./components/ImportModal";
+import { ExportModal } from "./components/ExportModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { loadUnitOverrides } from "./services/excelImportService";
-import { exportAllUnitsToExcel } from "./services/excelExportService";
 
 // Lazy load non-critical components
 const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").then(m => ({ default: m.DevelopmentDetail })));
@@ -24,6 +24,7 @@ function AuthenticatedApp() {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,16 +50,6 @@ function AuthenticatedApp() {
       console.error("Logout error:", error);
     } finally {
       setLoggingOut(false);
-    }
-  }
-
-  async function handleExportAll() {
-    setShowUserMenu(false);
-    try {
-      const { developments } = await import("./data/realDevelopments");
-      exportAllUnitsToExcel(developments);
-    } catch (error) {
-      console.error("Export error:", error);
     }
   }
 
@@ -125,9 +116,9 @@ function AuthenticatedApp() {
                       <svg className="w-4 h-4 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
                       <span className="text-sm">Import Units</span>
                     </button>
-                    <button onClick={handleExportAll} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                    <button onClick={() => { setShowExportModal(true); setShowUserMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
                       <svg className="w-4 h-4 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                      <span className="text-sm">Export All Units</span>
+                      <span className="text-sm">Export Units</span>
                     </button>
                   </div>
                   <div className="border-t border-[var(--border-subtle)]" />
@@ -209,6 +200,10 @@ function AuthenticatedApp() {
           onClose={() => setShowImportModal(false)}
           onComplete={() => { setShowImportModal(false); window.location.reload(); }}
         />
+      )}
+
+      {showExportModal && (
+        <ExportModal onClose={() => setShowExportModal(false)} />
       )}
     </div>
   );
