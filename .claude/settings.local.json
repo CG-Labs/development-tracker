@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsx:*)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd purchaser information and edit functionality to unit detail modal\n\n- Add PurchaserType union type and purchaser fields to Unit interface\n- Add address generation and purchaser type mapping in Excel converter\n- Regenerate data with address and purchaserType fields for all units\n- Rewrite UnitDetailModal with edit mode, address field, and purchaser section\n- Add editable inputs for all fields with Save/Cancel functionality\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(git commit:*)",
+      "Bash(powershell -Command \"\\(Get-ChildItem -Recurse ''C:\\\\Users\\\\johnc\\\\Documents\\\\VS Code\\\\development-tracker'' | Measure-Object -Property Length -Sum\\).Sum / 1MB\")",
+      "Bash(powershell:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}
