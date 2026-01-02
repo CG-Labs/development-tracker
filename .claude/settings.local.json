@@ -10,7 +10,11 @@
       "Bash(git commit:*)",
       "Bash(powershell -Command \"\\(Get-ChildItem -Recurse ''C:\\\\Users\\\\johnc\\\\Documents\\\\VS Code\\\\development-tracker'' | Measure-Object -Property Length -Sum\\).Sum / 1MB\")",
       "Bash(powershell:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(firebase login:*)",
+      "Bash(dir:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(curl:*)"
     ]
   }
 }

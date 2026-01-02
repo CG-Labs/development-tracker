@@ -6,6 +6,7 @@ import { UnitDetailModal } from "./UnitDetailModal";
 import { BulkUpdateToolbar } from "./BulkUpdateToolbar";
 import { BulkUpdateModal } from "./BulkUpdateModal";
 import { getNotesCountsForDevelopment } from "../services/notesService";
+import { useAuth } from "../contexts/AuthContext";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
   Complete: "badge badge-complete",
@@ -46,6 +47,7 @@ function formatDate(dateString: string | undefined): string {
 
 export function DevelopmentDetail() {
   const { id } = useParams<{ id: string }>();
+  const { can } = useAuth();
   const development = developments.find((d) => d.id === id);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -418,24 +420,26 @@ export function DevelopmentDetail() {
           <table className="w-full">
             <thead>
               <tr className="bg-[var(--bg-deep)] border-b border-[var(--border-subtle)]">
-                <th className="px-4 py-4 text-center w-12">
-                  <button
-                    onClick={toggleSelectAll}
-                    className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
-                      isAllSelected
-                        ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
-                        : isSomeSelected
-                        ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)]/30"
-                        : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
-                    }`}
-                  >
-                    {(isAllSelected || isSomeSelected) && (
-                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d={isAllSelected ? "M5 13l4 4L19 7" : "M5 12h14"} />
-                      </svg>
-                    )}
-                  </button>
-                </th>
+                {can("bulkUpdate") && (
+                  <th className="px-4 py-4 text-center w-12">
+                    <button
+                      onClick={toggleSelectAll}
+                      className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                        isAllSelected
+                          ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
+                          : isSomeSelected
+                          ? "border-[var(--accent-cyan)] bg-[var(--accent-cyan)]/30"
+                          : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
+                      }`}
+                    >
+                      {(isAllSelected || isSomeSelected) && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d={isAllSelected ? "M5 13l4 4L19 7" : "M5 12h14"} />
+                        </svg>
+                      )}
+                    </button>
+                  </th>
+                )}
                 <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Unit #
                 </th>
@@ -479,22 +483,24 @@ export function DevelopmentDetail() {
                     opacity: 0,
                   }}
                 >
-                  <td className="px-4 py-4 text-center" onClick={(e) => e.stopPropagation()}>
-                    <button
-                      onClick={(e) => toggleUnitSelection(unit.unitNumber, e)}
-                      className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
-                        isSelected
-                          ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
-                          : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
-                      }`}
-                    >
-                      {isSelected && (
-                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
-                    </button>
-                  </td>
+                  {can("bulkUpdate") && (
+                    <td className="px-4 py-4 text-center" onClick={(e) => e.stopPropagation()}>
+                      <button
+                        onClick={(e) => toggleUnitSelection(unit.unitNumber, e)}
+                        className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                          isSelected
+                            ? "bg-[var(--accent-cyan)] border-[var(--accent-cyan)]"
+                            : "border-[var(--border-subtle)] hover:border-[var(--accent-cyan)]"
+                        }`}
+                      >
+                        {isSelected && (
+                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </button>
+                    </td>
+                  )}
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
                       {unit.unitNumber}
@@ -594,15 +600,17 @@ export function DevelopmentDetail() {
         />
       )}
 
-      {/* Bulk Update Toolbar */}
-      <BulkUpdateToolbar
-        selectedCount={selectedUnitIds.size}
-        onBulkUpdate={() => setShowBulkUpdateModal(true)}
-        onClearSelection={clearSelection}
-      />
+      {/* Bulk Update Toolbar - Only for users with bulkUpdate permission */}
+      {can("bulkUpdate") && (
+        <BulkUpdateToolbar
+          selectedCount={selectedUnitIds.size}
+          onBulkUpdate={() => setShowBulkUpdateModal(true)}
+          onClearSelection={clearSelection}
+        />
+      )}
 
       {/* Bulk Update Modal */}
-      {showBulkUpdateModal && (
+      {can("bulkUpdate") && showBulkUpdateModal && (
         <BulkUpdateModal
           developmentId={development.id}
           developmentName={development.name}
