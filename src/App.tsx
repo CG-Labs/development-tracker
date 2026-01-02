@@ -14,6 +14,7 @@ const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").th
 const AuditLog = lazy(() => import("./components/AuditLog").then(m => ({ default: m.AuditLog })));
 const ReportModal = lazy(() => import("./components/ReportModal").then(m => ({ default: m.ReportModal })));
 const ManageDevelopments = lazy(() => import("./components/ManageDevelopments").then(m => ({ default: m.ManageDevelopments })));
+const UserManagement = lazy(() => import("./components/UserManagement").then(m => ({ default: m.UserManagement })));
 
 // Dynamic import for report functions (only loaded when needed)
 const getReportService = () => import("./services/reportService");
@@ -159,10 +160,16 @@ function AuthenticatedApp() {
                   )}
 
                   {/* Administration - Admin only */}
-                  {(can("viewAuditLog") || can("editDevelopment")) && (
+                  {(can("viewAuditLog") || can("editDevelopment") || can("manageUsers")) && (
                     <>
                       <div className="p-2">
                         <p className="px-3 py-2 font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">Administration</p>
+                        {can("manageUsers") && (
+                          <button onClick={() => { setShowUserMenu(false); navigate("/users"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                            <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                            <span className="text-sm">Manage Users</span>
+                          </button>
+                        )}
                         {can("viewAuditLog") && (
                           <button onClick={() => { setShowUserMenu(false); navigate("/audit-log"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
                             <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
@@ -218,6 +225,7 @@ function AuthenticatedApp() {
             <Route path="/development/:id" element={<DevelopmentDetail />} />
             <Route path="/audit-log" element={<AuditLog />} />
             <Route path="/manage-developments" element={<ManageDevelopments />} />
+            <Route path="/users" element={<UserManagement />} />
           </Routes>
         </Suspense>
       </main>
