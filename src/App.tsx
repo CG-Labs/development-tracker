@@ -1,18 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Dashboard } from "./components/Dashboard";
-import { DevelopmentDetail } from "./components/DevelopmentDetail";
-import { AuditLog } from "./components/AuditLog";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
-import { ReportModal } from "./components/ReportModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { loadUnitOverrides } from "./services/excelImportService";
-import {
-  downloadPortfolioReport,
-  downloadPipelineReport,
-  downloadDocumentationReport,
-} from "./services/reportService";
+
+// Lazy load non-critical components
+const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").then(m => ({ default: m.DevelopmentDetail })));
+const AuditLog = lazy(() => import("./components/AuditLog").then(m => ({ default: m.AuditLog })));
+const ReportModal = lazy(() => import("./components/ReportModal").then(m => ({ default: m.ReportModal })));
+
+// Dynamic import for report functions (only loaded when needed)
+const getReportService = () => import("./services/reportService");
 
 function AppContent() {
   const { currentUser, loading, logout } = useAuth();
@@ -166,7 +166,8 @@ function AppContent() {
                           Quick Reports
                         </p>
                         <button
-                          onClick={() => {
+                          onClick={async () => {
+                            const { downloadPortfolioReport } = await getReportService();
                             downloadPortfolioReport("pdf");
                             setShowReportsDropdown(false);
                           }}
@@ -181,7 +182,8 @@ function AppContent() {
                           </div>
                         </button>
                         <button
-                          onClick={() => {
+                          onClick={async () => {
+                            const { downloadPipelineReport } = await getReportService();
                             downloadPipelineReport("pdf");
                             setShowReportsDropdown(false);
                           }}
@@ -196,7 +198,8 @@ function AppContent() {
                           </div>
                         </button>
                         <button
-                          onClick={() => {
+                          onClick={async () => {
+                            const { downloadDocumentationReport } = await getReportService();
                             downloadDocumentationReport("pdf");
                             setShowReportsDropdown(false);
                           }}
@@ -308,18 +311,24 @@ function AppContent() {
 
         {/* Main content */}
         <main className="max-w-[1400px] mx-auto px-6 py-8">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/development/:id" element={<DevelopmentDetail />} />
-            <Route path="/audit-log" element={<AuditLog />} />
-          </Routes>
+          <Suspense fallback={<div className="flex items-center justify-center py-12"><div className="w-8 h-8 border-2 border-[var(--accent-cyan)] border-t-transparent rounded-full animate-spin" /></div>}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/development/:id" element={<DevelopmentDetail />} />
+              <Route path="/audit-log" element={<AuditLog />} />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* Footer accent line */}
         <div className="fixed bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent-cyan)] to-transparent opacity-30" />
 
         {/* Report Modal */}
-        {showReportModal && <ReportModal onClose={() => setShowReportModal(false)} />}
+        {showReportModal && (
+          <Suspense fallback={null}>
+            <ReportModal onClose={() => setShowReportModal(false)} />
+          </Suspense>
+        )}
       </div>
     </BrowserRouter>
   );

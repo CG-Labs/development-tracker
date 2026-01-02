@@ -5,7 +5,6 @@ import { DevelopmentCard } from "./DevelopmentCard";
 import { ProgressMonitoring } from "./ProgressMonitoring";
 import { ImportModal } from "./ImportModal";
 import { exportUnitsToExcel } from "../services/excelExportService";
-import { downloadPortfolioReport } from "../services/reportService";
 
 function calculatePortfolioStats(devs: Development[]): PortfolioStats {
   const stats: PortfolioStats = {
@@ -166,7 +165,10 @@ export function Dashboard() {
               {developments.length} projects
             </span>
             <button
-              onClick={() => downloadPortfolioReport("pdf")}
+              onClick={async () => {
+                const { downloadPortfolioReport } = await import("../services/reportService");
+                downloadPortfolioReport("pdf");
+              }}
               className="btn-primary text-sm py-2 px-3 flex items-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
