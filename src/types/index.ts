@@ -12,6 +12,7 @@ export interface DocumentationChecklist {
   // Completion Documentation
   bcmsReceived: boolean;
   bcmsReceivedDate?: string;
+  plannedBcmsDate?: string;
   landRegistryApproved: boolean;
   landRegistryApprovedDate?: string;
   homebondReceived: boolean;
@@ -27,6 +28,8 @@ export interface DocumentationChecklist {
   saleClosed: boolean;
   saleClosedDate?: string;
 }
+
+export type IncentiveStatus = "eligible" | "applied" | "claimed" | "expired";
 
 export interface Unit {
   unitNumber: string;
@@ -56,6 +59,9 @@ export interface Unit {
   purchaserName?: string;
   purchaserPhone?: string;
   purchaserEmail?: string;
+  // Incentive information
+  appliedIncentive?: string; // scheme ID
+  incentiveStatus?: IncentiveStatus;
 }
 
 export interface Development {

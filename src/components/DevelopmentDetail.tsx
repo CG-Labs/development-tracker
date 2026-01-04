@@ -7,6 +7,11 @@ import { BulkUpdateToolbar } from "./BulkUpdateToolbar";
 import { BulkUpdateModal } from "./BulkUpdateModal";
 import { getNotesCountsForDevelopment } from "../services/notesService";
 import { useAuth } from "../contexts/AuthContext";
+import { getActiveSchemes } from "../services/incentiveService";
+import type { IncentiveScheme } from "../types/incentive";
+
+type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
   Complete: "badge badge-complete",
@@ -59,6 +64,10 @@ export function DevelopmentDetail() {
   const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
   const [selectedUnitIds, setSelectedUnitIds] = useState<Set<string>>(new Set());
   const [, setRefreshKey] = useState(0);
+  const [sortField, setSortField] = useState<SortField>("unitNumber");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
+  const [incentiveSchemes, setIncentiveSchemes] = useState<IncentiveScheme[]>([]);
+  const [incentiveFilter, setIncentiveFilter] = useState<string>("all");
 
   // Fetch notes counts for this development
   useEffect(() => {
@@ -67,6 +76,13 @@ export function DevelopmentDetail() {
       .then(setNotesCounts)
       .catch(console.error);
   }, [development, selectedUnit]); // Refresh when modal closes
+
+  // Fetch incentive schemes
+  useEffect(() => {
+    getActiveSchemes()
+      .then(setIncentiveSchemes)
+      .catch(console.error);
+  }, []);
 
   const unitTypes = useMemo(() => {
     if (!development) return [];
@@ -77,7 +93,7 @@ export function DevelopmentDetail() {
   const filteredUnits = useMemo(() => {
     if (!development) return [];
 
-    return development.units.filter((unit) => {
+    const filtered = development.units.filter((unit) => {
       const matchesSearch =
         searchQuery === "" ||
         unit.unitNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -89,10 +105,57 @@ export function DevelopmentDetail() {
         unit.constructionStatus === constructionFilter;
       const matchesSales =
         salesFilter === "all" || unit.salesStatus === salesFilter;
+      const matchesIncentive =
+        incentiveFilter === "all" ||
+        (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesConstruction && matchesSales;
+      return matchesSearch && matchesType && matchesConstruction && matchesSales && matchesIncentive;
     });
-  }, [development, searchQuery, typeFilter, constructionFilter, salesFilter]);
+
+    // Sort the filtered units
+    return filtered.sort((a, b) => {
+      let comparison = 0;
+      switch (sortField) {
+        case "unitNumber":
+          comparison = a.unitNumber.localeCompare(b.unitNumber, undefined, { numeric: true });
+          break;
+        case "type":
+          comparison = a.type.localeCompare(b.type);
+          break;
+        case "bedrooms":
+          comparison = a.bedrooms - b.bedrooms;
+          break;
+        case "constructionStatus":
+          comparison = a.constructionStatus.localeCompare(b.constructionStatus);
+          break;
+        case "salesStatus":
+          comparison = a.salesStatus.localeCompare(b.salesStatus);
+          break;
+        case "plannedBcmsDate": {
+          const dateA = a.documentation?.plannedBcmsDate || "";
+          const dateB = b.documentation?.plannedBcmsDate || "";
+          comparison = dateA.localeCompare(dateB);
+          break;
+        }
+        case "plannedCloseDate": {
+          const closeA = (a as { plannedCloseDate?: string }).plannedCloseDate || "";
+          const closeB = (b as { plannedCloseDate?: string }).plannedCloseDate || "";
+          comparison = closeA.localeCompare(closeB);
+          break;
+        }
+        case "price":
+          comparison = (a.soldPrice || a.listPrice) - (b.soldPrice || b.listPrice);
+          break;
+        case "incentive": {
+          const incA = a.appliedIncentive || "";
+          const incB = b.appliedIncentive || "";
+          comparison = incA.localeCompare(incB);
+          break;
+        }
+      }
+      return sortDirection === "asc" ? comparison : -comparison;
+    });
+  }, [development, searchQuery, typeFilter, constructionFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -125,6 +188,32 @@ export function DevelopmentDetail() {
 
   const clearSelection = () => {
     setSelectedUnitIds(new Set());
+  };
+
+  const toggleSort = (field: SortField) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const SortIcon = ({ field }: { field: SortField }) => (
+    <span className="ml-1 inline-flex flex-col">
+      <svg className={`w-2 h-2 ${sortField === field && sortDirection === "asc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`} viewBox="0 0 8 4" fill="currentColor">
+        <path d="M4 0L8 4H0L4 0Z" />
+      </svg>
+      <svg className={`w-2 h-2 ${sortField === field && sortDirection === "desc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`} viewBox="0 0 8 4" fill="currentColor">
+        <path d="M4 4L0 0H8L4 4Z" />
+      </svg>
+    </span>
+  );
+
+  const getIncentiveName = (incentiveId?: string) => {
+    if (!incentiveId) return null;
+    const scheme = incentiveSchemes.find(s => s.id === incentiveId);
+    return scheme?.name || null;
   };
 
   if (!development) {
@@ -315,7 +404,7 @@ export function DevelopmentDetail() {
 
       {/* Filters */}
       <div className="card p-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
           {/* Search */}
           <div className="lg:col-span-1">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
@@ -400,6 +489,26 @@ export function DevelopmentDetail() {
             </select>
           </div>
 
+          {/* Incentive Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              Incentive
+            </label>
+            <select
+              value={incentiveFilter}
+              onChange={(e) => setIncentiveFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="none">No Incentive</option>
+              {incentiveSchemes.map((scheme) => (
+                <option key={scheme.id} value={scheme.id}>
+                  {scheme.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Results count */}
           <div className="flex items-end">
             <div className="w-full px-4 py-3 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
@@ -440,29 +549,35 @@ export function DevelopmentDetail() {
                     </button>
                   </th>
                 )}
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Unit #
+                <th onClick={() => toggleSort("unitNumber")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Unit #<SortIcon field="unitNumber" /></span>
                 </th>
                 <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Area
                 </th>
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Type
+                <th onClick={() => toggleSort("type")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Type<SortIcon field="type" /></span>
                 </th>
-                <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Beds
+                <th onClick={() => toggleSort("bedrooms")} className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center justify-center">Beds<SortIcon field="bedrooms" /></span>
                 </th>
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Construction
+                <th onClick={() => toggleSort("constructionStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Construction<SortIcon field="constructionStatus" /></span>
                 </th>
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Sales
+                <th onClick={() => toggleSort("salesStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Sales<SortIcon field="salesStatus" /></span>
                 </th>
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Planned Close
+                <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" /></span>
                 </th>
-                <th className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Price
+                <th onClick={() => toggleSort("plannedCloseDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Planned Close<SortIcon field="plannedCloseDate" /></span>
+                </th>
+                <th onClick={() => toggleSort("incentive")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Incentive<SortIcon field="incentive" /></span>
+                </th>
+                <th onClick={() => toggleSort("price")} className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center justify-end">Price<SortIcon field="price" /></span>
                 </th>
                 <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Notes
@@ -531,8 +646,34 @@ export function DevelopmentDetail() {
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-xs text-[var(--text-secondary)]">
+                      {formatDate(unit.documentation?.plannedBcmsDate)}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className="font-mono text-xs text-[var(--text-secondary)]">
                       {formatDate((unit as { plannedCloseDate?: string }).plannedCloseDate)}
                     </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    {unit.appliedIncentive ? (
+                      <div className="flex items-center gap-2">
+                        <span className="font-display text-xs text-[var(--text-primary)] truncate max-w-[120px]" title={getIncentiveName(unit.appliedIncentive) || undefined}>
+                          {getIncentiveName(unit.appliedIncentive) || "Unknown"}
+                        </span>
+                        {unit.incentiveStatus && (
+                          <span className={`badge text-[10px] py-0.5 px-1.5 ${
+                            unit.incentiveStatus === "claimed" ? "badge-complete" :
+                            unit.incentiveStatus === "applied" ? "badge-progress" :
+                            unit.incentiveStatus === "eligible" ? "badge-available" :
+                            "badge-notstarted"
+                          }`}>
+                            {unit.incentiveStatus}
+                          </span>
+                        )}
+                      </div>
+                    ) : (
+                      <span className="text-[var(--text-muted)]">-</span>
+                    )}
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-right">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">
@@ -563,7 +704,7 @@ export function DevelopmentDetail() {
               })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={10} className="px-6 py-12 text-center">
+                  <td colSpan={12} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"

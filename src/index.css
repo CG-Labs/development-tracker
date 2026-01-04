@@ -4,7 +4,8 @@
    DEVTRACK - ARCHITECTURAL BLUEPRINT THEME
    ============================================ */
 
-:root {
+:root,
+[data-theme="dark"] {
   /* Core palette - Deep architectural slate */
   --bg-deep: #0a0e17;
   --bg-primary: #0f1729;
@@ -52,6 +53,45 @@
   --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Light Theme */
+[data-theme="light"] {
+  /* Core palette - Clean light backgrounds */
+  --bg-deep: #f8fafc;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+
+  /* Accent colors - slightly adjusted for light mode */
+  --accent-cyan: #0891b2;
+  --accent-cyan-muted: #06b6d4;
+  --accent-gold: #d97706;
+  --accent-gold-bright: #f59e0b;
+  --accent-rose: #e11d48;
+  --accent-emerald: #059669;
+  --accent-purple: #7c3aed;
+  --accent-orange: #ea580c;
+
+  /* Text hierarchy */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-accent: var(--accent-cyan);
+
+  /* Borders and lines */
+  --border-subtle: rgba(15, 23, 42, 0.06);
+  --border-default: rgba(15, 23, 42, 0.12);
+  --border-accent: rgba(8, 145, 178, 0.3);
+  --border-glow: rgba(8, 145, 178, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(8, 145, 178, 0.1);
+  --shadow-gold-glow: 0 0 20px rgba(217, 119, 6, 0.15);
+}
+
 /* Base styles */
 * {
   box-sizing: border-box;
@@ -70,12 +110,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Theme transition */
+*, *::before, *::after {
+  transition: background-color var(--transition-base),
+              border-color var(--transition-base),
+              color var(--transition-fast);
+}
+
 /* Blueprint grid background */
 .blueprint-grid {
   background-image:
     linear-gradient(rgba(6, 214, 214, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(6, 214, 214, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+[data-theme="light"] .blueprint-grid {
+  background-image:
+    linear-gradient(rgba(8, 145, 178, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px);
 }
 
 /* Diagonal accent lines */
@@ -127,6 +180,10 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-subtle);
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 /* Typography classes */

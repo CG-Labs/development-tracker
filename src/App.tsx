@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./config/firebase";
 import { Dashboard } from "./components/Dashboard";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { ImportModal } from "./components/ImportModal";
 import { ExportModal } from "./components/ExportModal";
+import { LogoUploadModal } from "./components/LogoUploadModal";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { loadUnitOverrides } from "./services/excelImportService";
 import { ROLE_INFO } from "./types/roles";
 
@@ -15,22 +19,42 @@ const AuditLog = lazy(() => import("./components/AuditLog").then(m => ({ default
 const ReportModal = lazy(() => import("./components/ReportModal").then(m => ({ default: m.ReportModal })));
 const ManageDevelopments = lazy(() => import("./components/ManageDevelopments").then(m => ({ default: m.ManageDevelopments })));
 const UserManagement = lazy(() => import("./components/UserManagement").then(m => ({ default: m.UserManagement })));
+const IncentiveSchemesPage = lazy(() => import("./components/IncentiveSchemesPage").then(m => ({ default: m.IncentiveSchemesPage })));
 
 // Dynamic import for report functions (only loaded when needed)
 const getReportService = () => import("./services/reportService");
 
 function AuthenticatedApp() {
   const { currentUser, logout, can } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
+  const [showLogoModal, setShowLogoModal] = useState(false);
+  const [companyLogo, setCompanyLogo] = useState<string | null>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadUnitOverrides();
+  }, []);
+
+  // Load company logo
+  useEffect(() => {
+    async function loadLogo() {
+      try {
+        const docRef = doc(db, "settings", "company");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && docSnap.data().logoUrl) {
+          setCompanyLogo(docSnap.data().logoUrl);
+        }
+      } catch (error) {
+        console.error("Failed to load company logo:", error);
+      }
+    }
+    loadLogo();
   }, []);
 
   useEffect(() => {
@@ -78,16 +102,22 @@ function AuthenticatedApp() {
         <div className="max-w-[1400px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-cyan)] to-[var(--accent-purple)] rounded-lg opacity-20 group-hover:opacity-30 transition-opacity" />
-                <div className="absolute inset-[2px] bg-[var(--bg-deep)] rounded-[6px] flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
+              {companyLogo ? (
+                <div className="w-10 h-10 rounded-lg overflow-hidden bg-[var(--bg-deep)] flex items-center justify-center">
+                  <img src={companyLogo} alt="Company logo" className="max-w-full max-h-full object-contain" />
                 </div>
-                <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[var(--accent-cyan)] rounded-tl-lg opacity-60" />
-                <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[var(--accent-cyan)] rounded-br-lg opacity-60" />
-              </div>
+              ) : (
+                <div className="relative w-10 h-10">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-cyan)] to-[var(--accent-purple)] rounded-lg opacity-20 group-hover:opacity-30 transition-opacity" />
+                  <div className="absolute inset-[2px] bg-[var(--bg-deep)] rounded-[6px] flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-[var(--accent-cyan)] rounded-tl-lg opacity-60" />
+                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-[var(--accent-cyan)] rounded-br-lg opacity-60" />
+                </div>
+              )}
               <div>
                 <h1 className="font-display text-xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
                   DevTrack
@@ -159,6 +189,20 @@ function AuthenticatedApp() {
                     </>
                   )}
 
+                  {/* Incentives - Admin/Editor only */}
+                  {(can("editDevelopment") || can("editUnit")) && (
+                    <>
+                      <div className="p-2">
+                        <p className="px-3 py-2 font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">Incentives</p>
+                        <button onClick={() => { setShowUserMenu(false); navigate("/incentive-schemes"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                          <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          <span className="text-sm">Manage Schemes</span>
+                        </button>
+                      </div>
+                      <div className="border-t border-[var(--border-subtle)]" />
+                    </>
+                  )}
+
                   {/* Administration - Admin only */}
                   {(can("viewAuditLog") || can("editDevelopment") || can("manageUsers")) && (
                     <>
@@ -186,6 +230,33 @@ function AuthenticatedApp() {
                       <div className="border-t border-[var(--border-subtle)]" />
                     </>
                   )}
+
+                  {/* Customisation */}
+                  <div className="p-2">
+                    <p className="px-3 py-2 font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">Customisation</p>
+
+                    {/* Theme Toggle */}
+                    <button onClick={() => { toggleTheme(); }} className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                      <div className="flex items-center gap-3">
+                        {theme === "dark" ? (
+                          <svg className="w-4 h-4 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                        ) : (
+                          <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        )}
+                        <span className="text-sm">{theme === "dark" ? "Dark Mode" : "Light Mode"}</span>
+                      </div>
+                      <div className={`relative w-10 h-5 rounded-full transition-colors ${theme === "dark" ? "bg-[var(--accent-cyan)]" : "bg-[var(--accent-gold-bright)]"}`}>
+                        <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-transform ${theme === "dark" ? "left-0.5" : "left-5"}`} />
+                      </div>
+                    </button>
+
+                    {/* Company Logo */}
+                    <button onClick={() => { setShowLogoModal(true); setShowUserMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                      <svg className="w-4 h-4 text-[var(--accent-cyan)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                      <span className="text-sm">{companyLogo ? "Change Company Logo" : "Upload Company Logo"}</span>
+                    </button>
+                  </div>
+                  <div className="border-t border-[var(--border-subtle)]" />
 
                   {/* Account */}
                   <div className="p-2">
@@ -226,6 +297,7 @@ function AuthenticatedApp() {
             <Route path="/audit-log" element={<AuditLog />} />
             <Route path="/manage-developments" element={<ManageDevelopments />} />
             <Route path="/users" element={<UserManagement />} />
+            <Route path="/incentive-schemes" element={<IncentiveSchemesPage />} />
           </Routes>
         </Suspense>
       </main>
@@ -247,6 +319,14 @@ function AuthenticatedApp() {
 
       {showExportModal && (
         <ExportModal onClose={() => setShowExportModal(false)} />
+      )}
+
+      {showLogoModal && (
+        <LogoUploadModal
+          currentLogo={companyLogo || undefined}
+          onClose={() => setShowLogoModal(false)}
+          onUpload={(url) => setCompanyLogo(url || null)}
+        />
       )}
     </div>
   );
@@ -293,11 +373,13 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

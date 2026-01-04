@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import type { Unit, ConstructionStatus, SalesStatus, PurchaserType } from "../types";
+import type { Unit, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus } from "../types";
 import type { AuditChange } from "../types/auditLog";
 import type { Note } from "../types/note";
+import type { IncentiveScheme } from "../types/incentive";
 import { logChange } from "../services/auditLogService";
 import { addNote, updateNote, deleteNote, subscribeToNotes } from "../services/notesService";
+import { getActiveSchemes, checkUnitEligibility, formatBenefitValue, calculateTotalBenefitValue } from "../services/incentiveService";
 import { useAuth } from "../contexts/AuthContext";
 
 interface UnitDetailModalProps {
@@ -85,6 +87,10 @@ export function UnitDetailModal({
   const [editingNoteContent, setEditingNoteContent] = useState("");
   const [deletingNoteId, setDeletingNoteId] = useState<string | null>(null);
 
+  // Incentive state
+  const [incentiveSchemes, setIncentiveSchemes] = useState<IncentiveScheme[]>([]);
+  const [selectedScheme, setSelectedScheme] = useState<IncentiveScheme | null>(null);
+
   const progress = constructionProgress[unit.constructionStatus];
 
   // Subscribe to notes for this unit
@@ -100,6 +106,20 @@ export function UnitDetailModal({
     );
     return () => unsubscribe();
   }, [unit.unitNumber]);
+
+  // Load incentive schemes
+  useEffect(() => {
+    getActiveSchemes()
+      .then((schemes) => {
+        setIncentiveSchemes(schemes);
+        // Find selected scheme if unit has one
+        if (unit.appliedIncentive) {
+          const scheme = schemes.find((s) => s.id === unit.appliedIncentive);
+          setSelectedScheme(scheme || null);
+        }
+      })
+      .catch(console.error);
+  }, [unit.appliedIncentive]);
 
   const handleAddNote = async () => {
     if (!newNoteContent.trim()) return;
@@ -242,7 +262,8 @@ export function UnitDetailModal({
     const fieldsToCheck: (keyof Unit)[] = [
       "address", "purchaserType", "purchaserName", "purchaserPhone", "purchaserEmail",
       "partV", "startDate", "completionDate", "snagDate", "closeDate",
-      "constructionStatus", "salesStatus", "listPrice", "soldPrice"
+      "constructionStatus", "salesStatus", "listPrice", "soldPrice",
+      "appliedIncentive", "incentiveStatus"
     ];
 
     fieldsToCheck.forEach((field) => {
@@ -559,6 +580,158 @@ export function UnitDetailModal({
                 onToggle={(val) => updateDocumentation("saleClosed", val)}
                 onDateChange={(val) => updateDocumentation("saleClosedDate", val)}
               />
+            </div>
+          </section>
+
+          {/* Incentive Scheme */}
+          <section>
+            <SectionHeader title="Incentive Scheme" />
+            <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-4">
+              {/* Scheme Selection */}
+              <div>
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                  Select Incentive Scheme
+                </p>
+                {isEditing ? (
+                  <select
+                    value={editedUnit.appliedIncentive || ""}
+                    onChange={(e) => {
+                      const schemeId = e.target.value;
+                      updateField("appliedIncentive", schemeId || undefined);
+                      const scheme = incentiveSchemes.find((s) => s.id === schemeId);
+                      setSelectedScheme(scheme || null);
+                      if (!schemeId) {
+                        updateField("incentiveStatus", undefined);
+                      }
+                    }}
+                    className="select w-full"
+                  >
+                    <option value="">None</option>
+                    {incentiveSchemes.map((scheme) => (
+                      <option key={scheme.id} value={scheme.id}>
+                        {scheme.name} ({formatBenefitValue(calculateTotalBenefitValue(scheme), scheme.benefits[0]?.currency || "EUR")})
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <span className="font-display text-sm text-[var(--text-primary)]">
+                    {selectedScheme?.name || "No incentive applied"}
+                  </span>
+                )}
+              </div>
+
+              {/* Show scheme details if selected */}
+              {(displayUnit.appliedIncentive && selectedScheme) && (
+                <>
+                  {/* Benefits Breakdown */}
+                  <div>
+                    <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                      Benefits
+                    </p>
+                    <div className="space-y-2">
+                      {selectedScheme.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-center justify-between text-sm">
+                          <span className="text-[var(--text-secondary)]">{benefit.type}</span>
+                          <span className="font-mono text-[var(--accent-emerald)]">
+                            {formatBenefitValue(benefit.value, benefit.currency)}
+                          </span>
+                        </div>
+                      ))}
+                      <div className="pt-2 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                        <span className="font-display text-sm font-semibold text-[var(--text-primary)]">Total</span>
+                        <span className="font-mono text-lg font-bold text-[var(--accent-gold-bright)]">
+                          {formatBenefitValue(calculateTotalBenefitValue(selectedScheme), selectedScheme.benefits[0]?.currency || "EUR")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Eligibility Check */}
+                  <div>
+                    <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                      Requirements
+                    </p>
+                    {(() => {
+                      const eligibility = checkUnitEligibility(displayUnit, selectedScheme);
+                      return (
+                        <div className="space-y-2">
+                          {eligibility.requirementsMet.map((req, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                                req.met ? "bg-[var(--accent-emerald)]" : "bg-[var(--accent-rose)]"
+                              }`}>
+                                {req.met ? (
+                                  <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                ) : (
+                                  <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                                  </svg>
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <p className="text-sm text-[var(--text-primary)]">{req.description}</p>
+                                {!req.met && req.reason && (
+                                  <p className="text-xs text-[var(--accent-rose)] mt-0.5">{req.reason}</p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                          <div className={`mt-3 p-3 rounded-lg ${
+                            eligibility.eligible
+                              ? "bg-[var(--accent-emerald)]/10 border border-[var(--accent-emerald)]/20"
+                              : "bg-[var(--accent-rose)]/10 border border-[var(--accent-rose)]/20"
+                          }`}>
+                            <p className={`text-sm font-semibold ${
+                              eligibility.eligible ? "text-[var(--accent-emerald)]" : "text-[var(--accent-rose)]"
+                            }`}>
+                              {eligibility.eligible ? "Eligible for this incentive" : "Not eligible - requirements not met"}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </div>
+
+                  {/* Incentive Status */}
+                  <div>
+                    <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                      Incentive Status
+                    </p>
+                    {isEditing ? (
+                      <select
+                        value={editedUnit.incentiveStatus || ""}
+                        onChange={(e) => updateField("incentiveStatus", (e.target.value || undefined) as IncentiveStatus | undefined)}
+                        className="select w-full"
+                      >
+                        <option value="">None</option>
+                        <option value="eligible">Eligible</option>
+                        <option value="applied">Applied</option>
+                        <option value="claimed">Claimed</option>
+                        <option value="expired">Expired</option>
+                      </select>
+                    ) : (
+                      <span className={`badge ${
+                        displayUnit.incentiveStatus === "claimed" ? "badge-complete" :
+                        displayUnit.incentiveStatus === "applied" ? "badge-progress" :
+                        displayUnit.incentiveStatus === "eligible" ? "badge-available" :
+                        displayUnit.incentiveStatus === "expired" ? "badge-notstarted" :
+                        "badge-notstarted"
+                      }`}>
+                        {displayUnit.incentiveStatus || "Not Set"}
+                      </span>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* No scheme selected message */}
+              {!displayUnit.appliedIncentive && !isEditing && (
+                <p className="text-sm text-[var(--text-muted)] italic">
+                  No incentive scheme applied to this unit
+                </p>
+              )}
             </div>
           </section>
 
