@@ -2,128 +2,142 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper function to get user data - call once and reuse
-    function getUserData() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
-    }
 
-    // Check if user is authenticated
-    function isAuthenticated() {
+    // ============================================
+    // Helper Functions
+    // ============================================
+
+    function isSignedIn() {
       return request.auth != null;
     }
 
-    // Check if user exists and is active admin
-    function isActiveAdmin() {
-      return isAuthenticated() &&
-        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
-        getUserData().role == 'admin' &&
-        getUserData().isActive != false;
+    function getUserDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid));
     }
 
-    // Check if user exists and is active editor or admin
-    function isActiveEditor() {
-      return isAuthenticated() &&
-        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
-        getUserData().role in ['admin', 'editor'] &&
-        getUserData().isActive != false;
+    function userExists() {
+      return isSignedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid));
     }
 
-    // Check if user is active (not deactivated)
-    function isActive() {
-      return isAuthenticated() &&
-        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
-        getUserData().isActive != false;
+    function getUserRole() {
+      return getUserDoc().data.role;
     }
 
-    // Check development access
-    function canAccessDevelopment(developmentId) {
-      let userData = getUserData();
-      return userData.role == 'admin' ||
-             !('allowedDevelopments' in userData) ||
-             userData.allowedDevelopments == null ||
-             userData.allowedDevelopments.size() == 0 ||
-             developmentId in userData.allowedDevelopments;
+    function isUserActive() {
+      return getUserDoc().data.isActive != false;
     }
 
-    // Users collection
+    // Combined checks - use these in rules
+    function isAdmin() {
+      return userExists() && getUserRole() == 'admin' && isUserActive();
+    }
+
+    function isEditorOrAdmin() {
+      return userExists() && getUserRole() in ['admin', 'editor'] && isUserActive();
+    }
+
+    function isActiveUser() {
+      return userExists() && isUserActive();
+    }
+
+    // ============================================
+    // Users Collection
+    // ============================================
     match /users/{userId} {
-      // Anyone authenticated can read their own profile, admins can read all
-      allow read: if isAuthenticated() && (
+      // Users can read their own profile
+      // Admins can read and query all user profiles
+      allow read: if isSignedIn() && (
         request.auth.uid == userId ||
-        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
-         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+        isAdmin()
       );
 
       // Users can create their own profile on signup
-      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow create: if isSignedIn() && request.auth.uid == userId;
 
-      // Users can update limited fields on their own profile, admins can update any user
-      allow update: if isAuthenticated() && (
-        // User updating their own limited fields
+      // Users can update their own displayName and lastLogin
+      // Admins can update any user
+      allow update: if isSignedIn() && (
         (request.auth.uid == userId &&
-          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
-        // Admin updating any user
-        isActiveAdmin()
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
+        isAdmin()
       );
 
-      // Only admins can delete users
-      allow delete: if isActiveAdmin();
+      // Only admins can delete
+      allow delete: if isAdmin();
     }
 
-    // Invites collection - admin only
+    // ============================================
+    // Invites Collection
+    // ============================================
     match /invites/{inviteId} {
-      allow read: if isActiveAdmin();
-      allow create: if isActiveAdmin();
-      allow update: if isActiveAdmin();
-      allow delete: if isActiveAdmin();
+      // Admins can read, create, update, delete invites
+      allow read, write: if isAdmin();
     }
 
-    // Developments collection
+    // ============================================
+    // Developments Collection
+    // ============================================
     match /developments/{developmentId} {
-      // All authenticated active users can read developments they have access to
-      allow read: if isActive() && canAccessDevelopment(developmentId);
+      // Active users can read developments they have access to
+      allow read: if isActiveUser() && canAccessDev(developmentId);
 
-      // Only admins can create/update/delete developments
-      allow create, update, delete: if isActiveAdmin();
+      // Only admins can write
+      allow write: if isAdmin();
+
+      function canAccessDev(devId) {
+        let userData = getUserDoc().data;
+        return userData.role == 'admin' ||
+               !('allowedDevelopments' in userData) ||
+               userData.allowedDevelopments == null ||
+               userData.allowedDevelopments.size() == 0 ||
+               devId in userData.allowedDevelopments;
+      }
     }
 
-    // Units sub-collection under developments
+    // ============================================
+    // Units Sub-collection
+    // ============================================
     match /developments/{developmentId}/units/{unitId} {
-      // Users can read units if they have access to the parent development
-      allow read: if isActive() && canAccessDevelopment(developmentId);
-
-      // Editors and admins can update units
-      allow update: if isActiveEditor() && canAccessDevelopment(developmentId);
-
-      // Only admins can create/delete units
-      allow create, delete: if isActiveAdmin() && canAccessDevelopment(developmentId);
+      allow read: if isActiveUser();
+      allow update: if isEditorOrAdmin();
+      allow create, delete: if isAdmin();
     }
 
-    // Audit logs - admin read only, editors can create
+    // ============================================
+    // Audit Logs
+    // ============================================
     match /auditLogs/{logId} {
-      allow read: if isActiveAdmin();
-      allow create: if isActiveEditor();
-      allow update, delete: if false; // Audit logs should never be modified or deleted
+      allow read: if isAdmin();
+      allow create: if isEditorOrAdmin();
+      allow update, delete: if false;
     }
 
-    // Notes collection
+    // ============================================
+    // Notes Collection
+    // ============================================
     match /notes/{noteId} {
-      allow read: if isActive();
-      allow create: if isActiveEditor();
-      allow update: if isActive() && (resource.data.createdBy == request.auth.uid || isActiveAdmin());
-      allow delete: if isActiveAdmin();
+      allow read: if isActiveUser();
+      allow create: if isEditorOrAdmin();
+      allow update: if isActiveUser() && (
+        resource.data.createdBy == request.auth.uid || isAdmin()
+      );
+      allow delete: if isAdmin();
     }
 
-    // Incentive schemes - admin only for write
+    // ============================================
+    // Incentive Schemes
+    // ============================================
     match /incentiveSchemes/{schemeId} {
-      allow read: if isActive();
-      allow create, update, delete: if isActiveAdmin();
+      allow read: if isActiveUser();
+      allow write: if isAdmin();
     }
 
-    // Company settings
+    // ============================================
+    // Settings
+    // ============================================
     match /settings/{settingId} {
-      allow read: if isActive();
-      allow write: if isActiveAdmin();
+      allow read: if isActiveUser();
+      allow write: if isAdmin();
     }
   }
 }
