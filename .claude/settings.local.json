@@ -14,7 +14,11 @@
       "Bash(firebase login:*)",
       "Bash(dir:*)",
       "Bash(firebase deploy:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(wc:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build)",
+      "Bash(git push:*)"
     ]
   }
 }

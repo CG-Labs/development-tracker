@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   getAllUsers,
-  updateUserActiveStatus,
+  deactivateUser,
+  reactivateUser,
   updateUserProfile,
-  updateUserDevelopmentAccess,
   createUserInvite,
   getAllInvites,
-  deleteInvite,
+  cancelInvite,
   resendInvite,
 } from "../services/userService";
 import { useAuth } from "../contexts/AuthContext";
@@ -28,11 +28,13 @@ export function UserManagement() {
 
   // Invite form state
   const [showInviteForm, setShowInviteForm] = useState(false);
+  const [inviteName, setInviteName] = useState("");
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState<UserRole>("viewer");
   const [inviteDevs, setInviteDevs] = useState<string[]>([]);
   const [inviteLoading, setInviteLoading] = useState(false);
   const [inviteError, setInviteError] = useState<string | null>(null);
+  const [inviteSuccess, setInviteSuccess] = useState<string | null>(null);
 
   // Edit user modal state
   const [editingUser, setEditingUser] = useState<UserProfile | null>(null);
@@ -64,7 +66,9 @@ export function UserManagement() {
   }
 
   async function handleToggleActive(user: UserProfile) {
-    if (user.uid === currentUser?.uid) {
+    if (!currentUser) return;
+
+    if (user.uid === currentUser.uid) {
       alert("You cannot deactivate your own account");
       return;
     }
@@ -76,7 +80,11 @@ export function UserManagement() {
 
     setUpdatingUserId(user.uid);
     try {
-      await updateUserActiveStatus(user.uid, !user.isActive);
+      if (user.isActive) {
+        await deactivateUser(user.uid, currentUser.uid);
+      } else {
+        await reactivateUser(user.uid, currentUser.uid);
+      }
       setUsers((prev) =>
         prev.map((u) => (u.uid === user.uid ? { ...u, isActive: !user.isActive } : u))
       );
@@ -94,6 +102,7 @@ export function UserManagement() {
 
     setInviteLoading(true);
     setInviteError(null);
+    setInviteSuccess(null);
 
     try {
       const newInvite = await createUserInvite(
@@ -101,14 +110,21 @@ export function UserManagement() {
         inviteRole,
         currentUser.uid,
         currentUser.email || "",
+        currentUser.displayName || undefined,
+        inviteName || undefined,
         inviteDevs.length > 0 ? inviteDevs : undefined
       );
       setInvites((prev) => [newInvite, ...prev]);
-      setShowInviteForm(false);
+      setInviteSuccess(`Invitation sent to ${inviteEmail}`);
+      setInviteName("");
       setInviteEmail("");
       setInviteRole("viewer");
       setInviteDevs([]);
-      alert(`Invitation created for ${inviteEmail}. Share the signup link with them.`);
+      // Close modal after short delay to show success
+      setTimeout(() => {
+        setShowInviteForm(false);
+        setInviteSuccess(null);
+      }, 2000);
     } catch (err) {
       console.error("Error creating invite:", err);
       setInviteError(err instanceof Error ? err.message : "Failed to create invite");
@@ -117,23 +133,29 @@ export function UserManagement() {
     }
   }
 
-  async function handleDeleteInvite(invite: UserInvite) {
-    if (!confirm(`Delete invite for ${invite.email}?`)) {
+  async function handleCancelInvite(invite: UserInvite) {
+    if (!currentUser) return;
+
+    if (!confirm(`Cancel invite for ${invite.email}?`)) {
       return;
     }
 
     try {
-      await deleteInvite(invite.id);
-      setInvites((prev) => prev.filter((i) => i.id !== invite.id));
+      await cancelInvite(invite.id, currentUser.uid);
+      setInvites((prev) =>
+        prev.map((i) => (i.id === invite.id ? { ...i, status: "cancelled" as const } : i))
+      );
     } catch (err) {
-      console.error("Error deleting invite:", err);
-      alert("Failed to delete invite");
+      console.error("Error cancelling invite:", err);
+      alert("Failed to cancel invite");
     }
   }
 
   async function handleResendInvite(invite: UserInvite) {
+    if (!currentUser) return;
+
     try {
-      const newInvite = await resendInvite(invite.id);
+      const newInvite = await resendInvite(invite.id, currentUser.uid);
       setInvites((prev) => prev.map((i) => (i.id === invite.id ? newInvite : i)));
       alert(`Invite resent for ${invite.email}`);
     } catch (err) {
@@ -150,18 +172,25 @@ export function UserManagement() {
   }
 
   async function handleSaveEdit() {
-    if (!editingUser) return;
+    if (!editingUser || !currentUser) return;
 
     setEditLoading(true);
     try {
-      await updateUserProfile(editingUser.uid, {
+      const updates: {
+        displayName?: string;
+        role?: UserRole;
+        allowedDevelopments?: string[] | null;
+      } = {
         displayName: editName,
-        role: editingUser.uid !== currentUser?.uid ? editRole : undefined,
-      });
+      };
 
-      if (editingUser.uid !== currentUser?.uid) {
-        await updateUserDevelopmentAccess(editingUser.uid, editDevs);
+      // Only update role and developments for other users
+      if (editingUser.uid !== currentUser.uid) {
+        updates.role = editRole;
+        updates.allowedDevelopments = editDevs.length > 0 ? editDevs : null;
       }
+
+      await updateUserProfile(editingUser.uid, updates, currentUser.uid);
 
       setUsers((prev) =>
         prev.map((u) =>
@@ -169,8 +198,8 @@ export function UserManagement() {
             ? {
                 ...u,
                 displayName: editName,
-                role: editingUser.uid !== currentUser?.uid ? editRole : u.role,
-                allowedDevelopments: editingUser.uid !== currentUser?.uid ? (editDevs.length > 0 ? editDevs : undefined) : u.allowedDevelopments,
+                role: editingUser.uid !== currentUser.uid ? editRole : u.role,
+                allowedDevelopments: editingUser.uid !== currentUser.uid ? (editDevs.length > 0 ? editDevs : undefined) : u.allowedDevelopments,
               }
             : u
         )
@@ -197,14 +226,16 @@ export function UserManagement() {
 
   const roleColors: Record<UserRole, string> = {
     admin: "bg-red-500/20 text-red-400 border-red-500/30",
+    manager: "bg-purple-500/20 text-purple-400 border-purple-500/30",
     editor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
     viewer: "bg-gray-500/20 text-gray-400 border-gray-500/30",
   };
 
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     pending: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
     accepted: "bg-green-500/20 text-green-400 border-green-500/30",
     expired: "bg-red-500/20 text-red-400 border-red-500/30",
+    cancelled: "bg-gray-500/20 text-gray-400 border-gray-500/30",
   };
 
   if (!can("manageUsers")) {
@@ -533,15 +564,17 @@ export function UserManagement() {
                               </svg>
                             </button>
                           )}
-                          <button
-                            onClick={() => handleDeleteInvite(invite)}
-                            className="p-2 rounded-lg text-[var(--text-muted)] hover:text-red-400 hover:bg-red-500/10 transition-colors"
-                            title="Delete invite"
-                          >
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                          </button>
+                          {invite.status === "pending" && (
+                            <button
+                              onClick={() => handleCancelInvite(invite)}
+                              className="p-2 rounded-lg text-[var(--text-muted)] hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                              title="Cancel invite"
+                            >
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -578,7 +611,7 @@ export function UserManagement() {
 
       {/* Stats */}
       {!loading && users.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
           <div className="card p-4 text-center">
             <p className="font-mono text-2xl font-bold text-[var(--text-primary)]">
               {users.length}
@@ -596,6 +629,12 @@ export function UserManagement() {
               {users.filter((u) => u.role === "admin").length}
             </p>
             <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider">Admins</p>
+          </div>
+          <div className="card p-4 text-center">
+            <p className="font-mono text-2xl font-bold text-purple-400">
+              {users.filter((u) => u.role === "manager").length}
+            </p>
+            <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider">Managers</p>
           </div>
           <div className="card p-4 text-center">
             <p className="font-mono text-2xl font-bold text-blue-400">
@@ -633,6 +672,19 @@ export function UserManagement() {
             <form onSubmit={handleSendInvite} className="space-y-4">
               <div>
                 <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+                  Name (Optional)
+                </label>
+                <input
+                  type="text"
+                  value={inviteName}
+                  onChange={(e) => setInviteName(e.target.value)}
+                  className="input w-full"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div>
+                <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
                   Email
                 </label>
                 <input
@@ -654,9 +706,10 @@ export function UserManagement() {
                   onChange={(e) => setInviteRole(e.target.value as UserRole)}
                   className="select w-full"
                 >
-                  <option value="viewer">Viewer</option>
-                  <option value="editor">Editor</option>
-                  <option value="admin">Admin</option>
+                  <option value="viewer">Viewer - View only access</option>
+                  <option value="editor">Editor - Can edit data</option>
+                  <option value="manager">Manager - Can manage users</option>
+                  <option value="admin">Admin - Full access</option>
                 </select>
               </div>
 
@@ -704,31 +757,42 @@ export function UserManagement() {
                 </div>
               )}
 
-              <div className="flex gap-3">
-                <button
-                  type="button"
-                  onClick={() => setShowInviteForm(false)}
-                  className="btn-secondary flex-1"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={inviteLoading}
-                  className="btn-primary flex-1 flex items-center justify-center gap-2"
-                >
-                  {inviteLoading && (
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  )}
-                  Create Invite
-                </button>
-              </div>
+              {inviteSuccess && (
+                <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-2">
+                  <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-sm text-green-400">{inviteSuccess}</p>
+                </div>
+              )}
+
+              {!inviteSuccess && (
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowInviteForm(false)}
+                    className="btn-secondary flex-1"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={inviteLoading}
+                    className="btn-primary flex-1 flex items-center justify-center gap-2"
+                  >
+                    {inviteLoading && (
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    )}
+                    Send Invitation
+                  </button>
+                </div>
+              )}
             </form>
 
             <div className="mt-4 p-3 bg-[var(--bg-deep)] rounded-lg">
               <p className="text-xs text-[var(--text-muted)]">
-                The user will need to sign up at the application URL using this email address.
-                The invite expires in 7 days.
+                An email with a magic link will be sent to the user. They can click the link to create their account.
+                The invitation expires in 7 days.
               </p>
             </div>
           </div>
@@ -793,6 +857,7 @@ export function UserManagement() {
                     >
                       <option value="viewer">Viewer</option>
                       <option value="editor">Editor</option>
+                      <option value="manager">Manager</option>
                       <option value="admin">Admin</option>
                     </select>
                   </div>

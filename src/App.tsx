@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./config/firebase";
 import { Dashboard } from "./components/Dashboard";
 import { developments } from "./data/realDevelopments";
 import { Login } from "./components/Login";
-import { Signup } from "./components/Signup";
+import { AccessDenied } from "./components/AccessDenied";
 import { ImportModal } from "./components/ImportModal";
 import { ExportModal } from "./components/ExportModal";
 import { LogoUploadModal } from "./components/LogoUploadModal";
@@ -13,6 +13,9 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { loadUnitOverrides } from "./services/excelImportService";
 import { ROLE_INFO } from "./types/roles";
+
+// Lazy load invite acceptance page
+const InviteAcceptance = lazy(() => import("./pages/InviteAcceptance").then(m => ({ default: m.InviteAcceptance })));
 
 // Lazy load non-critical components
 const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").then(m => ({ default: m.DevelopmentDetail })));
@@ -361,18 +364,35 @@ function LoadingSpinner() {
 }
 
 function AppRoutes() {
-  const { currentUser, loading } = useAuth();
-  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const { currentUser, loading, accessDenied } = useAuth();
+  const location = useLocation();
 
-  if (loading) {
+  // Always allow invite routes - even when logged out
+  const isInviteRoute = location.pathname.startsWith("/invite/");
+
+  if (loading && !isInviteRoute) {
     return <LoadingSpinner />;
   }
 
+  // Handle invite acceptance route (public route)
+  if (isInviteRoute) {
+    return (
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/invite/:token" element={<InviteAcceptance />} />
+        </Routes>
+      </Suspense>
+    );
+  }
+
+  // Access denied - hard block
+  if (accessDenied) {
+    return <AccessDenied reason={accessDenied} />;
+  }
+
+  // Not logged in - show login
   if (!currentUser) {
-    if (authMode === "signup") {
-      return <Signup onSwitchToLogin={() => setAuthMode("login")} />;
-    }
-    return <Login onSwitchToSignup={() => setAuthMode("signup")} />;
+    return <Login />;
   }
 
   return <AuthenticatedApp />;

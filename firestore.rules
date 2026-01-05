@@ -32,8 +32,12 @@ service cloud.firestore {
       return userExists() && getUserRole() == 'admin' && isUserActive();
     }
 
-    function isEditorOrAdmin() {
-      return userExists() && getUserRole() in ['admin', 'editor'] && isUserActive();
+    function isManagerOrAdmin() {
+      return userExists() && getUserRole() in ['admin', 'manager'] && isUserActive();
+    }
+
+    function isEditorOrHigher() {
+      return userExists() && getUserRole() in ['admin', 'manager', 'editor'] && isUserActive();
     }
 
     function isActiveUser() {
@@ -45,24 +49,24 @@ service cloud.firestore {
     // ============================================
     match /users/{userId} {
       // Users can read their own profile
-      // Admins can read and query all user profiles
+      // Managers and Admins can read all user profiles
       allow read: if isSignedIn() && (
         request.auth.uid == userId ||
-        isAdmin()
+        isManagerOrAdmin()
       );
 
       // Users can create their own profile on signup
       allow create: if isSignedIn() && request.auth.uid == userId;
 
       // Users can update their own displayName and lastLogin
-      // Admins can update any user
+      // Managers and Admins can update other users
       allow update: if isSignedIn() && (
         (request.auth.uid == userId &&
          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
-        isAdmin()
+        isManagerOrAdmin()
       );
 
-      // Only admins can delete
+      // Only admins can delete users
       allow delete: if isAdmin();
     }
 
@@ -70,8 +74,46 @@ service cloud.firestore {
     // Invites Collection
     // ============================================
     match /invites/{inviteId} {
-      // Admins can read, create, update, delete invites
-      allow read, write: if isAdmin();
+      // Anyone can read invites by token (for validating magic links)
+      // But we restrict to only pending invites via the client query
+      allow read: if true;
+
+      // Managers and Admins can create and update invites
+      allow create, update: if isManagerOrAdmin();
+
+      // Only admins can delete invites
+      allow delete: if isAdmin();
+    }
+
+    // ============================================
+    // Notifications Collection
+    // ============================================
+    match /notifications/{notificationId} {
+      // Users can read their own notifications
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      // System can create notifications (authenticated users)
+      allow create: if isSignedIn();
+
+      // Users can update their own notifications (mark as read)
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      // Only admins can delete notifications
+      allow delete: if isAdmin();
+    }
+
+    // ============================================
+    // Email Queue Collection (for SendGrid)
+    // ============================================
+    match /emailQueue/{emailId} {
+      // Only authenticated users can create emails
+      allow create: if isSignedIn();
+
+      // Only backend/admin can read and update
+      allow read, update: if isAdmin();
+
+      // No client-side deletes
+      allow delete: if false;
     }
 
     // ============================================
@@ -87,6 +129,7 @@ service cloud.firestore {
       function canAccessDev(devId) {
         let userData = getUserDoc().data;
         return userData.role == 'admin' ||
+               userData.role == 'manager' ||
                !('allowedDevelopments' in userData) ||
                userData.allowedDevelopments == null ||
                userData.allowedDevelopments.size() == 0 ||
@@ -99,7 +142,7 @@ service cloud.firestore {
     // ============================================
     match /developments/{developmentId}/units/{unitId} {
       allow read: if isActiveUser();
-      allow update: if isEditorOrAdmin();
+      allow update: if isEditorOrHigher();
       allow create, delete: if isAdmin();
     }
 
@@ -107,8 +150,8 @@ service cloud.firestore {
     // Audit Logs
     // ============================================
     match /auditLogs/{logId} {
-      allow read: if isAdmin();
-      allow create: if isEditorOrAdmin();
+      allow read: if isManagerOrAdmin();
+      allow create: if isSignedIn();
       allow update, delete: if false;
     }
 
@@ -117,7 +160,7 @@ service cloud.firestore {
     // ============================================
     match /notes/{noteId} {
       allow read: if isActiveUser();
-      allow create: if isEditorOrAdmin();
+      allow create: if isEditorOrHigher();
       allow update: if isActiveUser() && (
         resource.data.createdBy == request.auth.uid || isAdmin()
       );

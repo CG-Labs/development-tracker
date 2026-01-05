@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 
-interface LoginProps {
-  onSwitchToSignup: () => void;
-}
-
-export function Login({ onSwitchToSignup }: LoginProps) {
+export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -265,21 +261,15 @@ export function Login({ onSwitchToSignup }: LoginProps) {
           </form>
 
           <div className="mt-6 pt-6 border-t border-[var(--border-subtle)]">
-            <p className="text-center text-[var(--text-secondary)] text-sm">
-              Don't have an account?{" "}
-              <button
-                onClick={onSwitchToSignup}
-                className="text-[var(--accent-cyan)] hover:text-[var(--text-primary)] font-medium transition-colors"
-              >
-                Sign Up
-              </button>
+            <p className="text-center text-[var(--text-muted)] text-sm">
+              Need an account? Contact your administrator for an invitation.
             </p>
           </div>
         </div>
 
         {/* Footer */}
         <p className="text-center text-[var(--text-muted)] text-xs mt-8">
-          Development Tracker v1.0
+          DevTracker v1.0
         </p>
       </div>
     </div>
