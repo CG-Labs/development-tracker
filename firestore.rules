@@ -2,29 +2,44 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper functions
+    // Helper function to get user data - call once and reuse
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    // Check if user is authenticated
     function isAuthenticated() {
       return request.auth != null;
     }
 
-    function isAdmin() {
+    // Check if user exists and is active admin
+    function isActiveAdmin() {
       return isAuthenticated() &&
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getUserData().role == 'admin' &&
+        getUserData().isActive != false;
     }
 
-    function isEditor() {
+    // Check if user exists and is active editor or admin
+    function isActiveEditor() {
       return isAuthenticated() &&
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'editor'];
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getUserData().role in ['admin', 'editor'] &&
+        getUserData().isActive != false;
     }
 
-    function isActiveUser() {
+    // Check if user is active (not deactivated)
+    function isActive() {
       return isAuthenticated() &&
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isActive != false;
+        exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+        getUserData().isActive != false;
     }
 
+    // Check development access
     function canAccessDevelopment(developmentId) {
-      let userData = get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+      let userData = getUserData();
       return userData.role == 'admin' ||
+             !('allowedDevelopments' in userData) ||
              userData.allowedDevelopments == null ||
              userData.allowedDevelopments.size() == 0 ||
              developmentId in userData.allowedDevelopments;
@@ -32,78 +47,83 @@ service cloud.firestore {
 
     // Users collection
     match /users/{userId} {
-      // Users can read their own profile
-      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      // Anyone authenticated can read their own profile, admins can read all
+      allow read: if isAuthenticated() && (
+        request.auth.uid == userId ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
 
       // Users can create their own profile on signup
       allow create: if isAuthenticated() && request.auth.uid == userId;
 
-      // Users can update their own profile (limited fields), admins can update any
-      allow update: if isAuthenticated() && isActiveUser() && (
+      // Users can update limited fields on their own profile, admins can update any user
+      allow update: if isAuthenticated() && (
+        // User updating their own limited fields
         (request.auth.uid == userId &&
           request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
-        isAdmin()
+        // Admin updating any user
+        isActiveAdmin()
       );
 
       // Only admins can delete users
-      allow delete: if isAdmin() && isActiveUser();
+      allow delete: if isActiveAdmin();
     }
 
     // Invites collection - admin only
     match /invites/{inviteId} {
-      allow read: if isAuthenticated() && isActiveUser() && isAdmin();
-      allow create: if isAuthenticated() && isActiveUser() && isAdmin();
-      allow update: if isAuthenticated() && isActiveUser() && isAdmin();
-      allow delete: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow read: if isActiveAdmin();
+      allow create: if isActiveAdmin();
+      allow update: if isActiveAdmin();
+      allow delete: if isActiveAdmin();
     }
 
     // Developments collection
     match /developments/{developmentId} {
       // All authenticated active users can read developments they have access to
-      allow read: if isAuthenticated() && isActiveUser() && canAccessDevelopment(developmentId);
+      allow read: if isActive() && canAccessDevelopment(developmentId);
 
       // Only admins can create/update/delete developments
-      allow create, update, delete: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow create, update, delete: if isActiveAdmin();
     }
 
     // Units sub-collection under developments
     match /developments/{developmentId}/units/{unitId} {
       // Users can read units if they have access to the parent development
-      allow read: if isAuthenticated() && isActiveUser() && canAccessDevelopment(developmentId);
+      allow read: if isActive() && canAccessDevelopment(developmentId);
 
       // Editors and admins can update units
-      allow update: if isAuthenticated() && isActiveUser() && isEditor() && canAccessDevelopment(developmentId);
+      allow update: if isActiveEditor() && canAccessDevelopment(developmentId);
 
       // Only admins can create/delete units
-      allow create, delete: if isAuthenticated() && isActiveUser() && isAdmin() && canAccessDevelopment(developmentId);
+      allow create, delete: if isActiveAdmin() && canAccessDevelopment(developmentId);
     }
 
-    // Audit logs - admin read only
+    // Audit logs - admin read only, editors can create
     match /auditLogs/{logId} {
-      allow read: if isAuthenticated() && isActiveUser() && isAdmin();
-      allow create: if isAuthenticated() && isActiveUser() && isEditor();
+      allow read: if isActiveAdmin();
+      allow create: if isActiveEditor();
       allow update, delete: if false; // Audit logs should never be modified or deleted
     }
 
     // Notes collection
     match /notes/{noteId} {
-      allow read: if isAuthenticated() && isActiveUser();
-      allow create: if isAuthenticated() && isActiveUser() && isEditor();
-      allow update: if isAuthenticated() && isActiveUser() &&
-        (resource.data.createdBy == request.auth.uid || isAdmin());
-      allow delete: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow read: if isActive();
+      allow create: if isActiveEditor();
+      allow update: if isActive() && (resource.data.createdBy == request.auth.uid || isActiveAdmin());
+      allow delete: if isActiveAdmin();
     }
 
     // Incentive schemes - admin only for write
     match /incentiveSchemes/{schemeId} {
-      allow read: if isAuthenticated() && isActiveUser();
-      allow create, update, delete: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow read: if isActive();
+      allow create, update, delete: if isActiveAdmin();
     }
 
     // Company settings
     match /settings/{settingId} {
-      allow read: if isAuthenticated() && isActiveUser();
-      allow write: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow read: if isActive();
+      allow write: if isActiveAdmin();
     }
   }
 }
