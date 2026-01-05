@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-do
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./config/firebase";
 import { Dashboard } from "./components/Dashboard";
+import { developments } from "./data/realDevelopments";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 import { ImportModal } from "./components/ImportModal";
@@ -20,6 +21,7 @@ const ReportModal = lazy(() => import("./components/ReportModal").then(m => ({ d
 const ManageDevelopments = lazy(() => import("./components/ManageDevelopments").then(m => ({ default: m.ManageDevelopments })));
 const UserManagement = lazy(() => import("./components/UserManagement").then(m => ({ default: m.UserManagement })));
 const IncentiveSchemesPage = lazy(() => import("./components/IncentiveSchemesPage").then(m => ({ default: m.IncentiveSchemesPage })));
+const ReportGenerator = lazy(() => import("./components/ReportGenerator").then(m => ({ default: m.ReportGenerator })));
 
 // Dynamic import for report functions (only loaded when needed)
 const getReportService = () => import("./services/reportService");
@@ -184,6 +186,10 @@ function AuthenticatedApp() {
                           <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                           <span className="text-sm">Custom Report...</span>
                         </button>
+                        <button onClick={() => { setShowUserMenu(false); navigate("/reports"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                          <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                          <span className="text-sm">Report Generator</span>
+                        </button>
                       </div>
                       <div className="border-t border-[var(--border-subtle)]" />
                     </>
@@ -298,6 +304,7 @@ function AuthenticatedApp() {
             <Route path="/manage-developments" element={<ManageDevelopments />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/incentive-schemes" element={<IncentiveSchemesPage />} />
+            <Route path="/reports" element={<ReportGenerator developments={developments.filter(d => d.status === "Active")} />} />
           </Routes>
         </Suspense>
       </main>

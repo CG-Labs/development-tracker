@@ -139,5 +139,29 @@ service cloud.firestore {
       allow read: if isActiveUser();
       allow write: if isAdmin();
     }
+
+    // ============================================
+    // Saved Reports
+    // ============================================
+    match /savedReports/{reportId} {
+      // Users can read their own saved reports, admins can read all
+      allow read: if isActiveUser() && (
+        resource.data.createdBy == request.auth.uid || isAdmin()
+      );
+      // Users can create their own reports
+      allow create: if isActiveUser() && request.resource.data.createdBy == request.auth.uid;
+      // Users can update/delete their own reports, admins can update/delete all
+      allow update, delete: if isActiveUser() && (
+        resource.data.createdBy == request.auth.uid || isAdmin()
+      );
+    }
+
+    // ============================================
+    // Report Templates (custom templates)
+    // ============================================
+    match /reportTemplates/{templateId} {
+      allow read: if isActiveUser();
+      allow write: if isAdmin();
+    }
   }
 }
