@@ -2,6 +2,7 @@ import { developments } from "../data/realDevelopments";
 import type { Development, PortfolioStats } from "../types";
 import { DevelopmentCard } from "./DevelopmentCard";
 import { ProgressMonitoring } from "./ProgressMonitoring";
+import { CashFlowMonitoring } from "./CashFlowMonitoring";
 
 function calculatePortfolioStats(devs: Development[]): PortfolioStats {
   const stats: PortfolioStats = {
@@ -62,7 +63,7 @@ export function Dashboard() {
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
           <StatCard
             label="Developments"
             value={stats.totalDevelopments}
@@ -130,6 +131,17 @@ export function Dashboard() {
             accentColor="cyan"
             delay={6}
           />
+          <StatCard
+            label="Not Released"
+            value={stats.notReleased}
+            icon={
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+              </svg>
+            }
+            accentColor="rose"
+            delay={7}
+          />
         </div>
       </section>
 
@@ -159,6 +171,9 @@ export function Dashboard() {
 
       {/* Progress Monitoring Section */}
       <ProgressMonitoring />
+
+      {/* Cash Flow Section */}
+      <CashFlowMonitoring />
     </div>
   );
 }

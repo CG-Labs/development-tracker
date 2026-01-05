@@ -27,6 +27,9 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
   const contracted = development.units.filter(
     (u) => u.salesStatus === "Contracted"
   ).length;
+  const notReleased = development.units.filter(
+    (u) => u.salesStatus === "Not Released"
+  ).length;
 
   const constructionComplete = development.units.filter(
     (u) => u.constructionStatus === "Complete"
@@ -89,7 +92,7 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
       </div>
 
       {/* Sales Status Grid */}
-      <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="grid grid-cols-5 gap-2 mb-5">
         <SalesMetric
           label="Complete"
           value={salesComplete}
@@ -113,6 +116,12 @@ export function DevelopmentCard({ development, index }: DevelopmentCardProps) {
           value={forSale}
           colorClass="text-[var(--accent-cyan)]"
           bgClass="bg-[rgba(6,214,214,0.1)]"
+        />
+        <SalesMetric
+          label="Not Released"
+          value={notReleased}
+          colorClass="text-[var(--accent-rose)]"
+          bgClass="bg-[rgba(244,63,94,0.1)]"
         />
       </div>
 

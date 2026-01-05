@@ -7,6 +7,20 @@ export interface UserProfile {
   role: UserRole;
   createdAt: Date;
   lastLogin?: Date;
+  isActive: boolean;
+  allowedDevelopments?: string[]; // Array of development IDs user can access, empty/undefined means all
+}
+
+export interface UserInvite {
+  id: string;
+  email: string;
+  role: UserRole;
+  allowedDevelopments?: string[];
+  invitedBy: string;
+  invitedByEmail: string;
+  createdAt: Date;
+  expiresAt: Date;
+  status: "pending" | "accepted" | "expired";
 }
 
 // Permission types

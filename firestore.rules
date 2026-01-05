@@ -1,0 +1,109 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isEditor() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'editor'];
+    }
+
+    function isActiveUser() {
+      return isAuthenticated() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isActive != false;
+    }
+
+    function canAccessDevelopment(developmentId) {
+      let userData = get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+      return userData.role == 'admin' ||
+             userData.allowedDevelopments == null ||
+             userData.allowedDevelopments.size() == 0 ||
+             developmentId in userData.allowedDevelopments;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      // Users can read their own profile
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+
+      // Users can create their own profile on signup
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+
+      // Users can update their own profile (limited fields), admins can update any
+      allow update: if isAuthenticated() && isActiveUser() && (
+        (request.auth.uid == userId &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'lastLogin'])) ||
+        isAdmin()
+      );
+
+      // Only admins can delete users
+      allow delete: if isAdmin() && isActiveUser();
+    }
+
+    // Invites collection - admin only
+    match /invites/{inviteId} {
+      allow read: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow create: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow update: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow delete: if isAuthenticated() && isActiveUser() && isAdmin();
+    }
+
+    // Developments collection
+    match /developments/{developmentId} {
+      // All authenticated active users can read developments they have access to
+      allow read: if isAuthenticated() && isActiveUser() && canAccessDevelopment(developmentId);
+
+      // Only admins can create/update/delete developments
+      allow create, update, delete: if isAuthenticated() && isActiveUser() && isAdmin();
+    }
+
+    // Units sub-collection under developments
+    match /developments/{developmentId}/units/{unitId} {
+      // Users can read units if they have access to the parent development
+      allow read: if isAuthenticated() && isActiveUser() && canAccessDevelopment(developmentId);
+
+      // Editors and admins can update units
+      allow update: if isAuthenticated() && isActiveUser() && isEditor() && canAccessDevelopment(developmentId);
+
+      // Only admins can create/delete units
+      allow create, delete: if isAuthenticated() && isActiveUser() && isAdmin() && canAccessDevelopment(developmentId);
+    }
+
+    // Audit logs - admin read only
+    match /auditLogs/{logId} {
+      allow read: if isAuthenticated() && isActiveUser() && isAdmin();
+      allow create: if isAuthenticated() && isActiveUser() && isEditor();
+      allow update, delete: if false; // Audit logs should never be modified or deleted
+    }
+
+    // Notes collection
+    match /notes/{noteId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && isActiveUser() && isEditor();
+      allow update: if isAuthenticated() && isActiveUser() &&
+        (resource.data.createdBy == request.auth.uid || isAdmin());
+      allow delete: if isAuthenticated() && isActiveUser() && isAdmin();
+    }
+
+    // Incentive schemes - admin only for write
+    match /incentiveSchemes/{schemeId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create, update, delete: if isAuthenticated() && isActiveUser() && isAdmin();
+    }
+
+    // Company settings
+    match /settings/{settingId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow write: if isAuthenticated() && isActiveUser() && isAdmin();
+    }
+  }
+}

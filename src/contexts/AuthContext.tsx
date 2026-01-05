@@ -20,6 +20,8 @@ interface AuthUser {
   email: string | null;
   displayName: string | null;
   role: UserRole;
+  isActive: boolean;
+  allowedDevelopments?: string[];
 }
 
 interface AuthContextType {
@@ -51,11 +53,18 @@ async function loadUserWithProfile(user: User): Promise<AuthUser> {
     user.displayName || undefined
   );
 
+  // Check if user is deactivated
+  if (!profile.isActive) {
+    throw new Error("Your account has been deactivated. Please contact an administrator.");
+  }
+
   return {
     uid: user.uid,
     email: user.email,
     displayName: user.displayName || profile.displayName || null,
     role: profile.role,
+    isActive: profile.isActive,
+    allowedDevelopments: profile.allowedDevelopments,
   };
 }
 
@@ -101,6 +110,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email: auth.currentUser.email,
           displayName: auth.currentUser.displayName || profile.displayName || null,
           role: profile.role,
+          isActive: profile.isActive,
+          allowedDevelopments: profile.allowedDevelopments,
         });
       }
     }
@@ -114,13 +125,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setCurrentUser(authUser);
         } catch (error) {
           console.error("Error loading user profile:", error);
-          // Fallback to viewer role if profile load fails
-          setCurrentUser({
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            role: "viewer",
-          });
+          // Check if this is a deactivation error
+          if (error instanceof Error && error.message.includes("deactivated")) {
+            // Sign out the deactivated user
+            await signOut(auth);
+            setCurrentUser(null);
+            alert(error.message);
+          } else {
+            // Fallback to viewer role if profile load fails
+            setCurrentUser({
+              uid: user.uid,
+              email: user.email,
+              displayName: user.displayName,
+              role: "viewer",
+              isActive: true,
+            });
+          }
         }
       } else {
         setCurrentUser(null);
