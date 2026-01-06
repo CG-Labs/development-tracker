@@ -20,7 +20,8 @@
       "Bash(npx vite build)",
       "Bash(git push:*)",
       "Bash(npm run lint)",
-      "Bash(npx knip:*)"
+      "Bash(npx knip:*)",
+      "Bash(npm run test:run:*)"
     ]
   }
 }
