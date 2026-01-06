@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
-import type { Development, DevelopmentStatus } from "../types";
+import type { Development, DevelopmentStatus, Currency, VatRates, UnitType } from "../types";
+import { DEFAULT_VAT_RATES } from "../types";
 import { useAuth } from "../contexts/AuthContext";
+import { getCurrencySymbol } from "../utils/formatCurrency";
+
+const UNIT_TYPES: UnitType[] = [
+  "House-Semi",
+  "House-Detached",
+  "House-Terrace",
+  "Apartment",
+  "Duplex Apartment",
+  "Apartment Studio",
+];
 
 type FilterTab = "Active" | "Completed" | "Archived" | "All";
 
@@ -18,6 +29,28 @@ export function ManageDevelopments() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingDevelopment, setEditingDevelopment] = useState<Development | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+
+  // Form state for new development
+  const [newDevCurrency, setNewDevCurrency] = useState<Currency>("EUR");
+  const [newDevVatRates, setNewDevVatRates] = useState<VatRates>({ ...DEFAULT_VAT_RATES });
+
+  // Form state for editing development
+  const [editCurrency, setEditCurrency] = useState<Currency>("EUR");
+  const [editVatRates, setEditVatRates] = useState<VatRates>({ ...DEFAULT_VAT_RATES });
+
+  // Sync edit form state when editing development changes
+  const handleEditDevelopment = (dev: Development) => {
+    setEditingDevelopment(dev);
+    setEditCurrency(dev.currency || "EUR");
+    setEditVatRates(dev.vatRates || { ...DEFAULT_VAT_RATES });
+  };
+
+  // Reset new development form
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
+    setNewDevCurrency("EUR");
+    setNewDevVatRates({ ...DEFAULT_VAT_RATES });
+  };
 
   // Permission guard - redirect unauthorized users (must be after all hooks)
   if (!can("editDevelopment")) {
@@ -151,7 +184,7 @@ export function ManageDevelopments() {
                     View
                   </Link>
                   <button
-                    onClick={() => setEditingDevelopment(dev)}
+                    onClick={() => handleEditDevelopment(dev)}
                     className="px-3 py-1.5 text-sm rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors"
                   >
                     Edit Details
@@ -205,8 +238,8 @@ export function ManageDevelopments() {
 
       {/* Add Development Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="w-full max-w-md card p-6 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-lg card p-6 animate-fade-in my-8">
             <h2 className="font-display text-xl font-bold text-[var(--text-primary)] mb-4">
               Add New Development
             </h2>
@@ -214,7 +247,7 @@ export function ManageDevelopments() {
               onSubmit={(e) => {
                 e.preventDefault();
                 alert("Add Development - Feature coming soon. This requires backend integration.");
-                setShowAddModal(false);
+                handleCloseAddModal();
               }}
               className="space-y-4"
             >
@@ -250,10 +283,55 @@ export function ManageDevelopments() {
                   placeholder="Brief description of the development..."
                 />
               </div>
+
+              {/* Currency Selection */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
+                  Currency
+                </label>
+                <select
+                  value={newDevCurrency}
+                  onChange={(e) => setNewDevCurrency(e.target.value as Currency)}
+                  className="w-full px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:border-[var(--accent-cyan)] focus:outline-none"
+                >
+                  <option value="EUR">{getCurrencySymbol("EUR")} EUR (Euro)</option>
+                  <option value="GBP">{getCurrencySymbol("GBP")} GBP (British Pound)</option>
+                </select>
+              </div>
+
+              {/* VAT Rates Section */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
+                  VAT Rates by Unit Type
+                </label>
+                <div className="bg-[var(--bg-deep)] rounded-lg p-3 space-y-2">
+                  {UNIT_TYPES.map((unitType) => (
+                    <div key={unitType} className="flex items-center justify-between gap-4">
+                      <span className="text-sm text-[var(--text-muted)] flex-1">{unitType}</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.5"
+                          value={newDevVatRates[unitType]}
+                          onChange={(e) => setNewDevVatRates({
+                            ...newDevVatRates,
+                            [unitType]: parseFloat(e.target.value) || 0
+                          })}
+                          className="w-20 px-2 py-1 text-sm rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:border-[var(--accent-cyan)] focus:outline-none text-right"
+                        />
+                        <span className="text-sm text-[var(--text-muted)]">%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex justify-end gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowAddModal(false)}
+                  onClick={handleCloseAddModal}
                   className="btn-secondary"
                 >
                   Cancel
@@ -269,8 +347,8 @@ export function ManageDevelopments() {
 
       {/* Edit Development Modal */}
       {editingDevelopment && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="w-full max-w-md card p-6 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
+          <div className="w-full max-w-lg card p-6 animate-fade-in my-8">
             <h2 className="font-display text-xl font-bold text-[var(--text-primary)] mb-4">
               Edit Development
             </h2>
@@ -314,6 +392,51 @@ export function ManageDevelopments() {
                   className="w-full px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:border-[var(--accent-cyan)] focus:outline-none resize-none"
                 />
               </div>
+
+              {/* Currency Selection */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1">
+                  Currency
+                </label>
+                <select
+                  value={editCurrency}
+                  onChange={(e) => setEditCurrency(e.target.value as Currency)}
+                  className="w-full px-3 py-2 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:border-[var(--accent-cyan)] focus:outline-none"
+                >
+                  <option value="EUR">{getCurrencySymbol("EUR")} EUR (Euro)</option>
+                  <option value="GBP">{getCurrencySymbol("GBP")} GBP (British Pound)</option>
+                </select>
+              </div>
+
+              {/* VAT Rates Section */}
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">
+                  VAT Rates by Unit Type
+                </label>
+                <div className="bg-[var(--bg-deep)] rounded-lg p-3 space-y-2">
+                  {UNIT_TYPES.map((unitType) => (
+                    <div key={unitType} className="flex items-center justify-between gap-4">
+                      <span className="text-sm text-[var(--text-muted)] flex-1">{unitType}</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          min="0"
+                          max="100"
+                          step="0.5"
+                          value={editVatRates[unitType]}
+                          onChange={(e) => setEditVatRates({
+                            ...editVatRates,
+                            [unitType]: parseFloat(e.target.value) || 0
+                          })}
+                          className="w-20 px-2 py-1 text-sm rounded bg-[var(--bg-card)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:border-[var(--accent-cyan)] focus:outline-none text-right"
+                        />
+                        <span className="text-sm text-[var(--text-muted)]">%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex justify-end gap-3 pt-2">
                 <button
                   type="button"

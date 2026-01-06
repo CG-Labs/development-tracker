@@ -68,6 +68,27 @@ export interface Unit {
   constructionPhase?: string;
 }
 
+export type Currency = "GBP" | "EUR";
+
+export interface VatRates {
+  "House-Semi": number;
+  "House-Detached": number;
+  "House-Terrace": number;
+  "Apartment": number;
+  "Duplex Apartment": number;
+  "Apartment Studio": number;
+  [key: string]: number;
+}
+
+export const DEFAULT_VAT_RATES: VatRates = {
+  "House-Semi": 13.5,
+  "House-Detached": 13.5,
+  "House-Terrace": 13.5,
+  "Apartment": 13.5,
+  "Duplex Apartment": 13.5,
+  "Apartment Studio": 13.5,
+};
+
 export interface Development {
   id: string;
   name: string;
@@ -76,6 +97,8 @@ export interface Development {
   units: Unit[];
   status: DevelopmentStatus;
   description?: string;
+  currency?: Currency;
+  vatRates?: VatRates;
 }
 
 export interface PortfolioStats {

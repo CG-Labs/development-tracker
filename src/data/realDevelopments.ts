@@ -1,4 +1,5 @@
 import type { Development } from "../types";
+import { DEFAULT_VAT_RATES } from "../types";
 
 // Auto-generated from Sales Tracker Quick Reference.xlsx
 // Generated on: 2025-12-31T11:06:15.443Z
@@ -10,6 +11,8 @@ export const developments: Development[] = [
     "projectNumber": "KH-001",
     "totalUnits": 48,
     "status": "Active",
+    "currency": "EUR",
+    "vatRates": { ...DEFAULT_VAT_RATES },
     "units": [
       {
         "unitNumber": "1",
@@ -1466,6 +1469,8 @@ export const developments: Development[] = [
     "projectNumber": "KH-002",
     "totalUnits": 44,
     "status": "Active",
+    "currency": "EUR",
+    "vatRates": { ...DEFAULT_VAT_RATES },
     "units": [
       {
         "unitNumber": "Block F - 49",
@@ -2619,6 +2624,8 @@ export const developments: Development[] = [
     "projectNumber": "MG-001",
     "totalUnits": 375,
     "status": "Active",
+    "currency": "EUR",
+    "vatRates": { ...DEFAULT_VAT_RATES },
     "units": [
       {
         "unitNumber": "1",
@@ -13189,6 +13196,8 @@ export const developments: Development[] = [
     "projectNumber": "NM-001",
     "totalUnits": 339,
     "status": "Active",
+    "currency": "EUR",
+    "vatRates": { ...DEFAULT_VAT_RATES },
     "units": [
       {
         "unitNumber": "Block 1 - 1",

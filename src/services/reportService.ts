@@ -3,8 +3,13 @@ import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { developments } from "../data/realDevelopments";
-import type { Development, Unit } from "../types";
-import { formatCurrencyGBP } from "../utils/formatCurrency";
+import type { Development, Unit, Currency } from "../types";
+import { DEFAULT_VAT_RATES } from "../types";
+import {
+  formatCurrencyWhole,
+  calculateExVat,
+  getVatRateForUnit,
+} from "../utils/formatCurrency";
 
 // Types
 export type ReportType = "12week-lookahead" | "sales-activity" | "development";
@@ -18,13 +23,8 @@ export interface ReportOptions {
 }
 
 // Formatting helpers
-function formatCurrency(value: number): string {
-  return new Intl.NumberFormat("en-IE", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
+function formatCurrencyForReport(value: number, currency: Currency = "EUR"): string {
+  return formatCurrencyWhole(value, currency);
 }
 
 function formatDate(date: Date): string {
@@ -172,6 +172,8 @@ interface LookaheadUnit {
   unit: Unit;
   daysOverdue: number | null;
   isPastDue: boolean;
+  currency: Currency;
+  vatRates: { [key: string]: number };
 }
 
 export function get12WeekLookaheadUnits(selectedDevelopmentIds?: string[]): LookaheadUnit[] {
@@ -184,6 +186,9 @@ export function get12WeekLookaheadUnits(selectedDevelopmentIds?: string[]): Look
     if (selectedDevelopmentIds && selectedDevelopmentIds.length > 0 && !selectedDevelopmentIds.includes(dev.id)) {
       return;
     }
+
+    const devCurrency = dev.currency || "EUR";
+    const devVatRates = dev.vatRates || DEFAULT_VAT_RATES;
 
     dev.units.forEach((unit) => {
       // Skip completed sales
@@ -207,6 +212,8 @@ export function get12WeekLookaheadUnits(selectedDevelopmentIds?: string[]): Look
           unit,
           daysOverdue,
           isPastDue,
+          currency: devCurrency,
+          vatRates: devVatRates,
         });
       }
     });
@@ -248,10 +255,13 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   const pastDueCount = allUnits.filter((u) => u.isPastDue).length;
   const totalValue = allUnits.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0);
 
+  // Determine primary currency from first unit (or default to EUR)
+  const primaryCurrency = allUnits.length > 0 ? allUnits[0].currency : "EUR";
+
   let y = addPdfHeader(
     doc,
     "12 Week Lookahead Report",
-    `${allUnits.length} units | ${pastDueCount} past due | ${formatCurrencyGBP(totalValue)}`
+    `${allUnits.length} units | ${pastDueCount} past due | ${formatCurrencyForReport(totalValue, primaryCurrency)}`
   );
 
   // Group units by development
@@ -285,6 +295,9 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
     const devPastDue = devUnits.filter((u) => u.isPastDue).length;
     const devTotalValue = devUnits.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0);
 
+    // Get currency from first unit in this development (they should all be the same)
+    const devCurrency = devUnits.length > 0 ? devUnits[0].currency : "EUR";
+
     grandTotalUnits += devUnits.length;
     grandTotalValue += devTotalValue;
 
@@ -302,19 +315,22 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
     doc.text(`${devName} (${devUnits.length} units${devPastDue > 0 ? `, ${devPastDue} overdue` : ""})`, 14, y);
     y += 6;
 
-    // Build table data with new column order including Sales Value
-    // Columns: Unit, Beds, Type, Value, Status, Planned Close, Days O/D, BCMS Date, Days Since, BCMS, Land, Home, SAN, C.Out, C.In, Closed
+    // Build table data with columns including Inc VAT and Ex VAT
+    // Columns: Unit, Beds, Type, Inc VAT, Ex VAT, Status, Plan Close, Days O/D, BCMS Date, Days, BCMS, Land, Home, SAN, C.Out, C.In, Closed
     const tableData = devUnits.map((u) => {
       const unitDoc = u.unit.documentation;
       const bcmsDate = unitDoc?.bcmsReceivedDate;
       const daysSinceBcms = getDaysSince(bcmsDate);
-      const unitPrice = u.unit.priceIncVat || u.unit.listPrice || 0;
+      const unitPriceIncVat = u.unit.priceIncVat || u.unit.listPrice || 0;
+      const vatRate = getVatRateForUnit(u.vatRates, u.unit.type);
+      const unitPriceExVat = calculateExVat(unitPriceIncVat, vatRate);
 
       return [
         u.unit.unitNumber,
         u.unit.bedrooms.toString(),
         u.unit.type,
-        unitPrice > 0 ? formatCurrencyGBP(unitPrice) : "-",
+        unitPriceIncVat > 0 ? formatCurrencyForReport(unitPriceIncVat, devCurrency) : "-",
+        unitPriceExVat > 0 ? formatCurrencyForReport(unitPriceExVat, devCurrency) : "-",
         u.unit.salesStatus,
         formatDateShort(u.unit.plannedCloseDate),
         u.isPastDue && u.daysOverdue ? `${u.daysOverdue}` : "",
@@ -336,7 +352,8 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
         "Unit",
         "Beds",
         "Type",
-        "Value",
+        "Inc VAT",
+        "Ex VAT",
         "Status",
         "Plan Close",
         "Days O/D",
@@ -352,52 +369,53 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
       ]],
       body: tableData,
       theme: "striped",
-      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255], fontSize: 6, cellPadding: 1.5 },
-      margin: { left: 8, right: 8 },
-      styles: { fontSize: 6, cellPadding: 1.5 },
+      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255], fontSize: 5.5, cellPadding: 1.2 },
+      margin: { left: 6, right: 6 },
+      styles: { fontSize: 5.5, cellPadding: 1.2 },
       columnStyles: {
-        0: { cellWidth: 13 }, // Unit
-        1: { cellWidth: 9, halign: "center" }, // Beds
-        2: { cellWidth: 20 }, // Type
-        3: { cellWidth: 18, halign: "right" }, // Value
-        4: { cellWidth: 16 }, // Status
-        5: { cellWidth: 18 }, // Plan Close
-        6: { cellWidth: 12, halign: "center" }, // Days O/D
-        7: { cellWidth: 18 }, // BCMS Date
-        8: { cellWidth: 10, halign: "center" }, // Days Since
-        9: { cellWidth: 14, halign: "center" }, // BCMS
-        10: { cellWidth: 12, halign: "center" }, // Land
-        11: { cellWidth: 12, halign: "center" }, // Home
-        12: { cellWidth: 12, halign: "center" }, // SAN
-        13: { cellWidth: 12, halign: "center" }, // C.Out
-        14: { cellWidth: 12, halign: "center" }, // C.In
-        15: { cellWidth: 14, halign: "center" }, // Closed
+        0: { cellWidth: 12 }, // Unit
+        1: { cellWidth: 8, halign: "center" }, // Beds
+        2: { cellWidth: 18 }, // Type
+        3: { cellWidth: 16, halign: "right" }, // Inc VAT
+        4: { cellWidth: 16, halign: "right" }, // Ex VAT
+        5: { cellWidth: 15 }, // Status
+        6: { cellWidth: 16 }, // Plan Close
+        7: { cellWidth: 11, halign: "center" }, // Days O/D
+        8: { cellWidth: 16 }, // BCMS Date
+        9: { cellWidth: 9, halign: "center" }, // Days Since
+        10: { cellWidth: 12, halign: "center" }, // BCMS
+        11: { cellWidth: 11, halign: "center" }, // Land
+        12: { cellWidth: 11, halign: "center" }, // Home
+        13: { cellWidth: 11, halign: "center" }, // SAN
+        14: { cellWidth: 11, halign: "center" }, // C.Out
+        15: { cellWidth: 11, halign: "center" }, // C.In
+        16: { cellWidth: 12, halign: "center" }, // Closed
       },
       didParseCell: (data) => {
-        // Style YES/NO columns (columns 9-15) with colored backgrounds
-        if (data.section === "body" && data.column.index >= 9 && data.column.index <= 15) {
+        // Style YES/NO columns (columns 10-16) with colored backgrounds
+        if (data.section === "body" && data.column.index >= 10 && data.column.index <= 16) {
           const value = data.cell.raw as string;
           if (value === "YES") {
             data.cell.styles.fillColor = [34, 197, 94]; // Green #22c55e
             data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
-            data.cell.styles.fontSize = 7;
+            data.cell.styles.fontSize = 6;
           } else if (value === "NO") {
             data.cell.styles.fillColor = [220, 38, 38]; // Red #dc2626
             data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
-            data.cell.styles.fontSize = 7;
+            data.cell.styles.fontSize = 6;
           }
         }
         // Highlight overdue rows (but don't override YES/NO colors)
-        if (data.section === "body" && data.column.index < 9) {
+        if (data.section === "body" && data.column.index < 10) {
           const rowIndex = data.row.index;
           if (devUnits[rowIndex]?.isPastDue) {
             data.cell.styles.fillColor = [254, 226, 226]; // Light red background
           }
         }
         // Color Days Overdue column
-        if (data.section === "body" && data.column.index === 6) {
+        if (data.section === "body" && data.column.index === 7) {
           const value = data.cell.raw as string;
           if (value && value !== "") {
             data.cell.styles.textColor = [220, 38, 38]; // Red
@@ -405,7 +423,7 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
           }
         }
         // Style Days Since BCMS column
-        if (data.section === "body" && data.column.index === 8) {
+        if (data.section === "body" && data.column.index === 9) {
           const value = data.cell.raw as string;
           if (value && value !== "") {
             data.cell.styles.fontStyle = "bold";
@@ -420,7 +438,7 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
     doc.setFontSize(9);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(30, 58, 95);
-    doc.text(`Subtotal: ${devUnits.length} units - ${formatCurrencyGBP(devTotalValue)}`, 14, y);
+    doc.text(`Subtotal: ${devUnits.length} units - ${formatCurrencyForReport(devTotalValue, devCurrency)}`, 14, y);
     y += 10;
   });
 
@@ -431,11 +449,11 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   }
 
   doc.setFillColor(30, 58, 95);
-  doc.rect(8, y - 2, 276, 10, "F");
+  doc.rect(6, y - 2, 282, 10, "F");
   doc.setFontSize(11);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(255, 255, 255);
-  doc.text(`TOTAL: ${grandTotalUnits} units - ${formatCurrencyGBP(grandTotalValue)}`, 14, y + 5);
+  doc.text(`TOTAL: ${grandTotalUnits} units - ${formatCurrencyForReport(grandTotalValue, primaryCurrency)}`, 14, y + 5);
 
   addPdfFooter(doc);
   return doc;
@@ -484,18 +502,23 @@ function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.W
   const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
   XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
 
-  // All Units sheet with new columns including bedrooms, sales value, BCMS date, and days since BCMS
+  // All Units sheet with columns including Inc VAT, Ex VAT, BCMS date, and days since BCMS
   const allUnitsData = allUnits.map((u) => {
     const bcmsDate = u.unit.documentation?.bcmsReceivedDate;
     const daysSinceBcms = getDaysSince(bcmsDate);
-    const unitPrice = u.unit.priceIncVat || u.unit.listPrice || 0;
+    const unitPriceIncVat = u.unit.priceIncVat || u.unit.listPrice || 0;
+    const vatRate = getVatRateForUnit(u.vatRates, u.unit.type);
+    const unitPriceExVat = calculateExVat(unitPriceIncVat, vatRate);
 
     return {
       "Development": u.developmentName,
       "Unit Number": u.unit.unitNumber,
       "Bedrooms": u.unit.bedrooms,
       "Unit Type": u.unit.type,
-      "Sales Value": unitPrice,
+      "Currency": u.currency,
+      "Price Inc VAT": unitPriceIncVat,
+      "VAT Rate %": vatRate,
+      "Price Ex VAT": Math.round(unitPriceExVat * 100) / 100,
       "Sales Status": u.unit.salesStatus,
       "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
       "Days Overdue": u.isPastDue && u.daysOverdue ? u.daysOverdue : "",
@@ -538,6 +561,8 @@ interface SalesActivityUnit {
   activityDate: string;
   weeksAgo: number;
   value: number;
+  currency: Currency;
+  vatRates: { [key: string]: number };
 }
 
 function getSalesActivityUnits(): SalesActivityUnit[] {
@@ -546,6 +571,9 @@ function getSalesActivityUnits(): SalesActivityUnit[] {
   const units: SalesActivityUnit[] = [];
 
   developments.forEach((dev) => {
+    const devCurrency = dev.currency || "EUR";
+    const devVatRates = dev.vatRates || DEFAULT_VAT_RATES;
+
     dev.units.forEach((unit) => {
       const unitValue = unit.soldPrice || unit.priceIncVat || unit.listPrice || 0;
 
@@ -561,6 +589,8 @@ function getSalesActivityUnits(): SalesActivityUnit[] {
             activityDate: unit.documentation.sanApprovedDate,
             weeksAgo,
             value: unitValue,
+            currency: devCurrency,
+            vatRates: devVatRates,
           });
         }
       }
@@ -577,6 +607,8 @@ function getSalesActivityUnits(): SalesActivityUnit[] {
             activityDate: unit.documentation.contractSignedDate,
             weeksAgo,
             value: unitValue,
+            currency: devCurrency,
+            vatRates: devVatRates,
           });
         }
       }
@@ -593,6 +625,8 @@ function getSalesActivityUnits(): SalesActivityUnit[] {
             activityDate: unit.documentation.saleClosedDate,
             weeksAgo,
             value: unitValue,
+            currency: devCurrency,
+            vatRates: devVatRates,
           });
         }
       }
@@ -619,10 +653,13 @@ function generateSalesActivityPdf(): jsPDF {
   const units = getSalesActivityUnits();
   const totalValue = units.reduce((sum, u) => sum + u.value, 0);
 
+  // Determine primary currency from first unit (or default to EUR)
+  const primaryCurrency = units.length > 0 ? units[0].currency : "EUR";
+
   let y = addPdfHeader(
     doc,
     "Sales Activity - Last 4 Weeks",
-    `${units.length} transactions | ${formatCurrencyGBP(totalValue)} total value`
+    `${units.length} transactions | ${formatCurrencyForReport(totalValue, primaryCurrency)} total value`
   );
 
   // Activity by Week with Total Value
@@ -632,7 +669,7 @@ function generateSalesActivityPdf(): jsPDF {
   const weekData = weekLabels.map((label, index) => {
     const weekUnits = units.filter((u) => u.weeksAgo === index);
     const weekValue = weekUnits.reduce((sum, u) => sum + u.value, 0);
-    return [label, weekUnits.length.toString(), formatCurrencyGBP(weekValue)];
+    return [label, weekUnits.length.toString(), formatCurrencyForReport(weekValue, primaryCurrency)];
   });
 
   autoTable(doc, {
@@ -654,7 +691,7 @@ function generateSalesActivityPdf(): jsPDF {
   const typeData = activityTypes.map((type) => {
     const typeUnits = units.filter((u) => u.activityType === type);
     const typeValue = typeUnits.reduce((sum, u) => sum + u.value, 0);
-    return [type, typeUnits.length.toString(), formatCurrencyGBP(typeValue)];
+    return [type, typeUnits.length.toString(), formatCurrencyForReport(typeValue, primaryCurrency)];
   });
 
   autoTable(doc, {
@@ -698,7 +735,8 @@ function generateSalesActivityPdf(): jsPDF {
         y = 20;
       }
 
-      // Development header
+      // Development header - get currency from first unit
+      const devCurrency = devUnits.length > 0 ? devUnits[0].currency : primaryCurrency;
       doc.setFontSize(11);
       doc.setFont("helvetica", "bold");
       doc.setTextColor(15, 23, 42);
@@ -706,7 +744,7 @@ function generateSalesActivityPdf(): jsPDF {
       doc.setFontSize(9);
       doc.setFont("helvetica", "normal");
       doc.setTextColor(100, 100, 100);
-      doc.text(`Total: ${formatCurrencyGBP(devTotal)}`, 100, y);
+      doc.text(`Total: ${formatCurrencyForReport(devTotal, devCurrency)}`, 100, y);
       y += 6;
 
       // Group by activity type within development
@@ -720,14 +758,14 @@ function generateSalesActivityPdf(): jsPDF {
         doc.setFontSize(9);
         doc.setFont("helvetica", "bold");
         doc.setTextColor(80, 80, 80);
-        doc.text(`  ${actType} (${typeUnits.length} units - ${formatCurrencyGBP(typeTotal)})`, 14, y);
+        doc.text(`  ${actType} (${typeUnits.length} units - ${formatCurrencyForReport(typeTotal, devCurrency)})`, 14, y);
         y += 5;
 
         // Unit details table
         const detailData = typeUnits.map((u) => [
           u.unit.unitNumber,
           u.unit.type,
-          formatCurrencyGBP(u.value),
+          formatCurrencyForReport(u.value, u.currency),
           formatDateShort(u.activityDate),
         ]);
 
@@ -849,6 +887,7 @@ function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
 
   const doc = new jsPDF({ orientation: "landscape" });
   const stats = getDevelopmentStats(development);
+  const devCurrency = development.currency || "EUR";
 
   let y = addPdfHeader(doc, development.name, `Status Report | ${development.projectNumber}`);
 
@@ -857,8 +896,8 @@ function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
 
   const summaryData = [
     ["Total Units", stats.totalUnits.toString()],
-    ["GDV", formatCurrency(stats.gdv)],
-    ["Sales Complete", `${stats.salesCompleteCount} (${formatCurrency(stats.salesValue)})`],
+    ["GDV", formatCurrencyForReport(stats.gdv, devCurrency)],
+    ["Sales Complete", `${stats.salesCompleteCount} (${formatCurrencyForReport(stats.salesValue, devCurrency)})`],
     ["Contracted", stats.contractedCount.toString()],
     ["Under Offer", stats.underOfferCount.toString()],
     ["For Sale", stats.forSaleCount.toString()],
@@ -889,7 +928,7 @@ function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
     unit.bedrooms.toString(),
     unit.constructionStatus,
     unit.salesStatus,
-    formatCurrency(unit.soldPrice || unit.listPrice),
+    formatCurrencyForReport(unit.soldPrice || unit.listPrice, devCurrency),
     unit.purchaserType || "-",
     formatDateShort(unit.plannedCloseDate),
   ]);
