@@ -62,6 +62,10 @@ export interface Unit {
   // Incentive information
   appliedIncentive?: string; // scheme ID
   incentiveStatus?: IncentiveStatus;
+  // Developer and construction details
+  developerCompanyId?: string;
+  constructionUnitType?: string;
+  constructionPhase?: string;
 }
 
 export interface Development {

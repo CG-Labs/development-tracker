@@ -33,6 +33,8 @@ interface DocumentationChecklist {
   saleClosedDate?: string;
 }
 
+type PurchaserType = "Private" | "Council" | "AHB" | "Other";
+
 interface Unit {
   unitNumber: string;
   type: UnitType;
@@ -55,6 +57,16 @@ interface Unit {
   priceIncVat?: number;
   desnagDate?: string;
   plannedCloseDate?: string;
+  // Purchaser information
+  address?: string;
+  purchaserType?: PurchaserType;
+  purchaserName?: string;
+  purchaserPhone?: string;
+  purchaserEmail?: string;
+  // Developer and construction details
+  developerCompanyId?: string;
+  constructionUnitType?: string;
+  constructionPhase?: string;
 }
 
 interface Development {
@@ -333,8 +345,6 @@ function mapSalesStatus(status: string): SalesStatus {
 }
 
 // Map buyer type to purchaser type
-type PurchaserType = "Private" | "Council" | "AHB" | "Other";
-
 function mapPurchaserType(buyerType: string | undefined): PurchaserType {
   if (!buyerType) return "Private";
   const type = buyerType.toLowerCase().trim();
@@ -534,6 +544,9 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
       // Purchaser information
       address: generateAddress(sheetName, String(unitNumber)),
       purchaserType: mapPurchaserType(row[COLUMNS.buyerType] ? String(row[COLUMNS.buyerType]) : undefined),
+      // Developer and construction details
+      constructionUnitType: rawTypeCode || undefined,
+      constructionPhase: sheetName.includes("Ph") ? sheetName.replace(/.*Ph\s*/i, "Phase ") : undefined,
     };
 
     // Set soldPrice if complete (sold)

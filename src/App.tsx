@@ -20,8 +20,8 @@ const InviteAcceptance = lazy(() => import("./pages/InviteAcceptance").then(m =>
 // Lazy load non-critical components
 const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").then(m => ({ default: m.DevelopmentDetail })));
 const AuditLog = lazy(() => import("./components/AuditLog").then(m => ({ default: m.AuditLog })));
-const ReportModal = lazy(() => import("./components/ReportModal").then(m => ({ default: m.ReportModal })));
 const ManageDevelopments = lazy(() => import("./components/ManageDevelopments").then(m => ({ default: m.ManageDevelopments })));
+const ManageCompanies = lazy(() => import("./components/ManageCompanies").then(m => ({ default: m.ManageCompanies })));
 const UserManagement = lazy(() => import("./components/UserManagement").then(m => ({ default: m.UserManagement })));
 const IncentiveSchemesPage = lazy(() => import("./components/IncentiveSchemesPage").then(m => ({ default: m.IncentiveSchemesPage })));
 const ReportGenerator = lazy(() => import("./components/ReportGenerator").then(m => ({ default: m.ReportGenerator })));
@@ -35,7 +35,6 @@ function AuthenticatedApp() {
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [showReportModal, setShowReportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [showLogoModal, setShowLogoModal] = useState(false);
@@ -84,18 +83,15 @@ function AuthenticatedApp() {
     }
   }
 
-  async function handleQuickReport(reportType: "portfolio" | "pipeline" | "documentation") {
+  async function handleQuickReport(reportType: "12week-lookahead" | "sales-activity") {
     setShowUserMenu(false);
     const reportService = await getReportService();
     switch (reportType) {
-      case "portfolio":
-        reportService.downloadPortfolioReport("pdf");
+      case "12week-lookahead":
+        reportService.download12WeekLookahead("pdf");
         break;
-      case "pipeline":
-        reportService.downloadPipelineReport("pdf");
-        break;
-      case "documentation":
-        reportService.downloadDocumentationReport("pdf");
+      case "sales-activity":
+        reportService.downloadSalesActivity4Weeks("pdf");
         break;
     }
   }
@@ -173,21 +169,13 @@ function AuthenticatedApp() {
                     <>
                       <div className="p-2">
                         <p className="px-3 py-2 font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">Reports</p>
-                        <button onClick={() => handleQuickReport("portfolio")} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
-                          <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                          <span className="text-sm">Portfolio Summary</span>
+                        <button onClick={() => handleQuickReport("12week-lookahead")} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                          <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                          <span className="text-sm">12 Week Lookahead</span>
                         </button>
-                        <button onClick={() => handleQuickReport("pipeline")} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                        <button onClick={() => handleQuickReport("sales-activity")} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
                           <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
-                          <span className="text-sm">Sales Pipeline Report</span>
-                        </button>
-                        <button onClick={() => handleQuickReport("documentation")} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
-                          <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
-                          <span className="text-sm">Documentation Status Report</span>
-                        </button>
-                        <button onClick={() => { setShowReportModal(true); setShowUserMenu(false); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
-                          <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-                          <span className="text-sm">Custom Report...</span>
+                          <span className="text-sm">Sales Activity - Last 4 Weeks</span>
                         </button>
                         <button onClick={() => { setShowUserMenu(false); navigate("/reports"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
                           <svg className="w-4 h-4 text-[var(--accent-purple)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -233,6 +221,12 @@ function AuthenticatedApp() {
                           <button onClick={() => { setShowUserMenu(false); navigate("/manage-developments"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
                             <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                             <span className="text-sm">Manage Developments</span>
+                          </button>
+                        )}
+                        {can("editDevelopment") && (
+                          <button onClick={() => { setShowUserMenu(false); navigate("/manage-companies"); }} className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-deep)] transition-colors">
+                            <svg className="w-4 h-4 text-[var(--accent-gold-bright)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                            <span className="text-sm">Manage Companies</span>
                           </button>
                         )}
                       </div>
@@ -305,6 +299,7 @@ function AuthenticatedApp() {
             <Route path="/development/:id" element={<DevelopmentDetail />} />
             <Route path="/audit-log" element={<AuditLog />} />
             <Route path="/manage-developments" element={<ManageDevelopments />} />
+            <Route path="/manage-companies" element={<ManageCompanies />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/incentive-schemes" element={<IncentiveSchemesPage />} />
             <Route path="/reports" element={<ReportGenerator developments={developments.filter(d => d.status === "Active")} />} />
@@ -313,12 +308,6 @@ function AuthenticatedApp() {
       </main>
 
       <div className="fixed bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent-cyan)] to-transparent opacity-30" />
-
-      {showReportModal && (
-        <Suspense fallback={null}>
-          <ReportModal onClose={() => setShowReportModal(false)} />
-        </Suspense>
-      )}
 
       {showImportModal && (
         <ImportModal

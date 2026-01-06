@@ -1,25 +1,18 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 import { developments } from "../data/realDevelopments";
 import type { Development, Unit } from "../types";
 
 // Types
-export type ReportType = "portfolio" | "development" | "pipeline" | "documentation";
+export type ReportType = "12week-lookahead" | "sales-activity" | "development";
 export type ReportFormat = "pdf" | "excel" | "both";
 
 export interface ReportOptions {
   type: ReportType;
   format: ReportFormat;
   developmentId?: string;
-  dateFrom?: string;
-  dateTo?: string;
-}
-
-interface SalesByMonth {
-  month: string;
-  unitsSold: number;
-  revenue: number;
 }
 
 // Formatting helpers
@@ -51,6 +44,19 @@ function formatDateShort(dateString: string | undefined): string {
     });
   } catch {
     return "-";
+  }
+}
+
+function formatDateDDMMYYYY(dateString: string | undefined): string {
+  if (!dateString) return "";
+  try {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  } catch {
+    return "";
   }
 }
 
@@ -89,104 +95,6 @@ function getDevelopmentStats(dev: Development) {
     notReleasedCount,
     percentComplete,
   };
-}
-
-// Get portfolio-wide stats
-function getPortfolioStats() {
-  let totalUnits = 0;
-  let gdv = 0;
-  let salesCompleteCount = 0;
-  let salesValue = 0;
-  let contractedCount = 0;
-  let underOfferCount = 0;
-  let forSaleCount = 0;
-  let notReleasedCount = 0;
-
-  developments.forEach((dev) => {
-    const stats = getDevelopmentStats(dev);
-    totalUnits += stats.totalUnits;
-    gdv += stats.gdv;
-    salesCompleteCount += stats.salesCompleteCount;
-    salesValue += stats.salesValue;
-    contractedCount += stats.contractedCount;
-    underOfferCount += stats.underOfferCount;
-    forSaleCount += stats.forSaleCount;
-    notReleasedCount += stats.notReleasedCount;
-  });
-
-  return {
-    totalDevelopments: developments.length,
-    totalUnits,
-    gdv,
-    salesCompleteCount,
-    salesValue,
-    contractedCount,
-    underOfferCount,
-    forSaleCount,
-    notReleasedCount,
-  };
-}
-
-// Get sales by month for the last 12 months
-function getSalesByMonth(): SalesByMonth[] {
-  const months: SalesByMonth[] = [];
-  const now = new Date();
-
-  for (let i = 11; i >= 0; i--) {
-    const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-    const monthLabel = date.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
-
-    let unitsSold = 0;
-    let revenue = 0;
-
-    developments.forEach((dev) => {
-      dev.units.forEach((unit) => {
-        if (unit.salesStatus === "Complete" && unit.documentation?.saleClosedDate) {
-          const saleDate = new Date(unit.documentation.saleClosedDate);
-          const saleMonthKey = `${saleDate.getFullYear()}-${String(saleDate.getMonth() + 1).padStart(2, "0")}`;
-          if (saleMonthKey === monthKey) {
-            unitsSold++;
-            revenue += unit.soldPrice || unit.listPrice || 0;
-          }
-        }
-      });
-    });
-
-    months.push({ month: monthLabel, unitsSold, revenue });
-  }
-
-  return months;
-}
-
-// Get units with missing documentation
-function getMissingDocumentation() {
-  const missingBcms: { dev: string; unit: Unit }[] = [];
-  const missingLandRegistry: { dev: string; unit: Unit }[] = [];
-  const missingHomebond: { dev: string; unit: Unit }[] = [];
-  const missingContracts: { dev: string; unit: Unit }[] = [];
-
-  developments.forEach((dev) => {
-    dev.units.forEach((unit) => {
-      // Only check units that are sold or contracted
-      if (unit.salesStatus === "Complete" || unit.salesStatus === "Contracted") {
-        if (!unit.documentation?.bcmsReceived) {
-          missingBcms.push({ dev: dev.name, unit });
-        }
-        if (!unit.documentation?.landRegistryApproved) {
-          missingLandRegistry.push({ dev: dev.name, unit });
-        }
-        if (!unit.documentation?.homebondReceived) {
-          missingHomebond.push({ dev: dev.name, unit });
-        }
-        if (!unit.documentation?.contractSigned) {
-          missingContracts.push({ dev: dev.name, unit });
-        }
-      }
-    });
-  });
-
-  return { missingBcms, missingLandRegistry, missingHomebond, missingContracts };
 }
 
 // PDF Styling helpers
@@ -250,34 +158,89 @@ function addSectionTitle(doc: jsPDF, title: string, y: number): number {
 }
 
 // ==========================================
-// REPORT 1: Portfolio Summary Report
+// 12 Week Lookahead Report
+// Units where salesStatus is NOT "Complete" AND
+// (plannedCloseDate has passed OR plannedCloseDate is within next 12 weeks)
 // ==========================================
 
-function generatePortfolioSummaryPdf(): jsPDF {
+interface LookaheadUnit {
+  developmentName: string;
+  unit: Unit;
+  weeksUntilClose: number | null;
+  isPastDue: boolean;
+}
+
+function get12WeekLookaheadUnits(): LookaheadUnit[] {
+  const now = new Date();
+  const twelveWeeksFromNow = new Date(now.getTime() + 12 * 7 * 24 * 60 * 60 * 1000);
+  const units: LookaheadUnit[] = [];
+
+  developments.forEach((dev) => {
+    dev.units.forEach((unit) => {
+      // Skip completed sales
+      if (unit.salesStatus === "Complete") return;
+
+      // Check if unit has a planned close date
+      if (!unit.plannedCloseDate) return;
+
+      const plannedClose = new Date(unit.plannedCloseDate);
+      const isPastDue = plannedClose < now;
+      const isWithin12Weeks = plannedClose <= twelveWeeksFromNow;
+
+      // Include if past due OR within next 12 weeks
+      if (isPastDue || isWithin12Weeks) {
+        const diffMs = plannedClose.getTime() - now.getTime();
+        const weeksUntilClose = Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000));
+
+        units.push({
+          developmentName: dev.name,
+          unit,
+          weeksUntilClose: isPastDue ? null : weeksUntilClose,
+          isPastDue,
+        });
+      }
+    });
+  });
+
+  // Sort by planned close date (past due first, then by date)
+  units.sort((a, b) => {
+    if (a.isPastDue && !b.isPastDue) return -1;
+    if (!a.isPastDue && b.isPastDue) return 1;
+    const dateA = new Date(a.unit.plannedCloseDate!).getTime();
+    const dateB = new Date(b.unit.plannedCloseDate!).getTime();
+    return dateA - dateB;
+  });
+
+  return units;
+}
+
+function generate12WeekLookaheadPdf(): jsPDF {
   const doc = new jsPDF({ orientation: "landscape" });
-  const stats = getPortfolioStats();
-  const salesByMonth = getSalesByMonth();
+  const units = get12WeekLookaheadUnits();
+  const pastDueCount = units.filter((u) => u.isPastDue).length;
 
-  let y = addPdfHeader(doc, "Portfolio Summary Report", `${stats.totalDevelopments} Developments | ${stats.totalUnits} Units`);
+  let y = addPdfHeader(
+    doc,
+    "12 Week Lookahead Report",
+    `${units.length} units | ${pastDueCount} past due`
+  );
 
-  // Section 1: Overall Stats
-  y = addSectionTitle(doc, "Overall Portfolio Statistics", y);
+  // Summary section
+  y = addSectionTitle(doc, "Summary", y);
 
-  const statsData = [
-    ["Total Developments", stats.totalDevelopments.toString()],
-    ["Total Units", stats.totalUnits.toString()],
-    ["Gross Development Value (GDV)", formatCurrency(stats.gdv)],
-    ["Sales Complete", `${stats.salesCompleteCount} units (${formatCurrency(stats.salesValue)})`],
-    ["Contracted", stats.contractedCount.toString()],
-    ["Under Offer", stats.underOfferCount.toString()],
-    ["For Sale", stats.forSaleCount.toString()],
-    ["Not Released", stats.notReleasedCount.toString()],
+  const summaryData = [
+    ["Total Units in Lookahead", units.length.toString()],
+    ["Past Due", pastDueCount.toString()],
+    ["Due This Week", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose <= 1).length.toString()],
+    ["Due in 2-4 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 1 && u.weeksUntilClose <= 4).length.toString()],
+    ["Due in 5-8 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 4 && u.weeksUntilClose <= 8).length.toString()],
+    ["Due in 9-12 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 8).length.toString()],
   ];
 
   autoTable(doc, {
     startY: y,
-    head: [["Metric", "Value"]],
-    body: statsData,
+    head: [["Metric", "Count"]],
+    body: summaryData,
     theme: "striped",
     headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
     margin: { left: 14, right: 14 },
@@ -286,110 +249,368 @@ function generatePortfolioSummaryPdf(): jsPDF {
 
   y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
 
-  // Section 2: Development Breakdown
-  y = addSectionTitle(doc, "Development Breakdown", y);
+  // Past Due section
+  const pastDueUnits = units.filter((u) => u.isPastDue);
+  if (pastDueUnits.length > 0) {
+    if (y > 150) {
+      doc.addPage();
+      y = 20;
+    }
 
-  const devData = developments.map((dev) => {
-    const devStats = getDevelopmentStats(dev);
-    return [
-      dev.name,
-      devStats.totalUnits.toString(),
-      formatCurrency(devStats.gdv),
-      devStats.salesCompleteCount.toString(),
-      formatCurrency(devStats.salesValue),
-      `${devStats.percentComplete}%`,
-    ];
-  });
+    y = addSectionTitle(doc, `Past Due Units (${pastDueUnits.length})`, y);
 
-  autoTable(doc, {
-    startY: y,
-    head: [["Development", "Units", "GDV", "Sales Complete", "Sales Value", "% Complete"]],
-    body: devData,
-    theme: "striped",
-    headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
-    margin: { left: 14, right: 14 },
-  });
+    const pastDueData = pastDueUnits.map((u) => [
+      u.developmentName,
+      u.unit.unitNumber,
+      u.unit.type,
+      u.unit.salesStatus,
+      formatDateShort(u.unit.plannedCloseDate),
+      formatCurrency(u.unit.priceIncVat || u.unit.listPrice),
+      u.unit.purchaserName || "-",
+    ]);
 
-  y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
+    autoTable(doc, {
+      startY: y,
+      head: [["Development", "Unit", "Type", "Sales Status", "Planned Close", "Price", "Purchaser"]],
+      body: pastDueData,
+      theme: "striped",
+      headStyles: { fillColor: [239, 68, 68], textColor: [255, 255, 255] },
+      margin: { left: 14, right: 14 },
+      styles: { fontSize: 8 },
+    });
 
-  // Check if we need a new page for sales by month
-  if (y > 150) {
-    doc.addPage();
-    y = 20;
+    y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
   }
 
-  // Section 3: Sales by Month
-  y = addSectionTitle(doc, "Sales by Month (Last 12 Months)", y);
+  // Upcoming units section
+  const upcomingUnits = units.filter((u) => !u.isPastDue);
+  if (upcomingUnits.length > 0) {
+    if (y > 150) {
+      doc.addPage();
+      y = 20;
+    }
 
-  const monthData = salesByMonth.map((m) => [m.month, m.unitsSold.toString(), formatCurrency(m.revenue)]);
+    y = addSectionTitle(doc, `Upcoming Closes (${upcomingUnits.length})`, y);
 
-  autoTable(doc, {
-    startY: y,
-    head: [["Month", "Units Sold", "Revenue"]],
-    body: monthData,
-    theme: "striped",
-    headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
-    margin: { left: 14, right: 14 },
-    tableWidth: 150,
-  });
+    const upcomingData = upcomingUnits.map((u) => [
+      u.developmentName,
+      u.unit.unitNumber,
+      u.unit.type,
+      u.unit.salesStatus,
+      formatDateShort(u.unit.plannedCloseDate),
+      u.weeksUntilClose !== null ? `${u.weeksUntilClose} weeks` : "-",
+      formatCurrency(u.unit.priceIncVat || u.unit.listPrice),
+      u.unit.purchaserName || "-",
+    ]);
+
+    autoTable(doc, {
+      startY: y,
+      head: [["Development", "Unit", "Type", "Sales Status", "Planned Close", "Time Left", "Price", "Purchaser"]],
+      body: upcomingData,
+      theme: "striped",
+      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
+      margin: { left: 14, right: 14 },
+      styles: { fontSize: 8 },
+    });
+  }
 
   addPdfFooter(doc);
   return doc;
 }
 
-function generatePortfolioSummaryExcel(): XLSX.WorkBook {
-  const stats = getPortfolioStats();
-  const salesByMonth = getSalesByMonth();
+function generate12WeekLookaheadExcel(): XLSX.WorkBook {
+  const units = get12WeekLookaheadUnits();
   const wb = XLSX.utils.book_new();
 
-  // Sheet 1: Overall Stats
-  const statsSheet = XLSX.utils.aoa_to_sheet([
-    ["Portfolio Summary Report", formatDate(new Date())],
+  // Summary sheet
+  const pastDueCount = units.filter((u) => u.isPastDue).length;
+  const summaryData = [
+    ["12 Week Lookahead Report", formatDate(new Date())],
     [],
-    ["OVERALL STATISTICS"],
-    ["Metric", "Value"],
-    ["Total Developments", stats.totalDevelopments],
-    ["Total Units", stats.totalUnits],
-    ["Gross Development Value (GDV)", stats.gdv],
-    ["Sales Complete (Count)", stats.salesCompleteCount],
-    ["Sales Complete (Value)", stats.salesValue],
-    ["Contracted", stats.contractedCount],
-    ["Under Offer", stats.underOfferCount],
-    ["For Sale", stats.forSaleCount],
-    ["Not Released", stats.notReleasedCount],
-  ]);
-  XLSX.utils.book_append_sheet(wb, statsSheet, "Summary");
+    ["SUMMARY"],
+    ["Metric", "Count"],
+    ["Total Units in Lookahead", units.length],
+    ["Past Due", pastDueCount],
+    ["Due This Week", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose <= 1).length],
+    ["Due in 2-4 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 1 && u.weeksUntilClose <= 4).length],
+    ["Due in 5-8 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 4 && u.weeksUntilClose <= 8).length],
+    ["Due in 9-12 Weeks", units.filter((u) => u.weeksUntilClose !== null && u.weeksUntilClose > 8).length],
+  ];
+  const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
+  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
 
-  // Sheet 2: Development Breakdown
-  const devData = developments.map((dev) => {
-    const devStats = getDevelopmentStats(dev);
-    return {
-      Development: dev.name,
-      "Total Units": devStats.totalUnits,
-      GDV: devStats.gdv,
-      "Sales Complete": devStats.salesCompleteCount,
-      "Sales Value": devStats.salesValue,
-      "% Complete": devStats.percentComplete,
-    };
-  });
-  const devSheet = XLSX.utils.json_to_sheet(devData);
-  XLSX.utils.book_append_sheet(wb, devSheet, "Developments");
+  // All Units sheet
+  const allUnitsData = units.map((u) => ({
+    "Development": u.developmentName,
+    "Unit Number": u.unit.unitNumber,
+    "Unit Type": u.unit.type,
+    "Bedrooms": u.unit.bedrooms,
+    "Sales Status": u.unit.salesStatus,
+    "Construction Status": u.unit.constructionStatus,
+    "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
+    "Status": u.isPastDue ? "PAST DUE" : `${u.weeksUntilClose} weeks`,
+    "Price Inc VAT": u.unit.priceIncVat || u.unit.listPrice,
+    "Purchaser Type": u.unit.purchaserType || "",
+    "Purchaser Name": u.unit.purchaserName || "",
+    "Purchaser Phone": u.unit.purchaserPhone || "",
+    "Purchaser Email": u.unit.purchaserEmail || "",
+    "BCMS Received": u.unit.documentation?.bcmsReceived ? "Yes" : "No",
+    "Contract Signed": u.unit.documentation?.contractSigned ? "Yes" : "No",
+  }));
+  const allUnitsSheet = XLSX.utils.json_to_sheet(allUnitsData);
+  XLSX.utils.book_append_sheet(wb, allUnitsSheet, "All Units");
 
-  // Sheet 3: Sales by Month
-  const monthSheet = XLSX.utils.json_to_sheet(
-    salesByMonth.map((m) => ({
-      Month: m.month,
-      "Units Sold": m.unitsSold,
-      Revenue: m.revenue,
-    }))
-  );
-  XLSX.utils.book_append_sheet(wb, monthSheet, "Sales by Month");
+  // Past Due sheet
+  const pastDueUnits = units.filter((u) => u.isPastDue);
+  if (pastDueUnits.length > 0) {
+    const pastDueData = pastDueUnits.map((u) => ({
+      "Development": u.developmentName,
+      "Unit Number": u.unit.unitNumber,
+      "Unit Type": u.unit.type,
+      "Sales Status": u.unit.salesStatus,
+      "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
+      "Price Inc VAT": u.unit.priceIncVat || u.unit.listPrice,
+      "Purchaser Name": u.unit.purchaserName || "",
+      "Purchaser Phone": u.unit.purchaserPhone || "",
+    }));
+    const pastDueSheet = XLSX.utils.json_to_sheet(pastDueData);
+    XLSX.utils.book_append_sheet(wb, pastDueSheet, "Past Due");
+  }
 
   return wb;
 }
 
 // ==========================================
-// REPORT 2: Development Detail Report
+// Sales Activity - Last 4 Weeks Report
+// Shows sales activity over the last 4 weeks
+// ==========================================
+
+interface SalesActivityUnit {
+  developmentName: string;
+  unit: Unit;
+  activityType: "Sale Closed" | "Contract Signed" | "Under Offer" | "For Sale";
+  activityDate: string;
+  weeksAgo: number;
+}
+
+function getSalesActivityUnits(): SalesActivityUnit[] {
+  const now = new Date();
+  const fourWeeksAgo = new Date(now.getTime() - 4 * 7 * 24 * 60 * 60 * 1000);
+  const units: SalesActivityUnit[] = [];
+
+  developments.forEach((dev) => {
+    dev.units.forEach((unit) => {
+      // Check for sale closed in last 4 weeks
+      if (unit.documentation?.saleClosedDate) {
+        const date = new Date(unit.documentation.saleClosedDate);
+        if (date >= fourWeeksAgo && date <= now) {
+          const weeksAgo = Math.floor((now.getTime() - date.getTime()) / (7 * 24 * 60 * 60 * 1000));
+          units.push({
+            developmentName: dev.name,
+            unit,
+            activityType: "Sale Closed",
+            activityDate: unit.documentation.saleClosedDate,
+            weeksAgo,
+          });
+        }
+      }
+
+      // Check for contract signed in last 4 weeks (but not sale closed)
+      if (unit.documentation?.contractSignedDate && !unit.documentation?.saleClosedDate) {
+        const date = new Date(unit.documentation.contractSignedDate);
+        if (date >= fourWeeksAgo && date <= now) {
+          const weeksAgo = Math.floor((now.getTime() - date.getTime()) / (7 * 24 * 60 * 60 * 1000));
+          units.push({
+            developmentName: dev.name,
+            unit,
+            activityType: "Contract Signed",
+            activityDate: unit.documentation.contractSignedDate,
+            weeksAgo,
+          });
+        }
+      }
+
+      // Check closeDate as proxy for recent activity
+      if (unit.closeDate) {
+        const date = new Date(unit.closeDate);
+        if (date >= fourWeeksAgo && date <= now) {
+          // Only add if not already added
+          const exists = units.some(
+            (u) => u.unit.unitNumber === unit.unitNumber && u.developmentName === dev.name
+          );
+          if (!exists) {
+            const weeksAgo = Math.floor((now.getTime() - date.getTime()) / (7 * 24 * 60 * 60 * 1000));
+            units.push({
+              developmentName: dev.name,
+              unit,
+              activityType: unit.salesStatus === "Complete" ? "Sale Closed" : "Contract Signed",
+              activityDate: unit.closeDate,
+              weeksAgo,
+            });
+          }
+        }
+      }
+    });
+  });
+
+  // Sort by activity date (most recent first)
+  units.sort((a, b) => {
+    const dateA = new Date(a.activityDate).getTime();
+    const dateB = new Date(b.activityDate).getTime();
+    return dateB - dateA;
+  });
+
+  return units;
+}
+
+function generateSalesActivityPdf(): jsPDF {
+  const doc = new jsPDF({ orientation: "landscape" });
+  const units = getSalesActivityUnits();
+  const totalValue = units.reduce((sum, u) => sum + (u.unit.soldPrice || u.unit.priceIncVat || u.unit.listPrice || 0), 0);
+
+  let y = addPdfHeader(
+    doc,
+    "Sales Activity - Last 4 Weeks",
+    `${units.length} transactions | ${formatCurrency(totalValue)} total value`
+  );
+
+  // Summary by week
+  y = addSectionTitle(doc, "Activity by Week", y);
+
+  const weekData = [
+    ["This Week", units.filter((u) => u.weeksAgo === 0).length.toString()],
+    ["1 Week Ago", units.filter((u) => u.weeksAgo === 1).length.toString()],
+    ["2 Weeks Ago", units.filter((u) => u.weeksAgo === 2).length.toString()],
+    ["3 Weeks Ago", units.filter((u) => u.weeksAgo === 3).length.toString()],
+    ["4 Weeks Ago", units.filter((u) => u.weeksAgo === 4).length.toString()],
+  ];
+
+  autoTable(doc, {
+    startY: y,
+    head: [["Period", "Transactions"]],
+    body: weekData,
+    theme: "striped",
+    headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
+    margin: { left: 14, right: 14 },
+    tableWidth: 120,
+  });
+
+  y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
+
+  // Summary by activity type
+  y = addSectionTitle(doc, "Activity by Type", y);
+
+  const salesClosed = units.filter((u) => u.activityType === "Sale Closed");
+  const contractsSigned = units.filter((u) => u.activityType === "Contract Signed");
+
+  const typeData = [
+    ["Sales Closed", salesClosed.length.toString(), formatCurrency(salesClosed.reduce((sum, u) => sum + (u.unit.soldPrice || u.unit.listPrice || 0), 0))],
+    ["Contracts Signed", contractsSigned.length.toString(), formatCurrency(contractsSigned.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0))],
+  ];
+
+  autoTable(doc, {
+    startY: y,
+    head: [["Activity Type", "Count", "Value"]],
+    body: typeData,
+    theme: "striped",
+    headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
+    margin: { left: 14, right: 14 },
+    tableWidth: 180,
+  });
+
+  y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
+
+  // Detailed list
+  if (units.length > 0) {
+    if (y > 130) {
+      doc.addPage();
+      y = 20;
+    }
+
+    y = addSectionTitle(doc, "Transaction Details", y);
+
+    const detailData = units.map((u) => [
+      u.developmentName,
+      u.unit.unitNumber,
+      u.unit.type,
+      u.activityType,
+      formatDateShort(u.activityDate),
+      formatCurrency(u.unit.soldPrice || u.unit.priceIncVat || u.unit.listPrice),
+      u.unit.purchaserType || "-",
+      u.unit.purchaserName || "-",
+    ]);
+
+    autoTable(doc, {
+      startY: y,
+      head: [["Development", "Unit", "Type", "Activity", "Date", "Value", "Purchaser Type", "Purchaser"]],
+      body: detailData,
+      theme: "striped",
+      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
+      margin: { left: 14, right: 14 },
+      styles: { fontSize: 8 },
+    });
+  } else {
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "italic");
+    doc.text("No sales activity in the last 4 weeks.", 14, y);
+  }
+
+  addPdfFooter(doc);
+  return doc;
+}
+
+function generateSalesActivityExcel(): XLSX.WorkBook {
+  const units = getSalesActivityUnits();
+  const wb = XLSX.utils.book_new();
+
+  // Summary sheet
+  const salesClosed = units.filter((u) => u.activityType === "Sale Closed");
+  const contractsSigned = units.filter((u) => u.activityType === "Contract Signed");
+
+  const summaryData = [
+    ["Sales Activity - Last 4 Weeks", formatDate(new Date())],
+    [],
+    ["SUMMARY"],
+    ["Metric", "Count", "Value"],
+    ["Total Transactions", units.length, units.reduce((sum, u) => sum + (u.unit.soldPrice || u.unit.priceIncVat || u.unit.listPrice || 0), 0)],
+    ["Sales Closed", salesClosed.length, salesClosed.reduce((sum, u) => sum + (u.unit.soldPrice || u.unit.listPrice || 0), 0)],
+    ["Contracts Signed", contractsSigned.length, contractsSigned.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0)],
+    [],
+    ["BY WEEK"],
+    ["Period", "Count"],
+    ["This Week", units.filter((u) => u.weeksAgo === 0).length],
+    ["1 Week Ago", units.filter((u) => u.weeksAgo === 1).length],
+    ["2 Weeks Ago", units.filter((u) => u.weeksAgo === 2).length],
+    ["3 Weeks Ago", units.filter((u) => u.weeksAgo === 3).length],
+    ["4 Weeks Ago", units.filter((u) => u.weeksAgo === 4).length],
+  ];
+  const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
+  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
+
+  // All Transactions sheet
+  const allData = units.map((u) => ({
+    "Development": u.developmentName,
+    "Unit Number": u.unit.unitNumber,
+    "Unit Type": u.unit.type,
+    "Bedrooms": u.unit.bedrooms,
+    "Activity Type": u.activityType,
+    "Activity Date": formatDateDDMMYYYY(u.activityDate),
+    "Weeks Ago": u.weeksAgo,
+    "Sale Price": u.unit.soldPrice || "",
+    "Price Inc VAT": u.unit.priceIncVat || u.unit.listPrice,
+    "Purchaser Type": u.unit.purchaserType || "",
+    "Purchaser Name": u.unit.purchaserName || "",
+    "Purchaser Phone": u.unit.purchaserPhone || "",
+    "Purchaser Email": u.unit.purchaserEmail || "",
+  }));
+  const allSheet = XLSX.utils.json_to_sheet(allData);
+  XLSX.utils.book_append_sheet(wb, allSheet, "All Transactions");
+
+  return wb;
+}
+
+// ==========================================
+// Development Detail Report (kept for individual development reports)
 // ==========================================
 
 function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
@@ -440,7 +661,7 @@ function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
     unit.salesStatus,
     formatCurrency(unit.soldPrice || unit.listPrice),
     unit.purchaserType || "-",
-    formatDateShort((unit as { plannedCloseDate?: string }).plannedCloseDate),
+    formatDateShort(unit.plannedCloseDate),
   ]);
 
   autoTable(doc, {
@@ -530,7 +751,7 @@ function generateDevelopmentDetailExcel(developmentId: string): XLSX.WorkBook | 
     "Sold Price": unit.soldPrice || "",
     "Purchaser Type": unit.purchaserType || "",
     "Part V": unit.partV ? "Yes" : "No",
-    "Planned Close": (unit as { plannedCloseDate?: string }).plannedCloseDate || "",
+    "Planned Close": unit.plannedCloseDate || "",
     "BCMS Received": unit.documentation?.bcmsReceived ? "Yes" : "No",
     "Land Registry": unit.documentation?.landRegistryApproved ? "Yes" : "No",
     Homebond: unit.documentation?.homebondReceived ? "Yes" : "No",
@@ -539,222 +760,6 @@ function generateDevelopmentDetailExcel(developmentId: string): XLSX.WorkBook | 
   }));
   const unitSheet = XLSX.utils.json_to_sheet(unitData);
   XLSX.utils.book_append_sheet(wb, unitSheet, "Units");
-
-  return wb;
-}
-
-// ==========================================
-// REPORT 3: Sales Pipeline Report
-// ==========================================
-
-function generateSalesPipelinePdf(): jsPDF {
-  const doc = new jsPDF({ orientation: "landscape" });
-
-  let y = addPdfHeader(doc, "Sales Pipeline Report", "All Developments");
-
-  const statuses = ["Complete", "Contracted", "Under Offer", "For Sale", "Not Released"] as const;
-
-  for (const status of statuses) {
-    const units: { dev: string; unit: Unit }[] = [];
-    developments.forEach((dev) => {
-      dev.units.forEach((unit) => {
-        if (unit.salesStatus === status) {
-          units.push({ dev: dev.name, unit });
-        }
-      });
-    });
-
-    const totalValue = units.reduce((sum, { unit }) => sum + (unit.soldPrice || unit.listPrice || 0), 0);
-
-    // Check if we need a new page
-    if (y > 160) {
-      doc.addPage();
-      y = 20;
-    }
-
-    y = addSectionTitle(doc, `${status} (${units.length} units - ${formatCurrency(totalValue)})`, y);
-
-    if (units.length === 0) {
-      doc.setFontSize(10);
-      doc.setFont("helvetica", "italic");
-      doc.text("No units in this status", 14, y);
-      y += 15;
-    } else {
-      const unitData = units.slice(0, 50).map(({ dev, unit }) => [
-        dev,
-        unit.unitNumber,
-        unit.type,
-        unit.bedrooms.toString(),
-        formatCurrency(unit.soldPrice || unit.listPrice),
-        unit.purchaserType || "-",
-      ]);
-
-      autoTable(doc, {
-        startY: y,
-        head: [["Development", "Unit", "Type", "Beds", "Price", "Purchaser Type"]],
-        body: unitData,
-        theme: "striped",
-        headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255] },
-        margin: { left: 14, right: 14 },
-        styles: { fontSize: 8 },
-      });
-
-      y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
-
-      if (units.length > 50) {
-        doc.setFontSize(9);
-        doc.setFont("helvetica", "italic");
-        doc.text(`... and ${units.length - 50} more units`, 14, y - 5);
-      }
-    }
-  }
-
-  addPdfFooter(doc);
-  return doc;
-}
-
-function generateSalesPipelineExcel(): XLSX.WorkBook {
-  const wb = XLSX.utils.book_new();
-  const statuses = ["Complete", "Contracted", "Under Offer", "For Sale", "Not Released"] as const;
-
-  // Summary sheet
-  const summaryData = statuses.map((status) => {
-    let count = 0;
-    let value = 0;
-    developments.forEach((dev) => {
-      dev.units.forEach((unit) => {
-        if (unit.salesStatus === status) {
-          count++;
-          value += unit.soldPrice || unit.listPrice || 0;
-        }
-      });
-    });
-    return { Status: status, "Unit Count": count, "Total Value": value };
-  });
-  const summarySheet = XLSX.utils.json_to_sheet(summaryData);
-  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
-
-  // Sheet per status
-  for (const status of statuses) {
-    const units: { Development: string; Unit: string; Type: string; Beds: number; Price: number; "Purchaser Type": string }[] = [];
-    developments.forEach((dev) => {
-      dev.units.forEach((unit) => {
-        if (unit.salesStatus === status) {
-          units.push({
-            Development: dev.name,
-            Unit: unit.unitNumber,
-            Type: unit.type,
-            Beds: unit.bedrooms,
-            Price: unit.soldPrice || unit.listPrice,
-            "Purchaser Type": unit.purchaserType || "",
-          });
-        }
-      });
-    });
-    const sheet = XLSX.utils.json_to_sheet(units);
-    XLSX.utils.book_append_sheet(wb, sheet, status.replace(/\s+/g, ""));
-  }
-
-  return wb;
-}
-
-// ==========================================
-// REPORT 4: Documentation Status Report
-// ==========================================
-
-function generateDocumentationStatusPdf(): jsPDF {
-  const doc = new jsPDF({ orientation: "landscape" });
-  const missing = getMissingDocumentation();
-
-  let y = addPdfHeader(doc, "Documentation Status Report", "Units with Incomplete Documentation");
-
-  const sections = [
-    { title: "Missing BCMS", data: missing.missingBcms },
-    { title: "Missing Land Registry Approval", data: missing.missingLandRegistry },
-    { title: "Missing Homebond", data: missing.missingHomebond },
-    { title: "Missing Signed Contracts", data: missing.missingContracts },
-  ];
-
-  for (const section of sections) {
-    if (y > 160) {
-      doc.addPage();
-      y = 20;
-    }
-
-    y = addSectionTitle(doc, `${section.title} (${section.data.length} units)`, y);
-
-    if (section.data.length === 0) {
-      doc.setFontSize(10);
-      doc.setFont("helvetica", "italic");
-      doc.setTextColor(34, 197, 94);
-      doc.text("All complete!", 14, y);
-      doc.setTextColor(0, 0, 0);
-      y += 15;
-    } else {
-      const tableData = section.data.slice(0, 30).map(({ dev, unit }) => [
-        dev,
-        unit.unitNumber,
-        unit.salesStatus,
-        unit.purchaserType || "-",
-      ]);
-
-      autoTable(doc, {
-        startY: y,
-        head: [["Development", "Unit", "Sales Status", "Purchaser Type"]],
-        body: tableData,
-        theme: "striped",
-        headStyles: { fillColor: [239, 68, 68], textColor: [255, 255, 255] },
-        margin: { left: 14, right: 14 },
-        styles: { fontSize: 9 },
-      });
-
-      y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
-
-      if (section.data.length > 30) {
-        doc.setFontSize(9);
-        doc.setFont("helvetica", "italic");
-        doc.text(`... and ${section.data.length - 30} more units`, 14, y - 5);
-      }
-    }
-  }
-
-  addPdfFooter(doc);
-  return doc;
-}
-
-function generateDocumentationStatusExcel(): XLSX.WorkBook {
-  const wb = XLSX.utils.book_new();
-  const missing = getMissingDocumentation();
-
-  // Summary sheet
-  const summaryData = [
-    { Category: "Missing BCMS", Count: missing.missingBcms.length },
-    { Category: "Missing Land Registry", Count: missing.missingLandRegistry.length },
-    { Category: "Missing Homebond", Count: missing.missingHomebond.length },
-    { Category: "Missing Contracts", Count: missing.missingContracts.length },
-  ];
-  const summarySheet = XLSX.utils.json_to_sheet(summaryData);
-  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
-
-  // Detail sheets
-  const sheetData = [
-    { name: "Missing BCMS", data: missing.missingBcms },
-    { name: "Missing Land Registry", data: missing.missingLandRegistry },
-    { name: "Missing Homebond", data: missing.missingHomebond },
-    { name: "Missing Contracts", data: missing.missingContracts },
-  ];
-
-  for (const { name, data } of sheetData) {
-    const rows = data.map(({ dev, unit }) => ({
-      Development: dev,
-      Unit: unit.unitNumber,
-      "Sales Status": unit.salesStatus,
-      "Purchaser Type": unit.purchaserType || "",
-      Price: unit.soldPrice || unit.listPrice,
-    }));
-    const sheet = XLSX.utils.json_to_sheet(rows);
-    XLSX.utils.book_append_sheet(wb, sheet, name.substring(0, 31)); // Sheet name max 31 chars
-  }
 
   return wb;
 }
@@ -771,19 +776,16 @@ export async function generateReport(options: ReportOptions): Promise<{ pdf?: Bl
     let doc: jsPDF | null = null;
 
     switch (options.type) {
-      case "portfolio":
-        doc = generatePortfolioSummaryPdf();
+      case "12week-lookahead":
+        doc = generate12WeekLookaheadPdf();
+        break;
+      case "sales-activity":
+        doc = generateSalesActivityPdf();
         break;
       case "development":
         if (options.developmentId) {
           doc = generateDevelopmentDetailPdf(options.developmentId);
         }
-        break;
-      case "pipeline":
-        doc = generateSalesPipelinePdf();
-        break;
-      case "documentation":
-        doc = generateDocumentationStatusPdf();
         break;
     }
 
@@ -797,19 +799,16 @@ export async function generateReport(options: ReportOptions): Promise<{ pdf?: Bl
     let workbook: XLSX.WorkBook | null = null;
 
     switch (options.type) {
-      case "portfolio":
-        workbook = generatePortfolioSummaryExcel();
+      case "12week-lookahead":
+        workbook = generate12WeekLookaheadExcel();
+        break;
+      case "sales-activity":
+        workbook = generateSalesActivityExcel();
         break;
       case "development":
         if (options.developmentId) {
           workbook = generateDevelopmentDetailExcel(options.developmentId);
         }
-        break;
-      case "pipeline":
-        workbook = generateSalesPipelineExcel();
-        break;
-      case "documentation":
-        workbook = generateDocumentationStatusExcel();
         break;
     }
 
@@ -838,27 +837,35 @@ export function getReportFilename(type: ReportType, format: "pdf" | "excel", dev
   const ext = format === "pdf" ? "pdf" : "xlsx";
 
   switch (type) {
-    case "portfolio":
-      return `Portfolio-Summary-${date}.${ext}`;
+    case "12week-lookahead":
+      return `12-Week-Lookahead-${date}.${ext}`;
+    case "sales-activity":
+      return `Sales-Activity-4-Weeks-${date}.${ext}`;
     case "development":
       return `${(developmentName || "Development").replace(/\s+/g, "-")}-Report-${date}.${ext}`;
-    case "pipeline":
-      return `Sales-Pipeline-${date}.${ext}`;
-    case "documentation":
-      return `Documentation-Status-${date}.${ext}`;
     default:
       return `Report-${date}.${ext}`;
   }
 }
 
-// Quick report functions for one-click generation
-export async function downloadPortfolioReport(format: ReportFormat = "pdf"): Promise<void> {
-  const result = await generateReport({ type: "portfolio", format });
+// Quick report functions
+export async function download12WeekLookahead(format: ReportFormat = "pdf"): Promise<void> {
+  const result = await generateReport({ type: "12week-lookahead", format });
   if (result.pdf) {
-    downloadReport(result.pdf, getReportFilename("portfolio", "pdf"));
+    downloadReport(result.pdf, getReportFilename("12week-lookahead", "pdf"));
   }
   if (result.excel) {
-    downloadReport(result.excel, getReportFilename("portfolio", "excel"));
+    downloadReport(result.excel, getReportFilename("12week-lookahead", "excel"));
+  }
+}
+
+export async function downloadSalesActivity4Weeks(format: ReportFormat = "pdf"): Promise<void> {
+  const result = await generateReport({ type: "sales-activity", format });
+  if (result.pdf) {
+    downloadReport(result.pdf, getReportFilename("sales-activity", "pdf"));
+  }
+  if (result.excel) {
+    downloadReport(result.excel, getReportFilename("sales-activity", "excel"));
   }
 }
 
@@ -872,27 +879,44 @@ export async function downloadDevelopmentReport(developmentId: string, developme
   }
 }
 
-export async function downloadPipelineReport(format: ReportFormat = "pdf"): Promise<void> {
-  const result = await generateReport({ type: "pipeline", format });
-  if (result.pdf) {
-    downloadReport(result.pdf, getReportFilename("pipeline", "pdf"));
-  }
-  if (result.excel) {
-    downloadReport(result.excel, getReportFilename("pipeline", "excel"));
-  }
-}
-
-export async function downloadDocumentationReport(format: ReportFormat = "pdf"): Promise<void> {
-  const result = await generateReport({ type: "documentation", format });
-  if (result.pdf) {
-    downloadReport(result.pdf, getReportFilename("documentation", "pdf"));
-  }
-  if (result.excel) {
-    downloadReport(result.excel, getReportFilename("documentation", "excel"));
-  }
-}
-
 // Get list of developments for dropdown
 export function getDevelopmentsList(): { id: string; name: string }[] {
   return developments.map((d) => ({ id: d.id, name: d.name }));
+}
+
+// Export cashflow data to Excel
+export function exportCashflowToExcel(
+  data: { month: string; [key: string]: string | number }[],
+  developments: string[]
+): void {
+  const wb = XLSX.utils.book_new();
+
+  // Create data rows
+  const rows = data.map((item) => {
+    const row: Record<string, string | number> = { Month: item.month };
+    developments.forEach((dev) => {
+      row[dev] = item[dev] || 0;
+    });
+    row["Total"] = developments.reduce((sum, dev) => sum + (Number(item[dev]) || 0), 0);
+    return row;
+  });
+
+  const sheet = XLSX.utils.json_to_sheet(rows);
+
+  // Set column widths
+  const colWidths = [{ wch: 12 }]; // Month column
+  developments.forEach(() => colWidths.push({ wch: 20 }));
+  colWidths.push({ wch: 15 }); // Total column
+  sheet["!cols"] = colWidths;
+
+  XLSX.utils.book_append_sheet(wb, sheet, "Cash Flow");
+
+  // Generate file
+  const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+  const blob = new Blob([excelBuffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+
+  const date = new Date().toISOString().split("T")[0];
+  saveAs(blob, `Cash-Flow-Forecast-${date}.xlsx`);
 }

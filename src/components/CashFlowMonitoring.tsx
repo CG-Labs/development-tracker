@@ -10,12 +10,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { developments } from "../data/realDevelopments";
+import { exportCashflowToExcel } from "../services/reportService";
 
 // Development names available in the data
-const DEVELOPMENTS = [
-  "All",
-  ...developments.map((d) => d.name),
-];
+const DEVELOPMENT_NAMES = developments.map((d) => d.name);
+
+const DEVELOPMENTS = ["All", ...DEVELOPMENT_NAMES];
 
 // Get unique unit types from data
 const UNIT_TYPES = [
@@ -46,6 +46,20 @@ const QUICK_RANGES: { id: QuickRange; label: string }[] = [
 ];
 
 type ViewMode = "weekly" | "monthly";
+
+// Colors for stacked bars - one per development
+const DEVELOPMENT_COLORS = [
+  "#06b6d4", // cyan
+  "#f59e0b", // amber
+  "#10b981", // emerald
+  "#8b5cf6", // violet
+  "#f43f5e", // rose
+  "#3b82f6", // blue
+  "#ec4899", // pink
+  "#84cc16", // lime
+  "#f97316", // orange
+  "#6366f1", // indigo
+];
 
 // Parse date string to Date
 function parseDate(dateStr: string): Date {
@@ -114,7 +128,7 @@ function formatFullCurrency(value: number): string {
   }).format(value);
 }
 
-// Custom tooltip component
+// Custom tooltip component for stacked chart
 function CustomTooltip({
   active,
   payload,
@@ -125,25 +139,26 @@ function CustomTooltip({
   label?: string;
 }) {
   if (active && payload && payload.length) {
+    const total = payload.reduce((sum, entry) => sum + (entry.value || 0), 0);
     return (
-      <div className="bg-[var(--bg-card)] border border-[var(--border-accent)] rounded-lg p-3 shadow-lg backdrop-blur-sm">
+      <div className="bg-[var(--bg-card)] border border-[var(--border-accent)] rounded-lg p-3 shadow-lg backdrop-blur-sm max-w-xs">
         <p className="font-mono text-xs text-[var(--text-muted)] mb-2">{label}</p>
-        {payload.map((entry, index) => (
-          <p key={index} className="font-mono text-sm" style={{ color: entry.color }}>
-            {entry.name}: {formatFullCurrency(entry.value)}
+        {payload
+          .filter((entry) => entry.value > 0)
+          .map((entry, index) => (
+            <p key={index} className="font-mono text-xs" style={{ color: entry.color }}>
+              {entry.name}: {formatFullCurrency(entry.value)}
+            </p>
+          ))}
+        <div className="border-t border-[var(--border-subtle)] mt-2 pt-2">
+          <p className="font-mono text-sm font-bold text-[var(--text-primary)]">
+            Total: {formatFullCurrency(total)}
           </p>
-        ))}
+        </div>
       </div>
     );
   }
   return null;
-}
-
-interface CashFlowData {
-  period: string;
-  fullPeriod: string;
-  cashFlow: number;
-  developmentBreakdown: Record<string, number>;
 }
 
 export function CashFlowMonitoring() {
@@ -178,7 +193,7 @@ export function CashFlowMonitoring() {
   };
 
   // Calculate cash flow data from unit-level data
-  const { chartData, tableData, totalCashFlow } = useMemo(() => {
+  const { chartData, totalCashFlow, activeDevelopments } = useMemo(() => {
     const now = new Date();
 
     // Filter units based on development, unit type, and bedrooms
@@ -199,8 +214,8 @@ export function CashFlowMonitoring() {
         .map((unit) => ({ ...unit, developmentName: dev.name }))
     );
 
-    // Group units by period using Actual Sales Complete date (closeDate) or Planned Sales Completion date (plannedCloseDate)
-    const cashFlowByPeriod: Record<string, { total: number; byDevelopment: Record<string, number> }> = {};
+    // Group units by period with development breakdown
+    const cashFlowByPeriod: Record<string, Record<string, number>> = {};
 
     filteredUnits.forEach((unit) => {
       // Use actual close date if available, otherwise use planned close date
@@ -212,14 +227,13 @@ export function CashFlowMonitoring() {
       const price = unit.priceIncVat || unit.listPrice || 0;
 
       if (!cashFlowByPeriod[periodKey]) {
-        cashFlowByPeriod[periodKey] = { total: 0, byDevelopment: {} };
+        cashFlowByPeriod[periodKey] = {};
       }
-      cashFlowByPeriod[periodKey].total += price;
 
-      if (!cashFlowByPeriod[periodKey].byDevelopment[unit.developmentName]) {
-        cashFlowByPeriod[periodKey].byDevelopment[unit.developmentName] = 0;
+      if (!cashFlowByPeriod[periodKey][unit.developmentName]) {
+        cashFlowByPeriod[periodKey][unit.developmentName] = 0;
       }
-      cashFlowByPeriod[periodKey].byDevelopment[unit.developmentName] += price;
+      cashFlowByPeriod[periodKey][unit.developmentName] += price;
     });
 
     // Sort periods chronologically
@@ -264,8 +278,17 @@ export function CashFlowMonitoring() {
       }
     });
 
-    // Build chart data
-    const chartData: CashFlowData[] = filteredPeriods.map((periodStr) => {
+    // Get active developments that have data
+    const activeDevelopmentsSet = new Set<string>();
+    filteredPeriods.forEach((period) => {
+      Object.keys(cashFlowByPeriod[period]).forEach((dev) => {
+        activeDevelopmentsSet.add(dev);
+      });
+    });
+    const activeDevelopments = Array.from(activeDevelopmentsSet).sort();
+
+    // Build chart data with development breakdown
+    const chartData = filteredPeriods.map((periodStr) => {
       const data = cashFlowByPeriod[periodStr];
 
       // Shorten period label for display
@@ -274,36 +297,36 @@ export function CashFlowMonitoring() {
         periodLabel = periodStr.replace("20", "'");
       }
 
-      return {
-        period: periodLabel,
+      const row: Record<string, string | number> = {
+        month: periodLabel,
         fullPeriod: periodStr,
-        cashFlow: data.total,
-        developmentBreakdown: data.byDevelopment,
       };
+
+      // Add each development as a column
+      activeDevelopments.forEach((devName) => {
+        row[devName] = data[devName] || 0;
+      });
+
+      return row;
     });
 
-    // Build table data by development
-    const devTotals: Record<string, number> = {};
+    // Calculate total
+    let totalCashFlow = 0;
     filteredPeriods.forEach((period) => {
-      const data = cashFlowByPeriod[period];
-      Object.entries(data.byDevelopment).forEach(([devName, amount]) => {
-        if (!devTotals[devName]) {
-          devTotals[devName] = 0;
-        }
-        devTotals[devName] += amount;
+      Object.values(cashFlowByPeriod[period]).forEach((value) => {
+        totalCashFlow += value;
       });
     });
 
-    const tableData = Object.entries(devTotals)
-      .sort((a, b) => b[1] - a[1])
-      .map(([name, total]) => ({ name, total }));
-
-    const totalCashFlow = tableData.reduce((sum, row) => sum + row.total, 0);
-
-    return { chartData, tableData, totalCashFlow };
+    return { chartData, totalCashFlow, activeDevelopments };
   }, [selectedDevelopment, selectedUnitType, selectedBedrooms, viewMode, quickRange, appliedFromDate, appliedToDate]);
 
   const hasData = chartData.length > 0;
+
+  // Handle Excel export
+  const handleExportExcel = () => {
+    exportCashflowToExcel(chartData, activeDevelopments);
+  };
 
   return (
     <section className="animate-fade-in-up" style={{ opacity: 0, animationDelay: "0.5s" }}>
@@ -476,82 +499,13 @@ export function CashFlowMonitoring() {
         </div>
       </div>
 
-      {/* Chart and Table */}
+      {/* Chart */}
       {hasData ? (
-        <div className="space-y-6">
-          {/* Cash Flow Chart */}
-          <div className="card p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <svg
-                  className="w-5 h-5 text-[var(--accent-gold)]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
-                  />
-                </svg>
-                <h3 className="font-display text-lg font-semibold text-[var(--text-primary)]">
-                  Cash Flow Over Time ({viewMode === "weekly" ? "Weekly" : "Monthly"})
-                </h3>
-              </div>
-              <div className="text-right">
-                <p className="font-mono text-xs text-[var(--text-muted)]">Total</p>
-                <p className="font-mono text-xl font-bold text-[var(--accent-gold-bright)]">
-                  {formatFullCurrency(totalCashFlow)}
-                </p>
-              </div>
-            </div>
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={chartData}
-                  margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                  <XAxis
-                    dataKey="period"
-                    tick={{ fill: "var(--text-muted)", fontSize: 10 }}
-                    axisLine={{ stroke: "var(--border-subtle)" }}
-                    tickLine={{ stroke: "var(--border-subtle)" }}
-                    interval={chartData.length > 12 ? Math.floor(chartData.length / 6) : 0}
-                  />
-                  <YAxis
-                    tick={{ fill: "var(--text-muted)", fontSize: 11 }}
-                    axisLine={{ stroke: "var(--border-subtle)" }}
-                    tickLine={{ stroke: "var(--border-subtle)" }}
-                    tickFormatter={(value) => formatCurrency(value)}
-                  />
-                  <Tooltip content={<CustomTooltip />} />
-                  <Legend
-                    wrapperStyle={{ paddingTop: "10px" }}
-                    formatter={(value) => (
-                      <span style={{ color: "var(--text-secondary)", fontSize: "12px" }}>
-                        {value}
-                      </span>
-                    )}
-                  />
-                  <Bar
-                    dataKey="cashFlow"
-                    name="Cash Flow"
-                    fill="#f59e0b"
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-
-          {/* Cash Flow by Development Table */}
-          <div className="card p-6">
-            <div className="flex items-center gap-2 mb-4">
+        <div className="card p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
               <svg
-                className="w-5 h-5 text-[var(--accent-emerald)]"
+                className="w-5 h-5 text-[var(--accent-gold)]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -560,63 +514,73 @@ export function CashFlowMonitoring() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
+                  d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
                 />
               </svg>
               <h3 className="font-display text-lg font-semibold text-[var(--text-primary)]">
-                Cash Flow by Development
+                Cash Flow by Development ({viewMode === "weekly" ? "Weekly" : "Monthly"})
               </h3>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-[var(--border-subtle)]">
-                    <th className="px-4 py-3 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                      Development
-                    </th>
-                    <th className="px-4 py-3 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                      Cash Flow
-                    </th>
-                    <th className="px-4 py-3 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                      % of Total
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableData.map((row, index) => (
-                    <tr
-                      key={row.name}
-                      className={`border-b border-[var(--border-subtle)] ${
-                        index % 2 === 0 ? "bg-[var(--bg-deep)]/30" : ""
-                      }`}
-                    >
-                      <td className="px-4 py-3 font-medium text-[var(--text-primary)]">
-                        {row.name}
-                      </td>
-                      <td className="px-4 py-3 text-right font-mono text-[var(--accent-gold-bright)]">
-                        {formatFullCurrency(row.total)}
-                      </td>
-                      <td className="px-4 py-3 text-right font-mono text-[var(--text-secondary)]">
-                        {totalCashFlow > 0 ? ((row.total / totalCashFlow) * 100).toFixed(1) : 0}%
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr className="bg-[var(--bg-card)]">
-                    <td className="px-4 py-3 font-display font-bold text-[var(--text-primary)]">
-                      Total
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono font-bold text-[var(--accent-gold-bright)]">
-                      {formatFullCurrency(totalCashFlow)}
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono font-bold text-[var(--text-secondary)]">
-                      100%
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="font-mono text-xs text-[var(--text-muted)]">Total</p>
+                <p className="font-mono text-xl font-bold text-[var(--accent-gold-bright)]">
+                  {formatFullCurrency(totalCashFlow)}
+                </p>
+              </div>
+              <button
+                onClick={handleExportExcel}
+                className="flex items-center gap-2 px-4 py-2 bg-[var(--accent-emerald)] text-white rounded-lg hover:bg-[var(--accent-emerald-bright)] transition-colors"
+                title="Export to Excel"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span className="font-mono text-xs font-medium">Export</span>
+              </button>
             </div>
+          </div>
+          <div className="h-96">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={chartData}
+                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                <XAxis
+                  dataKey="month"
+                  tick={{ fill: "var(--text-muted)", fontSize: 10 }}
+                  axisLine={{ stroke: "var(--border-subtle)" }}
+                  tickLine={{ stroke: "var(--border-subtle)" }}
+                  interval={chartData.length > 12 ? Math.floor(chartData.length / 6) : 0}
+                />
+                <YAxis
+                  tick={{ fill: "var(--text-muted)", fontSize: 11 }}
+                  axisLine={{ stroke: "var(--border-subtle)" }}
+                  tickLine={{ stroke: "var(--border-subtle)" }}
+                  tickFormatter={(value) => formatCurrency(value)}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend
+                  wrapperStyle={{ paddingTop: "10px" }}
+                  formatter={(value) => (
+                    <span style={{ color: "var(--text-secondary)", fontSize: "11px" }}>
+                      {value}
+                    </span>
+                  )}
+                />
+                {activeDevelopments.map((devName, index) => (
+                  <Bar
+                    key={devName}
+                    dataKey={devName}
+                    name={devName}
+                    stackId="cashflow"
+                    fill={DEVELOPMENT_COLORS[index % DEVELOPMENT_COLORS.length]}
+                    radius={index === activeDevelopments.length - 1 ? [4, 4, 0, 0] : [0, 0, 0, 0]}
+                  />
+                ))}
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </div>
       ) : (

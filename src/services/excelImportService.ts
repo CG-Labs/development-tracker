@@ -1,8 +1,7 @@
 import * as XLSX from "xlsx";
 import { developments } from "../data/realDevelopments";
-import type { Unit, ConstructionStatus, SalesStatus, PurchaserType } from "../types";
+import type { Unit, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus } from "../types";
 import { logChange } from "./auditLogService";
-import { getExportColumns } from "./excelExportService";
 
 export interface ImportChange {
   field: string;
@@ -44,6 +43,7 @@ export interface ApplyResult {
 const CONSTRUCTION_STATUSES: ConstructionStatus[] = ["Not Started", "In Progress", "Complete"];
 const SALES_STATUSES: SalesStatus[] = ["Not Released", "For Sale", "Under Offer", "Contracted", "Complete"];
 const PURCHASER_TYPES: PurchaserType[] = ["Private", "Council", "AHB", "Other"];
+const INCENTIVE_STATUSES: IncentiveStatus[] = ["eligible", "applied", "claimed", "expired"];
 
 function parseYesNo(value: unknown): boolean {
   if (typeof value === "boolean") return value;
@@ -79,10 +79,25 @@ function parseDate(value: unknown): string | undefined {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
 
+    // Try MM/DD/YYYY format
+    const mmddyyyy = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (mmddyyyy) {
+      const [, month, day, year] = mmddyyyy;
+      // Assume DD/MM/YYYY if day > 12, otherwise ambiguous - default to DD/MM/YYYY
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    }
+
     // Try ISO format
     const isoMatch = value.match(/^\d{4}-\d{2}-\d{2}/);
     if (isoMatch) {
       return isoMatch[0];
+    }
+
+    // Try YYYY/MM/DD format
+    const yyyymmdd = value.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+    if (yyyymmdd) {
+      const [, year, month, day] = yyyymmdd;
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
   }
 
@@ -109,6 +124,14 @@ function validatePurchaserType(value: unknown): PurchaserType | null {
   const str = String(value).trim();
   if (PURCHASER_TYPES.includes(str as PurchaserType)) {
     return str as PurchaserType;
+  }
+  return null;
+}
+
+function validateIncentiveStatus(value: unknown): IncentiveStatus | null {
+  const str = String(value).trim().toLowerCase();
+  if (INCENTIVE_STATUSES.includes(str as IncentiveStatus)) {
+    return str as IncentiveStatus;
   }
   return null;
 }
@@ -172,8 +195,8 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
       return result;
     }
 
-    // Validate required columns
-    const requiredColumns = getExportColumns();
+    // Validate required columns (only the essential ones)
+    const requiredColumns = ["Development Name", "Unit Number"];
     const firstRow = jsonData[0] as Record<string, unknown>;
     const missingColumns = requiredColumns.filter((col) => !(col in firstRow));
 
@@ -220,7 +243,6 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
       const warnings: string[] = [];
       const updatedUnit = { ...unit, documentation: { ...unit.documentation } };
 
-      // Check each field for changes
       // Unit Type
       const unitType = String(row["Unit Type"] || "").trim();
       if (unitType && compareValues(unit.type, unitType)) {
@@ -233,6 +255,33 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
       if (compareValues(unit.address, address)) {
         changes.push({ field: "address", oldValue: unit.address, newValue: address });
         updatedUnit.address = address || undefined;
+      }
+
+      // Construction Unit Type (free text)
+      if ("Construction Unit Type" in row) {
+        const constructionUnitType = String(row["Construction Unit Type"] || "").trim();
+        if (compareValues(unit.constructionUnitType, constructionUnitType)) {
+          changes.push({ field: "constructionUnitType", oldValue: unit.constructionUnitType, newValue: constructionUnitType || undefined });
+          updatedUnit.constructionUnitType = constructionUnitType || undefined;
+        }
+      }
+
+      // Construction Phase (free text)
+      if ("Construction Phase" in row) {
+        const constructionPhase = String(row["Construction Phase"] || "").trim();
+        if (compareValues(unit.constructionPhase, constructionPhase)) {
+          changes.push({ field: "constructionPhase", oldValue: unit.constructionPhase, newValue: constructionPhase || undefined });
+          updatedUnit.constructionPhase = constructionPhase || undefined;
+        }
+      }
+
+      // Developer Company
+      if ("Developer Company" in row) {
+        const developerCompany = String(row["Developer Company"] || "").trim();
+        if (compareValues(unit.developerCompanyId, developerCompany)) {
+          changes.push({ field: "developerCompanyId", oldValue: unit.developerCompanyId, newValue: developerCompany || undefined });
+          updatedUnit.developerCompanyId = developerCompany || undefined;
+        }
       }
 
       // Bedrooms
@@ -282,7 +331,6 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
       // Price Ex VAT
       const priceExVat = parseNumber(row["Price Ex VAT"]);
       if (priceExVat !== undefined && compareValues(unit.priceExVat, priceExVat)) {
-        // Check for large price change warning
         if (unit.priceExVat && Math.abs(priceExVat - unit.priceExVat) / unit.priceExVat > 0.2) {
           warnings.push(`Price Ex VAT change >20%: ${unit.priceExVat} → ${priceExVat}`);
         }
@@ -345,17 +393,74 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         updatedUnit.purchaserEmail = purchaserEmail || undefined;
       }
 
-      // Documentation fields
+      // Dates
+      // Planned BCMS Date
+      if ("Planned BCMS Date" in row) {
+        const plannedBcmsDate = parseDate(row["Planned BCMS Date"]);
+        if (compareValues(unit.documentation.plannedBcmsDate, plannedBcmsDate)) {
+          changes.push({ field: "documentation.plannedBcmsDate", oldValue: unit.documentation.plannedBcmsDate, newValue: plannedBcmsDate });
+          updatedUnit.documentation.plannedBcmsDate = plannedBcmsDate;
+        }
+      }
+
+      // Actual BCMS Date
+      if ("Actual BCMS Date" in row) {
+        const actualBcmsDate = parseDate(row["Actual BCMS Date"]);
+        if (compareValues(unit.documentation.bcmsReceivedDate, actualBcmsDate)) {
+          changes.push({ field: "documentation.bcmsReceivedDate", oldValue: unit.documentation.bcmsReceivedDate, newValue: actualBcmsDate });
+          updatedUnit.documentation.bcmsReceivedDate = actualBcmsDate;
+        }
+      }
+
+      // Snag Date
+      if ("Snag Date" in row) {
+        const snagDate = parseDate(row["Snag Date"]);
+        if (compareValues(unit.snagDate, snagDate)) {
+          changes.push({ field: "snagDate", oldValue: unit.snagDate, newValue: snagDate });
+          updatedUnit.snagDate = snagDate;
+        }
+      }
+
+      // Desnag Date
+      if ("Desnag Date" in row) {
+        const desnagDate = parseDate(row["Desnag Date"]);
+        if (compareValues(unit.desnagDate, desnagDate)) {
+          changes.push({ field: "desnagDate", oldValue: unit.desnagDate, newValue: desnagDate });
+          updatedUnit.desnagDate = desnagDate;
+        }
+      }
+
+      // Planned Close Date
+      if ("Planned Close Date" in row) {
+        const plannedCloseDate = parseDate(row["Planned Close Date"]);
+        if (compareValues(unit.plannedCloseDate, plannedCloseDate)) {
+          changes.push({ field: "plannedCloseDate", oldValue: unit.plannedCloseDate, newValue: plannedCloseDate });
+          updatedUnit.plannedCloseDate = plannedCloseDate;
+        }
+      }
+
+      // Actual Close Date
+      if ("Actual Close Date" in row) {
+        const actualCloseDate = parseDate(row["Actual Close Date"]);
+        if (compareValues(unit.closeDate, actualCloseDate)) {
+          changes.push({ field: "closeDate", oldValue: unit.closeDate, newValue: actualCloseDate });
+          updatedUnit.closeDate = actualCloseDate;
+        }
+      }
+
+      // Documentation fields - Boolean
       const bcmsReceived = parseYesNo(row["BCMS Received"]);
       if (compareValues(unit.documentation.bcmsReceived, bcmsReceived)) {
         changes.push({ field: "documentation.bcmsReceived", oldValue: unit.documentation.bcmsReceived, newValue: bcmsReceived });
         updatedUnit.documentation.bcmsReceived = bcmsReceived;
       }
 
-      const plannedBcmsDate = parseDate(row["Planned BCMS Date"]);
-      if (compareValues(unit.documentation.bcmsReceivedDate, plannedBcmsDate)) {
-        changes.push({ field: "documentation.bcmsReceivedDate", oldValue: unit.documentation.bcmsReceivedDate, newValue: plannedBcmsDate });
-        updatedUnit.documentation.bcmsReceivedDate = plannedBcmsDate;
+      if ("BCMS Received Date" in row) {
+        const bcmsReceivedDate = parseDate(row["BCMS Received Date"]);
+        if (compareValues(unit.documentation.bcmsReceivedDate, bcmsReceivedDate)) {
+          changes.push({ field: "documentation.bcmsReceivedDate", oldValue: unit.documentation.bcmsReceivedDate, newValue: bcmsReceivedDate });
+          updatedUnit.documentation.bcmsReceivedDate = bcmsReceivedDate;
+        }
       }
 
       const landRegistryApproved = parseYesNo(row["Land Registry Approved"]);
@@ -364,10 +469,26 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         updatedUnit.documentation.landRegistryApproved = landRegistryApproved;
       }
 
+      if ("Land Registry Approved Date" in row) {
+        const landRegistryApprovedDate = parseDate(row["Land Registry Approved Date"]);
+        if (compareValues(unit.documentation.landRegistryApprovedDate, landRegistryApprovedDate)) {
+          changes.push({ field: "documentation.landRegistryApprovedDate", oldValue: unit.documentation.landRegistryApprovedDate, newValue: landRegistryApprovedDate });
+          updatedUnit.documentation.landRegistryApprovedDate = landRegistryApprovedDate;
+        }
+      }
+
       const homebondReceived = parseYesNo(row["Homebond Received"]);
       if (compareValues(unit.documentation.homebondReceived, homebondReceived)) {
         changes.push({ field: "documentation.homebondReceived", oldValue: unit.documentation.homebondReceived, newValue: homebondReceived });
         updatedUnit.documentation.homebondReceived = homebondReceived;
+      }
+
+      if ("Homebond Received Date" in row) {
+        const homebondReceivedDate = parseDate(row["Homebond Received Date"]);
+        if (compareValues(unit.documentation.homebondReceivedDate, homebondReceivedDate)) {
+          changes.push({ field: "documentation.homebondReceivedDate", oldValue: unit.documentation.homebondReceivedDate, newValue: homebondReceivedDate });
+          updatedUnit.documentation.homebondReceivedDate = homebondReceivedDate;
+        }
       }
 
       const sanApproved = parseYesNo(row["SAN Approved"]);
@@ -376,10 +497,26 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         updatedUnit.documentation.sanApproved = sanApproved;
       }
 
+      if ("SAN Approved Date" in row) {
+        const sanApprovedDate = parseDate(row["SAN Approved Date"]);
+        if (compareValues(unit.documentation.sanApprovedDate, sanApprovedDate)) {
+          changes.push({ field: "documentation.sanApprovedDate", oldValue: unit.documentation.sanApprovedDate, newValue: sanApprovedDate });
+          updatedUnit.documentation.sanApprovedDate = sanApprovedDate;
+        }
+      }
+
       const contractIssued = parseYesNo(row["Contract Issued"]);
       if (compareValues(unit.documentation.contractIssued, contractIssued)) {
         changes.push({ field: "documentation.contractIssued", oldValue: unit.documentation.contractIssued, newValue: contractIssued });
         updatedUnit.documentation.contractIssued = contractIssued;
+      }
+
+      if ("Contract Issued Date" in row) {
+        const contractIssuedDate = parseDate(row["Contract Issued Date"]);
+        if (compareValues(unit.documentation.contractIssuedDate, contractIssuedDate)) {
+          changes.push({ field: "documentation.contractIssuedDate", oldValue: unit.documentation.contractIssuedDate, newValue: contractIssuedDate });
+          updatedUnit.documentation.contractIssuedDate = contractIssuedDate;
+        }
       }
 
       const contractSigned = parseYesNo(row["Contract Signed"]);
@@ -388,10 +525,43 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         updatedUnit.documentation.contractSigned = contractSigned;
       }
 
+      if ("Contract Signed Date" in row) {
+        const contractSignedDate = parseDate(row["Contract Signed Date"]);
+        if (compareValues(unit.documentation.contractSignedDate, contractSignedDate)) {
+          changes.push({ field: "documentation.contractSignedDate", oldValue: unit.documentation.contractSignedDate, newValue: contractSignedDate });
+          updatedUnit.documentation.contractSignedDate = contractSignedDate;
+        }
+      }
+
       const saleClosed = parseYesNo(row["Sale Closed"]);
       if (compareValues(unit.documentation.saleClosed, saleClosed)) {
         changes.push({ field: "documentation.saleClosed", oldValue: unit.documentation.saleClosed, newValue: saleClosed });
         updatedUnit.documentation.saleClosed = saleClosed;
+      }
+
+      if ("Sale Closed Date" in row) {
+        const saleClosedDate = parseDate(row["Sale Closed Date"]);
+        if (compareValues(unit.documentation.saleClosedDate, saleClosedDate)) {
+          changes.push({ field: "documentation.saleClosedDate", oldValue: unit.documentation.saleClosedDate, newValue: saleClosedDate });
+          updatedUnit.documentation.saleClosedDate = saleClosedDate;
+        }
+      }
+
+      // Incentive fields
+      if ("Incentive Scheme" in row) {
+        const incentiveScheme = String(row["Incentive Scheme"] || "").trim();
+        if (compareValues(unit.appliedIncentive, incentiveScheme)) {
+          changes.push({ field: "appliedIncentive", oldValue: unit.appliedIncentive, newValue: incentiveScheme || undefined });
+          updatedUnit.appliedIncentive = incentiveScheme || undefined;
+        }
+      }
+
+      if ("Incentive Status" in row) {
+        const incentiveStatus = validateIncentiveStatus(row["Incentive Status"]);
+        if (incentiveStatus !== null && compareValues(unit.incentiveStatus, incentiveStatus)) {
+          changes.push({ field: "incentiveStatus", oldValue: unit.incentiveStatus, newValue: incentiveStatus });
+          updatedUnit.incentiveStatus = incentiveStatus;
+        }
       }
 
       // Add to valid rows
@@ -561,6 +731,9 @@ export function formatFieldName(field: string): string {
   const fieldNames: Record<string, string> = {
     type: "Unit Type",
     address: "Address",
+    constructionUnitType: "Construction Unit Type",
+    constructionPhase: "Construction Phase",
+    developerCompanyId: "Developer Company",
     bedrooms: "Bedrooms",
     size: "Size (m²)",
     constructionStatus: "Construction Status",
@@ -572,14 +745,27 @@ export function formatFieldName(field: string): string {
     purchaserName: "Purchaser Name",
     purchaserPhone: "Purchaser Phone",
     purchaserEmail: "Purchaser Email",
+    snagDate: "Snag Date",
+    desnagDate: "Desnag Date",
+    plannedCloseDate: "Planned Close Date",
+    closeDate: "Actual Close Date",
+    appliedIncentive: "Incentive Scheme",
+    incentiveStatus: "Incentive Status",
     "documentation.bcmsReceived": "BCMS Received",
-    "documentation.bcmsReceivedDate": "Planned BCMS Date",
+    "documentation.bcmsReceivedDate": "BCMS Received Date",
+    "documentation.plannedBcmsDate": "Planned BCMS Date",
     "documentation.landRegistryApproved": "Land Registry Approved",
+    "documentation.landRegistryApprovedDate": "Land Registry Approved Date",
     "documentation.homebondReceived": "Homebond Received",
+    "documentation.homebondReceivedDate": "Homebond Received Date",
     "documentation.sanApproved": "SAN Approved",
+    "documentation.sanApprovedDate": "SAN Approved Date",
     "documentation.contractIssued": "Contract Issued",
+    "documentation.contractIssuedDate": "Contract Issued Date",
     "documentation.contractSigned": "Contract Signed",
+    "documentation.contractSignedDate": "Contract Signed Date",
     "documentation.saleClosed": "Sale Closed",
+    "documentation.saleClosedDate": "Sale Closed Date",
   };
   return fieldNames[field] || field;
 }
