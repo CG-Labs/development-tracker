@@ -56,15 +56,20 @@ import {
   deleteUser,
   getAllUsers,
   canAccessDevelopment,
+  createUserInvite,
   getInviteByToken,
   getPendingInviteByEmail,
+  getAllInvites,
   cancelInvite,
+  resendInvite,
   deleteInvite,
+  createUserFromInvite,
   createNotification,
   getUserNotifications,
   getUnreadNotificationCount,
   markNotificationAsRead,
   markAllNotificationsAsRead,
+  deleteUserByEmail,
   isSystemAdminEmail,
 } from "./userService";
 
@@ -715,6 +720,400 @@ describe("userService", () => {
     it("returns false for non-admin emails", () => {
       expect(isSystemAdminEmail("regular@example.com")).toBe(false);
       expect(isSystemAdminEmail("user@gmail.com")).toBe(false);
+    });
+  });
+
+  // ==================== Additional Invite Tests ====================
+
+  describe("createUserInvite", () => {
+    it("creates invite and sends email", async () => {
+      // No existing user
+      mockGetDocs.mockResolvedValueOnce(createMockQuerySnapshot([]));
+      // No existing invite
+      mockGetDocs.mockResolvedValueOnce(createMockQuerySnapshot([]));
+      // Add invite doc
+      mockAddDoc.mockResolvedValueOnce({ id: "invite-123" });
+      // Audit log
+      mockAddDoc.mockResolvedValueOnce({ id: "audit-123" });
+
+      const result = await createUserInvite(
+        "new@example.com",
+        "editor",
+        "admin-uid",
+        "admin@example.com",
+        "Admin User",
+        "New User",
+        ["dev-1"]
+      );
+
+      expect(result.email).toBe("new@example.com");
+      expect(result.role).toBe("editor");
+      expect(result.status).toBe("pending");
+      expect(result.id).toBe("invite-123");
+    });
+
+    it("throws error if user already exists", async () => {
+      mockGetDocs.mockResolvedValueOnce(
+        createMockQuerySnapshot([
+          {
+            id: "user-1",
+            data: {
+              email: "existing@example.com",
+              displayName: "Existing User",
+              role: "viewer",
+              isActive: true,
+              createdAt: { toDate: () => new Date() },
+            },
+          },
+        ])
+      );
+
+      await expect(
+        createUserInvite(
+          "existing@example.com",
+          "editor",
+          "admin-uid",
+          "admin@example.com"
+        )
+      ).rejects.toThrow("A user with this email already exists");
+    });
+
+    it("throws error if pending invite exists", async () => {
+      // No existing user
+      mockGetDocs.mockResolvedValueOnce(createMockQuerySnapshot([]));
+      // Existing pending invite
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 7);
+      mockGetDocs.mockResolvedValueOnce(
+        createMockQuerySnapshot([
+          {
+            id: "invite-1",
+            data: {
+              email: "pending@example.com",
+              role: "editor",
+              status: "pending",
+              token: "existing-token",
+              createdAt: { toDate: () => new Date() },
+              expiresAt: { toDate: () => futureDate },
+            },
+          },
+        ])
+      );
+
+      await expect(
+        createUserInvite(
+          "pending@example.com",
+          "editor",
+          "admin-uid",
+          "admin@example.com"
+        )
+      ).rejects.toThrow("There is already a pending invite for this email");
+    });
+  });
+
+  describe("getAllInvites", () => {
+    it("returns all invites", async () => {
+      mockGetDocs.mockResolvedValue(
+        createMockQuerySnapshot([
+          {
+            id: "invite-1",
+            data: {
+              email: "user1@example.com",
+              role: "editor",
+              status: "pending",
+              token: "token-1",
+              invitedBy: "admin-uid",
+              createdAt: { toDate: () => new Date() },
+              expiresAt: { toDate: () => new Date() },
+            },
+          },
+          {
+            id: "invite-2",
+            data: {
+              email: "user2@example.com",
+              role: "viewer",
+              status: "accepted",
+              token: "token-2",
+              invitedBy: "admin-uid",
+              createdAt: { toDate: () => new Date() },
+              expiresAt: { toDate: () => new Date() },
+              acceptedAt: { toDate: () => new Date() },
+            },
+          },
+        ])
+      );
+
+      const result = await getAllInvites();
+
+      expect(result).toHaveLength(2);
+      expect(result[0].email).toBe("user1@example.com");
+      expect(result[1].email).toBe("user2@example.com");
+    });
+
+    it("returns empty array on error", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      mockGetDocs.mockRejectedValue(new Error("Firestore error"));
+
+      const result = await getAllInvites();
+
+      expect(result).toEqual([]);
+      consoleError.mockRestore();
+    });
+  });
+
+  describe("resendInvite", () => {
+    it("resends invite with new token", async () => {
+      mockGetDoc.mockResolvedValue(
+        createMockDocSnap(true, {
+          email: "test@example.com",
+          role: "editor",
+          invitedBy: "admin-uid",
+          invitedByEmail: "admin@example.com",
+          invitedByName: "Admin",
+          createdAt: { toDate: () => new Date() },
+        })
+      );
+      mockUpdateDoc.mockResolvedValue(undefined);
+      mockAddDoc.mockResolvedValue({ id: "audit-id" });
+
+      const result = await resendInvite("invite-123", "admin-uid");
+
+      expect(result.email).toBe("test@example.com");
+      expect(result.status).toBe("pending");
+      expect(mockUpdateDoc).toHaveBeenCalled();
+    });
+
+    it("throws error when invite not found", async () => {
+      mockGetDoc.mockResolvedValue(createMockDocSnap(false));
+
+      await expect(resendInvite("nonexistent", "admin")).rejects.toThrow(
+        "Invite not found"
+      );
+    });
+  });
+
+  describe("createUserFromInvite", () => {
+    it("creates user profile from invite", async () => {
+      const mockInvite = {
+        id: "invite-1",
+        email: "new@example.com",
+        role: "editor" as const,
+        token: "test-token",
+        invitedBy: "admin-uid",
+        invitedByEmail: "admin@example.com",
+        invitedByName: "Admin User",
+        status: "pending" as const,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 86400000),
+      };
+
+      mockSetDoc.mockResolvedValue(undefined);
+      mockUpdateDoc.mockResolvedValue(undefined);
+      mockAddDoc.mockResolvedValue({ id: "notification-id" });
+
+      const result = await createUserFromInvite(
+        "new-uid",
+        "new@example.com",
+        "New User",
+        mockInvite
+      );
+
+      expect(result.uid).toBe("new-uid");
+      expect(result.email).toBe("new@example.com");
+      expect(result.displayName).toBe("New User");
+      expect(result.role).toBe("editor");
+      expect(result.isActive).toBe(true);
+      expect(mockSetDoc).toHaveBeenCalled();
+    });
+  });
+
+  describe("deleteUserByEmail", () => {
+    it("deletes user when found by email", async () => {
+      // getUserProfileByEmail returns user
+      mockGetDocs.mockResolvedValueOnce(
+        createMockQuerySnapshot([
+          {
+            id: "user-123",
+            data: {
+              email: "test@example.com",
+              displayName: "Test User",
+              role: "editor",
+              isActive: true,
+              createdAt: { toDate: () => new Date() },
+            },
+          },
+        ])
+      );
+      // deleteUser - getDoc
+      mockGetDoc.mockResolvedValue(
+        createMockDocSnap(true, { email: "test@example.com" })
+      );
+      mockDeleteDoc.mockResolvedValue(undefined);
+      mockAddDoc.mockResolvedValue({ id: "audit-id" });
+
+      const result = await deleteUserByEmail("test@example.com", "admin-uid");
+
+      expect(result).toBe(true);
+      expect(mockDeleteDoc).toHaveBeenCalled();
+    });
+
+    it("deletes pending invite when no user found", async () => {
+      // getUserProfileByEmail returns null
+      mockGetDocs.mockResolvedValueOnce(createMockQuerySnapshot([]));
+      // getPendingInviteByEmail returns invite
+      const futureDate = new Date();
+      futureDate.setDate(futureDate.getDate() + 7);
+      mockGetDocs.mockResolvedValueOnce(
+        createMockQuerySnapshot([
+          {
+            id: "invite-1",
+            data: {
+              email: "test@example.com",
+              role: "editor",
+              status: "pending",
+              token: "token",
+              createdAt: { toDate: () => new Date() },
+              expiresAt: { toDate: () => futureDate },
+            },
+          },
+        ])
+      );
+      mockDeleteDoc.mockResolvedValue(undefined);
+
+      const result = await deleteUserByEmail("test@example.com", "admin-uid");
+
+      expect(result).toBe(false);
+      expect(mockDeleteDoc).toHaveBeenCalled();
+    });
+
+    it("returns false when no user or invite found", async () => {
+      mockGetDocs.mockResolvedValue(createMockQuerySnapshot([]));
+
+      const result = await deleteUserByEmail("nonexistent@example.com", "admin-uid");
+
+      expect(result).toBe(false);
+    });
+
+    it("returns false and logs error on exception", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      mockGetDocs.mockRejectedValue(new Error("Firestore error"));
+
+      const result = await deleteUserByEmail("test@example.com", "admin-uid");
+
+      expect(result).toBe(false);
+      expect(consoleError).toHaveBeenCalled();
+      consoleError.mockRestore();
+    });
+  });
+
+  // ==================== Additional Edge Case Tests ====================
+
+  describe("getUserProfileByEmail error handling", () => {
+    it("returns null and logs error on exception", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      mockGetDocs.mockRejectedValue(new Error("Firestore error"));
+
+      const result = await getUserProfileByEmail("test@example.com");
+
+      expect(result).toBeNull();
+      expect(consoleError).toHaveBeenCalled();
+      consoleError.mockRestore();
+    });
+  });
+
+  describe("getInviteByToken error handling", () => {
+    it("returns null and logs error on exception", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      mockGetDocs.mockRejectedValue(new Error("Firestore error"));
+
+      const result = await getInviteByToken("test-token");
+
+      expect(result).toBeNull();
+      expect(consoleError).toHaveBeenCalled();
+      consoleError.mockRestore();
+    });
+  });
+
+  describe("getPendingInviteByEmail error handling", () => {
+    it("returns null and logs error on exception", async () => {
+      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      mockGetDocs.mockRejectedValue(new Error("Firestore error"));
+
+      const result = await getPendingInviteByEmail("test@example.com");
+
+      expect(result).toBeNull();
+      expect(consoleError).toHaveBeenCalled();
+      consoleError.mockRestore();
+    });
+
+    it("marks expired invite and returns null", async () => {
+      const pastDate = new Date();
+      pastDate.setDate(pastDate.getDate() - 1);
+
+      mockGetDocs.mockResolvedValue(
+        createMockQuerySnapshot([
+          {
+            id: "invite-1",
+            data: {
+              email: "test@example.com",
+              role: "editor",
+              status: "pending",
+              token: "expired-token",
+              createdAt: { toDate: () => new Date() },
+              expiresAt: { toDate: () => pastDate },
+            },
+          },
+        ])
+      );
+      mockUpdateDoc.mockResolvedValue(undefined);
+
+      const result = await getPendingInviteByEmail("test@example.com");
+
+      expect(result).toBeNull();
+      expect(mockUpdateDoc).toHaveBeenCalledWith(
+        expect.anything(),
+        { status: "expired" }
+      );
+    });
+  });
+
+  describe("updateUserProfile with empty allowedDevelopments", () => {
+    it("sets allowedDevelopments to null when empty array", async () => {
+      mockGetDoc.mockResolvedValue(
+        createMockDocSnap(true, {
+          email: "test@example.com",
+          displayName: "Test",
+          role: "editor",
+        })
+      );
+      mockUpdateDoc.mockResolvedValue(undefined);
+      mockAddDoc.mockResolvedValue({ id: "audit-id" });
+
+      await updateUserProfile(
+        "user-123",
+        { allowedDevelopments: [] },
+        "admin-uid"
+      );
+
+      expect(mockUpdateDoc).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({ allowedDevelopments: null })
+      );
+    });
+  });
+
+  describe("canAccessDevelopment with empty allowedDevelopments", () => {
+    it("returns true when allowedDevelopments is empty array", () => {
+      const user = {
+        uid: "user-1",
+        email: "test@example.com",
+        role: "editor" as const,
+        status: "active" as const,
+        isActive: true,
+        allowedDevelopments: [],
+        createdAt: new Date(),
+      };
+      expect(canAccessDevelopment(user, "any-dev")).toBe(true);
     });
   });
 });
