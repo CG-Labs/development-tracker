@@ -9,6 +9,7 @@ import { AccessDenied } from "./components/AccessDenied";
 import { ImportModal } from "./components/ImportModal";
 import { ExportModal } from "./components/ExportModal";
 import { LogoUploadModal } from "./components/LogoUploadModal";
+import { ReportDevelopmentSelector } from "./components/ReportDevelopmentSelector";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { loadUnitOverrides } from "./services/excelImportService";
@@ -38,6 +39,7 @@ function AuthenticatedApp() {
   const [showImportModal, setShowImportModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [showLogoModal, setShowLogoModal] = useState(false);
+  const [showDevSelector, setShowDevSelector] = useState(false);
   const [companyLogo, setCompanyLogo] = useState<string | null>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
@@ -85,15 +87,19 @@ function AuthenticatedApp() {
 
   async function handleQuickReport(reportType: "12week-lookahead" | "sales-activity") {
     setShowUserMenu(false);
-    const reportService = await getReportService();
-    switch (reportType) {
-      case "12week-lookahead":
-        reportService.download12WeekLookahead("pdf");
-        break;
-      case "sales-activity":
-        reportService.downloadSalesActivity4Weeks("pdf");
-        break;
+    if (reportType === "12week-lookahead") {
+      // Show development selector modal for 12 Week Lookahead
+      setShowDevSelector(true);
+    } else {
+      const reportService = await getReportService();
+      reportService.downloadSalesActivity4Weeks("pdf");
     }
+  }
+
+  async function handleGenerate12WeekLookahead(selectedDevelopmentIds: string[]) {
+    setShowDevSelector(false);
+    const reportService = await getReportService();
+    reportService.download12WeekLookahead("pdf", selectedDevelopmentIds);
   }
 
   return (
@@ -325,6 +331,26 @@ function AuthenticatedApp() {
           currentLogo={companyLogo || undefined}
           onClose={() => setShowLogoModal(false)}
           onUpload={(url) => setCompanyLogo(url || null)}
+        />
+      )}
+
+      {showDevSelector && (
+        <ReportDevelopmentSelector
+          title="Select Developments for Report"
+          onGenerate={handleGenerate12WeekLookahead}
+          onCancel={() => setShowDevSelector(false)}
+          getUnitsInLookahead={(devId) => {
+            const dev = developments.find((d) => d.id === devId);
+            if (!dev) return 0;
+            const now = new Date();
+            const twelveWeeksFromNow = new Date(now.getTime() + 12 * 7 * 24 * 60 * 60 * 1000);
+            return dev.units.filter((unit) => {
+              if (unit.salesStatus === "Complete") return false;
+              if (!unit.plannedCloseDate) return false;
+              const plannedClose = new Date(unit.plannedCloseDate);
+              return plannedClose < now || plannedClose <= twelveWeeksFromNow;
+            }).length;
+          }}
         />
       )}
     </div>

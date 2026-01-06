@@ -325,7 +325,7 @@ export function CashFlowMonitoring() {
 
   // Handle Excel export
   const handleExportExcel = () => {
-    exportCashflowToExcel(chartData, activeDevelopments);
+    exportCashflowToExcel(chartData as { month: string; [key: string]: string | number }[], activeDevelopments);
   };
 
   return (
