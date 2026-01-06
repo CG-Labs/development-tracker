@@ -229,6 +229,19 @@ export function getUnitsInLookaheadByDevelopment(developmentId: string): number 
   }).length;
 }
 
+// Helper function to calculate days since a date
+function getDaysSince(dateString: string | undefined): number | null {
+  if (!dateString) return null;
+  try {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    return Math.floor(diffMs / (24 * 60 * 60 * 1000));
+  } catch {
+    return null;
+  }
+}
+
 function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   const doc = new jsPDF({ orientation: "landscape" });
   const allUnits = get12WeekLookaheadUnits(selectedDevelopmentIds);
@@ -261,10 +274,6 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   // Sort developments alphabetically
   const sortedDevelopments = Object.keys(unitsByDevelopment).sort();
 
-  // Tick/cross symbols with colors
-  const tick = "\u2713";
-  const cross = "\u2717";
-
   // Generate tables for each development
   sortedDevelopments.forEach((devName, index) => {
     const devUnits = unitsByDevelopment[devName];
@@ -284,22 +293,29 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
     doc.text(`${devName} (${devUnits.length} units${devPastDue > 0 ? `, ${devPastDue} overdue` : ""})`, 14, y);
     y += 6;
 
-    // Build table data with tick/cross matrix
+    // Build table data with new column order
+    // Columns: Unit, Beds, Type, Status, Planned Close, Days O/D, BCMS Date, Days Since, BCMS, Land Reg, Homebond, SAN, Contract Out, Contract In, Closed
     const tableData = devUnits.map((u) => {
-      const doc = u.unit.documentation;
+      const unitDoc = u.unit.documentation;
+      const bcmsDate = unitDoc?.bcmsReceivedDate;
+      const daysSinceBcms = getDaysSince(bcmsDate);
+
       return [
         u.unit.unitNumber,
+        u.unit.bedrooms.toString(),
         u.unit.type,
         u.unit.salesStatus,
         formatDateShort(u.unit.plannedCloseDate),
         u.isPastDue && u.daysOverdue ? `${u.daysOverdue}` : "",
-        doc?.bcmsReceived ? tick : cross,
-        doc?.landRegistryApproved ? tick : cross,
-        doc?.homebondReceived ? tick : cross,
-        doc?.sanApproved ? tick : cross,
-        doc?.contractIssued ? tick : cross,
-        doc?.contractSigned ? tick : cross,
-        doc?.saleClosed ? tick : cross,
+        bcmsDate ? formatDateShort(bcmsDate) : "-",
+        daysSinceBcms !== null ? `${daysSinceBcms}` : "",
+        unitDoc?.bcmsReceived ? "YES" : "NO",
+        unitDoc?.landRegistryApproved ? "YES" : "NO",
+        unitDoc?.homebondReceived ? "YES" : "NO",
+        unitDoc?.sanApproved ? "YES" : "NO",
+        unitDoc?.contractIssued ? "YES" : "NO",
+        unitDoc?.contractSigned ? "YES" : "NO",
+        unitDoc?.saleClosed ? "YES" : "NO",
       ];
     });
 
@@ -307,61 +323,78 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
       startY: y,
       head: [[
         "Unit",
+        "Beds",
         "Type",
         "Status",
-        "Planned Close",
+        "Plan Close",
         "Days O/D",
+        "BCMS Date",
+        "Days",
         "BCMS",
-        "Land Reg",
-        "Homebond",
+        "Land",
+        "Home",
         "SAN",
-        "Contract Out",
-        "Contract In",
+        "C.Out",
+        "C.In",
         "Closed",
       ]],
       body: tableData,
       theme: "striped",
-      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255], fontSize: 7 },
-      margin: { left: 14, right: 14 },
-      styles: { fontSize: 7, cellPadding: 2 },
+      headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255], fontSize: 6, cellPadding: 1.5 },
+      margin: { left: 10, right: 10 },
+      styles: { fontSize: 7, cellPadding: 1.5 },
       columnStyles: {
-        0: { cellWidth: 18 },
-        1: { cellWidth: 25 },
-        2: { cellWidth: 22 },
-        3: { cellWidth: 22 },
-        4: { cellWidth: 16, halign: "center" },
-        5: { cellWidth: 14, halign: "center" },
-        6: { cellWidth: 14, halign: "center" },
-        7: { cellWidth: 16, halign: "center" },
-        8: { cellWidth: 12, halign: "center" },
-        9: { cellWidth: 20, halign: "center" },
-        10: { cellWidth: 18, halign: "center" },
-        11: { cellWidth: 14, halign: "center" },
+        0: { cellWidth: 14 }, // Unit
+        1: { cellWidth: 10, halign: "center" }, // Beds
+        2: { cellWidth: 22 }, // Type
+        3: { cellWidth: 18 }, // Status
+        4: { cellWidth: 20 }, // Plan Close
+        5: { cellWidth: 14, halign: "center" }, // Days O/D
+        6: { cellWidth: 20 }, // BCMS Date
+        7: { cellWidth: 12, halign: "center" }, // Days Since
+        8: { cellWidth: 16, halign: "center" }, // BCMS
+        9: { cellWidth: 14, halign: "center" }, // Land
+        10: { cellWidth: 14, halign: "center" }, // Home
+        11: { cellWidth: 14, halign: "center" }, // SAN
+        12: { cellWidth: 14, halign: "center" }, // C.Out
+        13: { cellWidth: 14, halign: "center" }, // C.In
+        14: { cellWidth: 16, halign: "center" }, // Closed
       },
       didParseCell: (data) => {
-        // Color the tick/cross columns
-        if (data.section === "body" && data.column.index >= 5) {
+        // Style YES/NO columns (columns 8-14) with colored backgrounds
+        if (data.section === "body" && data.column.index >= 8 && data.column.index <= 14) {
           const value = data.cell.raw as string;
-          if (value === tick) {
-            data.cell.styles.textColor = [34, 197, 94]; // Green #22c55e
+          if (value === "YES") {
+            data.cell.styles.fillColor = [34, 197, 94]; // Green #22c55e
+            data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
-          } else if (value === cross) {
-            data.cell.styles.textColor = [239, 68, 68]; // Red #ef4444
+            data.cell.styles.fontSize = 8;
+          } else if (value === "NO") {
+            data.cell.styles.fillColor = [220, 38, 38]; // Red #dc2626
+            data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
+            data.cell.styles.fontSize = 8;
           }
         }
-        // Highlight overdue rows
-        if (data.section === "body") {
+        // Highlight overdue rows (but don't override YES/NO colors)
+        if (data.section === "body" && data.column.index < 8) {
           const rowIndex = data.row.index;
           if (devUnits[rowIndex]?.isPastDue) {
             data.cell.styles.fillColor = [254, 226, 226]; // Light red background
           }
         }
         // Color Days Overdue column
-        if (data.section === "body" && data.column.index === 4) {
+        if (data.section === "body" && data.column.index === 5) {
           const value = data.cell.raw as string;
           if (value && value !== "") {
-            data.cell.styles.textColor = [239, 68, 68]; // Red
+            data.cell.styles.textColor = [220, 38, 38]; // Red
+            data.cell.styles.fontStyle = "bold";
+          }
+        }
+        // Style Days Since BCMS column
+        if (data.section === "body" && data.column.index === 7) {
+          const value = data.cell.raw as string;
+          if (value && value !== "") {
             data.cell.styles.fontStyle = "bold";
           }
         }
@@ -418,22 +451,30 @@ function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.W
   const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
   XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
 
-  // All Units sheet with tick/cross
-  const allUnitsData = allUnits.map((u) => ({
-    "Development": u.developmentName,
-    "Unit Number": u.unit.unitNumber,
-    "Unit Type": u.unit.type,
-    "Sales Status": u.unit.salesStatus,
-    "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
-    "Days Overdue": u.isPastDue && u.daysOverdue ? u.daysOverdue : "",
-    "BCMS Received": u.unit.documentation?.bcmsReceived ? "Yes" : "No",
-    "Land Registry Approved": u.unit.documentation?.landRegistryApproved ? "Yes" : "No",
-    "Homebond Received": u.unit.documentation?.homebondReceived ? "Yes" : "No",
-    "SAN Approved": u.unit.documentation?.sanApproved ? "Yes" : "No",
-    "Contract Issued": u.unit.documentation?.contractIssued ? "Yes" : "No",
-    "Contract Signed": u.unit.documentation?.contractSigned ? "Yes" : "No",
-    "Sale Closed": u.unit.documentation?.saleClosed ? "Yes" : "No",
-  }));
+  // All Units sheet with new columns including bedrooms, BCMS date, and days since BCMS
+  const allUnitsData = allUnits.map((u) => {
+    const bcmsDate = u.unit.documentation?.bcmsReceivedDate;
+    const daysSinceBcms = getDaysSince(bcmsDate);
+
+    return {
+      "Development": u.developmentName,
+      "Unit Number": u.unit.unitNumber,
+      "Bedrooms": u.unit.bedrooms,
+      "Unit Type": u.unit.type,
+      "Sales Status": u.unit.salesStatus,
+      "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
+      "Days Overdue": u.isPastDue && u.daysOverdue ? u.daysOverdue : "",
+      "BCMS Achieved Date": bcmsDate ? formatDateDDMMYYYY(bcmsDate) : "",
+      "Days Since BCMS": daysSinceBcms !== null ? daysSinceBcms : "",
+      "BCMS Received": u.unit.documentation?.bcmsReceived ? "Yes" : "No",
+      "Land Registry Approved": u.unit.documentation?.landRegistryApproved ? "Yes" : "No",
+      "Homebond Received": u.unit.documentation?.homebondReceived ? "Yes" : "No",
+      "SAN Approved": u.unit.documentation?.sanApproved ? "Yes" : "No",
+      "Contract Issued": u.unit.documentation?.contractIssued ? "Yes" : "No",
+      "Contract Signed": u.unit.documentation?.contractSigned ? "Yes" : "No",
+      "Sale Closed": u.unit.documentation?.saleClosed ? "Yes" : "No",
+    };
+  });
 
   // Sort by development then by planned close date
   allUnitsData.sort((a, b) => {
@@ -612,12 +653,10 @@ function generateSalesActivityPdf(): jsPDF {
     });
 
     const sortedDevelopments = Object.keys(unitsByDevelopment).sort();
-    let grandTotal = 0;
 
     sortedDevelopments.forEach((devName) => {
       const devUnits = unitsByDevelopment[devName];
       const devTotal = devUnits.reduce((sum, u) => sum + u.value, 0);
-      grandTotal += devTotal;
 
       if (y > 170) {
         doc.addPage();
@@ -673,12 +712,7 @@ function generateSalesActivityPdf(): jsPDF {
 
       y += 5;
     });
-
-    // Grand Total
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(15, 23, 42);
-    doc.text(`Grand Total: ${formatCurrencyGBP(grandTotal)}`, 14, y + 5);
+    // Note: Grand Total removed as per requirements
   } else {
     doc.setFontSize(12);
     doc.setFont("helvetica", "italic");
