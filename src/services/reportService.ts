@@ -246,11 +246,12 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   const doc = new jsPDF({ orientation: "landscape" });
   const allUnits = get12WeekLookaheadUnits(selectedDevelopmentIds);
   const pastDueCount = allUnits.filter((u) => u.isPastDue).length;
+  const totalValue = allUnits.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0);
 
   let y = addPdfHeader(
     doc,
     "12 Week Lookahead Report",
-    `${allUnits.length} units | ${pastDueCount} past due`
+    `${allUnits.length} units | ${pastDueCount} past due | ${formatCurrencyGBP(totalValue)}`
   );
 
   // Group units by development
@@ -274,13 +275,21 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   // Sort developments alphabetically
   const sortedDevelopments = Object.keys(unitsByDevelopment).sort();
 
+  // Track grand totals
+  let grandTotalUnits = 0;
+  let grandTotalValue = 0;
+
   // Generate tables for each development
   sortedDevelopments.forEach((devName, index) => {
     const devUnits = unitsByDevelopment[devName];
     const devPastDue = devUnits.filter((u) => u.isPastDue).length;
+    const devTotalValue = devUnits.reduce((sum, u) => sum + (u.unit.priceIncVat || u.unit.listPrice || 0), 0);
+
+    grandTotalUnits += devUnits.length;
+    grandTotalValue += devTotalValue;
 
     if (index > 0 || y > 60) {
-      if (y > 150) {
+      if (y > 140) {
         doc.addPage();
         y = 20;
       }
@@ -293,17 +302,19 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
     doc.text(`${devName} (${devUnits.length} units${devPastDue > 0 ? `, ${devPastDue} overdue` : ""})`, 14, y);
     y += 6;
 
-    // Build table data with new column order
-    // Columns: Unit, Beds, Type, Status, Planned Close, Days O/D, BCMS Date, Days Since, BCMS, Land Reg, Homebond, SAN, Contract Out, Contract In, Closed
+    // Build table data with new column order including Sales Value
+    // Columns: Unit, Beds, Type, Value, Status, Planned Close, Days O/D, BCMS Date, Days Since, BCMS, Land, Home, SAN, C.Out, C.In, Closed
     const tableData = devUnits.map((u) => {
       const unitDoc = u.unit.documentation;
       const bcmsDate = unitDoc?.bcmsReceivedDate;
       const daysSinceBcms = getDaysSince(bcmsDate);
+      const unitPrice = u.unit.priceIncVat || u.unit.listPrice || 0;
 
       return [
         u.unit.unitNumber,
         u.unit.bedrooms.toString(),
         u.unit.type,
+        unitPrice > 0 ? formatCurrencyGBP(unitPrice) : "-",
         u.unit.salesStatus,
         formatDateShort(u.unit.plannedCloseDate),
         u.isPastDue && u.daysOverdue ? `${u.daysOverdue}` : "",
@@ -325,6 +336,7 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
         "Unit",
         "Beds",
         "Type",
+        "Value",
         "Status",
         "Plan Close",
         "Days O/D",
@@ -341,50 +353,51 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
       body: tableData,
       theme: "striped",
       headStyles: { fillColor: [6, 182, 212], textColor: [255, 255, 255], fontSize: 6, cellPadding: 1.5 },
-      margin: { left: 10, right: 10 },
-      styles: { fontSize: 7, cellPadding: 1.5 },
+      margin: { left: 8, right: 8 },
+      styles: { fontSize: 6, cellPadding: 1.5 },
       columnStyles: {
-        0: { cellWidth: 14 }, // Unit
-        1: { cellWidth: 10, halign: "center" }, // Beds
-        2: { cellWidth: 22 }, // Type
-        3: { cellWidth: 18 }, // Status
-        4: { cellWidth: 20 }, // Plan Close
-        5: { cellWidth: 14, halign: "center" }, // Days O/D
-        6: { cellWidth: 20 }, // BCMS Date
-        7: { cellWidth: 12, halign: "center" }, // Days Since
-        8: { cellWidth: 16, halign: "center" }, // BCMS
-        9: { cellWidth: 14, halign: "center" }, // Land
-        10: { cellWidth: 14, halign: "center" }, // Home
-        11: { cellWidth: 14, halign: "center" }, // SAN
-        12: { cellWidth: 14, halign: "center" }, // C.Out
-        13: { cellWidth: 14, halign: "center" }, // C.In
-        14: { cellWidth: 16, halign: "center" }, // Closed
+        0: { cellWidth: 13 }, // Unit
+        1: { cellWidth: 9, halign: "center" }, // Beds
+        2: { cellWidth: 20 }, // Type
+        3: { cellWidth: 18, halign: "right" }, // Value
+        4: { cellWidth: 16 }, // Status
+        5: { cellWidth: 18 }, // Plan Close
+        6: { cellWidth: 12, halign: "center" }, // Days O/D
+        7: { cellWidth: 18 }, // BCMS Date
+        8: { cellWidth: 10, halign: "center" }, // Days Since
+        9: { cellWidth: 14, halign: "center" }, // BCMS
+        10: { cellWidth: 12, halign: "center" }, // Land
+        11: { cellWidth: 12, halign: "center" }, // Home
+        12: { cellWidth: 12, halign: "center" }, // SAN
+        13: { cellWidth: 12, halign: "center" }, // C.Out
+        14: { cellWidth: 12, halign: "center" }, // C.In
+        15: { cellWidth: 14, halign: "center" }, // Closed
       },
       didParseCell: (data) => {
-        // Style YES/NO columns (columns 8-14) with colored backgrounds
-        if (data.section === "body" && data.column.index >= 8 && data.column.index <= 14) {
+        // Style YES/NO columns (columns 9-15) with colored backgrounds
+        if (data.section === "body" && data.column.index >= 9 && data.column.index <= 15) {
           const value = data.cell.raw as string;
           if (value === "YES") {
             data.cell.styles.fillColor = [34, 197, 94]; // Green #22c55e
             data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
-            data.cell.styles.fontSize = 8;
+            data.cell.styles.fontSize = 7;
           } else if (value === "NO") {
             data.cell.styles.fillColor = [220, 38, 38]; // Red #dc2626
             data.cell.styles.textColor = [255, 255, 255]; // White text
             data.cell.styles.fontStyle = "bold";
-            data.cell.styles.fontSize = 8;
+            data.cell.styles.fontSize = 7;
           }
         }
         // Highlight overdue rows (but don't override YES/NO colors)
-        if (data.section === "body" && data.column.index < 8) {
+        if (data.section === "body" && data.column.index < 9) {
           const rowIndex = data.row.index;
           if (devUnits[rowIndex]?.isPastDue) {
             data.cell.styles.fillColor = [254, 226, 226]; // Light red background
           }
         }
         // Color Days Overdue column
-        if (data.section === "body" && data.column.index === 5) {
+        if (data.section === "body" && data.column.index === 6) {
           const value = data.cell.raw as string;
           if (value && value !== "") {
             data.cell.styles.textColor = [220, 38, 38]; // Red
@@ -392,7 +405,7 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
           }
         }
         // Style Days Since BCMS column
-        if (data.section === "body" && data.column.index === 7) {
+        if (data.section === "body" && data.column.index === 8) {
           const value = data.cell.raw as string;
           if (value && value !== "") {
             data.cell.styles.fontStyle = "bold";
@@ -401,8 +414,28 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
       },
     });
 
-    y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 12;
+    y = (doc as jsPDF & { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 3;
+
+    // Add development subtotal
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(30, 58, 95);
+    doc.text(`Subtotal: ${devUnits.length} units - ${formatCurrencyGBP(devTotalValue)}`, 14, y);
+    y += 10;
   });
+
+  // Add grand total at the end
+  if (y > 180) {
+    doc.addPage();
+    y = 20;
+  }
+
+  doc.setFillColor(30, 58, 95);
+  doc.rect(8, y - 2, 276, 10, "F");
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text(`TOTAL: ${grandTotalUnits} units - ${formatCurrencyGBP(grandTotalValue)}`, 14, y + 5);
 
   addPdfFooter(doc);
   return doc;
@@ -451,16 +484,18 @@ function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.W
   const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
   XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
 
-  // All Units sheet with new columns including bedrooms, BCMS date, and days since BCMS
+  // All Units sheet with new columns including bedrooms, sales value, BCMS date, and days since BCMS
   const allUnitsData = allUnits.map((u) => {
     const bcmsDate = u.unit.documentation?.bcmsReceivedDate;
     const daysSinceBcms = getDaysSince(bcmsDate);
+    const unitPrice = u.unit.priceIncVat || u.unit.listPrice || 0;
 
     return {
       "Development": u.developmentName,
       "Unit Number": u.unit.unitNumber,
       "Bedrooms": u.unit.bedrooms,
       "Unit Type": u.unit.type,
+      "Sales Value": unitPrice,
       "Sales Status": u.unit.salesStatus,
       "Planned Close Date": formatDateDDMMYYYY(u.unit.plannedCloseDate),
       "Days Overdue": u.isPastDue && u.daysOverdue ? u.daysOverdue : "",
