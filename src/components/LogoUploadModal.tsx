@@ -31,7 +31,7 @@ export function LogoUploadModal({ onClose, onUpload, currentLogo }: LogoUploadMo
     return null;
   };
 
-  const handleFile = (file: File) => {
+  const handleFile = useCallback((file: File) => {
     const validationError = validateFile(file);
     if (validationError) {
       setError(validationError);
@@ -47,7 +47,7 @@ export function LogoUploadModal({ onClose, onUpload, currentLogo }: LogoUploadMo
       setPreview(reader.result as string);
     };
     reader.readAsDataURL(file);
-  };
+  }, []);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ export function LogoUploadModal({ onClose, onUpload, currentLogo }: LogoUploadMo
     if (files.length > 0) {
       handleFile(files[0]);
     }
-  }, []);
+  }, [handleFile]);
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;

@@ -239,42 +239,67 @@ export function ProgressMonitoring() {
       }
     });
 
-    // Calculate cumulative values
-    let cumulativePlannedQty = 0;
-    let cumulativeActualQty = 0;
-    let cumulativePlannedValue = 0;
-    let cumulativeActualValue = 0;
+    // Calculate cumulative values using reduce to avoid variable reassignment warnings
+    const result = filteredMonths.reduce<{
+      data: Array<{
+        month: string;
+        fullMonth: string;
+        plannedUnits: number;
+        actualUnits: number;
+        cumulativePlannedUnits: number;
+        cumulativeActualUnits: number;
+        plannedRevenue: number;
+        actualRevenue: number;
+        cumulativePlannedRevenue: number;
+        cumulativeActualRevenue: number;
+      }>;
+      cumPlannedQty: number;
+      cumActualQty: number;
+      cumPlannedValue: number;
+      cumActualValue: number;
+    }>(
+      (acc, monthStr) => {
+        const planned = plannedByMonth[monthStr] || { qty: 0, value: 0 };
+        const actual = actualByMonth[monthStr] || { qty: 0, value: 0 };
 
-    return filteredMonths.map((monthStr) => {
-      const planned = plannedByMonth[monthStr] || { qty: 0, value: 0 };
-      const actual = actualByMonth[monthStr] || { qty: 0, value: 0 };
+        const newCumPlannedQty = acc.cumPlannedQty + planned.qty;
+        const newCumActualQty = acc.cumActualQty + actual.qty;
+        const newCumPlannedValue = acc.cumPlannedValue + planned.value;
+        const newCumActualValue = acc.cumActualValue + actual.value;
 
-      cumulativePlannedQty += planned.qty;
-      cumulativeActualQty += actual.qty;
-      cumulativePlannedValue += planned.value;
-      cumulativeActualValue += actual.value;
+        // Format month label based on data range
+        let monthLabel = monthStr;
+        if (filteredMonths.length > 12) {
+          monthLabel = monthStr.replace("20", "'");
+        } else {
+          monthLabel = monthStr.replace(" 2025", "").replace(" 2026", " '26").replace(" 2024", " '24");
+        }
 
-      // Format month label based on data range
-      let monthLabel = monthStr;
-      if (filteredMonths.length > 12) {
-        monthLabel = monthStr.replace("20", "'");
-      } else {
-        monthLabel = monthStr.replace(" 2025", "").replace(" 2026", " '26").replace(" 2024", " '24");
-      }
+        acc.data.push({
+          month: monthLabel,
+          fullMonth: monthStr,
+          plannedUnits: planned.qty,
+          actualUnits: actual.qty,
+          cumulativePlannedUnits: newCumPlannedQty,
+          cumulativeActualUnits: newCumActualQty,
+          plannedRevenue: planned.value,
+          actualRevenue: actual.value,
+          cumulativePlannedRevenue: newCumPlannedValue,
+          cumulativeActualRevenue: newCumActualValue,
+        });
 
-      return {
-        month: monthLabel,
-        fullMonth: monthStr,
-        plannedUnits: planned.qty,
-        actualUnits: actual.qty,
-        cumulativePlannedUnits: cumulativePlannedQty,
-        cumulativeActualUnits: cumulativeActualQty,
-        plannedRevenue: planned.value,
-        actualRevenue: actual.value,
-        cumulativePlannedRevenue: cumulativePlannedValue,
-        cumulativeActualRevenue: cumulativeActualValue,
-      };
-    });
+        return {
+          data: acc.data,
+          cumPlannedQty: newCumPlannedQty,
+          cumActualQty: newCumActualQty,
+          cumPlannedValue: newCumPlannedValue,
+          cumActualValue: newCumActualValue,
+        };
+      },
+      { data: [], cumPlannedQty: 0, cumActualQty: 0, cumPlannedValue: 0, cumActualValue: 0 }
+    );
+
+    return result.data;
   }, [selectedDevelopment, selectedUnitType, selectedBedrooms, quickRange, appliedFromDate, appliedToDate]);
 
   const hasData = chartData.length > 0;

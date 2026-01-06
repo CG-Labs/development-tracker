@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import type { IncentiveScheme, IncentiveSchemeFormData, IncentiveBenefit, IncentiveRequirement, IncentiveRequirementType } from "../types/incentive";
 import {
@@ -44,6 +44,11 @@ export function IncentiveSchemesPage() {
   useEffect(() => {
     loadSchemes();
   }, []);
+
+  // Permission guard - redirect unauthorized users (must be after all hooks)
+  if (!can("editUnit") && !can("editDevelopment")) {
+    return <Navigate to="/" replace />;
+  }
 
   async function loadSchemes() {
     setLoading(true);

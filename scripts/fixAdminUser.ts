@@ -63,8 +63,9 @@ async function main() {
           console.log("");
         });
       }
-    } catch (error: any) {
-      console.log("   Could not list users (security rules may block this):", error.code);
+    } catch (error) {
+      const firebaseError = error as { code?: string; message?: string };
+      console.log("   Could not list users (security rules may block this):", firebaseError.code);
       console.log("   Will proceed to create/update your user document...\n");
     }
 
@@ -140,23 +141,26 @@ async function main() {
         console.log("   Test invite deleted.\n");
 
         console.log("   *** INVITE FUNCTIONALITY IS WORKING! ***\n");
-      } catch (error: any) {
+      } catch (error) {
+        const firebaseError = error as { code?: string; message?: string };
         console.log("   FAILED to create test invite!");
-        console.log(`   Error: ${error.message}`);
-        console.log(`   Code: ${error.code}`);
+        console.log(`   Error: ${firebaseError.message}`);
+        console.log(`   Code: ${firebaseError.code}`);
         console.log("\n   This means there's still a security rules issue.\n");
       }
 
-    } catch (error: any) {
-      console.log("   Error accessing user document:", error.message);
-      console.log("   Code:", error.code);
+    } catch (error) {
+      const firebaseError = error as { code?: string; message?: string };
+      console.log("   Error accessing user document:", firebaseError.message);
+      console.log("   Code:", firebaseError.code);
     }
 
     console.log("=== Script Complete ===\n");
 
-  } catch (error: any) {
-    console.error("\n   Authentication failed:", error.message);
-    console.log("   Code:", error.code);
+  } catch (error) {
+    const firebaseError = error as { code?: string; message?: string };
+    console.error("\n   Authentication failed:", firebaseError.message);
+    console.log("   Code:", firebaseError.code);
     console.log("\n   Make sure you entered the correct password.\n");
   }
 

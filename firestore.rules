@@ -74,9 +74,13 @@ service cloud.firestore {
     // Invites Collection
     // ============================================
     match /invites/{inviteId} {
-      // Anyone can read invites by token (for validating magic links)
-      // But we restrict to only pending invites via the client query
-      allow read: if true;
+      // Read access:
+      // - Managers and admins can read all invites for management
+      // - Unauthenticated users can read pending invites (for magic link validation)
+      //   Note: Token is unguessable, so discovery requires knowing the token first
+      allow read: if isManagerOrAdmin() ||
+                     (resource.data.status == "pending" &&
+                      resource.data.expiresAt.toMillis() > request.time.toMillis());
 
       // Managers and Admins can create and update invites
       allow create, update: if isManagerOrAdmin();

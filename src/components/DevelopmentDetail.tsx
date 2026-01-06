@@ -50,6 +50,36 @@ function formatDate(dateString: string | undefined): string {
   }
 }
 
+// SortIcon component - moved outside to prevent recreation on every render
+function SortIcon({
+  field,
+  sortField,
+  sortDirection
+}: {
+  field: SortField;
+  sortField: SortField;
+  sortDirection: SortDirection;
+}) {
+  return (
+    <span className="ml-1 inline-flex flex-col">
+      <svg
+        className={`w-2 h-2 ${sortField === field && sortDirection === "asc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`}
+        viewBox="0 0 8 4"
+        fill="currentColor"
+      >
+        <path d="M4 0L8 4H0L4 0Z" />
+      </svg>
+      <svg
+        className={`w-2 h-2 ${sortField === field && sortDirection === "desc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`}
+        viewBox="0 0 8 4"
+        fill="currentColor"
+      >
+        <path d="M4 4L0 0H8L4 4Z" />
+      </svg>
+    </span>
+  );
+}
+
 export function DevelopmentDetail() {
   const { id } = useParams<{ id: string }>();
   const { can } = useAuth();
@@ -199,22 +229,48 @@ export function DevelopmentDetail() {
     }
   };
 
-  const SortIcon = ({ field }: { field: SortField }) => (
-    <span className="ml-1 inline-flex flex-col">
-      <svg className={`w-2 h-2 ${sortField === field && sortDirection === "asc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`} viewBox="0 0 8 4" fill="currentColor">
-        <path d="M4 0L8 4H0L4 0Z" />
-      </svg>
-      <svg className={`w-2 h-2 ${sortField === field && sortDirection === "desc" ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`} viewBox="0 0 8 4" fill="currentColor">
-        <path d="M4 4L0 0H8L4 4Z" />
-      </svg>
-    </span>
-  );
-
   const getIncentiveName = (incentiveId?: string) => {
     if (!incentiveId) return null;
     const scheme = incentiveSchemes.find(s => s.id === incentiveId);
     return scheme?.name || null;
   };
+
+  // Calculate summary statistics - moved before conditional return to avoid hook order issues
+  const stats = useMemo(() => {
+    if (!development) {
+      return {
+        totalUnits: 0,
+        gdv: 0,
+        salesCompleteCount: 0,
+        salesValueToDate: 0,
+        contractedCount: 0,
+        underOfferCount: 0,
+        forSaleCount: 0,
+        notReleasedCount: 0,
+      };
+    }
+    const units = development.units;
+    const totalUnits = units.length;
+    const gdv = units.reduce((sum, u) => sum + (u.priceIncVat || u.listPrice || 0), 0);
+    const salesComplete = units.filter((u) => u.salesStatus === "Complete");
+    const salesCompleteCount = salesComplete.length;
+    const salesValueToDate = salesComplete.reduce((sum, u) => sum + (u.priceIncVat || u.listPrice || 0), 0);
+    const contractedCount = units.filter((u) => u.salesStatus === "Contracted").length;
+    const underOfferCount = units.filter((u) => u.salesStatus === "Under Offer").length;
+    const forSaleCount = units.filter((u) => u.salesStatus === "For Sale").length;
+    const notReleasedCount = units.filter((u) => u.salesStatus === "Not Released").length;
+
+    return {
+      totalUnits,
+      gdv,
+      salesCompleteCount,
+      salesValueToDate,
+      contractedCount,
+      underOfferCount,
+      forSaleCount,
+      notReleasedCount,
+    };
+  }, [development]);
 
   if (!development) {
     return (
@@ -246,31 +302,6 @@ export function DevelopmentDetail() {
       </div>
     );
   }
-
-  // Calculate summary statistics
-  const stats = useMemo(() => {
-    const units = development.units;
-    const totalUnits = units.length;
-    const gdv = units.reduce((sum, u) => sum + (u.priceIncVat || u.listPrice || 0), 0);
-    const salesComplete = units.filter((u) => u.salesStatus === "Complete");
-    const salesCompleteCount = salesComplete.length;
-    const salesValueToDate = salesComplete.reduce((sum, u) => sum + (u.priceIncVat || u.listPrice || 0), 0);
-    const contractedCount = units.filter((u) => u.salesStatus === "Contracted").length;
-    const underOfferCount = units.filter((u) => u.salesStatus === "Under Offer").length;
-    const forSaleCount = units.filter((u) => u.salesStatus === "For Sale").length;
-    const notReleasedCount = units.filter((u) => u.salesStatus === "Not Released").length;
-
-    return {
-      totalUnits,
-      gdv,
-      salesCompleteCount,
-      salesValueToDate,
-      contractedCount,
-      underOfferCount,
-      forSaleCount,
-      notReleasedCount,
-    };
-  }, [development]);
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -550,34 +581,34 @@ export function DevelopmentDetail() {
                   </th>
                 )}
                 <th onClick={() => toggleSort("unitNumber")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Unit #<SortIcon field="unitNumber" /></span>
+                  <span className="flex items-center">Unit #<SortIcon field="unitNumber" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Area
                 </th>
                 <th onClick={() => toggleSort("type")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Type<SortIcon field="type" /></span>
+                  <span className="flex items-center">Type<SortIcon field="type" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("bedrooms")} className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center justify-center">Beds<SortIcon field="bedrooms" /></span>
+                  <span className="flex items-center justify-center">Beds<SortIcon field="bedrooms" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("constructionStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Construction<SortIcon field="constructionStatus" /></span>
+                  <span className="flex items-center">Construction<SortIcon field="constructionStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("salesStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Sales<SortIcon field="salesStatus" /></span>
+                  <span className="flex items-center">Sales<SortIcon field="salesStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" /></span>
+                  <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("plannedCloseDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Planned Close<SortIcon field="plannedCloseDate" /></span>
+                  <span className="flex items-center">Planned Close<SortIcon field="plannedCloseDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("incentive")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Incentive<SortIcon field="incentive" /></span>
+                  <span className="flex items-center">Incentive<SortIcon field="incentive" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th onClick={() => toggleSort("price")} className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center justify-end">Price<SortIcon field="price" /></span>
+                  <span className="flex items-center justify-end">Price<SortIcon field="price" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
                 <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Notes

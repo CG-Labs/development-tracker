@@ -18,7 +18,9 @@
       "Bash(wc:*)",
       "Bash(npx tsc:*)",
       "Bash(npx vite build)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm run lint)",
+      "Bash(npx knip:*)"
     ]
   }
 }

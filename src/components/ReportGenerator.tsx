@@ -313,6 +313,11 @@ export function ReportGenerator({ developments }: ReportGeneratorProps) {
     []
   );
 
+  // Format currency - moved before exportToExcel which uses it
+  const formatCurrency = useCallback((value: number) => {
+    return new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);
+  }, []);
+
   // Export to Excel
   const exportToExcel = useCallback(() => {
     if (!reportData || !selectedTemplate) return;
@@ -356,12 +361,7 @@ export function ReportGenerator({ developments }: ReportGeneratorProps) {
     XLSX.utils.book_append_sheet(wb, devSheet, "By Development");
 
     XLSX.writeFile(wb, `${selectedTemplate.name.replace(/\s+/g, "_")}_${new Date().toISOString().split("T")[0]}.xlsx`);
-  }, [reportData, selectedTemplate]);
-
-  // Format currency
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);
-  };
+  }, [reportData, selectedTemplate, formatCurrency]);
 
   // Render template card
   const renderTemplateCard = (template: ReportTemplate) => {

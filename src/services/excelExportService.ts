@@ -121,7 +121,7 @@ function addDataValidation(worksheet: XLSX.WorkSheet, rowCount: number) {
   return worksheet;
 }
 
-function styleWorksheet(worksheet: XLSX.WorkSheet, _rowCount: number) {
+function styleWorksheet(worksheet: XLSX.WorkSheet) {
   // Set column widths
   const colWidths = [
     { wch: 25 }, // Development Name
@@ -191,7 +191,7 @@ export function exportUnitsToExcel(developmentId?: string): void {
   const worksheet = XLSX.utils.json_to_sheet(exportRows);
 
   // Style the worksheet
-  styleWorksheet(worksheet, exportRows.length);
+  styleWorksheet(worksheet);
 
   // Add data validation for dropdowns
   addDataValidation(worksheet, exportRows.length);
@@ -266,7 +266,7 @@ export function exportAllUnitsToExcel(developmentsToExport: Development[]): void
   // Create workbook and worksheet
   const workbook = XLSX.utils.book_new();
   const worksheet = XLSX.utils.json_to_sheet(exportRows);
-  styleWorksheet(worksheet, exportRows.length);
+  styleWorksheet(worksheet);
   XLSX.utils.book_append_sheet(workbook, worksheet, "Units");
 
   // Generate file and trigger download

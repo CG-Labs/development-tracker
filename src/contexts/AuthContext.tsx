@@ -74,6 +74,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
@@ -316,9 +317,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return unsubscribe;
   }, [loadUserWithProfile]);
 
-  // Load notifications when user changes
+  // Load notifications when user changes - intentional data loading pattern
   useEffect(() => {
     if (currentUser) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       refreshNotifications();
     }
   }, [currentUser, refreshNotifications]);

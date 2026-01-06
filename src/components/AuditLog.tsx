@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   getAuditLogs,
   getAllUsers,
@@ -10,6 +10,7 @@ import {
 import type { AuditLogEntry, AuditLogFilters, AuditAction } from "../types/auditLog";
 import { developments } from "../data/realDevelopments";
 import type { QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
 
 const actionBadgeClasses: Record<AuditAction, string> = {
   create: "badge badge-complete",
@@ -42,6 +43,7 @@ function formatDateTime(date: Date): string {
 }
 
 export function AuditLog() {
+  const { can } = useAuth();
   const [entries, setEntries] = useState<AuditLogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -113,10 +115,17 @@ export function AuditLog() {
     }
   };
 
+  // Initial load on mount - loadLogs excluded from deps intentionally (only run once on mount)
   useEffect(() => {
     loadLogs(true);
     getAllUsers().then(setUsers).catch(console.error);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Permission guard - redirect unauthorized users (must be after all hooks)
+  if (!can("viewAuditLog")) {
+    return <Navigate to="/" replace />;
+  }
 
   const applyFilters = () => {
     loadLogs(true);

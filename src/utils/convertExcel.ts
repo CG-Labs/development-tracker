@@ -467,7 +467,6 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
     // Check if contract was signed
     const contractReturned = row[COLUMNS.contractReturned];
     const clientSigned = row[COLUMNS.clientSigned];
-    const loanOfferFunds = row[COLUMNS.loanOfferFunds];
 
     // Get raw status values for debugging
     const rawConstructionStatus = String(row[COLUMNS.constructionStatus] || "");

@@ -1,73 +1,115 @@
-# React + TypeScript + Vite
+# DevTracker - Property Development Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A comprehensive property development tracking application built with React, TypeScript, and Firebase.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Functionality
+- **Portfolio Dashboard** - Overview of all developments with key metrics
+- **Development Management** - Track multiple property developments
+- **Unit Tracking** - Detailed unit-level management with status tracking
+- **Construction & Sales Status** - Track progress from construction to sale completion
+- **Documentation Tracking** - Monitor BCMS, Land Registry, Homebond, contracts, and more
 
-## React Compiler
+### User Management
+- **Role-Based Access Control** - 4-tier permission system (Admin, Manager, Editor, Viewer)
+- **Magic Link Invitations** - Secure invite-based user onboarding
+- **Development Restrictions** - Limit user access to specific developments
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Reporting
+- **Portfolio Summary Reports** - Overall portfolio performance
+- **Sales Pipeline Reports** - Track sales progress and projections
+- **Documentation Status Reports** - Monitor completion documentation
+- **Custom Report Generator** - Configurable reports with multiple output formats
 
-## Expanding the ESLint configuration
+### Additional Features
+- **Incentive Schemes** - Track and manage buyer incentive programs
+- **Audit Logging** - Complete audit trail of all system changes
+- **Theme Support** - Light and dark mode
+- **Custom Branding** - Company logo upload
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Technology Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **Backend**: Firebase (Firestore, Authentication, Hosting)
+- **Build Tool**: Vite
+- **Charts**: Recharts
+- **PDF Generation**: jsPDF
+- **Excel Export**: SheetJS (xlsx)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js 18 or higher
+- Firebase project with Firestore and Authentication enabled
+- SendGrid account (for email invitations)
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd development-tracker
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies
+```bash
+npm install
 ```
+
+3. Configure environment
+```bash
+cp .env.example .env
+# Edit .env with your settings
+```
+
+4. Start development server
+```bash
+npm run dev
+```
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Deploy to Firebase
+```bash
+npm run build
+firebase deploy
+```
+
+## Project Structure
+
+```
+src/
+├── components/         # React components
+├── contexts/          # React contexts (Auth, Theme)
+├── config/            # Firebase configuration
+├── data/              # Development data
+├── hooks/             # Custom React hooks
+├── pages/             # Page components
+├── services/          # Business logic services
+├── types/             # TypeScript type definitions
+└── utils/             # Utility functions
+```
+
+## Security
+
+- All routes are protected with Firebase Authentication
+- Role-based permissions enforced at component and Firestore levels
+- Invite-only user registration
+- Audit logging for all data changes
+
+## Documentation
+
+- [Deployment Guide](DEPLOYMENT.md) - Detailed deployment instructions
+- [Changelog](CHANGELOG.md) - Version history and changes
+
+## License
+
+Proprietary - All rights reserved
+
+---
+
+Built with React, TypeScript, and Firebase

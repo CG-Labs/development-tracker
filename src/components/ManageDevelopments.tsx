@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
 import type { Development, DevelopmentStatus } from "../types";
+import { useAuth } from "../contexts/AuthContext";
 
 type FilterTab = "Active" | "Completed" | "Archived" | "All";
 
@@ -12,10 +13,16 @@ const statusBadgeClasses: Record<DevelopmentStatus, string> = {
 };
 
 export function ManageDevelopments() {
+  const { can } = useAuth();
   const [activeTab, setActiveTab] = useState<FilterTab>("Active");
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingDevelopment, setEditingDevelopment] = useState<Development | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+
+  // Permission guard - redirect unauthorized users (must be after all hooks)
+  if (!can("editDevelopment")) {
+    return <Navigate to="/" replace />;
+  }
 
   // Filter developments based on active tab
   const filteredDevelopments = developments.filter((dev) => {
