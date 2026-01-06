@@ -21,7 +21,9 @@
       "Bash(git push:*)",
       "Bash(npm run lint)",
       "Bash(npx knip:*)",
-      "Bash(npm run test:run:*)"
+      "Bash(npm run test:run:*)",
+      "Bash(git rm:*)",
+      "Bash(npm run test:coverage:*)"
     ]
   }
 }
