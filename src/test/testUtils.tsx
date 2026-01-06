@@ -64,6 +64,7 @@ export function createMockAuthContext(
 }
 
 // Wrapper component that provides router context
+// eslint-disable-next-line react-refresh/only-export-components
 function AllTheProviders({ children }: { children: ReactNode }) {
   return <BrowserRouter>{children}</BrowserRouter>;
 }
