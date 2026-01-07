@@ -14,6 +14,7 @@ interface ExportRow {
   "Size (m²)": number | string;
   "Construction Status": string;
   "Sales Status": string;
+  "BCMS Approved": string;
   "Developer Company": string;
   "List Price": number | string;
   "Sold Price": number | string;
@@ -74,6 +75,7 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Size (m²)": unit.size || "",
     "Construction Status": unit.constructionStatus,
     "Sales Status": unit.salesStatus,
+    "BCMS Approved": unit.documentation?.bcmsApprovedDate ? "Yes" : "No",
     "Developer Company": unit.developerCompanyId || "",
     "List Price": unit.listPrice || "",
     "Sold Price": unit.soldPrice || "",
@@ -123,6 +125,7 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 10 }, // Size
     { wch: 18 }, // Construction Status
     { wch: 15 }, // Sales Status
+    { wch: 15 }, // BCMS Approved
     { wch: 20 }, // Developer Company
     { wch: 15 }, // List Price
     { wch: 15 }, // Sold Price
@@ -309,6 +312,7 @@ export function getExportColumns(): string[] {
     "Size (m²)",
     "Construction Status",
     "Sales Status",
+    "BCMS Approved",
     "Developer Company",
     "List Price",
     "Sold Price",
