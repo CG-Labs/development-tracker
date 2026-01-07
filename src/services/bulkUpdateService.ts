@@ -367,12 +367,6 @@ export async function applyBulkUpdate(
     }
   }
 
-  // Log summary with success/failure counts
-  console.log(`[BulkUpdate] Complete: ${result.success} succeeded, ${result.failed} failed out of ${unitNumbers.length} units`);
-  if (result.errors.length > 0) {
-    console.table(result.errors);
-  }
-
   // Update the audit log summary to include success/failure counts
   try {
     await logChange({

@@ -6,6 +6,7 @@ import { Dashboard } from "./components/Dashboard";
 import { developments } from "./data/realDevelopments";
 import { Login } from "./components/Login";
 import { AccessDenied } from "./components/AccessDenied";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { ImportModal } from "./components/ImportModal";
 import { ExportModal } from "./components/ExportModal";
 import { LogoUploadModal } from "./components/LogoUploadModal";
@@ -415,13 +416,15 @@ function AppRoutes() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </AuthProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </AuthProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
