@@ -280,11 +280,21 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         }
       }
 
-      // Bedrooms
-      const bedrooms = parseNumber(row["Bedrooms"]);
-      if (bedrooms !== undefined && compareValues(unit.bedrooms, bedrooms)) {
-        changes.push({ field: "bedrooms", oldValue: unit.bedrooms, newValue: bedrooms });
-        updatedUnit.bedrooms = bedrooms;
+      // Bedrooms (can be number or string like "Studio", "1 Bed", etc.)
+      if ("Bedrooms" in row && row["Bedrooms"] !== undefined && row["Bedrooms"] !== "") {
+        const bedroomsRaw = row["Bedrooms"];
+        let bedroomsValue: number | string;
+        if (typeof bedroomsRaw === "number") {
+          bedroomsValue = bedroomsRaw;
+        } else {
+          const strVal = String(bedroomsRaw).trim();
+          const numVal = parseNumber(strVal);
+          bedroomsValue = numVal !== undefined ? numVal : strVal;
+        }
+        if (compareValues(unit.bedrooms, bedroomsValue)) {
+          changes.push({ field: "bedrooms", oldValue: unit.bedrooms, newValue: bedroomsValue });
+          updatedUnit.bedrooms = bedroomsValue;
+        }
       }
 
       // Size
@@ -344,6 +354,27 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         changes.push({ field: "priceIncVat", oldValue: oldPrice, newValue: priceIncVat });
         updatedUnit.priceIncVat = priceIncVat;
         updatedUnit.listPrice = priceIncVat;
+      }
+
+      // List Price
+      if ("List Price" in row) {
+        const listPrice = parseNumber(row["List Price"]);
+        if (listPrice !== undefined && compareValues(unit.listPrice, listPrice)) {
+          if (unit.listPrice && Math.abs(listPrice - unit.listPrice) / unit.listPrice > 0.2) {
+            warnings.push(`List Price change >20%: ${unit.listPrice} → ${listPrice}`);
+          }
+          changes.push({ field: "listPrice", oldValue: unit.listPrice, newValue: listPrice });
+          updatedUnit.listPrice = listPrice;
+        }
+      }
+
+      // Sold Price
+      if ("Sold Price" in row) {
+        const soldPrice = parseNumber(row["Sold Price"]);
+        if (compareValues(unit.soldPrice, soldPrice)) {
+          changes.push({ field: "soldPrice", oldValue: unit.soldPrice, newValue: soldPrice });
+          updatedUnit.soldPrice = soldPrice;
+        }
       }
 
       // Purchaser Type

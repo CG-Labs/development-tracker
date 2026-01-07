@@ -8,6 +8,8 @@ export type UnitType = "House-Semi" | "House-Detached" | "House-Terrace" | "Apar
 
 export type PurchaserType = "Private" | "Council" | "AHB" | "Other";
 
+export type BedroomType = "Studio" | "1 Bed" | "2 Bed" | "3 Bed" | "4 Bed" | "5 Bed" | "6 Bed" | "7 Bed";
+
 export interface DocumentationChecklist {
   // Completion Documentation (Yes/No derived from date)
   bcmsSubmitDate?: string;
@@ -49,7 +51,7 @@ export type IncentiveStatus = "eligible" | "applied" | "claimed" | "expired";
 export interface Unit {
   unitNumber: string;
   type: UnitType;
-  bedrooms: number;
+  bedrooms: number | string; // Can be number or string like "Studio", "1 Bed", etc.
   constructionStatus: ConstructionStatus;
   salesStatus: SalesStatus;
   listPrice: number;
@@ -68,7 +70,7 @@ export interface Unit {
   partV?: boolean;
   buyerType?: string;
   occupancy?: string;
-  size?: number;
+  size?: number; // Area in m²
   priceExVat?: number;
   priceIncVat?: number;
   // Purchaser information

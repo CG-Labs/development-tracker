@@ -10,11 +10,13 @@ interface ExportRow {
   "Address": string;
   "Construction Unit Type": string;
   "Construction Phase": string;
-  "Bedrooms": number;
+  "Bedrooms": number | string; // Can be number or string like "Studio", "1 Bed"
   "Size (m²)": number | string;
   "Construction Status": string;
   "Sales Status": string;
   "Developer Company": string;
+  "List Price": number | string;
+  "Sold Price": number | string;
   "Price Ex VAT": number | string;
   "Price Inc VAT": number | string;
   "Purchaser Type": string;
@@ -71,6 +73,8 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Construction Status": unit.constructionStatus,
     "Sales Status": unit.salesStatus,
     "Developer Company": unit.developerCompanyId || "",
+    "List Price": unit.listPrice || "",
+    "Sold Price": unit.soldPrice || "",
     "Price Ex VAT": unit.priceExVat || "",
     "Price Inc VAT": unit.priceIncVat || unit.listPrice || "",
     "Purchaser Type": unit.purchaserType || "Private",
@@ -78,11 +82,11 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Purchaser Name": unit.purchaserName || "",
     "Purchaser Phone": unit.purchaserPhone || "",
     "Purchaser Email": unit.purchaserEmail || "",
-    // Key Dates (from keyDates object)
+    // Key Dates (Actual dates derived from documentation)
     "Planned BCMS": formatDateDDMMYYYY(unit.keyDates?.plannedBcms),
-    "Actual BCMS": formatDateDDMMYYYY(unit.keyDates?.actualBcms),
+    "Actual BCMS": formatDateDDMMYYYY(unit.documentation.bcmsApprovedDate),
     "Planned Close": formatDateDDMMYYYY(unit.keyDates?.plannedClose),
-    "Actual Close": formatDateDDMMYYYY(unit.keyDates?.actualClose),
+    "Actual Close": formatDateDDMMYYYY(unit.documentation.saleClosedDate),
     // Completion Documentation (date only - Yes/No is derived from having a date)
     "BCMS Submit Date": formatDateDDMMYYYY(unit.documentation.bcmsSubmitDate),
     "BCMS Approved Date": formatDateDDMMYYYY(unit.documentation.bcmsApprovedDate),
@@ -116,6 +120,8 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 18 }, // Construction Status
     { wch: 15 }, // Sales Status
     { wch: 20 }, // Developer Company
+    { wch: 15 }, // List Price
+    { wch: 15 }, // Sold Price
     { wch: 15 }, // Price Ex VAT
     { wch: 15 }, // Price Inc VAT
     { wch: 15 }, // Purchaser Type
@@ -298,6 +304,8 @@ export function getExportColumns(): string[] {
     "Construction Status",
     "Sales Status",
     "Developer Company",
+    "List Price",
+    "Sold Price",
     "Price Ex VAT",
     "Price Inc VAT",
     "Purchaser Type",

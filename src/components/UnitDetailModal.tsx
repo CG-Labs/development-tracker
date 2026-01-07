@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Unit, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus, UnitDates } from "../types";
+import type { Unit, UnitType, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus, UnitDates } from "../types";
 import type { AuditChange } from "../types/auditLog";
 import type { Note } from "../types/note";
 import type { IncentiveScheme } from "../types/incentive";
@@ -9,6 +9,28 @@ import { addNote, updateNote, deleteNote, subscribeToNotes } from "../services/n
 import { getActiveSchemes, checkUnitEligibility, formatBenefitValue, calculateTotalBenefitValue } from "../services/incentiveService";
 import { getActiveCompanies } from "../services/companyService";
 import { useAuth } from "../contexts/AuthContext";
+
+// Unit type options
+const UNIT_TYPES: UnitType[] = [
+  "House-Semi",
+  "House-Detached",
+  "House-Terrace",
+  "Apartment",
+  "Duplex Apartment",
+  "Apartment Studio",
+];
+
+// Bedroom options
+const BEDROOM_OPTIONS = [
+  "Studio",
+  "1 Bed",
+  "2 Bed",
+  "3 Bed",
+  "4 Bed",
+  "5 Bed",
+  "6 Bed",
+  "7 Bed",
+];
 
 interface UnitDetailModalProps {
   unit: Unit;
@@ -66,6 +88,19 @@ function formatDate(dateStr?: string): string {
 function formatDateForInput(dateStr?: string): string {
   if (!dateStr) return "";
   return dateStr.split("T")[0];
+}
+
+// Convert bedrooms value to display string
+function formatBedrooms(bedrooms: number | string): string {
+  if (typeof bedrooms === "string") return bedrooms;
+  if (bedrooms === 0) return "Studio";
+  return `${bedrooms} Bed`;
+}
+
+// Convert bedrooms display string to value for storage
+function parseBedroomsToValue(bedroomsStr: string): number | string {
+  if (bedroomsStr === "Studio") return "Studio";
+  return bedroomsStr; // Keep as string like "1 Bed", "2 Bed", etc.
 }
 
 export function UnitDetailModal({
@@ -272,6 +307,7 @@ export function UnitDetailModal({
   const getChanges = (): AuditChange[] => {
     const changes: AuditChange[] = [];
     const fieldsToCheck: (keyof Unit)[] = [
+      "type", "bedrooms", "size", // Unit details
       "address", "purchaserType", "purchaserName", "purchaserPhone", "purchaserEmail",
       "partV", "constructionStatus", "salesStatus", "listPrice", "soldPrice",
       "appliedIncentive", "incentiveStatus",
@@ -307,9 +343,9 @@ export function UnitDetailModal({
       }
     });
 
-    // Check key dates fields
+    // Check key dates fields (only editable ones - Actual dates are derived from documentation)
     const keyDateFields: (keyof UnitDates)[] = [
-      "plannedBcms", "actualBcms", "plannedClose", "actualClose"
+      "plannedBcms", "plannedClose"
     ];
 
     keyDateFields.forEach((field) => {
@@ -458,13 +494,136 @@ export function UnitDetailModal({
           {/* Unit Details */}
           <section>
             <SectionHeader title="Unit Details" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <DetailItem label="Type" value={displayUnit.type} />
-              <DetailItem label="Bedrooms" value={String(displayUnit.bedrooms)} mono />
-              <DetailItem label="List Price" value={formatPrice(displayUnit.listPrice)} mono highlight />
-              {displayUnit.soldPrice && (
-                <DetailItem label="Sold Price" value={formatPrice(displayUnit.soldPrice)} mono highlight="gold" />
-              )}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {/* Type */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Type
+                </p>
+                {isEditing ? (
+                  <select
+                    value={editedUnit.type}
+                    onChange={(e) => updateField("type", e.target.value as UnitType)}
+                    className="select w-full"
+                  >
+                    {UNIT_TYPES.map((type) => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <p className="font-display font-semibold text-[var(--text-primary)]">
+                    {displayUnit.type}
+                  </p>
+                )}
+              </div>
+
+              {/* Bedrooms */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Bedrooms
+                </p>
+                {isEditing ? (
+                  <select
+                    value={formatBedrooms(editedUnit.bedrooms)}
+                    onChange={(e) => updateField("bedrooms", parseBedroomsToValue(e.target.value))}
+                    className="select w-full"
+                  >
+                    {BEDROOM_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--text-primary)]">
+                    {formatBedrooms(displayUnit.bedrooms)}
+                  </p>
+                )}
+              </div>
+
+              {/* Area (m²) */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Area (m²)
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.size || ""}
+                    onChange={(e) => updateField("size", e.target.value ? Number(e.target.value) : undefined)}
+                    className="input w-full"
+                    placeholder="Enter area"
+                    min="0"
+                    step="0.1"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--text-primary)]">
+                    {displayUnit.size ? `${displayUnit.size} m²` : "—"}
+                  </p>
+                )}
+              </div>
+
+              {/* List Price */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  List Price
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.listPrice || ""}
+                    onChange={(e) => updateField("listPrice", e.target.value ? Number(e.target.value) : 0)}
+                    className="input w-full"
+                    placeholder="Enter price"
+                    min="0"
+                    step="1000"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--accent-cyan)]">
+                    {formatPrice(displayUnit.listPrice)}
+                  </p>
+                )}
+              </div>
+
+              {/* Sold Price */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Sold Price
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.soldPrice || ""}
+                    onChange={(e) => updateField("soldPrice", e.target.value ? Number(e.target.value) : undefined)}
+                    className="input w-full"
+                    placeholder="Enter sold price"
+                    min="0"
+                    step="1000"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--accent-gold-bright)]">
+                    {displayUnit.soldPrice ? formatPrice(displayUnit.soldPrice) : "—"}
+                  </p>
+                )}
+              </div>
+
+              {/* Construction Unit Type */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Construction Unit Type
+                </p>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editedUnit.constructionUnitType || ""}
+                    onChange={(e) => updateField("constructionUnitType", e.target.value || undefined)}
+                    className="input w-full"
+                    placeholder="e.g., Type A, Standard"
+                  />
+                ) : (
+                  <p className="font-display font-semibold text-[var(--text-primary)]">
+                    {displayUnit.constructionUnitType || "—"}
+                  </p>
+                )}
+              </div>
             </div>
             {/* Address */}
             <div className="mt-4 bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
@@ -521,26 +680,6 @@ export function UnitDetailModal({
                       {companies.find((c) => c.id === displayUnit.developerCompanyId)?.name || "Not assigned"}
                     </span>
                   </div>
-                )}
-              </div>
-
-              {/* Construction Unit Type */}
-              <div>
-                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
-                  Construction Unit Type
-                </p>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedUnit.constructionUnitType || ""}
-                    onChange={(e) => updateField("constructionUnitType", e.target.value || undefined)}
-                    className="input w-full"
-                    placeholder="e.g., Type A, Standard, Premium"
-                  />
-                ) : (
-                  <span className="font-display text-sm text-[var(--text-primary)]">
-                    {displayUnit.constructionUnitType || "—"}
-                  </span>
                 )}
               </div>
 
@@ -1010,6 +1149,7 @@ export function UnitDetailModal({
           <section>
             <SectionHeader title="Key Dates" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* Planned BCMS - Editable */}
               <DateItem
                 label="Planned BCMS"
                 value={formatDate(displayUnit.keyDates?.plannedBcms)}
@@ -1017,13 +1157,25 @@ export function UnitDetailModal({
                 dateValue={formatDateForInput(editedUnit.keyDates?.plannedBcms)}
                 onChange={(val) => updateKeyDates("plannedBcms", val || undefined)}
               />
-              <DateItem
-                label="Actual BCMS"
-                value={formatDate(displayUnit.keyDates?.actualBcms)}
-                isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.keyDates?.actualBcms)}
-                onChange={(val) => updateKeyDates("actualBcms", val || undefined)}
-              />
+              {/* Actual BCMS - Read-only, derived from BCMS Approved date */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Actual BCMS
+                </p>
+                <p className={`font-mono font-semibold ${
+                  displayUnit.documentation.bcmsApprovedDate
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-muted)]"
+                }`}>
+                  {displayUnit.documentation.bcmsApprovedDate
+                    ? formatDate(displayUnit.documentation.bcmsApprovedDate)
+                    : "Pending"}
+                </p>
+                <p className="font-mono text-[9px] text-[var(--text-muted)] mt-1 italic">
+                  (from BCMS Approved)
+                </p>
+              </div>
+              {/* Planned Close - Editable */}
               <DateItem
                 label="Planned Close"
                 value={formatDate(displayUnit.keyDates?.plannedClose)}
@@ -1031,13 +1183,24 @@ export function UnitDetailModal({
                 dateValue={formatDateForInput(editedUnit.keyDates?.plannedClose)}
                 onChange={(val) => updateKeyDates("plannedClose", val || undefined)}
               />
-              <DateItem
-                label="Actual Close"
-                value={formatDate(displayUnit.keyDates?.actualClose)}
-                isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.keyDates?.actualClose)}
-                onChange={(val) => updateKeyDates("actualClose", val || undefined)}
-              />
+              {/* Actual Close - Read-only, derived from Sale Closed date */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Actual Close
+                </p>
+                <p className={`font-mono font-semibold ${
+                  displayUnit.documentation.saleClosedDate
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-muted)]"
+                }`}>
+                  {displayUnit.documentation.saleClosedDate
+                    ? formatDate(displayUnit.documentation.saleClosedDate)
+                    : "Pending"}
+                </p>
+                <p className="font-mono text-[9px] text-[var(--text-muted)] mt-1 italic">
+                  (from Sale Closed)
+                </p>
+              </div>
             </div>
           </section>
 
@@ -1282,35 +1445,6 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function DetailItem({
-  label,
-  value,
-  mono,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  mono?: boolean;
-  highlight?: boolean | "gold";
-}) {
-  const valueClass = highlight === "gold"
-    ? "text-[var(--accent-gold-bright)]"
-    : highlight
-    ? "text-[var(--accent-cyan)]"
-    : "text-[var(--text-primary)]";
-
-  return (
-    <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
-      <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
-        {label}
-      </p>
-      <p className={`${mono ? "font-mono" : "font-display"} font-semibold ${valueClass}`}>
-        {value}
-      </p>
-    </div>
-  );
-}
-
 function ProgressMarker({ label, active }: { label: string; active: boolean }) {
   return (
     <span
@@ -1369,7 +1503,7 @@ function DateItem({
  * Auto Documentation Item - Yes/No is automatically derived from date
  * When a date exists, it shows "Yes ✓ - [date]"
  * When no date, it shows "No ✗"
- * In edit mode, only shows date picker (Yes/No updates automatically)
+ * In edit mode, shows date picker with clear button
  */
 function AutoDocItem({
   label,
@@ -1411,14 +1545,28 @@ function AutoDocItem({
           {label}
         </span>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         {isEditing ? (
-          <input
-            type="date"
-            value={date?.split("T")[0] || ""}
-            onChange={(e) => onDateChange?.(e.target.value || undefined)}
-            className="input text-xs py-1 px-2 w-32"
-          />
+          <>
+            <input
+              type="date"
+              value={date?.split("T")[0] || ""}
+              onChange={(e) => onDateChange?.(e.target.value || undefined)}
+              className="input text-xs py-1 px-2 w-32"
+            />
+            {hasDate && (
+              <button
+                type="button"
+                onClick={() => onDateChange?.(undefined)}
+                className="p-1 rounded hover:bg-[var(--accent-rose)]/20 text-[var(--accent-rose)] transition-colors"
+                title="Clear date"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </>
         ) : (
           <span className={`font-mono text-xs ${hasDate ? "text-[var(--accent-emerald)]" : "text-[var(--accent-rose)]"}`}>
             {hasDate ? `Yes - ${formattedDate}` : "No"}

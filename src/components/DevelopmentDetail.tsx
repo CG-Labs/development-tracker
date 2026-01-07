@@ -210,7 +210,10 @@ export function DevelopmentDetail() {
           comparison = a.type.localeCompare(b.type);
           break;
         case "bedrooms":
-          comparison = a.bedrooms - b.bedrooms;
+          // Handle bedrooms comparison with string/number values
+          const bedsA = typeof a.bedrooms === "number" ? a.bedrooms : (a.bedrooms === "Studio" ? 0 : parseInt(a.bedrooms) || 0);
+          const bedsB = typeof b.bedrooms === "number" ? b.bedrooms : (b.bedrooms === "Studio" ? 0 : parseInt(b.bedrooms) || 0);
+          comparison = bedsA - bedsB;
           break;
         case "constructionStatus":
           comparison = a.constructionStatus.localeCompare(b.constructionStatus);
