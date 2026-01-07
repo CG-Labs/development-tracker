@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
@@ -9,6 +9,37 @@ import { getNotesCountsForDevelopment } from "../services/notesService";
 import { useAuth } from "../contexts/AuthContext";
 import { getActiveSchemes } from "../services/incentiveService";
 import type { IncentiveScheme } from "../types/incentive";
+
+// Unit overrides storage key (same as excelImportService)
+const UNIT_OVERRIDES_KEY = "development_tracker_unit_overrides";
+
+interface UnitOverride {
+  developmentId: string;
+  unitNumber: string;
+  unit: Unit;
+}
+
+// Save unit override to localStorage
+function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit): void {
+  try {
+    const saved = localStorage.getItem(UNIT_OVERRIDES_KEY);
+    const overrides: UnitOverride[] = saved ? JSON.parse(saved) : [];
+
+    const existingIndex = overrides.findIndex(
+      (o) => o.developmentId === developmentId && o.unitNumber === unitNumber
+    );
+
+    if (existingIndex >= 0) {
+      overrides[existingIndex].unit = unit;
+    } else {
+      overrides.push({ developmentId, unitNumber, unit });
+    }
+
+    localStorage.setItem(UNIT_OVERRIDES_KEY, JSON.stringify(overrides));
+  } catch (error) {
+    console.error("Failed to save unit override:", error);
+  }
+}
 
 type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
 type SortDirection = "asc" | "desc";
@@ -113,6 +144,32 @@ export function DevelopmentDetail() {
       .then(setIncentiveSchemes)
       .catch(console.error);
   }, []);
+
+  // Handle unit save from modal
+  const handleUnitSave = useCallback(
+    (updatedUnit: Unit) => {
+      if (!development) return;
+
+      // Find and update the unit in the development.units array
+      const unitIndex = development.units.findIndex(
+        (u) => u.unitNumber === updatedUnit.unitNumber
+      );
+      if (unitIndex >= 0) {
+        // Update in-memory array (direct mutation since we don't have a setter)
+        development.units[unitIndex] = updatedUnit;
+      }
+
+      // Save to localStorage for persistence
+      saveUnitOverride(development.id, updatedUnit.unitNumber, updatedUnit);
+
+      // Update the selectedUnit to reflect changes in the modal
+      setSelectedUnit(updatedUnit);
+
+      // Trigger a re-render
+      setRefreshKey((k) => k + 1);
+    },
+    [development]
+  );
 
   const unitTypes = useMemo(() => {
     if (!development) return [];
@@ -769,6 +826,7 @@ export function DevelopmentDetail() {
           developmentName={development.name}
           developmentId={development.id}
           onClose={() => setSelectedUnit(null)}
+          onSave={handleUnitSave}
         />
       )}
 
