@@ -34,8 +34,19 @@ const INVITES_COLLECTION = "invites";
 const NOTIFICATIONS_COLLECTION = "notifications";
 const AUDIT_LOGS_COLLECTION = "auditLogs";
 
-// Admin emails - these users will automatically be assigned admin role on first signup
-const ADMIN_EMAILS = ["jcnasher@gmail.com", "jcnasher@outlook.com"];
+/**
+ * Admin emails - these users will automatically be assigned admin role on first signup
+ * Configure via VITE_ADMIN_EMAILS environment variable (comma-separated)
+ */
+const getAdminEmails = (): string[] => {
+  const envEmails = import.meta.env.VITE_ADMIN_EMAILS;
+  if (envEmails && typeof envEmails === "string") {
+    return envEmails.split(",").map((email) => email.trim().toLowerCase());
+  }
+  return [];
+};
+
+const ADMIN_EMAILS = getAdminEmails();
 
 /**
  * Convert Firestore timestamp to Date

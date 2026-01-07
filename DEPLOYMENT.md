@@ -121,13 +121,15 @@ DevTracker uses a 4-level role hierarchy:
 
 ### Admin Emails
 
-Admin emails are configured in `src/services/userService.ts`. Users with these emails automatically get admin access on first login:
+Admin emails are configured via the `VITE_ADMIN_EMAILS` environment variable. Users with these emails automatically get admin access on first login.
 
-```typescript
-const ADMIN_EMAILS = ["jcnasher@gmail.com", "jcnasher@outlook.com"];
+In your `.env` file:
+
+```env
+VITE_ADMIN_EMAILS=admin@yourcompany.com,admin2@yourcompany.com
 ```
 
-Update this list with your admin email addresses.
+Multiple emails can be comma-separated. These emails will bypass the invite system and automatically receive admin privileges.
 
 ### Invite System
 

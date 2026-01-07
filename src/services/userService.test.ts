@@ -187,13 +187,13 @@ describe("userService", () => {
 
       const result = await createAdminUserProfile(
         "admin-uid",
-        "jcnasher@gmail.com",
+        "testadmin@example.com",
         "Admin User"
       );
 
       expect(result.role).toBe("admin");
       expect(result.isActive).toBe(true);
-      expect(result.email).toBe("jcnasher@gmail.com");
+      expect(result.email).toBe("testadmin@example.com");
       expect(mockSetDoc).toHaveBeenCalled();
     });
 
@@ -712,14 +712,15 @@ describe("userService", () => {
 
   describe("isSystemAdminEmail", () => {
     it("returns true for admin emails", () => {
-      expect(isSystemAdminEmail("jcnasher@gmail.com")).toBe(true);
-      expect(isSystemAdminEmail("jcnasher@outlook.com")).toBe(true);
-      expect(isSystemAdminEmail("JCNASHER@GMAIL.COM")).toBe(true); // Case insensitive
+      // These emails are set in src/test/setup.ts via VITE_ADMIN_EMAILS
+      expect(isSystemAdminEmail("testadmin@example.com")).toBe(true);
+      expect(isSystemAdminEmail("testadmin2@example.com")).toBe(true);
+      expect(isSystemAdminEmail("TESTADMIN@EXAMPLE.COM")).toBe(true); // Case insensitive
     });
 
     it("returns false for non-admin emails", () => {
       expect(isSystemAdminEmail("regular@example.com")).toBe(false);
-      expect(isSystemAdminEmail("user@gmail.com")).toBe(false);
+      expect(isSystemAdminEmail("user@example.com")).toBe(false);
     });
   });
 

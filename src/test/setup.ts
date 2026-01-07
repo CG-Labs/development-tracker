@@ -1,6 +1,9 @@
 import "@testing-library/jest-dom";
 import { vi } from "vitest";
 
+// Set test admin emails for userService tests
+import.meta.env.VITE_ADMIN_EMAILS = "testadmin@example.com,testadmin2@example.com";
+
 // Mock Firebase Auth
 vi.mock("firebase/auth", () => ({
   getAuth: vi.fn(() => ({})),

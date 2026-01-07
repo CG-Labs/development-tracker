@@ -26,7 +26,8 @@
       "Bash(npm run test:coverage:*)",
       "Bash(node scripts/check-user.cjs:*)",
       "Bash(node -e:*)",
-      "Bash(node scripts/test-invite.cjs:*)"
+      "Bash(node scripts/test-invite.cjs:*)",
+      "Bash(npm audit:*)"
     ]
   }
 }

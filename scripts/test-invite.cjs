@@ -23,9 +23,10 @@ const SERVICE_ACCOUNT_PATH = path.join(__dirname, 'serviceAccountKey.json');
 const APP_URL = 'https://development-tracker-13764.web.app';
 
 // Admin user info (simulating the inviter)
+// These are placeholders - in production, use actual admin credentials
 const ADMIN_UID = 'system-test';
-const ADMIN_EMAIL = 'jcnasher@gmail.com';
-const ADMIN_NAME = 'System Test';
+const ADMIN_EMAIL = 'admin@example.com';
+const ADMIN_NAME = 'System Admin';
 
 async function main() {
   const args = process.argv.slice(2);
