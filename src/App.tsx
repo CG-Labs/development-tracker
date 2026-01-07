@@ -18,6 +18,7 @@ import { ROLE_INFO } from "./types/roles";
 
 // Lazy load invite acceptance page
 const InviteAcceptance = lazy(() => import("./pages/InviteAcceptance").then(m => ({ default: m.InviteAcceptance })));
+const CompleteSignup = lazy(() => import("./components/CompleteSignup").then(m => ({ default: m.CompleteSignup })));
 
 // Lazy load non-critical components
 const DevelopmentDetail = lazy(() => import("./components/DevelopmentDetail").then(m => ({ default: m.DevelopmentDetail })));
@@ -383,19 +384,22 @@ function AppRoutes() {
   const { currentUser, loading, accessDenied } = useAuth();
   const location = useLocation();
 
-  // Always allow invite routes - even when logged out
+  // Always allow invite and signup routes - even when logged out
   const isInviteRoute = location.pathname.startsWith("/invite/");
+  const isCompleteSignupRoute = location.pathname.startsWith("/complete-signup");
+  const isPublicRoute = isInviteRoute || isCompleteSignupRoute;
 
-  if (loading && !isInviteRoute) {
+  if (loading && !isPublicRoute) {
     return <LoadingSpinner />;
   }
 
-  // Handle invite acceptance route (public route)
-  if (isInviteRoute) {
+  // Handle public routes (invite acceptance and complete signup)
+  if (isPublicRoute) {
     return (
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route path="/invite/:token" element={<InviteAcceptance />} />
+          <Route path="/complete-signup" element={<CompleteSignup />} />
         </Routes>
       </Suspense>
     );

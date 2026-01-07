@@ -29,5 +29,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Firebase service account keys (NEVER commit these)
+**/serviceAccountKey.json
+**/service-account*.json
+
 # Test coverage
 coverage/

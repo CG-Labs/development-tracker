@@ -24,10 +24,10 @@ import {
   Timestamp,
   addDoc,
 } from "firebase/firestore";
-import { db } from "../config/firebase";
+import { sendSignInLinkToEmail } from "firebase/auth";
+import { db, auth, getActionCodeSettings } from "../config/firebase";
 import type { UserRole, UserProfile, UserInvite, UserNotification, UserStatus } from "../types/roles";
 import { ROLE_INFO } from "../types/roles";
-import { sendInviteEmail, sendInviteAcceptedEmail } from "./emailService";
 
 const USERS_COLLECTION = "users";
 const INVITES_COLLECTION = "invites";
@@ -36,15 +36,6 @@ const AUDIT_LOGS_COLLECTION = "auditLogs";
 
 // Admin emails - these users will automatically be assigned admin role on first signup
 const ADMIN_EMAILS = ["jcnasher@gmail.com", "jcnasher@outlook.com"];
-
-/**
- * Generate a cryptographically secure random token
- */
-function generateSecureToken(): string {
-  const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
-  return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("");
-}
 
 /**
  * Convert Firestore timestamp to Date
@@ -166,17 +157,6 @@ export async function createUserFromInvite(
     data: { newUserId: uid, newUserEmail: email },
   });
 
-  // Send email notification to admin (queued)
-  if (invite.invitedByEmail) {
-    await sendInviteAcceptedEmail({
-      toEmail: invite.invitedByEmail,
-      adminName: invite.invitedByName || "Admin",
-      newUserName: displayName,
-      newUserEmail: email,
-      role: ROLE_INFO[invite.role].label,
-    });
-  }
-
   // Log audit event
   await logAuditEvent({
     action: "invite_accepted",
@@ -202,6 +182,45 @@ export async function createUserFromInvite(
     createdAt: new Date(),
     lastLogin: new Date(),
   };
+}
+
+/**
+ * Get invite by ID
+ */
+export async function getInviteById(inviteId: string): Promise<UserInvite | null> {
+  try {
+    const docRef = doc(db, INVITES_COLLECTION, inviteId);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      return null;
+    }
+
+    const data = docSnap.data();
+    const expiresAt = timestampToDate(data.expiresAt) || new Date();
+
+    // Check if expired and update status
+    if (data.status === "pending" && expiresAt < new Date()) {
+      await updateDoc(docRef, { status: "expired" });
+      return null;
+    }
+
+    return {
+      id: docSnap.id,
+      email: data.email,
+      role: data.role as UserRole,
+      allowedDevelopments: data.allowedDevelopments || undefined,
+      invitedBy: data.invitedBy,
+      invitedByEmail: data.invitedByEmail,
+      invitedByName: data.invitedByName,
+      status: data.status,
+      createdAt: timestampToDate(data.createdAt) || new Date(),
+      expiresAt,
+    };
+  } catch (error) {
+    console.error("Error getting invite by ID:", error);
+    return null;
+  }
 }
 
 /**
@@ -455,7 +474,7 @@ export function canAccessDevelopment(
 // ==================== Invite Functions ====================
 
 /**
- * Create a new invite with magic link token
+ * Create a new invite with Firebase Magic Link
  */
 export async function createUserInvite(
   email: string,
@@ -480,21 +499,19 @@ export async function createUserInvite(
     throw new Error("There is already a pending invite for this email. Cancel it first or resend.");
   }
 
-  // Generate secure token
-  const token = generateSecureToken();
-
   // Set expiration to 7 days from now
   const expiresAt = new Date();
   expiresAt.setDate(expiresAt.getDate() + 7);
 
+  // Create invite record in Firestore first
   const inviteData = {
     email: normalizedEmail,
     role,
     allowedDevelopments: allowedDevelopments?.length ? allowedDevelopments : null,
-    token,
     invitedBy,
     invitedByEmail,
-    invitedByName,
+    invitedByName: invitedByName || null,
+    inviteeName: inviteeName || null,
     status: "pending" as const,
     createdAt: serverTimestamp(),
     expiresAt: Timestamp.fromDate(expiresAt),
@@ -502,16 +519,21 @@ export async function createUserInvite(
 
   const docRef = await addDoc(collection(db, INVITES_COLLECTION), inviteData);
 
-  // Send invite email
-  await sendInviteEmail({
-    toEmail: normalizedEmail,
-    inviteeName,
-    inviterName: invitedByName || "An administrator",
-    inviterEmail: invitedByEmail,
-    role: ROLE_INFO[role].label,
-    token,
-    expiresAt,
-  });
+  // Send Firebase Magic Link email
+  const actionCodeSettings = getActionCodeSettings(docRef.id);
+
+  try {
+    await sendSignInLinkToEmail(auth, normalizedEmail, actionCodeSettings);
+
+    // Store email in localStorage for sign-in completion (for same device)
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("emailForSignIn", normalizedEmail);
+    }
+  } catch (error) {
+    // If email sending fails, delete the invite record
+    await deleteDoc(docRef);
+    throw new Error(`Failed to send invite email: ${error instanceof Error ? error.message : "Unknown error"}`);
+  }
 
   // Log audit event
   await logAuditEvent({
@@ -525,7 +547,6 @@ export async function createUserInvite(
     email: normalizedEmail,
     role,
     allowedDevelopments,
-    token,
     invitedBy,
     invitedByEmail,
     invitedByName,
@@ -689,7 +710,7 @@ export async function cancelInvite(inviteId: string, performedBy: string): Promi
 }
 
 /**
- * Resend an invite (generates new token and expiry)
+ * Resend an invite using Firebase Magic Link
  */
 export async function resendInvite(inviteId: string, performedBy: string): Promise<UserInvite> {
   const docRef = doc(db, INVITES_COLLECTION, inviteId);
@@ -701,26 +722,28 @@ export async function resendInvite(inviteId: string, performedBy: string): Promi
 
   const data = inviteDoc.data();
 
-  // Generate new token
-  const newToken = generateSecureToken();
+  // Set new expiry
   const newExpiresAt = new Date();
   newExpiresAt.setDate(newExpiresAt.getDate() + 7);
 
   await updateDoc(docRef, {
-    token: newToken,
     expiresAt: Timestamp.fromDate(newExpiresAt),
     status: "pending",
   });
 
-  // Send new invite email
-  await sendInviteEmail({
-    toEmail: data.email,
-    inviterName: data.invitedByName,
-    inviterEmail: data.invitedByEmail,
-    role: ROLE_INFO[data.role as UserRole].label,
-    token: newToken,
-    expiresAt: newExpiresAt,
-  });
+  // Send Firebase Magic Link email
+  const actionCodeSettings = getActionCodeSettings(inviteId);
+
+  try {
+    await sendSignInLinkToEmail(auth, data.email, actionCodeSettings);
+
+    // Store email in localStorage for sign-in completion (for same device)
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("emailForSignIn", data.email);
+    }
+  } catch (error) {
+    throw new Error(`Failed to resend invite email: ${error instanceof Error ? error.message : "Unknown error"}`);
+  }
 
   await logAuditEvent({
     action: "invite_resent",
@@ -733,7 +756,6 @@ export async function resendInvite(inviteId: string, performedBy: string): Promi
     email: data.email,
     role: data.role as UserRole,
     allowedDevelopments: data.allowedDevelopments || undefined,
-    token: newToken,
     invitedBy: data.invitedBy,
     invitedByEmail: data.invitedByEmail,
     invitedByName: data.invitedByName,

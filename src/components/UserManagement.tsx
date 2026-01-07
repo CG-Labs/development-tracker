@@ -791,7 +791,7 @@ export function UserManagement() {
 
             <div className="mt-4 p-3 bg-[var(--bg-deep)] rounded-lg">
               <p className="text-xs text-[var(--text-muted)]">
-                An email with a magic link will be sent to the user. They can click the link to create their account.
+                A sign-in link will be sent to the user's email via Firebase. They can click the link to create their account.
                 The invitation expires in 7 days.
               </p>
             </div>
