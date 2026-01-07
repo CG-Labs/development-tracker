@@ -41,7 +41,7 @@ function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit)
   }
 }
 
-type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "homebondApproved" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
 type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
@@ -226,6 +226,12 @@ export function DevelopmentDetail() {
           const bcmsA = a.documentation?.bcmsApprovedDate || "";
           const bcmsB = b.documentation?.bcmsApprovedDate || "";
           comparison = bcmsA.localeCompare(bcmsB);
+          break;
+        }
+        case "homebondApproved": {
+          const hbA = a.documentation?.homebondApprovedDate || "";
+          const hbB = b.documentation?.homebondApprovedDate || "";
+          comparison = hbA.localeCompare(hbB);
           break;
         }
         case "plannedBcmsDate": {
@@ -667,6 +673,9 @@ export function DevelopmentDetail() {
                 <th onClick={() => toggleSort("bcmsApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">BCMS Approved<SortIcon field="bcmsApproved" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
+                <th onClick={() => toggleSort("homebondApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Homebond<SortIcon field="homebondApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
                 <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
@@ -750,6 +759,11 @@ export function DevelopmentDetail() {
                     </span>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.homebondApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.homebondApprovedDate ? formatDate(unit.documentation.homebondApprovedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-xs text-[var(--text-secondary)]">
                       {formatDate(unit.documentation?.plannedBcmsDate)}
                     </span>
@@ -809,7 +823,7 @@ export function DevelopmentDetail() {
               })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={12} className="px-6 py-12 text-center">
+                  <td colSpan={13} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"
