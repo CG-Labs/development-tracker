@@ -41,7 +41,7 @@ function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit)
   }
 }
 
-type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "homebondApproved" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "homebondApproved" | "berApproved" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
 type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
@@ -120,6 +120,7 @@ export function DevelopmentDetail() {
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
   const [homebondApprovedFilter, setHomebondApprovedFilter] = useState<string>("all");
+  const [berApprovedFilter, setBerApprovedFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
@@ -196,13 +197,17 @@ export function DevelopmentDetail() {
         homebondApprovedFilter === "all" ||
         (homebondApprovedFilter === "yes" && unit.documentation?.homebondApprovedDate) ||
         (homebondApprovedFilter === "no" && !unit.documentation?.homebondApprovedDate);
+      const matchesBerApproved =
+        berApprovedFilter === "all" ||
+        (berApprovedFilter === "yes" && unit.documentation?.berApprovedDate) ||
+        (berApprovedFilter === "no" && !unit.documentation?.berApprovedDate);
       const matchesSales =
         salesFilter === "all" || unit.salesStatus === salesFilter;
       const matchesIncentive =
         incentiveFilter === "all" ||
         (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesBcmsApproved && matchesHomebondApproved && matchesSales && matchesIncentive;
+      return matchesSearch && matchesType && matchesBcmsApproved && matchesHomebondApproved && matchesBerApproved && matchesSales && matchesIncentive;
     });
 
     // Sort the filtered units
@@ -239,6 +244,12 @@ export function DevelopmentDetail() {
           comparison = hbA.localeCompare(hbB);
           break;
         }
+        case "berApproved": {
+          const berA = a.documentation?.berApprovedDate || "";
+          const berB = b.documentation?.berApprovedDate || "";
+          comparison = berA.localeCompare(berB);
+          break;
+        }
         case "plannedBcmsDate": {
           const dateA = a.documentation?.plannedBcmsDate || "";
           const dateB = b.documentation?.plannedBcmsDate || "";
@@ -263,7 +274,7 @@ export function DevelopmentDetail() {
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, homebondApprovedFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
+  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, homebondApprovedFilter, berApprovedFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -513,7 +524,7 @@ export function DevelopmentDetail() {
 
       {/* Filters */}
       <div className="card p-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-4">
           {/* Search */}
           <div className="lg:col-span-1">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
@@ -586,6 +597,22 @@ export function DevelopmentDetail() {
             <select
               value={homebondApprovedFilter}
               onChange={(e) => setHomebondApprovedFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* BER Approved Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              BER
+            </label>
+            <select
+              value={berApprovedFilter}
+              onChange={(e) => setBerApprovedFilter(e.target.value)}
               className="select"
             >
               <option value="all">All</option>
@@ -697,6 +724,9 @@ export function DevelopmentDetail() {
                 <th onClick={() => toggleSort("homebondApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Homebond<SortIcon field="homebondApproved" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
+                <th onClick={() => toggleSort("berApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">BER<SortIcon field="berApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
                 <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
@@ -785,6 +815,11 @@ export function DevelopmentDetail() {
                     </span>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.berApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.berApprovedDate ? formatDate(unit.documentation.berApprovedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-xs text-[var(--text-secondary)]">
                       {formatDate(unit.documentation?.plannedBcmsDate)}
                     </span>
@@ -844,7 +879,7 @@ export function DevelopmentDetail() {
               })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={13} className="px-6 py-12 text-center">
+                  <td colSpan={14} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"

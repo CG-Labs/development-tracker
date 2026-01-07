@@ -368,6 +368,23 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         }
       }
 
+      // BER Approved (Yes/No) - derives from berApprovedDate
+      if ("BER Approved" in row) {
+        const berApprovedValue = parseYesNo(row["BER Approved"]);
+        const currentlyApproved = !!unit.documentation?.berApprovedDate;
+
+        if (berApprovedValue && !currentlyApproved) {
+          // Setting to Yes - set berApprovedDate to today if not already set
+          const today = new Date().toISOString().split("T")[0];
+          changes.push({ field: "documentation.berApprovedDate", oldValue: unit.documentation?.berApprovedDate, newValue: today });
+          updatedUnit.documentation.berApprovedDate = today;
+        } else if (!berApprovedValue && currentlyApproved) {
+          // Setting to No - clear berApprovedDate
+          changes.push({ field: "documentation.berApprovedDate", oldValue: unit.documentation?.berApprovedDate, newValue: undefined });
+          updatedUnit.documentation.berApprovedDate = undefined;
+        }
+      }
+
       // Price Ex VAT
       const priceExVat = parseNumber(row["Price Ex VAT"]);
       if (priceExVat !== undefined && compareValues(unit.priceExVat, priceExVat)) {
