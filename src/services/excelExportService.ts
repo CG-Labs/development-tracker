@@ -15,6 +15,7 @@ interface ExportRow {
   "Construction Status": string;
   "Sales Status": string;
   "BCMS Approved": string;
+  "Homebond Approved": string;
   "Developer Company": string;
   "List Price": number | string;
   "Sold Price": number | string;
@@ -76,6 +77,7 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Construction Status": unit.constructionStatus,
     "Sales Status": unit.salesStatus,
     "BCMS Approved": unit.documentation?.bcmsApprovedDate ? "Yes" : "No",
+    "Homebond Approved": unit.documentation?.homebondApprovedDate ? "Yes" : "No",
     "Developer Company": unit.developerCompanyId || "",
     "List Price": unit.listPrice || "",
     "Sold Price": unit.soldPrice || "",
@@ -126,6 +128,7 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 18 }, // Construction Status
     { wch: 15 }, // Sales Status
     { wch: 15 }, // BCMS Approved
+    { wch: 18 }, // Homebond Approved
     { wch: 20 }, // Developer Company
     { wch: 15 }, // List Price
     { wch: 15 }, // Sold Price
@@ -225,6 +228,7 @@ export function exportUnitsToExcel(developmentId?: string): void {
     ["YES/NO FIELDS:"],
     ["- Part V: Use 'Yes' or 'No'"],
     ["- BCMS Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
+    ["- Homebond Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
     [""],
     ["DOCUMENTATION (Date-based):"],
     ["- Enter dates to mark items as complete (Yes/No is automatic)"],
@@ -314,6 +318,7 @@ export function getExportColumns(): string[] {
     "Construction Status",
     "Sales Status",
     "BCMS Approved",
+    "Homebond Approved",
     "Developer Company",
     "List Price",
     "Sold Price",

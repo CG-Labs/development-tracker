@@ -351,6 +351,23 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         }
       }
 
+      // Homebond Approved (Yes/No) - derives from homebondApprovedDate
+      if ("Homebond Approved" in row) {
+        const homebondApprovedValue = parseYesNo(row["Homebond Approved"]);
+        const currentlyApproved = !!unit.documentation?.homebondApprovedDate;
+
+        if (homebondApprovedValue && !currentlyApproved) {
+          // Setting to Yes - set homebondApprovedDate to today if not already set
+          const today = new Date().toISOString().split("T")[0];
+          changes.push({ field: "documentation.homebondApprovedDate", oldValue: unit.documentation?.homebondApprovedDate, newValue: today });
+          updatedUnit.documentation.homebondApprovedDate = today;
+        } else if (!homebondApprovedValue && currentlyApproved) {
+          // Setting to No - clear homebondApprovedDate
+          changes.push({ field: "documentation.homebondApprovedDate", oldValue: unit.documentation?.homebondApprovedDate, newValue: undefined });
+          updatedUnit.documentation.homebondApprovedDate = undefined;
+        }
+      }
+
       // Price Ex VAT
       const priceExVat = parseNumber(row["Price Ex VAT"]);
       if (priceExVat !== undefined && compareValues(unit.priceExVat, priceExVat)) {
