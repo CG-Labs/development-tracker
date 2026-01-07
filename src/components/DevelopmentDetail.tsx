@@ -7,8 +7,6 @@ import { BulkUpdateToolbar } from "./BulkUpdateToolbar";
 import { BulkUpdateModal } from "./BulkUpdateModal";
 import { getNotesCountsForDevelopment } from "../services/notesService";
 import { useAuth } from "../contexts/AuthContext";
-import { getActiveSchemes } from "../services/incentiveService";
-import type { IncentiveScheme } from "../types/incentive";
 
 // Unit overrides storage key (same as excelImportService)
 const UNIT_OVERRIDES_KEY = "development_tracker_unit_overrides";
@@ -41,7 +39,7 @@ function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit)
   }
 }
 
-type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "homebondApproved" | "berApproved" | "fcCompliance" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+type SortField = "unitNumber" | "type" | "bedrooms" | "area" | "constructionStatus" | "salesStatus" | "plannedBcmsDate" | "bcmsApproved" | "price" | "notes";
 type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
@@ -116,13 +114,10 @@ export function DevelopmentDetail() {
   const { can } = useAuth();
   const development = developments.find((d) => d.id === id);
 
-  const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
-  const [homebondApprovedFilter, setHomebondApprovedFilter] = useState<string>("all");
-  const [berApprovedFilter, setBerApprovedFilter] = useState<string>("all");
-  const [fcComplianceFilter, setFcComplianceFilter] = useState<string>("all");
+  const [bedsFilter, setBedsFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
+  const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
   const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
@@ -130,8 +125,6 @@ export function DevelopmentDetail() {
   const [, setRefreshKey] = useState(0);
   const [sortField, setSortField] = useState<SortField>("unitNumber");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
-  const [incentiveSchemes, setIncentiveSchemes] = useState<IncentiveScheme[]>([]);
-  const [incentiveFilter, setIncentiveFilter] = useState<string>("all");
 
   // Fetch notes counts for this development
   useEffect(() => {
@@ -140,13 +133,6 @@ export function DevelopmentDetail() {
       .then(setNotesCounts)
       .catch(console.error);
   }, [development, selectedUnit]); // Refresh when modal closes
-
-  // Fetch incentive schemes
-  useEffect(() => {
-    getActiveSchemes()
-      .then(setIncentiveSchemes)
-      .catch(console.error);
-  }, []);
 
   // Handle unit save from modal
   const handleUnitSave = useCallback(
@@ -177,42 +163,62 @@ export function DevelopmentDetail() {
   const unitTypes = useMemo(() => {
     if (!development) return [];
     const types = new Set(development.units.map((u) => u.type));
-    return Array.from(types);
+    return Array.from(types).sort();
+  }, [development]);
+
+  // Generate unique bedroom options from data
+  const bedroomOptions = useMemo(() => {
+    if (!development) return [];
+    const bedsSet = new Set<string>();
+    development.units.forEach((u) => {
+      const beds = String(u.bedrooms);
+      if (beds === "0" || beds.toLowerCase() === "studio") {
+        bedsSet.add("Studio");
+      } else {
+        bedsSet.add(`${beds} Bed`);
+      }
+    });
+    // Sort with Studio first, then by number
+    const sorted = Array.from(bedsSet).sort((a, b) => {
+      if (a === "Studio") return -1;
+      if (b === "Studio") return 1;
+      const numA = parseInt(a);
+      const numB = parseInt(b);
+      return numA - numB;
+    });
+    return sorted;
   }, [development]);
 
   const filteredUnits = useMemo(() => {
     if (!development) return [];
 
     const filtered = development.units.filter((unit) => {
-      const matchesSearch =
-        searchQuery === "" ||
-        unit.unitNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        unit.type.toLowerCase().includes(searchQuery.toLowerCase());
-
+      // Type filter
       const matchesType = typeFilter === "all" || unit.type === typeFilter;
+
+      // Beds filter
+      let matchesBeds = true;
+      if (bedsFilter !== "all") {
+        const beds = String(unit.bedrooms);
+        if (bedsFilter === "Studio") {
+          matchesBeds = beds === "0" || beds.toLowerCase() === "studio";
+        } else {
+          const filterNum = parseInt(bedsFilter);
+          const unitBeds = parseInt(beds);
+          matchesBeds = unitBeds === filterNum;
+        }
+      }
+
+      // Sales status filter
+      const matchesSales = salesFilter === "all" || unit.salesStatus === salesFilter;
+
+      // BCMS approved filter
       const matchesBcmsApproved =
         bcmsApprovedFilter === "all" ||
         (bcmsApprovedFilter === "yes" && unit.documentation?.bcmsApprovedDate) ||
         (bcmsApprovedFilter === "no" && !unit.documentation?.bcmsApprovedDate);
-      const matchesHomebondApproved =
-        homebondApprovedFilter === "all" ||
-        (homebondApprovedFilter === "yes" && unit.documentation?.homebondApprovedDate) ||
-        (homebondApprovedFilter === "no" && !unit.documentation?.homebondApprovedDate);
-      const matchesBerApproved =
-        berApprovedFilter === "all" ||
-        (berApprovedFilter === "yes" && unit.documentation?.berApprovedDate) ||
-        (berApprovedFilter === "no" && !unit.documentation?.berApprovedDate);
-      const matchesFcCompliance =
-        fcComplianceFilter === "all" ||
-        (fcComplianceFilter === "yes" && unit.documentation?.fcComplianceReceivedDate) ||
-        (fcComplianceFilter === "no" && !unit.documentation?.fcComplianceReceivedDate);
-      const matchesSales =
-        salesFilter === "all" || unit.salesStatus === salesFilter;
-      const matchesIncentive =
-        incentiveFilter === "all" ||
-        (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesBcmsApproved && matchesHomebondApproved && matchesBerApproved && matchesFcCompliance && matchesSales && matchesIncentive;
+      return matchesType && matchesBeds && matchesSales && matchesBcmsApproved;
     });
 
     // Sort the filtered units
@@ -225,67 +231,47 @@ export function DevelopmentDetail() {
         case "type":
           comparison = a.type.localeCompare(b.type);
           break;
-        case "bedrooms":
-          // Handle bedrooms comparison with string/number values
-          const bedsA = typeof a.bedrooms === "number" ? a.bedrooms : (a.bedrooms === "Studio" ? 0 : parseInt(a.bedrooms) || 0);
-          const bedsB = typeof b.bedrooms === "number" ? b.bedrooms : (b.bedrooms === "Studio" ? 0 : parseInt(b.bedrooms) || 0);
+        case "bedrooms": {
+          const bedsA = typeof a.bedrooms === "number" ? a.bedrooms : (a.bedrooms === "Studio" ? 0 : parseInt(String(a.bedrooms)) || 0);
+          const bedsB = typeof b.bedrooms === "number" ? b.bedrooms : (b.bedrooms === "Studio" ? 0 : parseInt(String(b.bedrooms)) || 0);
           comparison = bedsA - bedsB;
           break;
+        }
+        case "area": {
+          const areaA = (a as { area?: number }).area || 0;
+          const areaB = (b as { area?: number }).area || 0;
+          comparison = areaA - areaB;
+          break;
+        }
         case "constructionStatus":
           comparison = a.constructionStatus.localeCompare(b.constructionStatus);
           break;
         case "salesStatus":
           comparison = a.salesStatus.localeCompare(b.salesStatus);
           break;
+        case "plannedBcmsDate": {
+          const dateA = a.keyDates?.plannedBcms || "";
+          const dateB = b.keyDates?.plannedBcms || "";
+          comparison = dateA.localeCompare(dateB);
+          break;
+        }
         case "bcmsApproved": {
           const bcmsA = a.documentation?.bcmsApprovedDate || "";
           const bcmsB = b.documentation?.bcmsApprovedDate || "";
           comparison = bcmsA.localeCompare(bcmsB);
           break;
         }
-        case "homebondApproved": {
-          const hbA = a.documentation?.homebondApprovedDate || "";
-          const hbB = b.documentation?.homebondApprovedDate || "";
-          comparison = hbA.localeCompare(hbB);
-          break;
-        }
-        case "berApproved": {
-          const berA = a.documentation?.berApprovedDate || "";
-          const berB = b.documentation?.berApprovedDate || "";
-          comparison = berA.localeCompare(berB);
-          break;
-        }
-        case "fcCompliance": {
-          const fcA = a.documentation?.fcComplianceReceivedDate || "";
-          const fcB = b.documentation?.fcComplianceReceivedDate || "";
-          comparison = fcA.localeCompare(fcB);
-          break;
-        }
-        case "plannedBcmsDate": {
-          const dateA = a.documentation?.plannedBcmsDate || "";
-          const dateB = b.documentation?.plannedBcmsDate || "";
-          comparison = dateA.localeCompare(dateB);
-          break;
-        }
-        case "plannedCloseDate": {
-          const closeA = (a as { plannedCloseDate?: string }).plannedCloseDate || "";
-          const closeB = (b as { plannedCloseDate?: string }).plannedCloseDate || "";
-          comparison = closeA.localeCompare(closeB);
-          break;
-        }
         case "price":
           comparison = (a.soldPrice || a.listPrice) - (b.soldPrice || b.listPrice);
           break;
-        case "incentive": {
-          const incA = a.appliedIncentive || "";
-          const incB = b.appliedIncentive || "";
-          comparison = incA.localeCompare(incB);
+        case "notes":
+          // Sort by notes count - we'll use 0 if no notes
+          comparison = 0; // Notes sorting handled separately if needed
           break;
-        }
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, homebondApprovedFilter, berApprovedFilter, fcComplianceFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
+  }, [development, typeFilter, bedsFilter, salesFilter, bcmsApprovedFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -327,12 +313,6 @@ export function DevelopmentDetail() {
       setSortField(field);
       setSortDirection("asc");
     }
-  };
-
-  const getIncentiveName = (incentiveId?: string) => {
-    if (!incentiveId) return null;
-    const scheme = incentiveSchemes.find(s => s.id === incentiveId);
-    return scheme?.name || null;
   };
 
   // Calculate summary statistics - moved before conditional return to avoid hook order issues
@@ -535,38 +515,9 @@ export function DevelopmentDetail() {
 
       {/* Filters */}
       <div className="card p-5">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-9 gap-4">
-          {/* Search */}
-          <div className="lg:col-span-1">
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Search
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search units..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="input pl-10"
-              />
-              <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
-          </div>
-
+        <div className="flex flex-wrap items-end gap-4">
           {/* Type Filter */}
-          <div>
+          <div className="min-w-[160px]">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
               Unit Type
             </label>
@@ -575,7 +526,7 @@ export function DevelopmentDetail() {
               onChange={(e) => setTypeFilter(e.target.value)}
               className="select"
             >
-              <option value="all">All Types</option>
+              <option value="all">All</option>
               {unitTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}
@@ -584,8 +535,46 @@ export function DevelopmentDetail() {
             </select>
           </div>
 
+          {/* Beds Filter */}
+          <div className="min-w-[120px]">
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              Beds
+            </label>
+            <select
+              value={bedsFilter}
+              onChange={(e) => setBedsFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              {bedroomOptions.map((beds) => (
+                <option key={beds} value={beds}>
+                  {beds}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sales Status Filter */}
+          <div className="min-w-[140px]">
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              Sales Status
+            </label>
+            <select
+              value={salesFilter}
+              onChange={(e) => setSalesFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="Not Released">Not Released</option>
+              <option value="For Sale">For Sale</option>
+              <option value="Under Offer">Under Offer</option>
+              <option value="Contracted">Contracted</option>
+              <option value="Complete">Complete</option>
+            </select>
+          </div>
+
           {/* BCMS Approved Filter */}
-          <div>
+          <div className="min-w-[140px]">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
               BCMS Approved
             </label>
@@ -600,96 +589,9 @@ export function DevelopmentDetail() {
             </select>
           </div>
 
-          {/* Homebond Approved Filter */}
-          <div>
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Homebond
-            </label>
-            <select
-              value={homebondApprovedFilter}
-              onChange={(e) => setHomebondApprovedFilter(e.target.value)}
-              className="select"
-            >
-              <option value="all">All</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          {/* BER Approved Filter */}
-          <div>
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              BER
-            </label>
-            <select
-              value={berApprovedFilter}
-              onChange={(e) => setBerApprovedFilter(e.target.value)}
-              className="select"
-            >
-              <option value="all">All</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          {/* FC Compliance Filter */}
-          <div>
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              FC Comp
-            </label>
-            <select
-              value={fcComplianceFilter}
-              onChange={(e) => setFcComplianceFilter(e.target.value)}
-              className="select"
-            >
-              <option value="all">All</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
-
-          {/* Sales Status Filter */}
-          <div>
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Sales Status
-            </label>
-            <select
-              value={salesFilter}
-              onChange={(e) => setSalesFilter(e.target.value)}
-              className="select"
-            >
-              <option value="all">All Statuses</option>
-              <option value="Not Released">Not Released</option>
-              <option value="For Sale">For Sale</option>
-              <option value="Under Offer">Under Offer</option>
-              <option value="Contracted">Contracted</option>
-              <option value="Complete">Complete</option>
-            </select>
-          </div>
-
-          {/* Incentive Filter */}
-          <div>
-            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Incentive
-            </label>
-            <select
-              value={incentiveFilter}
-              onChange={(e) => setIncentiveFilter(e.target.value)}
-              className="select"
-            >
-              <option value="all">All</option>
-              <option value="none">No Incentive</option>
-              {incentiveSchemes.map((scheme) => (
-                <option key={scheme.id} value={scheme.id}>
-                  {scheme.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {/* Results count */}
-          <div className="flex items-end">
-            <div className="w-full px-4 py-3 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+          <div className="flex items-end ml-auto">
+            <div className="px-4 py-3 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
               <p className="font-mono text-sm text-[var(--text-secondary)]">
                 <span className="text-[var(--accent-cyan)] font-bold">{filteredUnits.length}</span>
                 {" "}of{" "}
@@ -708,7 +610,7 @@ export function DevelopmentDetail() {
             <thead>
               <tr className="bg-[var(--bg-deep)] border-b border-[var(--border-subtle)]">
                 {can("bulkUpdate") && (
-                  <th className="px-4 py-4 text-center w-12">
+                  <th className="px-3 py-4 text-center w-12">
                     <button
                       onClick={toggleSelectAll}
                       className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
@@ -727,49 +629,34 @@ export function DevelopmentDetail() {
                     </button>
                   </th>
                 )}
-                <th onClick={() => toggleSort("unitNumber")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Unit #<SortIcon field="unitNumber" sortField={sortField} sortDirection={sortDirection} /></span>
+                <th onClick={() => toggleSort("unitNumber")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Unit Nr<SortIcon field="unitNumber" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                  Area
-                </th>
-                <th onClick={() => toggleSort("type")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("type")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Type<SortIcon field="type" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("bedrooms")} className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("bedrooms")} className="px-3 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center justify-center">Beds<SortIcon field="bedrooms" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("constructionStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("area")} className="px-3 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center justify-end">Area<SortIcon field="area" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
+                <th onClick={() => toggleSort("constructionStatus")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Construction<SortIcon field="constructionStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("salesStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("salesStatus")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Sales<SortIcon field="salesStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("bcmsApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">BCMS Approved<SortIcon field="bcmsApproved" sortField={sortField} sortDirection={sortDirection} /></span>
-                </th>
-                <th onClick={() => toggleSort("homebondApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Homebond<SortIcon field="homebondApproved" sortField={sortField} sortDirection={sortDirection} /></span>
-                </th>
-                <th onClick={() => toggleSort("berApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">BER<SortIcon field="berApproved" sortField={sortField} sortDirection={sortDirection} /></span>
-                </th>
-                <th onClick={() => toggleSort("fcCompliance")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">FC Comp<SortIcon field="fcCompliance" sortField={sortField} sortDirection={sortDirection} /></span>
-                </th>
-                <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("plannedBcmsDate")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("plannedCloseDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Planned Close<SortIcon field="plannedCloseDate" sortField={sortField} sortDirection={sortDirection} /></span>
+                <th onClick={() => toggleSort("bcmsApproved")} className="px-3 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">BCMS Approved<SortIcon field="bcmsApproved" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th onClick={() => toggleSort("incentive")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
-                  <span className="flex items-center">Incentive<SortIcon field="incentive" sortField={sortField} sortDirection={sortDirection} /></span>
-                </th>
-                <th onClick={() => toggleSort("price")} className="px-4 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                <th onClick={() => toggleSort("price")} className="px-3 py-4 text-right font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center justify-end">Price<SortIcon field="price" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
-                <th className="px-4 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="px-3 py-4 text-center font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                   Notes
                 </th>
               </tr>
@@ -777,6 +664,10 @@ export function DevelopmentDetail() {
             <tbody>
               {filteredUnits.map((unit, index) => {
                 const isSelected = selectedUnitIds.has(unit.unitNumber);
+                const unitArea = (unit as { area?: number }).area;
+                const bedsDisplay = String(unit.bedrooms) === "0" || String(unit.bedrooms).toLowerCase() === "studio"
+                  ? "Studio"
+                  : `${unit.bedrooms} Bed`;
                 return (
                 <tr
                   key={unit.unitNumber}
@@ -789,7 +680,7 @@ export function DevelopmentDetail() {
                   }}
                 >
                   {can("bulkUpdate") && (
-                    <td className="px-4 py-4 text-center" onClick={(e) => e.stopPropagation()}>
+                    <td className="px-3 py-4 text-center" onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={(e) => toggleUnitSelection(unit.unitNumber, e)}
                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
@@ -806,90 +697,60 @@ export function DevelopmentDetail() {
                       </button>
                     </td>
                   )}
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  {/* Unit Number */}
+                  <td className="px-3 py-4 whitespace-nowrap">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors">
                       {unit.unitNumber}
                     </span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className="font-mono text-sm text-[var(--text-secondary)]">
-                      {(unit as { size?: number }).size ? `${(unit as { size?: number }).size}m²` : "-"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
+                  {/* Type */}
+                  <td className="px-3 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                     {unit.type}
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
+                  {/* Beds */}
+                  <td className="px-3 py-4 whitespace-nowrap text-center">
                     <span className="font-mono text-sm text-[var(--text-primary)]">
-                      {unit.bedrooms}
+                      {bedsDisplay}
                     </span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  {/* Area */}
+                  <td className="px-3 py-4 whitespace-nowrap text-right">
+                    <span className="font-mono text-sm text-[var(--text-secondary)]">
+                      {unitArea ? `${unitArea} m²` : "-"}
+                    </span>
+                  </td>
+                  {/* Construction Status */}
+                  <td className="px-3 py-4 whitespace-nowrap">
                     <span className={constructionBadgeClasses[unit.constructionStatus]}>
                       {unit.constructionStatus}
                     </span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  {/* Sales Status */}
+                  <td className="px-3 py-4 whitespace-nowrap">
                     <span className={salesBadgeClasses[unit.salesStatus]}>
                       {unit.salesStatus}
                     </span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
+                  {/* Planned BCMS */}
+                  <td className="px-3 py-4 whitespace-nowrap">
+                    <span className="font-mono text-xs text-[var(--text-secondary)]">
+                      {formatDate(unit.keyDates?.plannedBcms)}
+                    </span>
+                  </td>
+                  {/* BCMS Approved */}
+                  <td className="px-3 py-4 whitespace-nowrap">
                     <span className={`font-mono text-xs ${unit.documentation?.bcmsApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
                       {unit.documentation?.bcmsApprovedDate ? formatDate(unit.documentation.bcmsApprovedDate) : "No"}
                     </span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className={`font-mono text-xs ${unit.documentation?.homebondApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
-                      {unit.documentation?.homebondApprovedDate ? formatDate(unit.documentation.homebondApprovedDate) : "No"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className={`font-mono text-xs ${unit.documentation?.berApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
-                      {unit.documentation?.berApprovedDate ? formatDate(unit.documentation.berApprovedDate) : "No"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className={`font-mono text-xs ${unit.documentation?.fcComplianceReceivedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
-                      {unit.documentation?.fcComplianceReceivedDate ? formatDate(unit.documentation.fcComplianceReceivedDate) : "No"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className="font-mono text-xs text-[var(--text-secondary)]">
-                      {formatDate(unit.documentation?.plannedBcmsDate)}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <span className="font-mono text-xs text-[var(--text-secondary)]">
-                      {formatDate((unit as { plannedCloseDate?: string }).plannedCloseDate)}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    {unit.appliedIncentive ? (
-                      <div className="flex items-center gap-2">
-                        <span className="font-display text-xs text-[var(--text-primary)] truncate max-w-[120px]" title={getIncentiveName(unit.appliedIncentive) || undefined}>
-                          {getIncentiveName(unit.appliedIncentive) || "Unknown"}
-                        </span>
-                        {unit.incentiveStatus && (
-                          <span className={`badge text-[10px] py-0.5 px-1.5 ${
-                            unit.incentiveStatus === "claimed" ? "badge-complete" :
-                            unit.incentiveStatus === "applied" ? "badge-progress" :
-                            unit.incentiveStatus === "eligible" ? "badge-available" :
-                            "badge-notstarted"
-                          }`}>
-                            {unit.incentiveStatus}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <span className="text-[var(--text-muted)]">-</span>
-                    )}
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
+                  {/* Price */}
+                  <td className="px-3 py-4 whitespace-nowrap text-right">
                     <span className="font-mono text-sm font-semibold text-[var(--text-primary)]">
                       {unit.soldPrice
                         ? formatPrice(unit.soldPrice)
-                        : formatPrice(unit.listPrice)}
+                        : unit.listPrice
+                        ? formatPrice(unit.listPrice)
+                        : "-"}
                     </span>
                     {unit.soldPrice && unit.soldPrice !== unit.listPrice && (
                       <span className="block font-mono text-xs text-[var(--text-muted)] line-through">
@@ -897,7 +758,8 @@ export function DevelopmentDetail() {
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
+                  {/* Notes */}
+                  <td className="px-3 py-4 whitespace-nowrap text-center">
                     {notesCounts.get(unit.unitNumber) ? (
                       <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)]">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -914,7 +776,7 @@ export function DevelopmentDetail() {
               })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={15} className="px-6 py-12 text-center">
+                  <td colSpan={11} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"
