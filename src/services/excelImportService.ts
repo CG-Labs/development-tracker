@@ -334,6 +334,23 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         updatedUnit.salesStatus = salesStatus;
       }
 
+      // BCMS Approved (Yes/No) - derives from bcmsApprovedDate
+      if ("BCMS Approved" in row) {
+        const bcmsApprovedValue = parseYesNo(row["BCMS Approved"]);
+        const currentlyApproved = !!unit.documentation?.bcmsApprovedDate;
+
+        if (bcmsApprovedValue && !currentlyApproved) {
+          // Setting to Yes - set bcmsApprovedDate to today if not already set
+          const today = new Date().toISOString().split("T")[0];
+          changes.push({ field: "documentation.bcmsApprovedDate", oldValue: unit.documentation?.bcmsApprovedDate, newValue: today });
+          updatedUnit.documentation.bcmsApprovedDate = today;
+        } else if (!bcmsApprovedValue && currentlyApproved) {
+          // Setting to No - clear bcmsApprovedDate
+          changes.push({ field: "documentation.bcmsApprovedDate", oldValue: unit.documentation?.bcmsApprovedDate, newValue: undefined });
+          updatedUnit.documentation.bcmsApprovedDate = undefined;
+        }
+      }
+
       // Price Ex VAT
       const priceExVat = parseNumber(row["Price Ex VAT"]);
       if (priceExVat !== undefined && compareValues(unit.priceExVat, priceExVat)) {
