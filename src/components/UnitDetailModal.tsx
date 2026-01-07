@@ -329,6 +329,7 @@ export function UnitDetailModal({
       "bcmsSubmitDate", "bcmsApprovedDate",
       "homebondSubmitDate", "homebondApprovedDate",
       "berApprovedDate", "fcComplianceReceivedDate",
+      "landMapSubmitDate", "landMapReceivedDate",
       "sanApprovedDate", "contractIssuedDate",
       "contractSignedDate", "saleClosedDate"
     ];
@@ -375,6 +376,13 @@ export function UnitDetailModal({
     setIsSaving(true);
 
     try {
+      // Sanitize changes for Firestore (convert undefined to null)
+      const sanitizedChanges = changes.map((change) => ({
+        ...change,
+        oldValue: change.oldValue === undefined ? null : change.oldValue,
+        newValue: change.newValue === undefined ? null : change.newValue,
+      }));
+
       // Log the changes to Firestore
       await logChange({
         userId: currentUser.uid,
@@ -383,7 +391,7 @@ export function UnitDetailModal({
         action: "update",
         entityType: "unit",
         entityId: unit.unitNumber,
-        changes,
+        changes: sanitizedChanges,
         developmentId,
         developmentName,
         unitNumber: unit.unitNumber,
@@ -825,6 +833,18 @@ export function UnitDetailModal({
                 date={displayUnit.documentation.fcComplianceReceivedDate}
                 isEditing={isEditing}
                 onDateChange={(val) => updateDocumentation("fcComplianceReceivedDate", val)}
+              />
+              <AutoDocItem
+                label="Land Map Submit"
+                date={displayUnit.documentation.landMapSubmitDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("landMapSubmitDate", val)}
+              />
+              <AutoDocItem
+                label="Land Map Received"
+                date={displayUnit.documentation.landMapReceivedDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("landMapReceivedDate", val)}
               />
             </div>
           </section>

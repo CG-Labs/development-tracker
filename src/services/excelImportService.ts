@@ -502,6 +502,22 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         }
       }
 
+      if ("Land Map Submit Date" in row) {
+        const landMapSubmitDate = parseDate(row["Land Map Submit Date"]);
+        if (compareValues(unit.documentation.landMapSubmitDate, landMapSubmitDate)) {
+          changes.push({ field: "documentation.landMapSubmitDate", oldValue: unit.documentation.landMapSubmitDate, newValue: landMapSubmitDate });
+          updatedUnit.documentation.landMapSubmitDate = landMapSubmitDate;
+        }
+      }
+
+      if ("Land Map Received Date" in row) {
+        const landMapReceivedDate = parseDate(row["Land Map Received Date"]);
+        if (compareValues(unit.documentation.landMapReceivedDate, landMapReceivedDate)) {
+          changes.push({ field: "documentation.landMapReceivedDate", oldValue: unit.documentation.landMapReceivedDate, newValue: landMapReceivedDate });
+          updatedUnit.documentation.landMapReceivedDate = landMapReceivedDate;
+        }
+      }
+
       // Sales Documentation (4 date-only fields)
       if ("SAN Approved Date" in row) {
         const sanApprovedDate = parseDate(row["SAN Approved Date"]);

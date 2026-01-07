@@ -18,6 +18,8 @@ export interface DocumentationChecklist {
   homebondApprovedDate?: string;
   berApprovedDate?: string;
   fcComplianceReceivedDate?: string;
+  landMapSubmitDate?: string;
+  landMapReceivedDate?: string;
 
   // Sales Documentation (Yes/No derived from date)
   sanApprovedDate?: string;

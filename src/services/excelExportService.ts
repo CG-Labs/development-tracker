@@ -29,13 +29,15 @@ interface ExportRow {
   "Actual BCMS": string;
   "Planned Close": string;
   "Actual Close": string;
-  // Completion Documentation (6 items - date only, Yes/No derived from date)
+  // Completion Documentation (8 items - date only, Yes/No derived from date)
   "BCMS Submit Date": string;
   "BCMS Approved Date": string;
   "Homebond Submit Date": string;
   "Homebond Approved Date": string;
   "BER Approved Date": string;
   "FC Compliance Received Date": string;
+  "Land Map Submit Date": string;
+  "Land Map Received Date": string;
   // Sales Documentation (4 items - date only)
   "SAN Approved Date": string;
   "Contract Issued Date": string;
@@ -94,6 +96,8 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Homebond Approved Date": formatDateDDMMYYYY(unit.documentation.homebondApprovedDate),
     "BER Approved Date": formatDateDDMMYYYY(unit.documentation.berApprovedDate),
     "FC Compliance Received Date": formatDateDDMMYYYY(unit.documentation.fcComplianceReceivedDate),
+    "Land Map Submit Date": formatDateDDMMYYYY(unit.documentation.landMapSubmitDate),
+    "Land Map Received Date": formatDateDDMMYYYY(unit.documentation.landMapReceivedDate),
     // Sales Documentation (date only)
     "SAN Approved Date": formatDateDDMMYYYY(unit.documentation.sanApprovedDate),
     "Contract Issued Date": formatDateDDMMYYYY(unit.documentation.contractIssuedDate),
@@ -139,6 +143,8 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 20 }, // Homebond Approved Date
     { wch: 18 }, // BER Approved Date
     { wch: 25 }, // FC Compliance Received Date
+    { wch: 20 }, // Land Map Submit Date
+    { wch: 20 }, // Land Map Received Date
     { wch: 18 }, // SAN Approved Date
     { wch: 18 }, // Contract Issued Date
     { wch: 18 }, // Contract Signed Date
@@ -323,6 +329,8 @@ export function getExportColumns(): string[] {
     "Homebond Approved Date",
     "BER Approved Date",
     "FC Compliance Received Date",
+    "Land Map Submit Date",
+    "Land Map Received Date",
     "SAN Approved Date",
     "Contract Issued Date",
     "Contract Signed Date",
