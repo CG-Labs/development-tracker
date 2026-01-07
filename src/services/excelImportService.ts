@@ -385,6 +385,23 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
         }
       }
 
+      // FC Compliance (Yes/No) - derives from fcComplianceReceivedDate
+      if ("FC Compliance" in row) {
+        const fcComplianceValue = parseYesNo(row["FC Compliance"]);
+        const currentlyReceived = !!unit.documentation?.fcComplianceReceivedDate;
+
+        if (fcComplianceValue && !currentlyReceived) {
+          // Setting to Yes - set fcComplianceReceivedDate to today if not already set
+          const today = new Date().toISOString().split("T")[0];
+          changes.push({ field: "documentation.fcComplianceReceivedDate", oldValue: unit.documentation?.fcComplianceReceivedDate, newValue: today });
+          updatedUnit.documentation.fcComplianceReceivedDate = today;
+        } else if (!fcComplianceValue && currentlyReceived) {
+          // Setting to No - clear fcComplianceReceivedDate
+          changes.push({ field: "documentation.fcComplianceReceivedDate", oldValue: unit.documentation?.fcComplianceReceivedDate, newValue: undefined });
+          updatedUnit.documentation.fcComplianceReceivedDate = undefined;
+        }
+      }
+
       // Price Ex VAT
       const priceExVat = parseNumber(row["Price Ex VAT"]);
       if (priceExVat !== undefined && compareValues(unit.priceExVat, priceExVat)) {
