@@ -224,6 +224,7 @@ export function exportUnitsToExcel(developmentId?: string): void {
     [""],
     ["YES/NO FIELDS:"],
     ["- Part V: Use 'Yes' or 'No'"],
+    ["- BCMS Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
     [""],
     ["DOCUMENTATION (Date-based):"],
     ["- Enter dates to mark items as complete (Yes/No is automatic)"],
