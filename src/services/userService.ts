@@ -71,10 +71,26 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
       invitedAt: timestampToDate(data.invitedAt),
       createdAt: timestampToDate(data.createdAt) || new Date(),
       lastLogin: timestampToDate(data.lastLogin),
+      passwordSet: data.passwordSet || false,
     };
   } catch (error) {
     console.error("Error getting user profile:", error);
     return null;
+  }
+}
+
+/**
+ * Mark user password as set
+ */
+export async function markPasswordSet(uid: string): Promise<void> {
+  try {
+    const docRef = doc(db, USERS_COLLECTION, uid);
+    await updateDoc(docRef, {
+      passwordSet: true,
+    });
+  } catch (error) {
+    console.error("Error marking password as set:", error);
+    throw error;
   }
 }
 
@@ -104,6 +120,7 @@ export async function getUserProfileByEmail(email: string): Promise<UserProfile 
       invitedAt: timestampToDate(data.invitedAt),
       createdAt: timestampToDate(data.createdAt) || new Date(),
       lastLogin: timestampToDate(data.lastLogin),
+      passwordSet: data.passwordSet || false,
     };
   } catch (error) {
     console.error("Error getting user by email:", error);
@@ -140,6 +157,7 @@ export async function createUserFromInvite(
     invitedAt: serverTimestamp(),
     createdAt: serverTimestamp(),
     lastLogin: serverTimestamp(),
+    passwordSet: false,
   };
 
   const docRef = doc(db, USERS_COLLECTION, uid);

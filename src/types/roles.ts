@@ -20,6 +20,7 @@ export interface UserProfile {
   invitedAt?: Date;
   createdAt: Date;
   lastLogin?: Date;
+  passwordSet?: boolean; // True after user sets password via magic link flow
 }
 
 export interface UserInvite {
