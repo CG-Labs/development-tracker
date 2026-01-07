@@ -2,9 +2,9 @@
  * CompleteSignup Component
  *
  * Handles Firebase Magic Link sign-in completion with password setup.
- * Following Firebase documentation: https://firebase.google.com/docs/auth/web/email-link-auth
+ * Password is set immediately after sign-in while the session is fresh.
  */
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   getAuth,
@@ -21,11 +21,8 @@ import type { UserRole } from "../types/roles";
 
 type PageState =
   | "initializing"
-  | "loading"
-  | "needs_email"
-  | "signing_in"
-  | "password_setup"
-  | "setting_password"
+  | "ready_for_signup" // Show email + password form
+  | "processing"
   | "success"
   | "error";
 
@@ -40,137 +37,170 @@ export function CompleteSignup() {
   const [displayName, setDisplayName] = useState("");
   const [inviteRole, setInviteRole] = useState<UserRole | null>(null);
 
-  // Password setup state
+  // Password fields
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState<string | null>(null);
 
   const auth = getAuth();
 
-  // Complete sign-in with email link
-  const completeSignIn = useCallback(
-    async (email: string, name?: string) => {
-      setState("signing_in");
+  // Check if this is a valid sign-in link and prepare the form
+  useEffect(() => {
+    let isMounted = true;
 
-      try {
-        // Sign in with the email link
-        const result = await signInWithEmailLink(auth, email, window.location.href);
+    const initialize = async () => {
+      // Wait for auth to be ready
+      const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        if (!isMounted) return;
 
-        // Clear email from storage
-        window.localStorage.removeItem("emailForSignIn");
-
-        // Get inviteId from URL and process invite
-        if (inviteId) {
-          const inviteDoc = await getDoc(doc(db, "invites", inviteId));
-
-          if (inviteDoc.exists()) {
-            const inviteData = inviteDoc.data();
-
-            // Check if user profile already exists
-            const userDoc = await getDoc(doc(db, "users", result.user.uid));
-
-            if (!userDoc.exists()) {
-              // Create user profile with role from invite
-              await setDoc(doc(db, "users", result.user.uid), {
-                uid: result.user.uid,
-                email: email.toLowerCase(),
-                displayName: name || email.split("@")[0],
-                role: inviteData.role,
-                status: "active",
-                isActive: true,
-                allowedDevelopments: inviteData.allowedDevelopments || null,
-                invitedBy: inviteData.invitedBy,
-                invitedAt: serverTimestamp(),
-                createdAt: serverTimestamp(),
-                lastLogin: serverTimestamp(),
-                passwordSet: false,
-              });
-            }
-
-            // Mark invite as completed
-            await updateDoc(doc(db, "invites", inviteId), {
-              status: "accepted",
-              acceptedAt: serverTimestamp(),
-              userId: result.user.uid,
-            });
-          }
-        }
-
-        // Check if password is already set
-        const userProfile = await getUserProfile(result.user.uid);
-        if (userProfile?.passwordSet) {
-          // Password already set, redirect to dashboard
-          setState("success");
-          setTimeout(() => {
+        if (user) {
+          // User is already signed in - check if they need to set password
+          const userProfile = await getUserProfile(user.uid);
+          if (userProfile?.passwordSet) {
+            // Already fully set up, redirect to dashboard
             navigate("/");
-          }, 1500);
-        } else {
-          // Show password setup screen
-          setState("password_setup");
+          } else {
+            // Need to set password - but they're already signed in
+            // This shouldn't happen in normal flow, redirect to dashboard
+            // and let them use "forgot password" if needed
+            navigate("/");
+          }
+          return;
         }
-      } catch (err) {
-        console.error("Error signing in:", err);
 
-        let errorMessage = "Failed to complete sign-in. Please try again.";
+        // User not signed in - check if this is a sign-in link
+        if (!isSignInWithEmailLink(auth, window.location.href)) {
+          if (isMounted) {
+            setError("Invalid sign-in link. Please request a new invitation.");
+            setState("error");
+          }
+          return;
+        }
 
-        if (err instanceof Error) {
-          const errorCode = (err as { code?: string }).code || err.message;
+        // Try to get email from localStorage (same device flow)
+        const storedEmail = window.localStorage.getItem("emailForSignIn");
+        if (storedEmail) {
+          setEmailInput(storedEmail);
+        }
 
-          if (errorCode.includes("invalid-action-code") || errorCode.includes("expired-action-code")) {
-            errorMessage = "This sign-in link has expired or already been used. Please request a new invitation.";
-          } else if (errorCode.includes("invalid-email")) {
-            errorMessage = "Invalid email address. Please check and try again.";
-          } else if (errorCode.includes("user-disabled")) {
-            errorMessage = "This account has been disabled. Please contact an administrator.";
-          } else if (errorCode.includes("network-request-failed")) {
-            errorMessage = "Network error. Please check your connection and try again.";
+        // Try to pre-fill from invite if we have inviteId
+        if (inviteId) {
+          try {
+            const inviteDoc = await getDoc(doc(db, "invites", inviteId));
+            if (inviteDoc.exists() && isMounted) {
+              const data = inviteDoc.data();
+              if (!storedEmail) {
+                setEmailInput(data.email || "");
+              }
+              setInviteRole(data.role as UserRole);
+            }
+          } catch (err) {
+            console.error("Error fetching invite:", err);
           }
         }
 
-        setError(errorMessage);
-        setState("error");
-      }
-    },
-    [auth, inviteId, navigate]
-  );
+        if (isMounted) {
+          setState("ready_for_signup");
+        }
+      });
 
-  // Handle password setup
-  const handlePasswordSubmit = async (e: React.FormEvent) => {
+      return () => {
+        unsubscribe();
+      };
+    };
+
+    initialize();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [auth, inviteId, navigate]);
+
+  // Handle the complete signup process
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setPasswordError(null);
 
-    // Validate password
+    // Validate
+    if (!emailInput.trim()) {
+      setError("Please enter your email address.");
+      return;
+    }
+
     if (password.length < 8) {
-      setPasswordError("Password must be at least 8 characters long.");
+      setError("Password must be at least 8 characters.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setPasswordError("Passwords do not match.");
+      setError("Passwords do not match.");
       return;
     }
 
-    setState("setting_password");
+    setState("processing");
+    setError(null);
 
     try {
-      const user = auth.currentUser;
-      if (!user) {
-        throw new Error("No user signed in");
+      // Step 1: Sign in with the email link
+      const result = await signInWithEmailLink(auth, emailInput.trim(), window.location.href);
+
+      // Clear email from storage
+      window.localStorage.removeItem("emailForSignIn");
+
+      // Step 2: Set password IMMEDIATELY while session is fresh
+      await updatePassword(result.user, password);
+
+      // Step 3: Process invite and create/update user profile
+      if (inviteId) {
+        const inviteDoc = await getDoc(doc(db, "invites", inviteId));
+
+        if (inviteDoc.exists()) {
+          const inviteData = inviteDoc.data();
+
+          // Check if user profile already exists
+          const userDoc = await getDoc(doc(db, "users", result.user.uid));
+
+          if (!userDoc.exists()) {
+            // Create user profile with role from invite
+            await setDoc(doc(db, "users", result.user.uid), {
+              uid: result.user.uid,
+              email: emailInput.trim().toLowerCase(),
+              displayName: displayName.trim() || emailInput.split("@")[0],
+              role: inviteData.role,
+              status: "active",
+              isActive: true,
+              allowedDevelopments: inviteData.allowedDevelopments || null,
+              invitedBy: inviteData.invitedBy,
+              invitedAt: serverTimestamp(),
+              createdAt: serverTimestamp(),
+              lastLogin: serverTimestamp(),
+              passwordSet: true,
+            });
+          } else {
+            // Profile exists, just mark password as set
+            await markPasswordSet(result.user.uid);
+          }
+
+          // Mark invite as completed
+          await updateDoc(doc(db, "invites", inviteId), {
+            status: "accepted",
+            acceptedAt: serverTimestamp(),
+            userId: result.user.uid,
+          });
+        }
+      } else {
+        // No invite ID - just mark password as set if profile exists
+        const userDoc = await getDoc(doc(db, "users", result.user.uid));
+        if (userDoc.exists()) {
+          await markPasswordSet(result.user.uid);
+        }
       }
 
-      // Set the password
-      await updatePassword(user, password);
-
-      // Mark password as set in Firestore
-      await markPasswordSet(user.uid);
-
-      // Wait a moment for Firestore to sync, then verify profile exists
+      // Step 4: Wait for Firestore to sync
       await new Promise((resolve) => setTimeout(resolve, 500));
 
-      // Verify profile is ready before redirecting
+      // Step 5: Verify profile is ready
       let retries = 3;
       while (retries > 0) {
-        const profile = await getUserProfile(user.uid);
+        const profile = await getUserProfile(result.user.uid);
         if (profile && profile.passwordSet) {
           break;
         }
@@ -182,101 +212,34 @@ export function CompleteSignup() {
       setState("success");
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 1500);
     } catch (err) {
-      console.error("Error setting password:", err);
+      console.error("Error during signup:", err);
 
-      let errorMessage = "Failed to set password. Please try again.";
+      let errorMessage = "Failed to complete sign-up. Please try again.";
 
       if (err instanceof Error) {
         const errorCode = (err as { code?: string }).code || err.message;
 
-        if (errorCode.includes("requires-recent-login")) {
-          errorMessage = "Your session has expired. Please sign in again.";
+        if (errorCode.includes("invalid-action-code") || errorCode.includes("expired-action-code")) {
+          errorMessage = "This sign-in link has expired or already been used. Please request a new invitation.";
+        } else if (errorCode.includes("invalid-email")) {
+          errorMessage = "Invalid email address. Please check and try again.";
+        } else if (errorCode.includes("user-disabled")) {
+          errorMessage = "This account has been disabled. Please contact an administrator.";
+        } else if (errorCode.includes("network-request-failed")) {
+          errorMessage = "Network error. Please check your connection and try again.";
         } else if (errorCode.includes("weak-password")) {
           errorMessage = "Password is too weak. Please choose a stronger password.";
+        } else if (errorCode.includes("requires-recent-login")) {
+          errorMessage = "Session expired. Please click the sign-in link again.";
         }
       }
 
-      setPasswordError(errorMessage);
-      setState("password_setup");
+      setError(errorMessage);
+      setState("ready_for_signup");
     }
   };
-
-  // Run on mount to check auth state and sign-in link
-  useEffect(() => {
-    let isMounted = true;
-
-    // Wait for auth to be ready
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (!isMounted) return;
-
-      if (user) {
-        // User is already signed in - check if they need to set password
-        const userProfile = await getUserProfile(user.uid);
-        if (userProfile?.passwordSet) {
-          // Already fully set up, redirect to dashboard
-          navigate("/");
-        } else {
-          // Need to set password
-          setState("password_setup");
-        }
-        return;
-      }
-
-      // User not signed in - check if this is a sign-in link
-      if (!isSignInWithEmailLink(auth, window.location.href)) {
-        if (isMounted) {
-          setError("Invalid sign-in link. Please request a new invitation.");
-          setState("error");
-        }
-        return;
-      }
-
-      // Get email from localStorage (same device flow)
-      const email = window.localStorage.getItem("emailForSignIn");
-
-      if (!email) {
-        // User opened link on different device - need to ask for email
-        if (isMounted) {
-          setState("needs_email");
-        }
-
-        // Try to pre-fill from invite if we have inviteId
-        if (inviteId) {
-          try {
-            const inviteDoc = await getDoc(doc(db, "invites", inviteId));
-            if (inviteDoc.exists() && isMounted) {
-              const data = inviteDoc.data();
-              setEmailInput(data.email || "");
-              setInviteRole(data.role as UserRole);
-            }
-          } catch (err) {
-            console.error("Error fetching invite:", err);
-          }
-        }
-        return;
-      }
-
-      // Complete sign-in automatically if we have the email
-      if (isMounted) {
-        setState("loading");
-        await completeSignIn(email);
-      }
-    });
-
-    return () => {
-      isMounted = false;
-      unsubscribe();
-    };
-  }, [auth, inviteId, completeSignIn, navigate]);
-
-  function handleEmailSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (emailInput.trim()) {
-      completeSignIn(emailInput.trim(), displayName || undefined);
-    }
-  }
 
   return (
     <div className="min-h-screen bg-[var(--bg-deep)] flex items-center justify-center p-4">
@@ -308,28 +271,17 @@ export function CompleteSignup() {
           {state === "initializing" && (
             <div className="text-center py-8">
               <div className="w-12 h-12 border-4 border-[var(--accent-cyan)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-[var(--text-secondary)]">Initializing...</p>
-            </div>
-          )}
-
-          {/* Loading State */}
-          {state === "loading" && (
-            <div className="text-center py-8">
-              <div className="w-12 h-12 border-4 border-[var(--accent-cyan)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
               <p className="text-[var(--text-secondary)]">Verifying your invitation...</p>
             </div>
           )}
 
-          {/* Needs Email State */}
-          {state === "needs_email" && (
+          {/* Ready for Signup - Combined email + password form */}
+          {state === "ready_for_signup" && (
             <div>
               <div className="text-center mb-6">
                 <h2 className="font-display text-xl font-bold text-[var(--text-primary)] mb-2">
                   Complete Your Sign Up
                 </h2>
-                <p className="text-[var(--text-muted)] text-sm mb-2">
-                  Please enter the email address where you received the invite.
-                </p>
                 {inviteRole && (
                   <p className="text-[var(--text-secondary)] text-sm">
                     You've been invited to join as{" "}
@@ -338,7 +290,7 @@ export function CompleteSignup() {
                 )}
               </div>
 
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <form onSubmit={handleSignup} className="space-y-4">
                 <div>
                   <label className="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-2">
                     Email Address
@@ -349,14 +301,13 @@ export function CompleteSignup() {
                     onChange={(e) => setEmailInput(e.target.value)}
                     required
                     className="input w-full"
-                    placeholder="Enter your email"
-                    autoFocus
+                    placeholder="Enter the email where you received the invite"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-2">
-                    Display Name (optional)
+                    Display Name
                   </label>
                   <input
                     type="text"
@@ -367,47 +318,6 @@ export function CompleteSignup() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary w-full">
-                  Complete Sign Up
-                </button>
-              </form>
-            </div>
-          )}
-
-          {/* Signing In State */}
-          {state === "signing_in" && (
-            <div className="text-center py-8">
-              <div className="w-12 h-12 border-4 border-[var(--accent-cyan)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-[var(--text-secondary)]">Signing you in...</p>
-            </div>
-          )}
-
-          {/* Password Setup State */}
-          {state === "password_setup" && (
-            <div>
-              <div className="text-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-[var(--accent-cyan)]/20 flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="w-6 h-6 text-[var(--accent-cyan)]"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-                <h2 className="font-display text-xl font-bold text-[var(--text-primary)] mb-2">Set Your Password</h2>
-                <p className="text-[var(--text-secondary)] text-sm">
-                  Welcome! Please create a password for your account.
-                </p>
-              </div>
-
-              <form onSubmit={handlePasswordSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider mb-2">
                     Password
@@ -419,8 +329,7 @@ export function CompleteSignup() {
                     required
                     minLength={8}
                     className="input w-full"
-                    placeholder="Enter password"
-                    autoFocus
+                    placeholder="Create a password (min 8 characters)"
                   />
                 </div>
 
@@ -435,7 +344,7 @@ export function CompleteSignup() {
                     required
                     minLength={8}
                     className="input w-full"
-                    placeholder="Confirm password"
+                    placeholder="Confirm your password"
                   />
                 </div>
 
@@ -449,28 +358,28 @@ export function CompleteSignup() {
                   </p>
                 </div>
 
-                {passwordError && (
+                {error && (
                   <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                    {passwordError}
+                    {error}
                   </div>
                 )}
 
                 <button
                   type="submit"
                   className="btn-primary w-full"
-                  disabled={password.length < 8 || password !== confirmPassword}
+                  disabled={!emailInput || password.length < 8 || password !== confirmPassword}
                 >
-                  Create Password
+                  Complete Sign Up
                 </button>
               </form>
             </div>
           )}
 
-          {/* Setting Password State */}
-          {state === "setting_password" && (
+          {/* Processing State */}
+          {state === "processing" && (
             <div className="text-center py-8">
               <div className="w-12 h-12 border-4 border-[var(--accent-cyan)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-[var(--text-secondary)]">Setting up your password...</p>
+              <p className="text-[var(--text-secondary)]">Setting up your account...</p>
             </div>
           )}
 
@@ -517,10 +426,7 @@ export function CompleteSignup() {
                 <button onClick={() => navigate("/login")} className="btn-primary w-full">
                   Request New Invite
                 </button>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="btn-secondary w-full"
-                >
+                <button onClick={() => window.location.reload()} className="btn-secondary w-full">
                   Try Again
                 </button>
               </div>
