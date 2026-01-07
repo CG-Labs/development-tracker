@@ -64,7 +64,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 
 interface ReportGeneratorProps {
   developments: Development[];
@@ -329,48 +330,68 @@ export function ReportGenerator({ developments }: ReportGeneratorProps) {
   }, []);
 
   // Export to Excel
-  const exportToExcel = useCallback(() => {
+  const exportToExcel = useCallback(async () => {
     if (!reportData || !selectedTemplate) return;
 
-    const wb = XLSX.utils.book_new();
+    const wb = new ExcelJS.Workbook();
 
     // Summary sheet
-    const summaryData = [
-      ["Report:", selectedTemplate.name],
-      ["Generated:", new Date().toLocaleString()],
-      [""],
-      ["Summary Metrics"],
-      ["Total Units", reportData.summary.totalUnits],
-      ["Total Value", formatCurrency(reportData.summary.totalValue)],
-      ["Units Sold", reportData.summary.soldUnits],
-      ["Total Revenue", formatCurrency(reportData.summary.totalRevenue)],
-      ["Average Price", formatCurrency(reportData.summary.avgPrice)],
-      ["Sales Rate", `${reportData.summary.salesRate.toFixed(1)}%`],
-    ];
-    const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
-    XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
+    const summarySheet = wb.addWorksheet("Summary");
+    summarySheet.addRow(["Report:", selectedTemplate.name]);
+    summarySheet.addRow(["Generated:", new Date().toLocaleString()]);
+    summarySheet.addRow([""]);
+    summarySheet.addRow(["Summary Metrics"]);
+    summarySheet.addRow(["Total Units", reportData.summary.totalUnits]);
+    summarySheet.addRow(["Total Value", formatCurrency(reportData.summary.totalValue)]);
+    summarySheet.addRow(["Units Sold", reportData.summary.soldUnits]);
+    summarySheet.addRow(["Total Revenue", formatCurrency(reportData.summary.totalRevenue)]);
+    summarySheet.addRow(["Average Price", formatCurrency(reportData.summary.avgPrice)]);
+    summarySheet.addRow(["Sales Rate", `${reportData.summary.salesRate.toFixed(1)}%`]);
 
     // Units sheet
-    const unitsData = reportData.units.map((u) => ({
-      Development: u.developmentName,
-      "Unit Number": u.unitNumber,
-      Type: u.type,
-      Bedrooms: u.bedrooms,
-      "Construction Status": u.constructionStatus,
-      "Sales Status": u.salesStatus,
-      "List Price": u.listPrice,
-      "Sold Price": u.soldPrice || "",
-      Purchaser: u.purchaserName || "",
-      "Purchaser Type": u.purchaserType || "",
-    }));
-    const unitsSheet = XLSX.utils.json_to_sheet(unitsData);
-    XLSX.utils.book_append_sheet(wb, unitsSheet, "Units");
+    const unitsSheet = wb.addWorksheet("Units");
+    unitsSheet.columns = [
+      { header: "Development", key: "Development", width: 25 },
+      { header: "Unit Number", key: "Unit Number", width: 12 },
+      { header: "Type", key: "Type", width: 15 },
+      { header: "Bedrooms", key: "Bedrooms", width: 10 },
+      { header: "Construction Status", key: "Construction Status", width: 18 },
+      { header: "Sales Status", key: "Sales Status", width: 15 },
+      { header: "List Price", key: "List Price", width: 15 },
+      { header: "Sold Price", key: "Sold Price", width: 15 },
+      { header: "Purchaser", key: "Purchaser", width: 20 },
+      { header: "Purchaser Type", key: "Purchaser Type", width: 15 },
+    ];
+    reportData.units.forEach((u) => {
+      unitsSheet.addRow({
+        Development: u.developmentName,
+        "Unit Number": u.unitNumber,
+        Type: u.type,
+        Bedrooms: u.bedrooms,
+        "Construction Status": u.constructionStatus,
+        "Sales Status": u.salesStatus,
+        "List Price": u.listPrice,
+        "Sold Price": u.soldPrice || "",
+        Purchaser: u.purchaserName || "",
+        "Purchaser Type": u.purchaserType || "",
+      });
+    });
+    unitsSheet.getRow(1).font = { bold: true };
 
     // By Development sheet
-    const devSheet = XLSX.utils.json_to_sheet(reportData.byDevelopment);
-    XLSX.utils.book_append_sheet(wb, devSheet, "By Development");
+    const devSheet = wb.addWorksheet("By Development");
+    if (reportData.byDevelopment.length > 0) {
+      const columns = Object.keys(reportData.byDevelopment[0]);
+      devSheet.columns = columns.map((key) => ({ header: key, key, width: 15 }));
+      reportData.byDevelopment.forEach((row) => {
+        devSheet.addRow(row);
+      });
+      devSheet.getRow(1).font = { bold: true };
+    }
 
-    XLSX.writeFile(wb, `${selectedTemplate.name.replace(/\s+/g, "_")}_${new Date().toISOString().split("T")[0]}.xlsx`);
+    const buffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    saveAs(blob, `${selectedTemplate.name.replace(/\s+/g, "_")}_${new Date().toISOString().split("T")[0]}.xlsx`);
   }, [reportData, selectedTemplate, formatCurrency]);
 
   // Render template card

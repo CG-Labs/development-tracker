@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus, UnitDates } from "../types";
 import { logChange } from "./auditLogService";
@@ -62,13 +62,17 @@ function parseNumber(value: unknown): number | undefined {
 function parseDate(value: unknown): string | undefined {
   if (!value || value === "") return undefined;
 
-  // If it's already a date object or serial number from Excel
+  // If it's a Date object (ExcelJS returns Date for date cells)
+  if (value instanceof Date) {
+    return value.toISOString().split("T")[0];
+  }
+
+  // If it's a number (Excel serial date)
   if (typeof value === "number") {
-    // Excel serial date
-    const date = XLSX.SSF.parse_date_code(value);
-    if (date) {
-      return new Date(date.y, date.m - 1, date.d).toISOString().split("T")[0];
-    }
+    // Excel serial date (days since 1899-12-30)
+    const excelEpoch = new Date(1899, 11, 30);
+    const date = new Date(excelEpoch.getTime() + value * 24 * 60 * 60 * 1000);
+    return date.toISOString().split("T")[0];
   }
 
   if (typeof value === "string") {
@@ -156,6 +160,55 @@ function compareValues(oldVal: unknown, newVal: unknown): boolean {
   return String(old) !== String(newV);
 }
 
+// Helper to get cell value, handling ExcelJS cell value types
+function getCellValue(row: ExcelJS.Row, colIndex: number): unknown {
+  const cell = row.getCell(colIndex);
+  if (!cell || cell.value === null || cell.value === undefined) {
+    return "";
+  }
+  // Handle rich text
+  if (typeof cell.value === "object" && "richText" in cell.value) {
+    return (cell.value.richText as { text: string }[]).map((r) => r.text).join("");
+  }
+  // Handle formula results
+  if (typeof cell.value === "object" && "result" in cell.value) {
+    return cell.value.result;
+  }
+  return cell.value;
+}
+
+// Convert worksheet to JSON-like array of objects
+function worksheetToJson(worksheet: ExcelJS.Worksheet): Record<string, unknown>[] {
+  const rows: Record<string, unknown>[] = [];
+  const headerRow = worksheet.getRow(1);
+  const headers: string[] = [];
+
+  // Get headers from first row
+  headerRow.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+    headers[colNumber] = String(cell.value || "");
+  });
+
+  // Process data rows (starting from row 2)
+  worksheet.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+    if (rowNumber === 1) return; // Skip header row
+
+    const rowData: Record<string, unknown> = {};
+    row.eachCell({ includeEmpty: true }, (_cell, colNumber) => {
+      const header = headers[colNumber];
+      if (header) {
+        rowData[header] = getCellValue(row, colNumber);
+      }
+    });
+
+    // Only add row if it has meaningful data
+    if (Object.keys(rowData).length > 0) {
+      rows.push(rowData);
+    }
+  });
+
+  return rows;
+}
+
 export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
   const result: ImportResult = {
     valid: [],
@@ -170,17 +223,17 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
 
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const workbook = XLSX.read(arrayBuffer, { type: "array", cellDates: true });
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.load(arrayBuffer);
 
     // Get the first sheet (Units sheet)
-    const sheetName = workbook.SheetNames[0];
-    if (!sheetName) {
+    const worksheet = workbook.worksheets[0];
+    if (!worksheet) {
       result.errors.push({ row: 0, message: "Excel file is empty or has no sheets" });
       return result;
     }
 
-    const worksheet = workbook.Sheets[sheetName];
-    const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+    const jsonData = worksheetToJson(worksheet);
 
     if (jsonData.length === 0) {
       result.errors.push({ row: 0, message: "No data found in the Excel file" });
@@ -203,8 +256,7 @@ export async function importUnitsFromExcel(file: File): Promise<ImportResult> {
     result.summary.total = jsonData.length;
 
     // Process each row
-    jsonData.forEach((rawRow, index) => {
-      const row = rawRow as Record<string, unknown>;
+    jsonData.forEach((row, index) => {
       const rowNum = index + 2; // +2 because Excel is 1-indexed and row 1 is header
 
       const developmentName = String(row["Development Name"] || "").trim();

@@ -32,7 +32,7 @@ export default defineConfig({
           // Charts
           'vendor-charts': ['recharts'],
           // Excel handling
-          'vendor-xlsx': ['xlsx'],
+          'vendor-exceljs': ['exceljs'],
         },
       },
     },

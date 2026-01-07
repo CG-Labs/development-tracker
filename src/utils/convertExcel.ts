@@ -1,4 +1,4 @@
-import XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
@@ -6,7 +6,37 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const { readFile, utils } = XLSX;
+// Helper to convert worksheet to array of arrays (like XLSX.utils.sheet_to_json with header: 1)
+function worksheetToAoa(worksheet: ExcelJS.Worksheet): unknown[][] {
+  const result: unknown[][] = [];
+  worksheet.eachRow({ includeEmpty: true }, (row, rowNumber) => {
+    const rowData: unknown[] = [];
+    row.eachCell({ includeEmpty: true }, (cell, colNumber) => {
+      // Ensure array is large enough
+      while (rowData.length < colNumber) {
+        rowData.push(undefined);
+      }
+      // Get cell value, handling various types
+      let value = cell.value;
+      if (value && typeof value === "object") {
+        if ("result" in value) {
+          // Formula result
+          value = value.result;
+        } else if ("richText" in value) {
+          // Rich text
+          value = (value.richText as { text: string }[]).map((r) => r.text).join("");
+        }
+      }
+      rowData[colNumber - 1] = value;
+    });
+    // Ensure row array is in the correct position
+    while (result.length < rowNumber) {
+      result.push([]);
+    }
+    result[rowNumber - 1] = rowData;
+  });
+  return result;
+}
 
 // Types matching our application
 type ConstructionStatus = "Not Started" | "In Progress" | "Complete";
@@ -433,8 +463,8 @@ function sheetNameToProjectNumber(sheetName: string): string {
   return prefixes[sheetName] || "XX-000";
 }
 
-function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development | null {
-  const sheet = workbook.Sheets[sheetName];
+function processSheet(workbook: ExcelJS.Workbook, sheetName: string): Development | null {
+  const sheet = workbook.getWorksheet(sheetName);
   if (!sheet) {
     console.log(`Sheet "${sheetName}" not found`);
     return null;
@@ -448,7 +478,7 @@ function processSheet(workbook: XLSX.WorkBook, sheetName: string): Development |
   }
 
   // Convert to array of arrays
-  const data: unknown[][] = utils.sheet_to_json(sheet, { header: 1 });
+  const data: unknown[][] = worksheetToAoa(sheet);
 
   console.log(`\nProcessing sheet: ${sheetName}`);
   console.log(`Total rows: ${data.length}`);
@@ -591,9 +621,9 @@ const SUMMARY_DEVELOPMENT_NAMES = [
   "BNG",
 ];
 
-function processSummarySheets(workbook: XLSX.WorkBook): MonthlyData[] {
-  const qtySheet = workbook.Sheets["Summary (Qty)"];
-  const valSheet = workbook.Sheets["Summary (Val)"];
+function processSummarySheets(workbook: ExcelJS.Workbook): MonthlyData[] {
+  const qtySheet = workbook.getWorksheet("Summary (Qty)");
+  const valSheet = workbook.getWorksheet("Summary (Val)");
 
   if (!qtySheet || !valSheet) {
     console.log("Summary sheets not found");
@@ -601,8 +631,8 @@ function processSummarySheets(workbook: XLSX.WorkBook): MonthlyData[] {
   }
 
   // Convert to array of arrays
-  const qtyData: unknown[][] = utils.sheet_to_json(qtySheet, { header: 1 });
-  const valData: unknown[][] = utils.sheet_to_json(valSheet, { header: 1 });
+  const qtyData: unknown[][] = worksheetToAoa(qtySheet);
+  const valData: unknown[][] = worksheetToAoa(valSheet);
 
   console.log("\n" + "=".repeat(60));
   console.log("PROCESSING SUMMARY SHEETS");
@@ -669,7 +699,7 @@ function processSummarySheets(workbook: XLSX.WorkBook): MonthlyData[] {
   return monthlyData;
 }
 
-function main() {
+async function main() {
   const excelPath = path.resolve(__dirname, "../../Sales Tracker Quick Reference.xlsx");
 
   console.log("Reading Excel file:", excelPath);
@@ -679,9 +709,10 @@ function main() {
     process.exit(1);
   }
 
-  const workbook = readFile(excelPath);
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.readFile(excelPath);
 
-  console.log("Available sheets:", workbook.SheetNames);
+  console.log("Available sheets:", workbook.worksheets.map(ws => ws.name));
 
   const developments: Development[] = [];
 
@@ -779,4 +810,4 @@ export const progressData: MonthlyData[] = ${JSON.stringify(monthlyData, null, 2
   console.log("=".repeat(60));
 }
 
-main();
+main().catch(console.error);

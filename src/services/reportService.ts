@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { developments } from "../data/realDevelopments";
 import type { Development, Unit, Currency } from "../types";
@@ -459,9 +459,9 @@ function generate12WeekLookaheadPdf(selectedDevelopmentIds?: string[]): jsPDF {
   return doc;
 }
 
-function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.WorkBook {
+async function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): Promise<ExcelJS.Workbook> {
   const allUnits = get12WeekLookaheadUnits(selectedDevelopmentIds);
-  const wb = XLSX.utils.book_new();
+  const wb = new ExcelJS.Workbook();
 
   // Group units by development
   const unitsByDevelopment: Record<string, LookaheadUnit[]> = {};
@@ -483,34 +483,65 @@ function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.W
 
   // Summary sheet
   const pastDueCount = allUnits.filter((u) => u.isPastDue).length;
-  const summaryData = [
-    ["12 Week Lookahead Report", formatDate(new Date())],
-    [],
-    ["SUMMARY"],
-    ["Metric", "Count"],
-    ["Total Units in Lookahead", allUnits.length],
-    ["Past Due", pastDueCount],
-    [],
-    ["BY DEVELOPMENT"],
-    ["Development", "Units", "Past Due"],
-    ...Object.keys(unitsByDevelopment).sort().map((devName) => [
+  const summarySheet = wb.addWorksheet("Summary");
+  summarySheet.addRow(["12 Week Lookahead Report", formatDate(new Date())]);
+  summarySheet.addRow([]);
+  summarySheet.addRow(["SUMMARY"]);
+  summarySheet.addRow(["Metric", "Count"]);
+  summarySheet.addRow(["Total Units in Lookahead", allUnits.length]);
+  summarySheet.addRow(["Past Due", pastDueCount]);
+  summarySheet.addRow([]);
+  summarySheet.addRow(["BY DEVELOPMENT"]);
+  summarySheet.addRow(["Development", "Units", "Past Due"]);
+  Object.keys(unitsByDevelopment).sort().forEach((devName) => {
+    summarySheet.addRow([
       devName,
       unitsByDevelopment[devName].length,
       unitsByDevelopment[devName].filter((u) => u.isPastDue).length,
-    ]),
-  ];
-  const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
-  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
+    ]);
+  });
 
   // All Units sheet with columns including Inc VAT, Ex VAT, BCMS date, and days since BCMS
-  const allUnitsData = allUnits.map((u) => {
+  const allUnitsSheet = wb.addWorksheet("All Units");
+  allUnitsSheet.columns = [
+    { header: "Development", key: "Development", width: 25 },
+    { header: "Unit Number", key: "Unit Number", width: 12 },
+    { header: "Bedrooms", key: "Bedrooms", width: 10 },
+    { header: "Unit Type", key: "Unit Type", width: 15 },
+    { header: "Currency", key: "Currency", width: 10 },
+    { header: "Price Inc VAT", key: "Price Inc VAT", width: 15 },
+    { header: "VAT Rate %", key: "VAT Rate %", width: 12 },
+    { header: "Price Ex VAT", key: "Price Ex VAT", width: 15 },
+    { header: "Sales Status", key: "Sales Status", width: 15 },
+    { header: "Planned Close Date", key: "Planned Close Date", width: 18 },
+    { header: "Days Overdue", key: "Days Overdue", width: 12 },
+    { header: "BCMS Achieved Date", key: "BCMS Achieved Date", width: 18 },
+    { header: "Days Since BCMS", key: "Days Since BCMS", width: 15 },
+    { header: "BCMS Received", key: "BCMS Received", width: 14 },
+    { header: "Land Registry Approved", key: "Land Registry Approved", width: 20 },
+    { header: "Homebond Received", key: "Homebond Received", width: 18 },
+    { header: "SAN Approved", key: "SAN Approved", width: 14 },
+    { header: "Contract Issued", key: "Contract Issued", width: 15 },
+    { header: "Contract Signed", key: "Contract Signed", width: 15 },
+    { header: "Sale Closed", key: "Sale Closed", width: 12 },
+  ];
+
+  // Sort units by development then by planned close date
+  const sortedUnits = [...allUnits].sort((a, b) => {
+    if (a.developmentName !== b.developmentName) {
+      return a.developmentName.localeCompare(b.developmentName);
+    }
+    return (a.unit.plannedCloseDate || "").localeCompare(b.unit.plannedCloseDate || "");
+  });
+
+  sortedUnits.forEach((u) => {
     const bcmsDate = u.unit.documentation?.bcmsReceivedDate;
     const daysSinceBcms = getDaysSince(bcmsDate);
     const unitPriceIncVat = u.unit.priceIncVat || u.unit.listPrice || 0;
     const vatRate = getVatRateForUnit(u.vatRates, u.unit.type);
     const unitPriceExVat = calculateExVat(unitPriceIncVat, vatRate);
 
-    return {
+    allUnitsSheet.addRow({
       "Development": u.developmentName,
       "Unit Number": u.unit.unitNumber,
       "Bedrooms": u.unit.bedrooms,
@@ -531,19 +562,11 @@ function generate12WeekLookaheadExcel(selectedDevelopmentIds?: string[]): XLSX.W
       "Contract Issued": u.unit.documentation?.contractIssued ? "Yes" : "No",
       "Contract Signed": u.unit.documentation?.contractSigned ? "Yes" : "No",
       "Sale Closed": u.unit.documentation?.saleClosed ? "Yes" : "No",
-    };
+    });
   });
 
-  // Sort by development then by planned close date
-  allUnitsData.sort((a, b) => {
-    if (a.Development !== b.Development) {
-      return a.Development.localeCompare(b.Development);
-    }
-    return (a["Planned Close Date"] || "").localeCompare(b["Planned Close Date"] || "");
-  });
-
-  const allUnitsSheet = XLSX.utils.json_to_sheet(allUnitsData);
-  XLSX.utils.book_append_sheet(wb, allUnitsSheet, "All Units");
+  // Style header row
+  allUnitsSheet.getRow(1).font = { bold: true };
 
   return wb;
 }
@@ -796,41 +819,37 @@ function generateSalesActivityPdf(): jsPDF {
   return doc;
 }
 
-function generateSalesActivityExcel(): XLSX.WorkBook {
+async function generateSalesActivityExcel(): Promise<ExcelJS.Workbook> {
   const units = getSalesActivityUnits();
-  const wb = XLSX.utils.book_new();
+  const wb = new ExcelJS.Workbook();
 
   // Summary sheet with values
   const activityTypes: Array<"SAN Approved" | "Contract Signed" | "Sale Closed"> = ["SAN Approved", "Contract Signed", "Sale Closed"];
 
-  const summaryData = [
-    ["Sales Activity - Last 4 Weeks", formatDate(new Date())],
-    [],
-    ["SUMMARY BY TYPE"],
-    ["Activity Type", "Count", "Value"],
-    ...activityTypes.map((type) => {
-      const typeUnits = units.filter((u) => u.activityType === type);
-      const typeValue = typeUnits.reduce((sum, u) => sum + u.value, 0);
-      return [type, typeUnits.length, typeValue];
-    }),
-    [],
-    ["SUMMARY BY WEEK"],
-    ["Period", "Count", "Value"],
-    ...["This Week", "1 Week Ago", "2 Weeks Ago", "3 Weeks Ago", "4 Weeks Ago"].map((label, index) => {
-      const weekUnits = units.filter((u) => u.weeksAgo === index);
-      const weekValue = weekUnits.reduce((sum, u) => sum + u.value, 0);
-      return [label, weekUnits.length, weekValue];
-    }),
-    [],
-    ["GRAND TOTAL", units.length, units.reduce((sum, u) => sum + u.value, 0)],
-  ];
-  const summarySheet = XLSX.utils.aoa_to_sheet(summaryData);
-  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
+  const summarySheet = wb.addWorksheet("Summary");
+  summarySheet.addRow(["Sales Activity - Last 4 Weeks", formatDate(new Date())]);
+  summarySheet.addRow([]);
+  summarySheet.addRow(["SUMMARY BY TYPE"]);
+  summarySheet.addRow(["Activity Type", "Count", "Value"]);
+  activityTypes.forEach((type) => {
+    const typeUnits = units.filter((u) => u.activityType === type);
+    const typeValue = typeUnits.reduce((sum, u) => sum + u.value, 0);
+    summarySheet.addRow([type, typeUnits.length, typeValue]);
+  });
+  summarySheet.addRow([]);
+  summarySheet.addRow(["SUMMARY BY WEEK"]);
+  summarySheet.addRow(["Period", "Count", "Value"]);
+  ["This Week", "1 Week Ago", "2 Weeks Ago", "3 Weeks Ago", "4 Weeks Ago"].forEach((label, index) => {
+    const weekUnits = units.filter((u) => u.weeksAgo === index);
+    const weekValue = weekUnits.reduce((sum, u) => sum + u.value, 0);
+    summarySheet.addRow([label, weekUnits.length, weekValue]);
+  });
+  summarySheet.addRow([]);
+  summarySheet.addRow(["GRAND TOTAL", units.length, units.reduce((sum, u) => sum + u.value, 0)]);
 
   // Grouped by Development sheet
-  const groupedData: (string | number)[][] = [
-    ["Development", "Activity Type", "Unit Count", "Total Value"],
-  ];
+  const groupedSheet = wb.addWorksheet("By Development");
+  groupedSheet.addRow(["Development", "Activity Type", "Unit Count", "Total Value"]);
 
   // Group by development
   const unitsByDevelopment: Record<string, SalesActivityUnit[]> = {};
@@ -850,29 +869,40 @@ function generateSalesActivityExcel(): XLSX.WorkBook {
       const typeUnits = devUnits.filter((u) => u.activityType === actType);
       if (typeUnits.length > 0) {
         const typeValue = typeUnits.reduce((sum, u) => sum + u.value, 0);
-        groupedData.push([devName, actType, typeUnits.length, typeValue]);
+        groupedSheet.addRow([devName, actType, typeUnits.length, typeValue]);
       }
     });
 
-    groupedData.push([`${devName} Total`, "", devUnits.length, devTotal]);
-    groupedData.push(["", "", "", ""]);
+    groupedSheet.addRow([`${devName} Total`, "", devUnits.length, devTotal]);
+    groupedSheet.addRow(["", "", "", ""]);
   });
 
-  const groupedSheet = XLSX.utils.aoa_to_sheet(groupedData);
-  XLSX.utils.book_append_sheet(wb, groupedSheet, "By Development");
-
   // All Transactions sheet
-  const allData = units.map((u) => ({
-    "Development": u.developmentName,
-    "Unit Number": u.unit.unitNumber,
-    "Unit Type": u.unit.type,
-    "Activity Type": u.activityType,
-    "Activity Date": formatDateDDMMYYYY(u.activityDate),
-    "Weeks Ago": u.weeksAgo,
-    "Value": u.value,
-  }));
-  const allSheet = XLSX.utils.json_to_sheet(allData);
-  XLSX.utils.book_append_sheet(wb, allSheet, "All Transactions");
+  const allSheet = wb.addWorksheet("All Transactions");
+  allSheet.columns = [
+    { header: "Development", key: "Development", width: 25 },
+    { header: "Unit Number", key: "Unit Number", width: 12 },
+    { header: "Unit Type", key: "Unit Type", width: 15 },
+    { header: "Activity Type", key: "Activity Type", width: 15 },
+    { header: "Activity Date", key: "Activity Date", width: 15 },
+    { header: "Weeks Ago", key: "Weeks Ago", width: 12 },
+    { header: "Value", key: "Value", width: 15 },
+  ];
+
+  units.forEach((u) => {
+    allSheet.addRow({
+      "Development": u.developmentName,
+      "Unit Number": u.unit.unitNumber,
+      "Unit Type": u.unit.type,
+      "Activity Type": u.activityType,
+      "Activity Date": formatDateDDMMYYYY(u.activityDate),
+      "Weeks Ago": u.weeksAgo,
+      "Value": u.value,
+    });
+  });
+
+  // Style header row
+  allSheet.getRow(1).font = { bold: true };
 
   return wb;
 }
@@ -983,52 +1013,72 @@ function generateDevelopmentDetailPdf(developmentId: string): jsPDF | null {
   return doc;
 }
 
-function generateDevelopmentDetailExcel(developmentId: string): XLSX.WorkBook | null {
+async function generateDevelopmentDetailExcel(developmentId: string): Promise<ExcelJS.Workbook | null> {
   const development = developments.find((d) => d.id === developmentId);
   if (!development) return null;
 
   const stats = getDevelopmentStats(development);
-  const wb = XLSX.utils.book_new();
+  const wb = new ExcelJS.Workbook();
 
   // Sheet 1: Summary
-  const summarySheet = XLSX.utils.aoa_to_sheet([
-    [development.name, formatDate(new Date())],
-    [development.projectNumber],
-    [],
-    ["DEVELOPMENT SUMMARY"],
-    ["Metric", "Value"],
-    ["Total Units", stats.totalUnits],
-    ["GDV", stats.gdv],
-    ["Sales Complete (Count)", stats.salesCompleteCount],
-    ["Sales Complete (Value)", stats.salesValue],
-    ["Contracted", stats.contractedCount],
-    ["Under Offer", stats.underOfferCount],
-    ["For Sale", stats.forSaleCount],
-    ["Not Released", stats.notReleasedCount],
-    ["Completion Rate", `${stats.percentComplete}%`],
-  ]);
-  XLSX.utils.book_append_sheet(wb, summarySheet, "Summary");
+  const summarySheet = wb.addWorksheet("Summary");
+  summarySheet.addRow([development.name, formatDate(new Date())]);
+  summarySheet.addRow([development.projectNumber]);
+  summarySheet.addRow([]);
+  summarySheet.addRow(["DEVELOPMENT SUMMARY"]);
+  summarySheet.addRow(["Metric", "Value"]);
+  summarySheet.addRow(["Total Units", stats.totalUnits]);
+  summarySheet.addRow(["GDV", stats.gdv]);
+  summarySheet.addRow(["Sales Complete (Count)", stats.salesCompleteCount]);
+  summarySheet.addRow(["Sales Complete (Value)", stats.salesValue]);
+  summarySheet.addRow(["Contracted", stats.contractedCount]);
+  summarySheet.addRow(["Under Offer", stats.underOfferCount]);
+  summarySheet.addRow(["For Sale", stats.forSaleCount]);
+  summarySheet.addRow(["Not Released", stats.notReleasedCount]);
+  summarySheet.addRow(["Completion Rate", `${stats.percentComplete}%`]);
 
   // Sheet 2: Unit Details
-  const unitData = development.units.map((unit) => ({
-    "Unit Number": unit.unitNumber,
-    Type: unit.type,
-    Bedrooms: unit.bedrooms,
-    "Construction Status": unit.constructionStatus,
-    "Sales Status": unit.salesStatus,
-    "List Price": unit.listPrice,
-    "Sold Price": unit.soldPrice || "",
-    "Purchaser Type": unit.purchaserType || "",
-    "Part V": unit.partV ? "Yes" : "No",
-    "Planned Close": unit.plannedCloseDate || "",
-    "BCMS Received": unit.documentation?.bcmsReceived ? "Yes" : "No",
-    "Land Registry": unit.documentation?.landRegistryApproved ? "Yes" : "No",
-    Homebond: unit.documentation?.homebondReceived ? "Yes" : "No",
-    "Contract Signed": unit.documentation?.contractSigned ? "Yes" : "No",
-    "Sale Closed": unit.documentation?.saleClosed ? "Yes" : "No",
-  }));
-  const unitSheet = XLSX.utils.json_to_sheet(unitData);
-  XLSX.utils.book_append_sheet(wb, unitSheet, "Units");
+  const unitSheet = wb.addWorksheet("Units");
+  unitSheet.columns = [
+    { header: "Unit Number", key: "Unit Number", width: 12 },
+    { header: "Type", key: "Type", width: 15 },
+    { header: "Bedrooms", key: "Bedrooms", width: 10 },
+    { header: "Construction Status", key: "Construction Status", width: 18 },
+    { header: "Sales Status", key: "Sales Status", width: 15 },
+    { header: "List Price", key: "List Price", width: 15 },
+    { header: "Sold Price", key: "Sold Price", width: 15 },
+    { header: "Purchaser Type", key: "Purchaser Type", width: 15 },
+    { header: "Part V", key: "Part V", width: 8 },
+    { header: "Planned Close", key: "Planned Close", width: 15 },
+    { header: "BCMS Received", key: "BCMS Received", width: 14 },
+    { header: "Land Registry", key: "Land Registry", width: 14 },
+    { header: "Homebond", key: "Homebond", width: 12 },
+    { header: "Contract Signed", key: "Contract Signed", width: 15 },
+    { header: "Sale Closed", key: "Sale Closed", width: 12 },
+  ];
+
+  development.units.forEach((unit) => {
+    unitSheet.addRow({
+      "Unit Number": unit.unitNumber,
+      "Type": unit.type,
+      "Bedrooms": unit.bedrooms,
+      "Construction Status": unit.constructionStatus,
+      "Sales Status": unit.salesStatus,
+      "List Price": unit.listPrice,
+      "Sold Price": unit.soldPrice || "",
+      "Purchaser Type": unit.purchaserType || "",
+      "Part V": unit.partV ? "Yes" : "No",
+      "Planned Close": unit.plannedCloseDate || "",
+      "BCMS Received": unit.documentation?.bcmsReceived ? "Yes" : "No",
+      "Land Registry": unit.documentation?.landRegistryApproved ? "Yes" : "No",
+      "Homebond": unit.documentation?.homebondReceived ? "Yes" : "No",
+      "Contract Signed": unit.documentation?.contractSigned ? "Yes" : "No",
+      "Sale Closed": unit.documentation?.saleClosed ? "Yes" : "No",
+    });
+  });
+
+  // Style header row
+  unitSheet.getRow(1).font = { bold: true };
 
   return wb;
 }
@@ -1065,24 +1115,24 @@ export async function generateReport(options: ReportOptions): Promise<{ pdf?: Bl
 
   // Generate Excel
   if (options.format === "excel" || options.format === "both") {
-    let workbook: XLSX.WorkBook | null = null;
+    let workbook: ExcelJS.Workbook | null = null;
 
     switch (options.type) {
       case "12week-lookahead":
-        workbook = generate12WeekLookaheadExcel(options.selectedDevelopmentIds);
+        workbook = await generate12WeekLookaheadExcel(options.selectedDevelopmentIds);
         break;
       case "sales-activity":
-        workbook = generateSalesActivityExcel();
+        workbook = await generateSalesActivityExcel();
         break;
       case "development":
         if (options.developmentId) {
-          workbook = generateDevelopmentDetailExcel(options.developmentId);
+          workbook = await generateDevelopmentDetailExcel(options.developmentId);
         }
         break;
     }
 
     if (workbook) {
-      const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+      const excelBuffer = await workbook.xlsx.writeBuffer();
       result.excel = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
     }
   }
@@ -1155,35 +1205,35 @@ export function getDevelopmentsList(): { id: string; name: string }[] {
 
 // Export cashflow data to Excel with proper layout
 // Dates as columns, Developments as rows
-export function exportCashflowToExcel(
+export async function exportCashflowToExcel(
   data: { month: string; [key: string]: string | number }[],
   developmentsList: string[]
-): void {
-  const wb = XLSX.utils.book_new();
+): Promise<void> {
+  const wb = new ExcelJS.Workbook();
+  const ws = wb.addWorksheet("Cash Flow");
 
   // Get all unique periods (months) from data
   const periods = data.map((d) => d.month as string);
 
-  // Build the worksheet data
-  const wsData: (string | number)[][] = [];
-
   // Row 1: Title (merged)
-  wsData.push(["Cashflow Report"]);
+  ws.addRow(["Cashflow Report"]);
+  ws.mergeCells(1, 1, 1, periods.length + 2);
 
   // Row 2: Generated date
-  wsData.push([`Generated: ${formatDate(new Date())}`]);
+  ws.addRow([`Generated: ${formatDate(new Date())}`]);
 
   // Row 3: Period range
   const startPeriod = periods[0] || "";
   const endPeriod = periods[periods.length - 1] || "";
-  wsData.push([`Period: ${startPeriod} to ${endPeriod}`]);
+  ws.addRow([`Period: ${startPeriod} to ${endPeriod}`]);
 
   // Row 4: Empty
-  wsData.push([]);
+  ws.addRow([]);
 
   // Row 5: Header row (Development | Period1 | Period2 | ... | Total)
-  const headerRow: (string | number)[] = ["Development", ...periods, "Total"];
-  wsData.push(headerRow);
+  const headerRow = ["Development", ...periods, "Total"];
+  ws.addRow(headerRow);
+  ws.getRow(5).font = { bold: true };
 
   // Row 6+: Data rows (one per development)
   developmentsList.forEach((devName) => {
@@ -1198,7 +1248,7 @@ export function exportCashflowToExcel(
     });
 
     row.push(devTotal);
-    wsData.push(row);
+    ws.addRow(row);
   });
 
   // Total row
@@ -1215,26 +1265,16 @@ export function exportCashflowToExcel(
     grandTotal += periodTotal;
   });
   totalRow.push(grandTotal);
-  wsData.push(totalRow);
-
-  // Create worksheet
-  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  ws.addRow(totalRow);
 
   // Set column widths
-  const colWidths: { wch: number }[] = [{ wch: 25 }]; // First column (Development names)
-  periods.forEach(() => colWidths.push({ wch: 15 }));
-  colWidths.push({ wch: 15 }); // Total column
-  ws["!cols"] = colWidths;
-
-  // Merge title cell
-  ws["!merges"] = [
-    { s: { r: 0, c: 0 }, e: { r: 0, c: periods.length + 1 } },
-  ];
-
-  XLSX.utils.book_append_sheet(wb, ws, "Cash Flow");
+  ws.getColumn(1).width = 25; // First column (Development names)
+  for (let i = 2; i <= periods.length + 2; i++) {
+    ws.getColumn(i).width = 15;
+  }
 
   // Generate file
-  const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+  const excelBuffer = await wb.xlsx.writeBuffer();
   const blob = new Blob([excelBuffer], {
     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   });
