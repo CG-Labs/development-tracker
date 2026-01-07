@@ -164,11 +164,25 @@ export function CompleteSignup() {
       // Mark password as set in Firestore
       await markPasswordSet(user.uid);
 
+      // Wait a moment for Firestore to sync, then verify profile exists
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      // Verify profile is ready before redirecting
+      let retries = 3;
+      while (retries > 0) {
+        const profile = await getUserProfile(user.uid);
+        if (profile && profile.passwordSet) {
+          break;
+        }
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        retries--;
+      }
+
       // Success - redirect to dashboard
       setState("success");
       setTimeout(() => {
         navigate("/");
-      }, 1500);
+      }, 1000);
     } catch (err) {
       console.error("Error setting password:", err);
 
