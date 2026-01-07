@@ -453,15 +453,6 @@ export function UnitDetailModal({
           </button>
         </div>
 
-        {/* Save Message */}
-        {saveMessage && (
-          <div className="mx-6 mt-4 p-3 bg-[var(--accent-emerald)] bg-opacity-20 border border-[var(--accent-emerald)] rounded-lg">
-            <p className="text-[var(--accent-emerald)] font-mono text-sm text-center">
-              {saveMessage}
-            </p>
-          </div>
-        )}
-
         {/* Content */}
         <div className="p-6 space-y-6">
           {/* Unit Details */}
@@ -1235,6 +1226,16 @@ export function UnitDetailModal({
 
         {/* Footer */}
         <div className="sticky bottom-0 glass border-t border-[var(--border-subtle)] px-6 py-4 rounded-b-xl">
+          {/* Save Message - shown in footer for visibility */}
+          {saveMessage && (
+            <div className={`mb-3 p-3 rounded-lg text-center ${
+              saveMessage.includes("Failed") || saveMessage.includes("Error")
+                ? "bg-red-500/20 border border-red-500 text-red-400"
+                : "bg-[var(--accent-emerald)]/20 border border-[var(--accent-emerald)] text-[var(--accent-emerald)]"
+            }`}>
+              <p className="font-mono text-sm">{saveMessage}</p>
+            </div>
+          )}
           {isEditing ? (
             <div className="flex gap-3">
               <button onClick={handleCancel} disabled={isSaving} className="btn-secondary flex-1 disabled:opacity-50">
