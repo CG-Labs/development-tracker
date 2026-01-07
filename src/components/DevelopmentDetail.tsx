@@ -119,6 +119,7 @@ export function DevelopmentDetail() {
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
+  const [homebondApprovedFilter, setHomebondApprovedFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
@@ -191,13 +192,17 @@ export function DevelopmentDetail() {
         bcmsApprovedFilter === "all" ||
         (bcmsApprovedFilter === "yes" && unit.documentation?.bcmsApprovedDate) ||
         (bcmsApprovedFilter === "no" && !unit.documentation?.bcmsApprovedDate);
+      const matchesHomebondApproved =
+        homebondApprovedFilter === "all" ||
+        (homebondApprovedFilter === "yes" && unit.documentation?.homebondApprovedDate) ||
+        (homebondApprovedFilter === "no" && !unit.documentation?.homebondApprovedDate);
       const matchesSales =
         salesFilter === "all" || unit.salesStatus === salesFilter;
       const matchesIncentive =
         incentiveFilter === "all" ||
         (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesBcmsApproved && matchesSales && matchesIncentive;
+      return matchesSearch && matchesType && matchesBcmsApproved && matchesHomebondApproved && matchesSales && matchesIncentive;
     });
 
     // Sort the filtered units
@@ -258,7 +263,7 @@ export function DevelopmentDetail() {
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
+  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, homebondApprovedFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -508,7 +513,7 @@ export function DevelopmentDetail() {
 
       {/* Filters */}
       <div className="card p-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
           {/* Search */}
           <div className="lg:col-span-1">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
@@ -565,6 +570,22 @@ export function DevelopmentDetail() {
             <select
               value={bcmsApprovedFilter}
               onChange={(e) => setBcmsApprovedFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* Homebond Approved Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              Homebond
+            </label>
+            <select
+              value={homebondApprovedFilter}
+              onChange={(e) => setHomebondApprovedFilter(e.target.value)}
               className="select"
             >
               <option value="all">All</option>
