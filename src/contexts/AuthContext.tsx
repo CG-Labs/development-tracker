@@ -93,9 +93,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   /**
    * Load user profile and validate access
+   * Includes retry logic for race conditions after signup
    */
   const loadUserWithProfile = useCallback(async (user: User): Promise<AuthUser | null> => {
-    const profile = await getUserProfile(user.uid);
+    // Try to get profile with retries (handles Firestore sync delay after signup)
+    let profile = await getUserProfile(user.uid);
+
+    if (!profile) {
+      // Profile not found - retry a few times in case of sync delay
+      for (let i = 0; i < 3; i++) {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        profile = await getUserProfile(user.uid);
+        if (profile) break;
+      }
+    }
 
     if (!profile) {
       // No profile exists - check if this is an admin email
