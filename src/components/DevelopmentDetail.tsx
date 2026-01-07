@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { developments } from "../data/realDevelopments";
 import type { Unit, ConstructionStatus, SalesStatus } from "../types";
@@ -10,7 +10,38 @@ import { useAuth } from "../contexts/AuthContext";
 import { getActiveSchemes } from "../services/incentiveService";
 import type { IncentiveScheme } from "../types/incentive";
 
-type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+// Unit overrides storage key (same as excelImportService)
+const UNIT_OVERRIDES_KEY = "development_tracker_unit_overrides";
+
+interface UnitOverride {
+  developmentId: string;
+  unitNumber: string;
+  unit: Unit;
+}
+
+// Save unit override to localStorage
+function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit): void {
+  try {
+    const saved = localStorage.getItem(UNIT_OVERRIDES_KEY);
+    const overrides: UnitOverride[] = saved ? JSON.parse(saved) : [];
+
+    const existingIndex = overrides.findIndex(
+      (o) => o.developmentId === developmentId && o.unitNumber === unitNumber
+    );
+
+    if (existingIndex >= 0) {
+      overrides[existingIndex].unit = unit;
+    } else {
+      overrides.push({ developmentId, unitNumber, unit });
+    }
+
+    localStorage.setItem(UNIT_OVERRIDES_KEY, JSON.stringify(overrides));
+  } catch (error) {
+    console.error("Failed to save unit override:", error);
+  }
+}
+
+type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "homebondApproved" | "berApproved" | "fcCompliance" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
 type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
@@ -87,7 +118,10 @@ export function DevelopmentDetail() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [constructionFilter, setConstructionFilter] = useState<string>("all");
+  const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
+  const [homebondApprovedFilter, setHomebondApprovedFilter] = useState<string>("all");
+  const [berApprovedFilter, setBerApprovedFilter] = useState<string>("all");
+  const [fcComplianceFilter, setFcComplianceFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
@@ -114,6 +148,32 @@ export function DevelopmentDetail() {
       .catch(console.error);
   }, []);
 
+  // Handle unit save from modal
+  const handleUnitSave = useCallback(
+    (updatedUnit: Unit) => {
+      if (!development) return;
+
+      // Find and update the unit in the development.units array
+      const unitIndex = development.units.findIndex(
+        (u) => u.unitNumber === updatedUnit.unitNumber
+      );
+      if (unitIndex >= 0) {
+        // Update in-memory array (direct mutation since we don't have a setter)
+        development.units[unitIndex] = updatedUnit;
+      }
+
+      // Save to localStorage for persistence
+      saveUnitOverride(development.id, updatedUnit.unitNumber, updatedUnit);
+
+      // Update the selectedUnit to reflect changes in the modal
+      setSelectedUnit(updatedUnit);
+
+      // Trigger a re-render
+      setRefreshKey((k) => k + 1);
+    },
+    [development]
+  );
+
   const unitTypes = useMemo(() => {
     if (!development) return [];
     const types = new Set(development.units.map((u) => u.type));
@@ -130,16 +190,29 @@ export function DevelopmentDetail() {
         unit.type.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesType = typeFilter === "all" || unit.type === typeFilter;
-      const matchesConstruction =
-        constructionFilter === "all" ||
-        unit.constructionStatus === constructionFilter;
+      const matchesBcmsApproved =
+        bcmsApprovedFilter === "all" ||
+        (bcmsApprovedFilter === "yes" && unit.documentation?.bcmsApprovedDate) ||
+        (bcmsApprovedFilter === "no" && !unit.documentation?.bcmsApprovedDate);
+      const matchesHomebondApproved =
+        homebondApprovedFilter === "all" ||
+        (homebondApprovedFilter === "yes" && unit.documentation?.homebondApprovedDate) ||
+        (homebondApprovedFilter === "no" && !unit.documentation?.homebondApprovedDate);
+      const matchesBerApproved =
+        berApprovedFilter === "all" ||
+        (berApprovedFilter === "yes" && unit.documentation?.berApprovedDate) ||
+        (berApprovedFilter === "no" && !unit.documentation?.berApprovedDate);
+      const matchesFcCompliance =
+        fcComplianceFilter === "all" ||
+        (fcComplianceFilter === "yes" && unit.documentation?.fcComplianceReceivedDate) ||
+        (fcComplianceFilter === "no" && !unit.documentation?.fcComplianceReceivedDate);
       const matchesSales =
         salesFilter === "all" || unit.salesStatus === salesFilter;
       const matchesIncentive =
         incentiveFilter === "all" ||
         (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesConstruction && matchesSales && matchesIncentive;
+      return matchesSearch && matchesType && matchesBcmsApproved && matchesHomebondApproved && matchesBerApproved && matchesFcCompliance && matchesSales && matchesIncentive;
     });
 
     // Sort the filtered units
@@ -153,7 +226,10 @@ export function DevelopmentDetail() {
           comparison = a.type.localeCompare(b.type);
           break;
         case "bedrooms":
-          comparison = a.bedrooms - b.bedrooms;
+          // Handle bedrooms comparison with string/number values
+          const bedsA = typeof a.bedrooms === "number" ? a.bedrooms : (a.bedrooms === "Studio" ? 0 : parseInt(a.bedrooms) || 0);
+          const bedsB = typeof b.bedrooms === "number" ? b.bedrooms : (b.bedrooms === "Studio" ? 0 : parseInt(b.bedrooms) || 0);
+          comparison = bedsA - bedsB;
           break;
         case "constructionStatus":
           comparison = a.constructionStatus.localeCompare(b.constructionStatus);
@@ -161,6 +237,30 @@ export function DevelopmentDetail() {
         case "salesStatus":
           comparison = a.salesStatus.localeCompare(b.salesStatus);
           break;
+        case "bcmsApproved": {
+          const bcmsA = a.documentation?.bcmsApprovedDate || "";
+          const bcmsB = b.documentation?.bcmsApprovedDate || "";
+          comparison = bcmsA.localeCompare(bcmsB);
+          break;
+        }
+        case "homebondApproved": {
+          const hbA = a.documentation?.homebondApprovedDate || "";
+          const hbB = b.documentation?.homebondApprovedDate || "";
+          comparison = hbA.localeCompare(hbB);
+          break;
+        }
+        case "berApproved": {
+          const berA = a.documentation?.berApprovedDate || "";
+          const berB = b.documentation?.berApprovedDate || "";
+          comparison = berA.localeCompare(berB);
+          break;
+        }
+        case "fcCompliance": {
+          const fcA = a.documentation?.fcComplianceReceivedDate || "";
+          const fcB = b.documentation?.fcComplianceReceivedDate || "";
+          comparison = fcA.localeCompare(fcB);
+          break;
+        }
         case "plannedBcmsDate": {
           const dateA = a.documentation?.plannedBcmsDate || "";
           const dateB = b.documentation?.plannedBcmsDate || "";
@@ -185,7 +285,7 @@ export function DevelopmentDetail() {
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, searchQuery, typeFilter, constructionFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
+  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, homebondApprovedFilter, berApprovedFilter, fcComplianceFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -435,7 +535,7 @@ export function DevelopmentDetail() {
 
       {/* Filters */}
       <div className="card p-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-9 gap-4">
           {/* Search */}
           <div className="lg:col-span-1">
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
@@ -484,20 +584,67 @@ export function DevelopmentDetail() {
             </select>
           </div>
 
-          {/* Construction Status Filter */}
+          {/* BCMS Approved Filter */}
           <div>
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Construction
+              BCMS Approved
             </label>
             <select
-              value={constructionFilter}
-              onChange={(e) => setConstructionFilter(e.target.value)}
+              value={bcmsApprovedFilter}
+              onChange={(e) => setBcmsApprovedFilter(e.target.value)}
               className="select"
             >
-              <option value="all">All Statuses</option>
-              <option value="Complete">Complete</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Not Started">Not Started</option>
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* Homebond Approved Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              Homebond
+            </label>
+            <select
+              value={homebondApprovedFilter}
+              onChange={(e) => setHomebondApprovedFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* BER Approved Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              BER
+            </label>
+            <select
+              value={berApprovedFilter}
+              onChange={(e) => setBerApprovedFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+
+          {/* FC Compliance Filter */}
+          <div>
+            <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
+              FC Comp
+            </label>
+            <select
+              value={fcComplianceFilter}
+              onChange={(e) => setFcComplianceFilter(e.target.value)}
+              className="select"
+            >
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
             </select>
           </div>
 
@@ -598,6 +745,18 @@ export function DevelopmentDetail() {
                 <th onClick={() => toggleSort("salesStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Sales<SortIcon field="salesStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
+                <th onClick={() => toggleSort("bcmsApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">BCMS Approved<SortIcon field="bcmsApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
+                <th onClick={() => toggleSort("homebondApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">Homebond<SortIcon field="homebondApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
+                <th onClick={() => toggleSort("berApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">BER<SortIcon field="berApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
+                <th onClick={() => toggleSort("fcCompliance")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">FC Comp<SortIcon field="fcCompliance" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
                 <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
@@ -676,6 +835,26 @@ export function DevelopmentDetail() {
                     </span>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.bcmsApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.bcmsApprovedDate ? formatDate(unit.documentation.bcmsApprovedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.homebondApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.homebondApprovedDate ? formatDate(unit.documentation.homebondApprovedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.berApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.berApprovedDate ? formatDate(unit.documentation.berApprovedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.fcComplianceReceivedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.fcComplianceReceivedDate ? formatDate(unit.documentation.fcComplianceReceivedDate) : "No"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
                     <span className="font-mono text-xs text-[var(--text-secondary)]">
                       {formatDate(unit.documentation?.plannedBcmsDate)}
                     </span>
@@ -735,7 +914,7 @@ export function DevelopmentDetail() {
               })}
               {filteredUnits.length === 0 && (
                 <tr>
-                  <td colSpan={12} className="px-6 py-12 text-center">
+                  <td colSpan={15} className="px-6 py-12 text-center">
                     <div className="flex flex-col items-center">
                       <svg
                         className="w-12 h-12 text-[var(--text-muted)] mb-3"
@@ -769,6 +948,7 @@ export function DevelopmentDetail() {
           developmentName={development.name}
           developmentId={development.id}
           onClose={() => setSelectedUnit(null)}
+          onSave={handleUnitSave}
         />
       )}
 

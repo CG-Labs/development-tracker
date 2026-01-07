@@ -181,10 +181,16 @@ export function ReportGenerator({ developments }: ReportGeneratorProps) {
       result = result.filter((u) => u.listPrice <= filters.priceRange!.max!);
     }
     if (filters.bedroomRange?.min !== undefined) {
-      result = result.filter((u) => u.bedrooms >= filters.bedroomRange!.min!);
+      result = result.filter((u) => {
+        const beds = typeof u.bedrooms === "number" ? u.bedrooms : (u.bedrooms === "Studio" ? 0 : parseInt(u.bedrooms) || 0);
+        return beds >= filters.bedroomRange!.min!;
+      });
     }
     if (filters.bedroomRange?.max !== undefined) {
-      result = result.filter((u) => u.bedrooms <= filters.bedroomRange!.max!);
+      result = result.filter((u) => {
+        const beds = typeof u.bedrooms === "number" ? u.bedrooms : (u.bedrooms === "Studio" ? 0 : parseInt(u.bedrooms) || 0);
+        return beds <= filters.bedroomRange!.max!;
+      });
     }
 
     return result;
@@ -251,7 +257,11 @@ export function ReportGenerator({ developments }: ReportGeneratorProps) {
     });
 
     // By bedroom count
-    const bedroomCounts = [...new Set(filteredUnits.map((u) => u.bedrooms))].sort((a, b) => a - b);
+    const bedroomCounts = [...new Set(filteredUnits.map((u) => u.bedrooms))].sort((a, b) => {
+      const numA = typeof a === "number" ? a : (a === "Studio" ? 0 : parseInt(a) || 0);
+      const numB = typeof b === "number" ? b : (b === "Studio" ? 0 : parseInt(b) || 0);
+      return numA - numB;
+    });
     const byBedrooms = bedroomCounts.map((beds) => {
       const bedUnits = filteredUnits.filter((u) => u.bedrooms === beds);
       return {

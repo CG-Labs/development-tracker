@@ -23,7 +23,11 @@
       "Bash(npx knip:*)",
       "Bash(npm run test:run:*)",
       "Bash(git rm:*)",
-      "Bash(npm run test:coverage:*)"
+      "Bash(npm run test:coverage:*)",
+      "Bash(node scripts/check-user.cjs:*)",
+      "Bash(node -e:*)",
+      "Bash(node scripts/test-invite.cjs:*)",
+      "Bash(npm audit:*)"
     ]
   }
 }

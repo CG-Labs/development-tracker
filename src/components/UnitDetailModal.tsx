@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Unit, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus } from "../types";
+import type { Unit, UnitType, ConstructionStatus, SalesStatus, PurchaserType, IncentiveStatus, UnitDates } from "../types";
 import type { AuditChange } from "../types/auditLog";
 import type { Note } from "../types/note";
 import type { IncentiveScheme } from "../types/incentive";
@@ -9,6 +9,28 @@ import { addNote, updateNote, deleteNote, subscribeToNotes } from "../services/n
 import { getActiveSchemes, checkUnitEligibility, formatBenefitValue, calculateTotalBenefitValue } from "../services/incentiveService";
 import { getActiveCompanies } from "../services/companyService";
 import { useAuth } from "../contexts/AuthContext";
+
+// Unit type options
+const UNIT_TYPES: UnitType[] = [
+  "House-Semi",
+  "House-Detached",
+  "House-Terrace",
+  "Apartment",
+  "Duplex Apartment",
+  "Apartment Studio",
+];
+
+// Bedroom options
+const BEDROOM_OPTIONS = [
+  "Studio",
+  "1 Bed",
+  "2 Bed",
+  "3 Bed",
+  "4 Bed",
+  "5 Bed",
+  "6 Bed",
+  "7 Bed",
+];
 
 interface UnitDetailModalProps {
   unit: Unit;
@@ -66,6 +88,19 @@ function formatDate(dateStr?: string): string {
 function formatDateForInput(dateStr?: string): string {
   if (!dateStr) return "";
   return dateStr.split("T")[0];
+}
+
+// Convert bedrooms value to display string
+function formatBedrooms(bedrooms: number | string): string {
+  if (typeof bedrooms === "string") return bedrooms;
+  if (bedrooms === 0) return "Studio";
+  return `${bedrooms} Bed`;
+}
+
+// Convert bedrooms display string to value for storage
+function parseBedroomsToValue(bedroomsStr: string): number | string {
+  if (bedroomsStr === "Studio") return "Studio";
+  return bedroomsStr; // Keep as string like "1 Bed", "2 Bed", etc.
 }
 
 export function UnitDetailModal({
@@ -272,9 +307,9 @@ export function UnitDetailModal({
   const getChanges = (): AuditChange[] => {
     const changes: AuditChange[] = [];
     const fieldsToCheck: (keyof Unit)[] = [
+      "type", "bedrooms", "size", // Unit details
       "address", "purchaserType", "purchaserName", "purchaserPhone", "purchaserEmail",
-      "partV", "startDate", "completionDate", "snagDate", "closeDate",
-      "constructionStatus", "salesStatus", "listPrice", "soldPrice",
+      "partV", "constructionStatus", "salesStatus", "listPrice", "soldPrice",
       "appliedIncentive", "incentiveStatus",
       "developerCompanyId", "constructionUnitType", "constructionPhase"
     ];
@@ -289,15 +324,14 @@ export function UnitDetailModal({
       }
     });
 
-    // Check documentation fields
+    // Check documentation fields (new date-based fields)
     const docFields: (keyof Unit["documentation"])[] = [
-      "bcmsReceived", "bcmsReceivedDate",
-      "landRegistryApproved", "landRegistryApprovedDate",
-      "homebondReceived", "homebondReceivedDate",
-      "sanApproved", "sanApprovedDate",
-      "contractIssued", "contractIssuedDate",
-      "contractSigned", "contractSignedDate",
-      "saleClosed", "saleClosedDate"
+      "bcmsSubmitDate", "bcmsApprovedDate",
+      "homebondSubmitDate", "homebondApprovedDate",
+      "berApprovedDate", "fcComplianceReceivedDate",
+      "landMapSubmitDate", "landMapReceivedDate",
+      "sanApprovedDate", "contractIssuedDate",
+      "contractSignedDate", "saleClosedDate"
     ];
 
     docFields.forEach((field) => {
@@ -306,6 +340,21 @@ export function UnitDetailModal({
           field: `documentation.${field}`,
           oldValue: unit.documentation[field],
           newValue: editedUnit.documentation[field],
+        });
+      }
+    });
+
+    // Check key dates fields (only editable ones - Actual dates are derived from documentation)
+    const keyDateFields: (keyof UnitDates)[] = [
+      "plannedBcms", "plannedClose"
+    ];
+
+    keyDateFields.forEach((field) => {
+      if (compareValues(unit.keyDates?.[field], editedUnit.keyDates?.[field])) {
+        changes.push({
+          field: `keyDates.${field}`,
+          oldValue: unit.keyDates?.[field],
+          newValue: editedUnit.keyDates?.[field],
         });
       }
     });
@@ -327,6 +376,13 @@ export function UnitDetailModal({
     setIsSaving(true);
 
     try {
+      // Sanitize changes for Firestore (convert undefined to null)
+      const sanitizedChanges = changes.map((change) => ({
+        ...change,
+        oldValue: change.oldValue === undefined ? null : change.oldValue,
+        newValue: change.newValue === undefined ? null : change.newValue,
+      }));
+
       // Log the changes to Firestore
       await logChange({
         userId: currentUser.uid,
@@ -335,7 +391,7 @@ export function UnitDetailModal({
         action: "update",
         entityType: "unit",
         entityId: unit.unitNumber,
-        changes,
+        changes: sanitizedChanges,
         developmentId,
         developmentName,
         unitNumber: unit.unitNumber,
@@ -376,6 +432,16 @@ export function UnitDetailModal({
     setEditedUnit((prev) => ({
       ...prev,
       documentation: { ...prev.documentation, [field]: value },
+    }));
+  };
+
+  const updateKeyDates = <K extends keyof UnitDates>(
+    field: K,
+    value: UnitDates[K]
+  ) => {
+    setEditedUnit((prev) => ({
+      ...prev,
+      keyDates: { ...prev.keyDates, [field]: value },
     }));
   };
 
@@ -431,27 +497,141 @@ export function UnitDetailModal({
           </button>
         </div>
 
-        {/* Save Message */}
-        {saveMessage && (
-          <div className="mx-6 mt-4 p-3 bg-[var(--accent-emerald)] bg-opacity-20 border border-[var(--accent-emerald)] rounded-lg">
-            <p className="text-[var(--accent-emerald)] font-mono text-sm text-center">
-              {saveMessage}
-            </p>
-          </div>
-        )}
-
         {/* Content */}
         <div className="p-6 space-y-6">
           {/* Unit Details */}
           <section>
             <SectionHeader title="Unit Details" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <DetailItem label="Type" value={displayUnit.type} />
-              <DetailItem label="Bedrooms" value={String(displayUnit.bedrooms)} mono />
-              <DetailItem label="List Price" value={formatPrice(displayUnit.listPrice)} mono highlight />
-              {displayUnit.soldPrice && (
-                <DetailItem label="Sold Price" value={formatPrice(displayUnit.soldPrice)} mono highlight="gold" />
-              )}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {/* Type */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Type
+                </p>
+                {isEditing ? (
+                  <select
+                    value={editedUnit.type}
+                    onChange={(e) => updateField("type", e.target.value as UnitType)}
+                    className="select w-full"
+                  >
+                    {UNIT_TYPES.map((type) => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <p className="font-display font-semibold text-[var(--text-primary)]">
+                    {displayUnit.type}
+                  </p>
+                )}
+              </div>
+
+              {/* Bedrooms */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Bedrooms
+                </p>
+                {isEditing ? (
+                  <select
+                    value={formatBedrooms(editedUnit.bedrooms)}
+                    onChange={(e) => updateField("bedrooms", parseBedroomsToValue(e.target.value))}
+                    className="select w-full"
+                  >
+                    {BEDROOM_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--text-primary)]">
+                    {formatBedrooms(displayUnit.bedrooms)}
+                  </p>
+                )}
+              </div>
+
+              {/* Area (m²) */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Area (m²)
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.size || ""}
+                    onChange={(e) => updateField("size", e.target.value ? Number(e.target.value) : undefined)}
+                    className="input w-full"
+                    placeholder="Enter area"
+                    min="0"
+                    step="0.1"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--text-primary)]">
+                    {displayUnit.size ? `${displayUnit.size} m²` : "—"}
+                  </p>
+                )}
+              </div>
+
+              {/* List Price */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  List Price
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.listPrice || ""}
+                    onChange={(e) => updateField("listPrice", e.target.value ? Number(e.target.value) : 0)}
+                    className="input w-full"
+                    placeholder="Enter price"
+                    min="0"
+                    step="1000"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--accent-cyan)]">
+                    {formatPrice(displayUnit.listPrice)}
+                  </p>
+                )}
+              </div>
+
+              {/* Sold Price */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Sold Price
+                </p>
+                {isEditing ? (
+                  <input
+                    type="number"
+                    value={editedUnit.soldPrice || ""}
+                    onChange={(e) => updateField("soldPrice", e.target.value ? Number(e.target.value) : undefined)}
+                    className="input w-full"
+                    placeholder="Enter sold price"
+                    min="0"
+                    step="1000"
+                  />
+                ) : (
+                  <p className="font-mono font-semibold text-[var(--accent-gold-bright)]">
+                    {displayUnit.soldPrice ? formatPrice(displayUnit.soldPrice) : "—"}
+                  </p>
+                )}
+              </div>
+
+              {/* Construction Unit Type */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Construction Unit Type
+                </p>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editedUnit.constructionUnitType || ""}
+                    onChange={(e) => updateField("constructionUnitType", e.target.value || undefined)}
+                    className="input w-full"
+                    placeholder="e.g., Type A, Standard"
+                  />
+                ) : (
+                  <p className="font-display font-semibold text-[var(--text-primary)]">
+                    {displayUnit.constructionUnitType || "—"}
+                  </p>
+                )}
+              </div>
             </div>
             {/* Address */}
             <div className="mt-4 bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
@@ -511,26 +691,6 @@ export function UnitDetailModal({
                 )}
               </div>
 
-              {/* Construction Unit Type */}
-              <div>
-                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
-                  Construction Unit Type
-                </p>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedUnit.constructionUnitType || ""}
-                    onChange={(e) => updateField("constructionUnitType", e.target.value || undefined)}
-                    className="input w-full"
-                    placeholder="e.g., Type A, Standard, Premium"
-                  />
-                ) : (
-                  <span className="font-display text-sm text-[var(--text-primary)]">
-                    {displayUnit.constructionUnitType || "—"}
-                  </span>
-                )}
-              </div>
-
               {/* Construction Phase */}
               <div>
                 <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
@@ -557,16 +717,48 @@ export function UnitDetailModal({
           <section>
             <SectionHeader title="Current Status" />
             <div className="grid grid-cols-2 gap-4">
-              <StatusCard
-                label="Construction"
-                status={displayUnit.constructionStatus}
-                badgeClass={constructionBadgeClasses[displayUnit.constructionStatus]}
-              />
-              <StatusCard
-                label="Sales"
-                status={displayUnit.salesStatus}
-                badgeClass={salesBadgeClasses[displayUnit.salesStatus]}
-              />
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                  Construction
+                </p>
+                {isEditing ? (
+                  <select
+                    value={editedUnit.constructionStatus}
+                    onChange={(e) => updateField("constructionStatus", e.target.value as ConstructionStatus)}
+                    className="select w-full"
+                  >
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Complete">Complete</option>
+                  </select>
+                ) : (
+                  <span className={constructionBadgeClasses[displayUnit.constructionStatus]}>
+                    {displayUnit.constructionStatus}
+                  </span>
+                )}
+              </div>
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+                  Sales
+                </p>
+                {isEditing ? (
+                  <select
+                    value={editedUnit.salesStatus}
+                    onChange={(e) => updateField("salesStatus", e.target.value as SalesStatus)}
+                    className="select w-full"
+                  >
+                    <option value="Not Released">Not Released</option>
+                    <option value="For Sale">For Sale</option>
+                    <option value="Under Offer">Under Offer</option>
+                    <option value="Contracted">Contracted</option>
+                    <option value="Complete">Complete</option>
+                  </select>
+                ) : (
+                  <span className={salesBadgeClasses[displayUnit.salesStatus]}>
+                    {displayUnit.salesStatus}
+                  </span>
+                )}
+              </div>
             </div>
           </section>
 
@@ -606,29 +798,53 @@ export function UnitDetailModal({
           <section>
             <SectionHeader title="Completion Documentation" />
             <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-3">
-              <DocumentationItem
-                label="BCMS Received"
-                completed={displayUnit.documentation.bcmsReceived}
-                date={displayUnit.documentation.bcmsReceivedDate}
+              <AutoDocItem
+                label="BCMS Submit"
+                date={displayUnit.documentation.bcmsSubmitDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("bcmsReceived", val)}
-                onDateChange={(val) => updateDocumentation("bcmsReceivedDate", val)}
+                onDateChange={(val) => updateDocumentation("bcmsSubmitDate", val)}
               />
-              <DocumentationItem
-                label="Land Registry Map Approved"
-                completed={displayUnit.documentation.landRegistryApproved}
-                date={displayUnit.documentation.landRegistryApprovedDate}
+              <AutoDocItem
+                label="BCMS Approved"
+                date={displayUnit.documentation.bcmsApprovedDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("landRegistryApproved", val)}
-                onDateChange={(val) => updateDocumentation("landRegistryApprovedDate", val)}
+                onDateChange={(val) => updateDocumentation("bcmsApprovedDate", val)}
               />
-              <DocumentationItem
-                label="Homebond Warranty Received"
-                completed={displayUnit.documentation.homebondReceived}
-                date={displayUnit.documentation.homebondReceivedDate}
+              <AutoDocItem
+                label="Homebond Submit"
+                date={displayUnit.documentation.homebondSubmitDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("homebondReceived", val)}
-                onDateChange={(val) => updateDocumentation("homebondReceivedDate", val)}
+                onDateChange={(val) => updateDocumentation("homebondSubmitDate", val)}
+              />
+              <AutoDocItem
+                label="Homebond Approved"
+                date={displayUnit.documentation.homebondApprovedDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("homebondApprovedDate", val)}
+              />
+              <AutoDocItem
+                label="BER Approved"
+                date={displayUnit.documentation.berApprovedDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("berApprovedDate", val)}
+              />
+              <AutoDocItem
+                label="FC Compliance Letter Received"
+                date={displayUnit.documentation.fcComplianceReceivedDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("fcComplianceReceivedDate", val)}
+              />
+              <AutoDocItem
+                label="Land Map Submit"
+                date={displayUnit.documentation.landMapSubmitDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("landMapSubmitDate", val)}
+              />
+              <AutoDocItem
+                label="Land Map Received"
+                date={displayUnit.documentation.landMapReceivedDate}
+                isEditing={isEditing}
+                onDateChange={(val) => updateDocumentation("landMapReceivedDate", val)}
               />
             </div>
           </section>
@@ -637,36 +853,28 @@ export function UnitDetailModal({
           <section>
             <SectionHeader title="Sales Documentation" />
             <div className="bg-[var(--bg-deep)] rounded-lg p-5 border border-[var(--border-subtle)] space-y-3">
-              <DocumentationItem
+              <AutoDocItem
                 label="SAN (Sales Advice Notice) Approved"
-                completed={displayUnit.documentation.sanApproved}
                 date={displayUnit.documentation.sanApprovedDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("sanApproved", val)}
                 onDateChange={(val) => updateDocumentation("sanApprovedDate", val)}
               />
-              <DocumentationItem
+              <AutoDocItem
                 label="Contract Issued"
-                completed={displayUnit.documentation.contractIssued}
                 date={displayUnit.documentation.contractIssuedDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("contractIssued", val)}
                 onDateChange={(val) => updateDocumentation("contractIssuedDate", val)}
               />
-              <DocumentationItem
+              <AutoDocItem
                 label="Contract Signed"
-                completed={displayUnit.documentation.contractSigned}
                 date={displayUnit.documentation.contractSignedDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("contractSigned", val)}
                 onDateChange={(val) => updateDocumentation("contractSignedDate", val)}
               />
-              <DocumentationItem
+              <AutoDocItem
                 label="Sale Closed"
-                completed={displayUnit.documentation.saleClosed}
                 date={displayUnit.documentation.saleClosedDate}
                 isEditing={isEditing}
-                onToggle={(val) => updateDocumentation("saleClosed", val)}
                 onDateChange={(val) => updateDocumentation("saleClosedDate", val)}
               />
             </div>
@@ -957,38 +1165,62 @@ export function UnitDetailModal({
             </div>
           </section>
 
-          {/* Important Dates */}
+          {/* Key Dates */}
           <section>
             <SectionHeader title="Key Dates" />
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* Planned BCMS - Editable */}
               <DateItem
-                label="Start Date"
-                value={formatDate(displayUnit.startDate)}
+                label="Planned BCMS"
+                value={formatDate(displayUnit.keyDates?.plannedBcms)}
                 isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.startDate)}
-                onChange={(val) => updateField("startDate", val || undefined)}
+                dateValue={formatDateForInput(editedUnit.keyDates?.plannedBcms)}
+                onChange={(val) => updateKeyDates("plannedBcms", val || undefined)}
               />
+              {/* Actual BCMS - Read-only, derived from BCMS Approved date */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Actual BCMS
+                </p>
+                <p className={`font-mono font-semibold ${
+                  displayUnit.documentation.bcmsApprovedDate
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-muted)]"
+                }`}>
+                  {displayUnit.documentation.bcmsApprovedDate
+                    ? formatDate(displayUnit.documentation.bcmsApprovedDate)
+                    : "Pending"}
+                </p>
+                <p className="font-mono text-[9px] text-[var(--text-muted)] mt-1 italic">
+                  (from BCMS Approved)
+                </p>
+              </div>
+              {/* Planned Close - Editable */}
               <DateItem
-                label="Completion"
-                value={formatDate(displayUnit.completionDate)}
+                label="Planned Close"
+                value={formatDate(displayUnit.keyDates?.plannedClose)}
                 isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.completionDate)}
-                onChange={(val) => updateField("completionDate", val || undefined)}
+                dateValue={formatDateForInput(editedUnit.keyDates?.plannedClose)}
+                onChange={(val) => updateKeyDates("plannedClose", val || undefined)}
               />
-              <DateItem
-                label="Snag Date"
-                value={formatDate(displayUnit.snagDate)}
-                isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.snagDate)}
-                onChange={(val) => updateField("snagDate", val || undefined)}
-              />
-              <DateItem
-                label="Close Date"
-                value={formatDate(displayUnit.closeDate)}
-                isEditing={isEditing}
-                dateValue={formatDateForInput(editedUnit.closeDate)}
-                onChange={(val) => updateField("closeDate", val || undefined)}
-              />
+              {/* Actual Close - Read-only, derived from Sale Closed date */}
+              <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
+                <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
+                  Actual Close
+                </p>
+                <p className={`font-mono font-semibold ${
+                  displayUnit.documentation.saleClosedDate
+                    ? "text-[var(--text-primary)]"
+                    : "text-[var(--text-muted)]"
+                }`}>
+                  {displayUnit.documentation.saleClosedDate
+                    ? formatDate(displayUnit.documentation.saleClosedDate)
+                    : "Pending"}
+                </p>
+                <p className="font-mono text-[9px] text-[var(--text-muted)] mt-1 italic">
+                  (from Sale Closed)
+                </p>
+              </div>
             </div>
           </section>
 
@@ -1177,6 +1409,16 @@ export function UnitDetailModal({
 
         {/* Footer */}
         <div className="sticky bottom-0 glass border-t border-[var(--border-subtle)] px-6 py-4 rounded-b-xl">
+          {/* Save Message - shown in footer for visibility */}
+          {saveMessage && (
+            <div className={`mb-3 p-3 rounded-lg text-center ${
+              saveMessage.includes("Failed") || saveMessage.includes("Error")
+                ? "bg-red-500/20 border border-red-500 text-red-400"
+                : "bg-[var(--accent-emerald)]/20 border border-[var(--accent-emerald)] text-[var(--accent-emerald)]"
+            }`}>
+              <p className="font-mono text-sm">{saveMessage}</p>
+            </div>
+          )}
           {isEditing ? (
             <div className="flex gap-3">
               <button onClick={handleCancel} disabled={isSaving} className="btn-secondary flex-1 disabled:opacity-50">
@@ -1223,54 +1465,6 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function DetailItem({
-  label,
-  value,
-  mono,
-  highlight,
-}: {
-  label: string;
-  value: string;
-  mono?: boolean;
-  highlight?: boolean | "gold";
-}) {
-  const valueClass = highlight === "gold"
-    ? "text-[var(--accent-gold-bright)]"
-    : highlight
-    ? "text-[var(--accent-cyan)]"
-    : "text-[var(--text-primary)]";
-
-  return (
-    <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
-      <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
-        {label}
-      </p>
-      <p className={`${mono ? "font-mono" : "font-display"} font-semibold ${valueClass}`}>
-        {value}
-      </p>
-    </div>
-  );
-}
-
-function StatusCard({
-  label,
-  status,
-  badgeClass,
-}: {
-  label: string;
-  status: string;
-  badgeClass: string;
-}) {
-  return (
-    <div className="bg-[var(--bg-deep)] rounded-lg p-4 border border-[var(--border-subtle)]">
-      <p className="font-mono text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
-        {label}
-      </p>
-      <span className={badgeClass}>{status}</span>
-    </div>
-  );
-}
-
 function ProgressMarker({ label, active }: { label: string; active: boolean }) {
   return (
     <span
@@ -1282,87 +1476,6 @@ function ProgressMarker({ label, active }: { label: string; active: boolean }) {
     >
       {label}
     </span>
-  );
-}
-
-function DocumentationItem({
-  label,
-  completed,
-  date,
-  isEditing,
-  onToggle,
-  onDateChange,
-}: {
-  label: string;
-  completed: boolean;
-  date?: string;
-  isEditing?: boolean;
-  onToggle?: (value: boolean) => void;
-  onDateChange?: (value: string | undefined) => void;
-}) {
-  const formattedDate = date
-    ? new Date(date).toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : "-";
-
-  return (
-    <div className="flex items-center justify-between py-2 border-b border-[var(--border-subtle)] last:border-b-0">
-      <div className="flex items-center gap-3">
-        {isEditing ? (
-          <button
-            onClick={() => onToggle?.(!completed)}
-            className={`w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
-              completed ? "bg-[var(--accent-emerald)]" : "bg-[var(--accent-rose)]"
-            }`}
-          >
-            {completed ? (
-              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            ) : (
-              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-            )}
-          </button>
-        ) : completed ? (
-          <div className="w-5 h-5 rounded-full bg-[var(--accent-emerald)] flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-            </svg>
-          </div>
-        ) : (
-          <div className="w-5 h-5 rounded-full bg-[var(--accent-rose)] flex items-center justify-center">
-            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
-          </div>
-        )}
-        <span className="font-display text-sm text-[var(--text-primary)]">
-          {label}
-        </span>
-      </div>
-      <div className="flex items-center gap-3">
-        <span className={`font-mono text-xs font-semibold ${completed ? "text-[var(--accent-emerald)]" : "text-[var(--accent-rose)]"}`}>
-          {completed ? "Yes" : "No"}
-        </span>
-        {isEditing ? (
-          <input
-            type="date"
-            value={date?.split("T")[0] || ""}
-            onChange={(e) => onDateChange?.(e.target.value || undefined)}
-            className="input text-xs py-1 px-2 w-32"
-          />
-        ) : (
-          <span className="font-mono text-xs text-[var(--text-muted)] min-w-[90px] text-right">
-            {formattedDate}
-          </span>
-        )}
-      </div>
-    </div>
   );
 }
 
@@ -1402,6 +1515,84 @@ function DateItem({
           {value}
         </p>
       )}
+    </div>
+  );
+}
+
+/**
+ * Auto Documentation Item - Yes/No is automatically derived from date
+ * When a date exists, it shows "Yes ✓ - [date]"
+ * When no date, it shows "No ✗"
+ * In edit mode, shows date picker with clear button
+ */
+function AutoDocItem({
+  label,
+  date,
+  isEditing,
+  onDateChange,
+}: {
+  label: string;
+  date?: string;
+  isEditing?: boolean;
+  onDateChange?: (value: string | undefined) => void;
+}) {
+  const hasDate = date && date.trim() !== "";
+  const formattedDate = hasDate
+    ? new Date(date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : "";
+
+  return (
+    <div className="flex items-center justify-between py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+      <div className="flex items-center gap-3">
+        {hasDate ? (
+          <div className="w-5 h-5 rounded-full bg-[var(--accent-emerald)] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          </div>
+        ) : (
+          <div className="w-5 h-5 rounded-full bg-[var(--accent-rose)] flex items-center justify-center">
+            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </div>
+        )}
+        <span className="font-display text-sm text-[var(--text-primary)]">
+          {label}
+        </span>
+      </div>
+      <div className="flex items-center gap-2">
+        {isEditing ? (
+          <>
+            <input
+              type="date"
+              value={date?.split("T")[0] || ""}
+              onChange={(e) => onDateChange?.(e.target.value || undefined)}
+              className="input text-xs py-1 px-2 w-32"
+            />
+            {hasDate && (
+              <button
+                type="button"
+                onClick={() => onDateChange?.(undefined)}
+                className="p-1 rounded hover:bg-[var(--accent-rose)]/20 text-[var(--accent-rose)] transition-colors"
+                title="Clear date"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </>
+        ) : (
+          <span className={`font-mono text-xs ${hasDate ? "text-[var(--accent-emerald)]" : "text-[var(--accent-rose)]"}`}>
+            {hasDate ? `Yes - ${formattedDate}` : "No"}
+          </span>
+        )}
+      </div>
     </div>
   );
 }

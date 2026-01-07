@@ -10,11 +10,17 @@ interface ExportRow {
   "Address": string;
   "Construction Unit Type": string;
   "Construction Phase": string;
-  "Bedrooms": number;
+  "Bedrooms": number | string; // Can be number or string like "Studio", "1 Bed"
   "Size (m²)": number | string;
   "Construction Status": string;
   "Sales Status": string;
+  "BCMS Approved": string;
+  "Homebond Approved": string;
+  "BER Approved": string;
+  "FC Compliance": string;
   "Developer Company": string;
+  "List Price": number | string;
+  "Sold Price": number | string;
   "Price Ex VAT": number | string;
   "Price Inc VAT": number | string;
   "Purchaser Type": string;
@@ -22,26 +28,26 @@ interface ExportRow {
   "Purchaser Name": string;
   "Purchaser Phone": string;
   "Purchaser Email": string;
-  "Planned BCMS Date": string;
-  "Actual BCMS Date": string;
-  "Snag Date": string;
-  "Desnag Date": string;
-  "Planned Close Date": string;
-  "Actual Close Date": string;
-  "BCMS Received": string;
-  "BCMS Received Date": string;
-  "Land Registry Approved": string;
-  "Land Registry Approved Date": string;
-  "Homebond Received": string;
-  "Homebond Received Date": string;
-  "SAN Approved": string;
+  // Key Dates (4 simplified dates)
+  "Planned BCMS": string;
+  "Actual BCMS": string;
+  "Planned Close": string;
+  "Actual Close": string;
+  // Completion Documentation (8 items - date only, Yes/No derived from date)
+  "BCMS Submit Date": string;
+  "BCMS Approved Date": string;
+  "Homebond Submit Date": string;
+  "Homebond Approved Date": string;
+  "BER Approved Date": string;
+  "FC Compliance Received Date": string;
+  "Land Map Submit Date": string;
+  "Land Map Received Date": string;
+  // Sales Documentation (4 items - date only)
   "SAN Approved Date": string;
-  "Contract Issued": string;
   "Contract Issued Date": string;
-  "Contract Signed": string;
   "Contract Signed Date": string;
-  "Sale Closed": string;
   "Sale Closed Date": string;
+  // Incentive
   "Incentive Scheme": string;
   "Incentive Status": string;
   "Notes Count": number;
@@ -72,7 +78,13 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Size (m²)": unit.size || "",
     "Construction Status": unit.constructionStatus,
     "Sales Status": unit.salesStatus,
+    "BCMS Approved": unit.documentation?.bcmsApprovedDate ? "Yes" : "No",
+    "Homebond Approved": unit.documentation?.homebondApprovedDate ? "Yes" : "No",
+    "BER Approved": unit.documentation?.berApprovedDate ? "Yes" : "No",
+    "FC Compliance": unit.documentation?.fcComplianceReceivedDate ? "Yes" : "No",
     "Developer Company": unit.developerCompanyId || "",
+    "List Price": unit.listPrice || "",
+    "Sold Price": unit.soldPrice || "",
     "Price Ex VAT": unit.priceExVat || "",
     "Price Inc VAT": unit.priceIncVat || unit.listPrice || "",
     "Purchaser Type": unit.purchaserType || "Private",
@@ -80,26 +92,26 @@ function unitToExportRow(unit: Unit, developmentName: string, notesCount: number
     "Purchaser Name": unit.purchaserName || "",
     "Purchaser Phone": unit.purchaserPhone || "",
     "Purchaser Email": unit.purchaserEmail || "",
-    "Planned BCMS Date": formatDateDDMMYYYY(unit.documentation.plannedBcmsDate),
-    "Actual BCMS Date": formatDateDDMMYYYY(unit.documentation.bcmsReceivedDate),
-    "Snag Date": formatDateDDMMYYYY(unit.snagDate),
-    "Desnag Date": formatDateDDMMYYYY(unit.desnagDate),
-    "Planned Close Date": formatDateDDMMYYYY(unit.plannedCloseDate),
-    "Actual Close Date": formatDateDDMMYYYY(unit.closeDate),
-    "BCMS Received": unit.documentation.bcmsReceived ? "Yes" : "No",
-    "BCMS Received Date": formatDateDDMMYYYY(unit.documentation.bcmsReceivedDate),
-    "Land Registry Approved": unit.documentation.landRegistryApproved ? "Yes" : "No",
-    "Land Registry Approved Date": formatDateDDMMYYYY(unit.documentation.landRegistryApprovedDate),
-    "Homebond Received": unit.documentation.homebondReceived ? "Yes" : "No",
-    "Homebond Received Date": formatDateDDMMYYYY(unit.documentation.homebondReceivedDate),
-    "SAN Approved": unit.documentation.sanApproved ? "Yes" : "No",
+    // Key Dates (Actual dates derived from documentation)
+    "Planned BCMS": formatDateDDMMYYYY(unit.keyDates?.plannedBcms),
+    "Actual BCMS": formatDateDDMMYYYY(unit.documentation.bcmsApprovedDate),
+    "Planned Close": formatDateDDMMYYYY(unit.keyDates?.plannedClose),
+    "Actual Close": formatDateDDMMYYYY(unit.documentation.saleClosedDate),
+    // Completion Documentation (date only - Yes/No is derived from having a date)
+    "BCMS Submit Date": formatDateDDMMYYYY(unit.documentation.bcmsSubmitDate),
+    "BCMS Approved Date": formatDateDDMMYYYY(unit.documentation.bcmsApprovedDate),
+    "Homebond Submit Date": formatDateDDMMYYYY(unit.documentation.homebondSubmitDate),
+    "Homebond Approved Date": formatDateDDMMYYYY(unit.documentation.homebondApprovedDate),
+    "BER Approved Date": formatDateDDMMYYYY(unit.documentation.berApprovedDate),
+    "FC Compliance Received Date": formatDateDDMMYYYY(unit.documentation.fcComplianceReceivedDate),
+    "Land Map Submit Date": formatDateDDMMYYYY(unit.documentation.landMapSubmitDate),
+    "Land Map Received Date": formatDateDDMMYYYY(unit.documentation.landMapReceivedDate),
+    // Sales Documentation (date only)
     "SAN Approved Date": formatDateDDMMYYYY(unit.documentation.sanApprovedDate),
-    "Contract Issued": unit.documentation.contractIssued ? "Yes" : "No",
     "Contract Issued Date": formatDateDDMMYYYY(unit.documentation.contractIssuedDate),
-    "Contract Signed": unit.documentation.contractSigned ? "Yes" : "No",
     "Contract Signed Date": formatDateDDMMYYYY(unit.documentation.contractSignedDate),
-    "Sale Closed": unit.documentation.saleClosed ? "Yes" : "No",
     "Sale Closed Date": formatDateDDMMYYYY(unit.documentation.saleClosedDate),
+    // Incentive
     "Incentive Scheme": unit.appliedIncentive || "",
     "Incentive Status": unit.incentiveStatus || "",
     "Notes Count": notesCount,
@@ -119,7 +131,13 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 10 }, // Size
     { wch: 18 }, // Construction Status
     { wch: 15 }, // Sales Status
+    { wch: 15 }, // BCMS Approved
+    { wch: 18 }, // Homebond Approved
+    { wch: 14 }, // BER Approved
+    { wch: 15 }, // FC Compliance
     { wch: 20 }, // Developer Company
+    { wch: 15 }, // List Price
+    { wch: 15 }, // Sold Price
     { wch: 15 }, // Price Ex VAT
     { wch: 15 }, // Price Inc VAT
     { wch: 15 }, // Purchaser Type
@@ -127,25 +145,21 @@ function styleWorksheet(worksheet: XLSX.WorkSheet) {
     { wch: 25 }, // Purchaser Name
     { wch: 15 }, // Purchaser Phone
     { wch: 25 }, // Purchaser Email
-    { wch: 15 }, // Planned BCMS Date
-    { wch: 15 }, // Actual BCMS Date
-    { wch: 12 }, // Snag Date
-    { wch: 12 }, // Desnag Date
-    { wch: 15 }, // Planned Close Date
-    { wch: 15 }, // Actual Close Date
-    { wch: 15 }, // BCMS Received
-    { wch: 15 }, // BCMS Received Date
-    { wch: 20 }, // Land Registry Approved
-    { wch: 20 }, // Land Registry Approved Date
-    { wch: 18 }, // Homebond Received
-    { wch: 18 }, // Homebond Received Date
-    { wch: 15 }, // SAN Approved
-    { wch: 15 }, // SAN Approved Date
-    { wch: 15 }, // Contract Issued
-    { wch: 15 }, // Contract Issued Date
-    { wch: 15 }, // Contract Signed
-    { wch: 15 }, // Contract Signed Date
-    { wch: 12 }, // Sale Closed
+    { wch: 15 }, // Planned BCMS
+    { wch: 15 }, // Actual BCMS
+    { wch: 15 }, // Planned Close
+    { wch: 15 }, // Actual Close
+    { wch: 18 }, // BCMS Submit Date
+    { wch: 18 }, // BCMS Approved Date
+    { wch: 20 }, // Homebond Submit Date
+    { wch: 20 }, // Homebond Approved Date
+    { wch: 18 }, // BER Approved Date
+    { wch: 25 }, // FC Compliance Received Date
+    { wch: 20 }, // Land Map Submit Date
+    { wch: 20 }, // Land Map Received Date
+    { wch: 18 }, // SAN Approved Date
+    { wch: 18 }, // Contract Issued Date
+    { wch: 18 }, // Contract Signed Date
     { wch: 15 }, // Sale Closed Date
     { wch: 18 }, // Incentive Scheme
     { wch: 15 }, // Incentive Status
@@ -218,10 +232,24 @@ export function exportUnitsToExcel(developmentId?: string): void {
     ["Incentive Status: eligible, applied, claimed, expired"],
     [""],
     ["YES/NO FIELDS:"],
-    ["- Part V, BCMS Received, Land Registry Approved, etc."],
-    ["- Use 'Yes' or 'No' only"],
+    ["- Part V: Use 'Yes' or 'No'"],
+    ["- BCMS Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
+    ["- Homebond Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
+    ["- BER Approved: Use 'Yes' or 'No' (Yes sets approval date to today, No clears it)"],
+    ["- FC Compliance: Use 'Yes' or 'No' (Yes sets received date to today, No clears it)"],
     [""],
-    ["DATES:"],
+    ["DOCUMENTATION (Date-based):"],
+    ["- Enter dates to mark items as complete (Yes/No is automatic)"],
+    ["- If a date is entered, the item shows as 'Yes'"],
+    ["- If no date, the item shows as 'No'"],
+    [""],
+    ["KEY DATES:"],
+    ["- Planned BCMS: Target BCMS completion date"],
+    ["- Actual BCMS: Actual BCMS completion date"],
+    ["- Planned Close: Target closing date"],
+    ["- Actual Close: Actual closing date"],
+    [""],
+    ["DATE FORMAT:"],
     ["- Use DD/MM/YYYY format"],
     [""],
     ["PRICES:"],
@@ -297,7 +325,13 @@ export function getExportColumns(): string[] {
     "Size (m²)",
     "Construction Status",
     "Sales Status",
+    "BCMS Approved",
+    "Homebond Approved",
+    "BER Approved",
+    "FC Compliance",
     "Developer Company",
+    "List Price",
+    "Sold Price",
     "Price Ex VAT",
     "Price Inc VAT",
     "Purchaser Type",
@@ -305,25 +339,21 @@ export function getExportColumns(): string[] {
     "Purchaser Name",
     "Purchaser Phone",
     "Purchaser Email",
-    "Planned BCMS Date",
-    "Actual BCMS Date",
-    "Snag Date",
-    "Desnag Date",
-    "Planned Close Date",
-    "Actual Close Date",
-    "BCMS Received",
-    "BCMS Received Date",
-    "Land Registry Approved",
-    "Land Registry Approved Date",
-    "Homebond Received",
-    "Homebond Received Date",
-    "SAN Approved",
+    "Planned BCMS",
+    "Actual BCMS",
+    "Planned Close",
+    "Actual Close",
+    "BCMS Submit Date",
+    "BCMS Approved Date",
+    "Homebond Submit Date",
+    "Homebond Approved Date",
+    "BER Approved Date",
+    "FC Compliance Received Date",
+    "Land Map Submit Date",
+    "Land Map Received Date",
     "SAN Approved Date",
-    "Contract Issued",
     "Contract Issued Date",
-    "Contract Signed",
     "Contract Signed Date",
-    "Sale Closed",
     "Sale Closed Date",
     "Incentive Scheme",
     "Incentive Status",

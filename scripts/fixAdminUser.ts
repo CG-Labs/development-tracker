@@ -23,11 +23,12 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 async function main() {
-  const password = process.argv[2];
-  const email = "jcnasher@gmail.com";
+  const email = process.argv[2];
+  const password = process.argv[3];
 
-  if (!password) {
-    console.log("\nUsage: npx tsx scripts/fixAdminUser.ts YOUR_PASSWORD\n");
+  if (!email || !password) {
+    console.log("\nUsage: npx tsx scripts/fixAdminUser.ts EMAIL PASSWORD\n");
+    console.log("Example: npx tsx scripts/fixAdminUser.ts admin@example.com yourpassword\n");
     process.exit(1);
   }
 
@@ -94,7 +95,7 @@ async function main() {
       const userData = {
         uid: uid,
         email: email,
-        displayName: "Chris Nash",
+        displayName: email.split("@")[0], // Use email prefix as default display name
         role: "admin",
         isActive: true,
         createdAt: userDoc.exists() && userDoc.data()?.createdAt ? userDoc.data()?.createdAt : serverTimestamp(),

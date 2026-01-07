@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { getAuthErrorMessage, isRateLimited } from "../utils/authErrors";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -19,13 +20,10 @@ export function Login() {
     try {
       await login(email, password);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to sign in";
-      if (errorMessage.includes("invalid-credential")) {
-        setError("Invalid email or password");
-      } else if (errorMessage.includes("too-many-requests")) {
-        setError("Too many failed attempts. Please try again later.");
+      if (isRateLimited(err)) {
+        setError("Too many failed attempts. Please wait a few minutes before trying again.");
       } else {
-        setError(errorMessage);
+        setError(getAuthErrorMessage(err));
       }
     } finally {
       setLoading(false);
