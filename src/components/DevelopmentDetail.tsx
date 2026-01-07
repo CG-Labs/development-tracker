@@ -41,7 +41,7 @@ function saveUnitOverride(developmentId: string, unitNumber: string, unit: Unit)
   }
 }
 
-type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
+type SortField = "unitNumber" | "type" | "bedrooms" | "constructionStatus" | "salesStatus" | "bcmsApproved" | "plannedBcmsDate" | "plannedCloseDate" | "price" | "incentive";
 type SortDirection = "asc" | "desc";
 
 const constructionBadgeClasses: Record<ConstructionStatus, string> = {
@@ -118,7 +118,7 @@ export function DevelopmentDetail() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [constructionFilter, setConstructionFilter] = useState<string>("all");
+  const [bcmsApprovedFilter, setBcmsApprovedFilter] = useState<string>("all");
   const [salesFilter, setSalesFilter] = useState<string>("all");
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
@@ -187,16 +187,17 @@ export function DevelopmentDetail() {
         unit.type.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesType = typeFilter === "all" || unit.type === typeFilter;
-      const matchesConstruction =
-        constructionFilter === "all" ||
-        unit.constructionStatus === constructionFilter;
+      const matchesBcmsApproved =
+        bcmsApprovedFilter === "all" ||
+        (bcmsApprovedFilter === "yes" && unit.documentation?.bcmsApprovedDate) ||
+        (bcmsApprovedFilter === "no" && !unit.documentation?.bcmsApprovedDate);
       const matchesSales =
         salesFilter === "all" || unit.salesStatus === salesFilter;
       const matchesIncentive =
         incentiveFilter === "all" ||
         (incentiveFilter === "none" ? !unit.appliedIncentive : unit.appliedIncentive === incentiveFilter);
 
-      return matchesSearch && matchesType && matchesConstruction && matchesSales && matchesIncentive;
+      return matchesSearch && matchesType && matchesBcmsApproved && matchesSales && matchesIncentive;
     });
 
     // Sort the filtered units
@@ -221,6 +222,12 @@ export function DevelopmentDetail() {
         case "salesStatus":
           comparison = a.salesStatus.localeCompare(b.salesStatus);
           break;
+        case "bcmsApproved": {
+          const bcmsA = a.documentation?.bcmsApprovedDate || "";
+          const bcmsB = b.documentation?.bcmsApprovedDate || "";
+          comparison = bcmsA.localeCompare(bcmsB);
+          break;
+        }
         case "plannedBcmsDate": {
           const dateA = a.documentation?.plannedBcmsDate || "";
           const dateB = b.documentation?.plannedBcmsDate || "";
@@ -245,7 +252,7 @@ export function DevelopmentDetail() {
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, searchQuery, typeFilter, constructionFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
+  }, [development, searchQuery, typeFilter, bcmsApprovedFilter, salesFilter, incentiveFilter, sortField, sortDirection]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -544,20 +551,19 @@ export function DevelopmentDetail() {
             </select>
           </div>
 
-          {/* Construction Status Filter */}
+          {/* BCMS Approved Filter */}
           <div>
             <label className="block font-display text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider mb-2">
-              Construction
+              BCMS Approved
             </label>
             <select
-              value={constructionFilter}
-              onChange={(e) => setConstructionFilter(e.target.value)}
+              value={bcmsApprovedFilter}
+              onChange={(e) => setBcmsApprovedFilter(e.target.value)}
               className="select"
             >
-              <option value="all">All Statuses</option>
-              <option value="Complete">Complete</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Not Started">Not Started</option>
+              <option value="all">All</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
             </select>
           </div>
 
@@ -658,6 +664,9 @@ export function DevelopmentDetail() {
                 <th onClick={() => toggleSort("salesStatus")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Sales<SortIcon field="salesStatus" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
+                <th onClick={() => toggleSort("bcmsApproved")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
+                  <span className="flex items-center">BCMS Approved<SortIcon field="bcmsApproved" sortField={sortField} sortDirection={sortDirection} /></span>
+                </th>
                 <th onClick={() => toggleSort("plannedBcmsDate")} className="px-4 py-4 text-left font-display text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider cursor-pointer hover:text-[var(--accent-cyan)] transition-colors">
                   <span className="flex items-center">Planned BCMS<SortIcon field="plannedBcmsDate" sortField={sortField} sortDirection={sortDirection} /></span>
                 </th>
@@ -733,6 +742,11 @@ export function DevelopmentDetail() {
                   <td className="px-4 py-4 whitespace-nowrap">
                     <span className={salesBadgeClasses[unit.salesStatus]}>
                       {unit.salesStatus}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 whitespace-nowrap">
+                    <span className={`font-mono text-xs ${unit.documentation?.bcmsApprovedDate ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                      {unit.documentation?.bcmsApprovedDate ? formatDate(unit.documentation.bcmsApprovedDate) : "No"}
                     </span>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
