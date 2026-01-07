@@ -238,8 +238,8 @@ export function DevelopmentDetail() {
           break;
         }
         case "area": {
-          const areaA = (a as { area?: number }).area || 0;
-          const areaB = (b as { area?: number }).area || 0;
+          const areaA = a.size || 0;
+          const areaB = b.size || 0;
           comparison = areaA - areaB;
           break;
         }
@@ -664,7 +664,7 @@ export function DevelopmentDetail() {
             <tbody>
               {filteredUnits.map((unit, index) => {
                 const isSelected = selectedUnitIds.has(unit.unitNumber);
-                const unitArea = (unit as { area?: number }).area;
+                const unitSize = unit.size;
                 const bedsDisplay = String(unit.bedrooms) === "0" || String(unit.bedrooms).toLowerCase() === "studio"
                   ? "Studio"
                   : `${unit.bedrooms} Bed`;
@@ -716,7 +716,7 @@ export function DevelopmentDetail() {
                   {/* Area */}
                   <td className="px-3 py-4 whitespace-nowrap text-right">
                     <span className="font-mono text-sm text-[var(--text-secondary)]">
-                      {unitArea ? `${unitArea} m²` : "-"}
+                      {unitSize ? `${unitSize} m²` : "-"}
                     </span>
                   </td>
                   {/* Construction Status */}
