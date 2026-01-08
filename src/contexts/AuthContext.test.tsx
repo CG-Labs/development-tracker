@@ -310,9 +310,10 @@ describe("AuthContext", () => {
         </AuthProvider>
       );
 
+      // Wait longer due to retry logic (3 retries × 500ms + processing time)
       await waitFor(() => {
         expect(screen.getByTestId("accessDenied").textContent).toBe("no_invite");
-      });
+      }, { timeout: 3000 });
     });
 
     it("creates admin profile for admin emails", async () => {
@@ -347,10 +348,11 @@ describe("AuthContext", () => {
         </AuthProvider>
       );
 
+      // Wait longer due to retry logic (3 retries × 500ms + processing time)
       await waitFor(() => {
         const userData = JSON.parse(screen.getByTestId("currentUser").textContent!);
         expect(userData.role).toBe("admin");
-      });
+      }, { timeout: 3000 });
 
       expect(userService.createAdminUserProfile).toHaveBeenCalledWith(
         "admin-uid",
@@ -430,9 +432,10 @@ describe("AuthContext", () => {
         </AuthProvider>
       );
 
+      // Wait longer due to retry logic (3 retries × 500ms + processing time)
       await waitFor(() => {
         expect(screen.getByTestId("accessDenied").textContent).toBe("no_invite");
-      });
+      }, { timeout: 3000 });
 
       await user.click(screen.getByTestId("clearAccessDenied"));
 
@@ -930,9 +933,10 @@ describe("AuthContext", () => {
 
       await user.click(screen.getByTestId("login"));
 
+      // Wait longer due to retry logic (3 retries × 500ms + processing time)
       await waitFor(() => {
         expect(screen.getByTestId("error").textContent).toContain("Access denied");
-      });
+      }, { timeout: 3000 });
 
       expect(mockSignOut).toHaveBeenCalled();
     });

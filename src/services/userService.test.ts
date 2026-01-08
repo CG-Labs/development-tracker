@@ -32,9 +32,19 @@ vi.mock("firebase/firestore", () => ({
   },
 }));
 
+// Mock Firebase Auth
+vi.mock("firebase/auth", () => ({
+  sendSignInLinkToEmail: vi.fn(() => Promise.resolve()),
+}));
+
 // Mock Firebase config
 vi.mock("../config/firebase", () => ({
   db: {},
+  auth: {},
+  getActionCodeSettings: vi.fn((inviteId: string) => ({
+    url: `http://localhost:5173/complete-signup?inviteId=${inviteId}`,
+    handleCodeInApp: true,
+  })),
 }));
 
 // Mock email service

@@ -186,7 +186,7 @@ describe("UnitDetailModal", () => {
     it("displays bedrooms count", () => {
       render(<UnitDetailModal {...defaultProps} />);
 
-      expect(screen.getByText("2")).toBeInTheDocument();
+      expect(screen.getByText("2 Bed")).toBeInTheDocument();
     });
 
     it("displays list price formatted", () => {
@@ -268,9 +268,10 @@ describe("UnitDetailModal", () => {
     it("displays completion documentation items", () => {
       render(<UnitDetailModal {...defaultProps} />);
 
-      expect(screen.getByText("BCMS Received")).toBeInTheDocument();
-      expect(screen.getByText("Land Registry Map Approved")).toBeInTheDocument();
-      expect(screen.getByText("Homebond Warranty Received")).toBeInTheDocument();
+      expect(screen.getByText("BCMS Submit")).toBeInTheDocument();
+      expect(screen.getByText("BCMS Approved")).toBeInTheDocument();
+      expect(screen.getByText("Homebond Submit")).toBeInTheDocument();
+      expect(screen.getByText("Land Map Submit")).toBeInTheDocument();
     });
 
     it("displays sales documentation items", () => {
@@ -335,14 +336,14 @@ describe("UnitDetailModal", () => {
     it("displays date labels", () => {
       render(<UnitDetailModal {...defaultProps} />);
 
-      expect(screen.getByText("Start Date")).toBeInTheDocument();
-      expect(screen.getByText("Completion")).toBeInTheDocument();
-      expect(screen.getByText("Snag Date")).toBeInTheDocument();
-      expect(screen.getByText("Close Date")).toBeInTheDocument();
+      expect(screen.getByText("Planned BCMS")).toBeInTheDocument();
+      expect(screen.getByText("Actual BCMS")).toBeInTheDocument();
+      expect(screen.getByText("Planned Close")).toBeInTheDocument();
+      expect(screen.getByText("Actual Close")).toBeInTheDocument();
     });
 
     it("displays formatted dates when available", () => {
-      const unit = createMockUnit({ startDate: "2024-01-15" });
+      const unit = createMockUnit({ keyDates: { plannedBcms: "2024-01-15" } });
       render(<UnitDetailModal {...defaultProps} unit={unit} />);
 
       expect(screen.getByText("15 Jan 2024")).toBeInTheDocument();
@@ -501,19 +502,11 @@ describe("UnitDetailModal", () => {
         purchaserPhone: "123456789",
         address: "123 Main St",
         documentation: {
-          bcmsReceived: true,
-          bcmsReceivedDate: "2024-01-10",
-          landRegistryApproved: true,
-          landRegistryApprovedDate: "2024-01-15",
-          homebondReceived: true,
-          homebondReceivedDate: "2024-01-20",
-          sanApproved: true,
+          bcmsApprovedDate: "2024-01-10",
+          homebondApprovedDate: "2024-01-20",
           sanApprovedDate: "2024-02-01",
-          contractIssued: true,
           contractIssuedDate: "2024-02-05",
-          contractSigned: true,
           contractSignedDate: "2024-02-10",
-          saleClosed: true,
           saleClosedDate: "2024-02-15",
         },
       });
@@ -525,8 +518,8 @@ describe("UnitDetailModal", () => {
       expect(screen.getByText("John Smith")).toBeInTheDocument();
       expect(screen.getByText("123 Main St")).toBeInTheDocument();
 
-      // Check for Yes status on documentation
-      const yesElements = screen.getAllByText("Yes");
+      // Check for Yes status on documentation (format is "Yes - [date]")
+      const yesElements = screen.getAllByText(/^Yes -/);
       expect(yesElements.length).toBeGreaterThan(0);
     });
 
@@ -982,7 +975,12 @@ describe("UnitDetailModal", () => {
 
     it("shows saving state while saving", async () => {
       const user = userEvent.setup();
-      mockLogChange.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
+      // Use a longer delay to ensure we can catch the saving state
+      let resolvePromise: () => void;
+      const savePromise = new Promise<void>((resolve) => {
+        resolvePromise = resolve;
+      });
+      mockLogChange.mockImplementation(() => savePromise);
       render(<UnitDetailModal {...defaultProps} />);
 
       await user.click(screen.getByRole("button", { name: "Edit Unit" }));
@@ -992,7 +990,13 @@ describe("UnitDetailModal", () => {
 
       await user.click(screen.getByRole("button", { name: "Save Changes" }));
 
-      expect(screen.getByText("Saving...")).toBeInTheDocument();
+      // Wait for the saving state to appear
+      await waitFor(() => {
+        expect(screen.getByText("Saving...")).toBeInTheDocument();
+      });
+
+      // Resolve the save to clean up
+      resolvePromise!();
     });
 
     it("shows error when save fails", async () => {
@@ -1083,40 +1087,34 @@ describe("UnitDetailModal", () => {
   });
 
   describe("documentation editing", () => {
-    it("toggles documentation checkbox", async () => {
-      const user = userEvent.setup();
-      render(<UnitDetailModal {...defaultProps} />);
-
-      await user.click(screen.getByRole("button", { name: "Edit Unit" }));
-
-      // Find BCMS Received row and click its toggle button
-      const bcmsRow = screen.getByText("BCMS Received").closest("div");
-      const toggleButton = within(bcmsRow!.parentElement!).getByRole("button");
-      await user.click(toggleButton);
-
-      await user.click(screen.getByRole("button", { name: "Save Changes" }));
-
-      await waitFor(() => {
-        expect(mockLogChange).toHaveBeenCalledWith(expect.objectContaining({
-          changes: expect.arrayContaining([
-            expect.objectContaining({
-              field: "documentation.bcmsReceived",
-              newValue: true,
-            }),
-          ]),
-        }));
-      });
-    });
-
-    it("shows date input in edit mode", async () => {
+    it("shows date inputs in edit mode", async () => {
       const user = userEvent.setup();
       render(<UnitDetailModal {...defaultProps} />);
 
       await user.click(screen.getByRole("button", { name: "Edit Unit" }));
 
       // Should have date inputs for documentation items
-      const dateInputs = screen.getAllByRole("textbox", { hidden: true });
+      const dateInputs = document.querySelectorAll('input[type="date"]');
       expect(dateInputs.length).toBeGreaterThan(0);
+    });
+
+    it("can set documentation date", async () => {
+      const user = userEvent.setup();
+      render(<UnitDetailModal {...defaultProps} />);
+
+      await user.click(screen.getByRole("button", { name: "Edit Unit" }));
+
+      // Find the first date input and set a value
+      const dateInputs = document.querySelectorAll('input[type="date"]');
+      const firstDateInput = dateInputs[0] as HTMLInputElement;
+
+      await user.type(firstDateInput, "2024-02-15");
+
+      await user.click(screen.getByRole("button", { name: "Save Changes" }));
+
+      await waitFor(() => {
+        expect(mockLogChange).toHaveBeenCalled();
+      });
     });
   });
 
@@ -1281,14 +1279,7 @@ describe("UnitDetailModal", () => {
     it("displays documentation dates when completed", () => {
       const unit = createMockUnit({
         documentation: {
-          bcmsReceived: true,
-          bcmsReceivedDate: "2024-02-15",
-          landRegistryApproved: false,
-          homebondReceived: false,
-          sanApproved: false,
-          contractIssued: false,
-          contractSigned: false,
-          saleClosed: false,
+          bcmsApprovedDate: "2024-02-15",
         },
       });
 

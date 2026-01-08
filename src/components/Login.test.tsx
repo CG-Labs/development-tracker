@@ -78,7 +78,10 @@ describe("Login", () => {
 
     it("displays invalid-credential error message", async () => {
       const user = userEvent.setup();
-      mockLogin.mockRejectedValue(new Error("invalid-credential"));
+      // Create a Firebase-style error with proper code property
+      const invalidCredError = new Error("Invalid credential");
+      (invalidCredError as { code?: string }).code = "auth/invalid-credential";
+      mockLogin.mockRejectedValue(invalidCredError);
       render(<Login />);
 
       await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
@@ -86,13 +89,16 @@ describe("Login", () => {
       await user.click(screen.getByRole("button", { name: "Sign In" }));
 
       await waitFor(() => {
-        expect(screen.getByText("Invalid email or password")).toBeInTheDocument();
+        expect(screen.getByText("Invalid email or password.")).toBeInTheDocument();
       });
     });
 
     it("displays too-many-requests error message", async () => {
       const user = userEvent.setup();
-      mockLogin.mockRejectedValue(new Error("too-many-requests"));
+      // Create a Firebase-style error with proper code property
+      const rateLimitError = new Error("Too many requests");
+      (rateLimitError as { code?: string }).code = "auth/too-many-requests";
+      mockLogin.mockRejectedValue(rateLimitError);
       render(<Login />);
 
       await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
@@ -100,7 +106,7 @@ describe("Login", () => {
       await user.click(screen.getByRole("button", { name: "Sign In" }));
 
       await waitFor(() => {
-        expect(screen.getByText("Too many failed attempts. Please try again later.")).toBeInTheDocument();
+        expect(screen.getByText("Too many failed attempts. Please wait a few minutes before trying again.")).toBeInTheDocument();
       });
     });
 
