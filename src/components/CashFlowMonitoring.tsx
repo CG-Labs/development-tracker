@@ -325,7 +325,11 @@ export function CashFlowMonitoring() {
 
   // Handle Excel export
   const handleExportExcel = () => {
-    exportCashflowToExcel(chartData as { month: string; [key: string]: string | number }[], activeDevelopments);
+    // Pass date filter to export function if custom range is applied
+    const dateFilter = quickRange === "custom" && appliedFromDate && appliedToDate
+      ? { fromDate: appliedFromDate, toDate: appliedToDate }
+      : undefined;
+    exportCashflowToExcel(chartData as { month: string; [key: string]: string | number }[], activeDevelopments, dateFilter);
   };
 
   return (

@@ -1203,82 +1203,388 @@ export function getDevelopmentsList(): { id: string; name: string }[] {
   return developments.map((d) => ({ id: d.id, name: d.name }));
 }
 
-// Export cashflow data to Excel with proper layout
-// Dates as columns, Developments as rows
+// Helper to get month key in "MMM 'YY" format (e.g., "Jan '24")
+function getMonthKeyShort(date: Date): string {
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const year = date.getFullYear().toString().slice(-2);
+  return `${monthNames[date.getMonth()]} '${year}`;
+}
+
+// Helper to convert column number to Excel column letter (1=A, 2=B, etc.)
+function getExcelColumn(colNum: number): string {
+  let result = "";
+  let num = colNum;
+  while (num > 0) {
+    const remainder = (num - 1) % 26;
+    result = String.fromCharCode(65 + remainder) + result;
+    num = Math.floor((num - 1) / 26);
+  }
+  return result;
+}
+
+// Interface for closed unit data
+interface ClosedUnitData {
+  developmentName: string;
+  developmentId: string;
+  unitNumber: string;
+  soldPrice: number;
+  closeMonth: string; // "MMM 'YY" format
+  closeDate: Date;
+  currency: Currency;
+}
+
+// Export cashflow data to Excel with unit breakdown by development
+// New format: monthly columns, unit rows grouped by development, subtotals and grand total with formulas
 export async function exportCashflowToExcel(
-  data: { month: string; [key: string]: string | number }[],
-  developmentsList: string[]
+  _data: { month: string; [key: string]: string | number }[],
+  _developmentsList: string[],
+  dateFilter?: { fromDate?: string; toDate?: string }
 ): Promise<void> {
   const wb = new ExcelJS.Workbook();
-  const ws = wb.addWorksheet("Cash Flow");
+  const ws = wb.addWorksheet("Cashflow Report");
 
-  // Get all unique periods (months) from data
-  const periods = data.map((d) => d.month as string);
+  // Gather all closed/sold units from developments
+  const closedUnits: ClosedUnitData[] = [];
 
-  // Row 1: Title (merged)
-  ws.addRow(["Cashflow Report"]);
-  ws.mergeCells(1, 1, 1, periods.length + 2);
+  developments.forEach((dev) => {
+    const devCurrency = dev.currency || "EUR";
 
-  // Row 2: Generated date
-  ws.addRow([`Generated: ${formatDate(new Date())}`]);
+    dev.units.forEach((unit) => {
+      // Check if unit is sold/closed
+      const closeDate = unit.documentation?.saleClosedDate ||
+                       unit.keyDates?.actualClose ||
+                       unit.closeDate;
 
-  // Row 3: Period range
-  const startPeriod = periods[0] || "";
-  const endPeriod = periods[periods.length - 1] || "";
-  ws.addRow([`Period: ${startPeriod} to ${endPeriod}`]);
+      // Only include units that have a close date (actually closed)
+      if (!closeDate) return;
 
-  // Row 4: Empty
-  ws.addRow([]);
+      const closeDateObj = new Date(closeDate);
+      const soldPrice = unit.soldPrice || unit.priceIncVat || unit.listPrice || 0;
 
-  // Row 5: Header row (Development | Period1 | Period2 | ... | Total)
-  const headerRow = ["Development", ...periods, "Total"];
-  ws.addRow(headerRow);
-  ws.getRow(5).font = { bold: true };
-
-  // Row 6+: Data rows (one per development)
-  developmentsList.forEach((devName) => {
-    const row: (string | number)[] = [devName];
-    let devTotal = 0;
-
-    periods.forEach((period) => {
-      const periodData = data.find((d) => d.month === period);
-      const value = periodData ? (Number(periodData[devName]) || 0) : 0;
-      row.push(value);
-      devTotal += value;
+      if (soldPrice > 0) {
+        closedUnits.push({
+          developmentName: dev.name,
+          developmentId: dev.id,
+          unitNumber: unit.unitNumber,
+          soldPrice,
+          closeMonth: getMonthKeyShort(closeDateObj),
+          closeDate: closeDateObj,
+          currency: devCurrency,
+        });
+      }
     });
-
-    row.push(devTotal);
-    ws.addRow(row);
   });
 
-  // Total row
-  const totalRow: (string | number)[] = ["TOTAL"];
-  let grandTotal = 0;
-
-  periods.forEach((period) => {
-    const periodData = data.find((d) => d.month === period);
-    let periodTotal = 0;
-    developmentsList.forEach((devName) => {
-      periodTotal += periodData ? (Number(periodData[devName]) || 0) : 0;
+  // Apply date filter if provided
+  let filteredUnits = closedUnits;
+  if (dateFilter?.fromDate || dateFilter?.toDate) {
+    filteredUnits = closedUnits.filter((unit) => {
+      if (dateFilter.fromDate) {
+        const fromDate = new Date(dateFilter.fromDate + "-01");
+        if (unit.closeDate < fromDate) return false;
+      }
+      if (dateFilter.toDate) {
+        const toDate = new Date(dateFilter.toDate + "-01");
+        toDate.setMonth(toDate.getMonth() + 1);
+        toDate.setDate(0); // Last day of toDate month
+        if (unit.closeDate > toDate) return false;
+      }
+      return true;
     });
-    totalRow.push(periodTotal);
-    grandTotal += periodTotal;
-  });
-  totalRow.push(grandTotal);
-  ws.addRow(totalRow);
-
-  // Set column widths
-  ws.getColumn(1).width = 25; // First column (Development names)
-  for (let i = 2; i <= periods.length + 2; i++) {
-    ws.getColumn(i).width = 15;
   }
 
-  // Generate file
+  // Get all unique months and sort chronologically
+  const monthsSet = new Set<string>();
+  filteredUnits.forEach((unit) => monthsSet.add(unit.closeMonth));
+
+  const months = Array.from(monthsSet).sort((a, b) => {
+    const parseMonth = (m: string) => {
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const parts = m.split(" '");
+      const monthIndex = monthNames.indexOf(parts[0]);
+      const year = 2000 + parseInt(parts[1]);
+      return new Date(year, monthIndex, 1);
+    };
+    return parseMonth(a).getTime() - parseMonth(b).getTime();
+  });
+
+  // If no data, show empty report
+  if (months.length === 0) {
+    ws.addRow(["Cashflow Report"]);
+    ws.addRow([`Generated: ${formatDate(new Date())}`]);
+    ws.addRow(["No closed sales found for the selected period."]);
+
+    const excelBuffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+    saveAs(blob, `Cashflow_Report_Empty.xlsx`);
+    return;
+  }
+
+  // Group units by development
+  const unitsByDevelopment: Record<string, ClosedUnitData[]> = {};
+  filteredUnits.forEach((unit) => {
+    if (!unitsByDevelopment[unit.developmentName]) {
+      unitsByDevelopment[unit.developmentName] = [];
+    }
+    unitsByDevelopment[unit.developmentName].push(unit);
+  });
+
+  // Sort developments alphabetically
+  const sortedDevelopments = Object.keys(unitsByDevelopment).sort();
+
+  // Sort units within each development by unit number
+  sortedDevelopments.forEach((devName) => {
+    unitsByDevelopment[devName].sort((a, b) =>
+      a.unitNumber.localeCompare(b.unitNumber, undefined, { numeric: true })
+    );
+  });
+
+  // Determine currency (use first development's currency, or EUR as fallback)
+  const primaryCurrency = filteredUnits.length > 0 ? filteredUnits[0].currency : "EUR";
+  const currencyFormat = primaryCurrency === "GBP" ? "£#,##0" : "€#,##0";
+
+  // Calculate column count: Development/Unit + months + Total
+  const totalColumns = 1 + months.length + 1;
+
+  // ==================== ROW 1: Title ====================
+  ws.addRow(["Cashflow Report"]);
+  ws.mergeCells(1, 1, 1, totalColumns);
+  const titleCell = ws.getCell("A1");
+  titleCell.font = { bold: true, size: 16, color: { argb: "FF1E3A5F" } };
+  titleCell.alignment = { horizontal: "center", vertical: "middle" };
+  ws.getRow(1).height = 28;
+
+  // ==================== ROW 2: Generated Date ====================
+  ws.addRow([`Generated: ${formatDate(new Date())}`]);
+  ws.getCell("A2").font = { italic: true, size: 10, color: { argb: "FF666666" } };
+
+  // ==================== ROW 3: Period ====================
+  const startMonth = months[0];
+  const endMonth = months[months.length - 1];
+  ws.addRow([`Period: ${startMonth} to ${endMonth}`]);
+  ws.getCell("A3").font = { italic: true, size: 10, color: { argb: "FF666666" } };
+
+  // ==================== ROW 4: Header Row ====================
+  const headerRow = ["Development/ Unit", ...months, "Total"];
+  ws.addRow(headerRow);
+  const headerRowNum = 4;
+  const headerRowObj = ws.getRow(headerRowNum);
+  headerRowObj.font = { bold: true, size: 11, color: { argb: "FFFFFFFF" } };
+  headerRowObj.fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FF1E3A5F" }, // Dark blue
+  };
+  headerRowObj.alignment = { horizontal: "center", vertical: "middle" };
+  headerRowObj.height = 22;
+
+  // Add borders to header
+  for (let col = 1; col <= totalColumns; col++) {
+    const cell = ws.getCell(headerRowNum, col);
+    cell.border = {
+      top: { style: "thin", color: { argb: "FF000000" } },
+      left: { style: "thin", color: { argb: "FF000000" } },
+      bottom: { style: "thin", color: { argb: "FF000000" } },
+      right: { style: "thin", color: { argb: "FF000000" } },
+    };
+  }
+
+  // Track row numbers for subtotals and grand total
+  let currentRow = 5;
+  const subTotalRows: number[] = [];
+  const unitRowRanges: { devName: string; startRow: number; endRow: number }[] = [];
+
+  // ==================== DATA ROWS ====================
+  sortedDevelopments.forEach((devName) => {
+    const devUnits = unitsByDevelopment[devName];
+
+    // Development Name Row (bold, light blue background)
+    const devRowData: (string | number | null)[] = [devName];
+    for (let i = 0; i < months.length + 1; i++) {
+      devRowData.push(null);
+    }
+    ws.addRow(devRowData);
+    const devRow = ws.getRow(currentRow);
+    devRow.font = { bold: true, size: 11 };
+    devRow.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFD6EAF8" }, // Light blue
+    };
+    devRow.height = 20;
+
+    // Add borders
+    for (let col = 1; col <= totalColumns; col++) {
+      ws.getCell(currentRow, col).border = {
+        top: { style: "thin", color: { argb: "FF000000" } },
+        left: { style: "thin", color: { argb: "FF000000" } },
+        bottom: { style: "thin", color: { argb: "FF000000" } },
+        right: { style: "thin", color: { argb: "FF000000" } },
+      };
+    }
+    currentRow++;
+
+    const unitStartRow = currentRow;
+
+    // Unit Rows
+    devUnits.forEach((unit) => {
+      const unitRowData: (string | number | null)[] = [unit.unitNumber];
+
+      // Add value for each month
+      months.forEach((month) => {
+        if (unit.closeMonth === month) {
+          unitRowData.push(unit.soldPrice);
+        } else {
+          unitRowData.push(null);
+        }
+      });
+
+      // Total formula for this row
+      const firstDataCol = getExcelColumn(2);
+      const lastDataCol = getExcelColumn(1 + months.length);
+      unitRowData.push(null); // Placeholder, will set formula
+
+      ws.addRow(unitRowData);
+
+      // Set SUM formula for Total column
+      const totalCell = ws.getCell(currentRow, totalColumns);
+      totalCell.value = { formula: `SUM(${firstDataCol}${currentRow}:${lastDataCol}${currentRow})` };
+
+      // Format currency cells
+      for (let col = 2; col <= totalColumns; col++) {
+        const cell = ws.getCell(currentRow, col);
+        cell.numFmt = currencyFormat;
+        cell.alignment = { horizontal: "right" };
+        cell.border = {
+          top: { style: "thin", color: { argb: "FFD0D0D0" } },
+          left: { style: "thin", color: { argb: "FFD0D0D0" } },
+          bottom: { style: "thin", color: { argb: "FFD0D0D0" } },
+          right: { style: "thin", color: { argb: "FFD0D0D0" } },
+        };
+      }
+
+      // First column border
+      ws.getCell(currentRow, 1).border = {
+        top: { style: "thin", color: { argb: "FFD0D0D0" } },
+        left: { style: "thin", color: { argb: "FF000000" } },
+        bottom: { style: "thin", color: { argb: "FFD0D0D0" } },
+        right: { style: "thin", color: { argb: "FFD0D0D0" } },
+      };
+
+      currentRow++;
+    });
+
+    const unitEndRow = currentRow - 1;
+    unitRowRanges.push({ devName, startRow: unitStartRow, endRow: unitEndRow });
+
+    // Sub Total Row (bold, light gray background)
+    const subTotalRowData: (string | number | null)[] = ["Sub Total"];
+
+    // Add SUBTOTAL formulas for each month column
+    for (let colIdx = 0; colIdx < months.length; colIdx++) {
+      subTotalRowData.push(null); // Placeholder
+    }
+    subTotalRowData.push(null); // Total column placeholder
+
+    ws.addRow(subTotalRowData);
+
+    // Set SUBTOTAL formulas for each column
+    for (let colIdx = 2; colIdx <= totalColumns; colIdx++) {
+      const colLetter = getExcelColumn(colIdx);
+      const cell = ws.getCell(currentRow, colIdx);
+      cell.value = { formula: `SUBTOTAL(9,${colLetter}${unitStartRow}:${colLetter}${unitEndRow})` };
+      cell.numFmt = currencyFormat;
+      cell.alignment = { horizontal: "right" };
+    }
+
+    const subTotalRow = ws.getRow(currentRow);
+    subTotalRow.font = { bold: true, size: 11 };
+    subTotalRow.fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FFE8E8E8" }, // Light gray
+    };
+    subTotalRow.height = 20;
+
+    // Add borders to subtotal row
+    for (let col = 1; col <= totalColumns; col++) {
+      ws.getCell(currentRow, col).border = {
+        top: { style: "thin", color: { argb: "FF000000" } },
+        left: { style: "thin", color: { argb: "FF000000" } },
+        bottom: { style: "thin", color: { argb: "FF000000" } },
+        right: { style: "thin", color: { argb: "FF000000" } },
+      };
+    }
+
+    subTotalRows.push(currentRow);
+    currentRow++;
+  });
+
+  // ==================== GRAND TOTAL ROW ====================
+  const grandTotalRowData: (string | number | null)[] = ["Grand Total"];
+  for (let i = 0; i < months.length + 1; i++) {
+    grandTotalRowData.push(null);
+  }
+  ws.addRow(grandTotalRowData);
+
+  // Set SUBTOTAL formulas referencing all Sub Total rows
+  for (let colIdx = 2; colIdx <= totalColumns; colIdx++) {
+    const colLetter = getExcelColumn(colIdx);
+    const subTotalRefs = subTotalRows.map((row) => `${colLetter}${row}`).join(",");
+    const cell = ws.getCell(currentRow, colIdx);
+    cell.value = { formula: `SUBTOTAL(9,${subTotalRefs})` };
+    cell.numFmt = currencyFormat;
+    cell.alignment = { horizontal: "right" };
+  }
+
+  const grandTotalRow = ws.getRow(currentRow);
+  grandTotalRow.font = { bold: true, size: 12, color: { argb: "FFFFFFFF" } };
+  grandTotalRow.fill = {
+    type: "pattern",
+    pattern: "solid",
+    fgColor: { argb: "FF1E3A5F" }, // Dark blue (same as header)
+  };
+  grandTotalRow.height = 24;
+
+  // Add borders to grand total row
+  for (let col = 1; col <= totalColumns; col++) {
+    ws.getCell(currentRow, col).border = {
+      top: { style: "medium", color: { argb: "FF000000" } },
+      left: { style: "thin", color: { argb: "FF000000" } },
+      bottom: { style: "medium", color: { argb: "FF000000" } },
+      right: { style: "thin", color: { argb: "FF000000" } },
+    };
+  }
+
+  // ==================== COLUMN WIDTHS ====================
+  ws.getColumn(1).width = 25; // Development/Unit column
+  for (let col = 2; col <= months.length + 1; col++) {
+    ws.getColumn(col).width = 12; // Month columns
+  }
+  ws.getColumn(totalColumns).width = 14; // Total column
+
+  // ==================== FREEZE PANES ====================
+  // Freeze header row (row 4) and first column (column A)
+  ws.views = [
+    {
+      state: "frozen",
+      xSplit: 1,
+      ySplit: 4,
+      topLeftCell: "B5",
+      activeCell: "B5",
+    },
+  ];
+
+  // ==================== GENERATE FILE ====================
   const excelBuffer = await wb.xlsx.writeBuffer();
   const blob = new Blob([excelBuffer], {
     type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   });
 
-  const date = new Date().toISOString().split("T")[0];
-  saveAs(blob, `Cash-Flow-Report-${date}.xlsx`);
+  // Generate filename with date range
+  const startDateStr = startMonth.replace(" '", "").replace("'", "");
+  const endDateStr = endMonth.replace(" '", "").replace("'", "");
+  saveAs(blob, `Cashflow_Report_${startDateStr}_to_${endDateStr}.xlsx`);
 }
