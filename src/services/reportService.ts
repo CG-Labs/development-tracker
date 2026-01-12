@@ -1529,12 +1529,13 @@ export async function exportCashflowToExcel(
   }
   ws.addRow(grandTotalRowData);
 
-  // Set SUBTOTAL formulas referencing all Sub Total rows
+  // Set SUM formulas referencing all Sub Total rows
+  // Note: Using SUM instead of SUBTOTAL because SUBTOTAL doesn't support comma-separated cell refs
   for (let colIdx = 2; colIdx <= totalColumns; colIdx++) {
     const colLetter = getExcelColumn(colIdx);
     const subTotalRefs = subTotalRows.map((row) => `${colLetter}${row}`).join(",");
     const cell = ws.getCell(currentRow, colIdx);
-    cell.value = { formula: `SUBTOTAL(9,${subTotalRefs})` };
+    cell.value = { formula: `SUM(${subTotalRefs})` };
     cell.numFmt = currencyFormat;
     cell.alignment = { horizontal: "right" };
   }
