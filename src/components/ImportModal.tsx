@@ -1,10 +1,11 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import {
   importUnitsFromExcel,
   applyImportChanges,
   formatFieldName,
   formatValue,
   type ImportResult,
+  type ImportRow,
 } from "../services/excelImportService";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -27,6 +28,54 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
   const [applyResult, setApplyResult] = useState<{ success: number; failed: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Selection state
+  const [selectedUnits, setSelectedUnits] = useState<Set<string>>(new Set());
+
+  // Initialize selection when importResult changes
+  useEffect(() => {
+    if (importResult?.valid) {
+      // Select all units by default
+      setSelectedUnits(new Set(importResult.valid.map((row) => row.unitNumber)));
+    }
+  }, [importResult]);
+
+  // Selection helpers
+  const totalUnits = importResult?.valid.length || 0;
+  const selectedCount = selectedUnits.size;
+  const allSelected = selectedCount === totalUnits && totalUnits > 0;
+  const noneSelected = selectedCount === 0;
+  const someSelected = selectedCount > 0 && selectedCount < totalUnits;
+
+  const toggleUnit = (unitNumber: string) => {
+    setSelectedUnits((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(unitNumber)) {
+        newSet.delete(unitNumber);
+      } else {
+        newSet.add(unitNumber);
+      }
+      return newSet;
+    });
+  };
+
+  const selectAll = () => {
+    if (importResult?.valid) {
+      setSelectedUnits(new Set(importResult.valid.map((row) => row.unitNumber)));
+    }
+  };
+
+  const deselectAll = () => {
+    setSelectedUnits(new Set());
+  };
+
+  const toggleSelectAll = () => {
+    if (allSelected) {
+      deselectAll();
+    } else {
+      selectAll();
+    }
+  };
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -79,12 +128,22 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
   const handleApplyChanges = async () => {
     if (!importResult || !currentUser) return;
 
+    // Filter to only selected units
+    const unitsToImport = importResult.valid.filter((row) =>
+      selectedUnits.has(row.unitNumber)
+    );
+
+    if (unitsToImport.length === 0) {
+      setError("Please select at least one unit to import");
+      return;
+    }
+
     setStep("applying");
     setApplyProgress(0);
 
     try {
       const result = await applyImportChanges(
-        importResult.valid,
+        unitsToImport,
         currentUser.uid,
         currentUser.email || "",
         currentUser.displayName || undefined
@@ -109,11 +168,24 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
     setImportResult(null);
     setError(null);
     setApplyResult(null);
+    setSelectedUnits(new Set());
     setStep("upload");
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
   };
+
+  // Get selected rows for import
+  const getSelectedRows = (): ImportRow[] => {
+    if (!importResult?.valid) return [];
+    return importResult.valid.filter((row) => selectedUnits.has(row.unitNumber));
+  };
+
+  // Count total changes for selected units
+  const selectedChangesCount = getSelectedRows().reduce(
+    (total, row) => total + row.changes.length,
+    0
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
@@ -255,69 +327,140 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
                 </div>
               )}
 
-              {/* Changes Preview */}
+              {/* Changes Preview with Selection */}
               {importResult.valid.length > 0 && (
                 <div className="bg-[var(--bg-deep)] rounded-lg border border-[var(--border-subtle)] overflow-hidden">
-                  <div className="px-4 py-3 border-b border-[var(--border-subtle)]">
-                    <h3 className="font-display text-sm font-semibold text-[var(--text-primary)] flex items-center gap-2">
-                      <svg className="w-5 h-5 text-[var(--accent-emerald)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                      Changes Preview ({importResult.valid.length} units)
-                    </h3>
+                  {/* Selection Controls Header */}
+                  <div className="px-4 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-card)]">
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
+                        <h3 className="font-display text-sm font-semibold text-[var(--text-primary)] flex items-center gap-2">
+                          <svg className="w-5 h-5 text-[var(--accent-emerald)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                          </svg>
+                          Changes Preview
+                        </h3>
+                        <span className="font-mono text-sm text-[var(--accent-cyan)]">
+                          {selectedCount} of {totalUnits} units selected
+                        </span>
+                      </div>
+
+                      {/* Quick Selection Buttons */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={selectAll}
+                          disabled={allSelected}
+                          className="px-3 py-1.5 text-xs font-mono rounded border border-[var(--border-subtle)] hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        >
+                          Select All
+                        </button>
+                        <button
+                          onClick={deselectAll}
+                          disabled={noneSelected}
+                          className="px-3 py-1.5 text-xs font-mono rounded border border-[var(--border-subtle)] hover:border-[var(--accent-rose)] hover:text-[var(--accent-rose)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        >
+                          Deselect All
+                        </button>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Table */}
                   <div className="max-h-80 overflow-y-auto">
                     <table className="w-full">
                       <thead className="bg-[var(--bg-card)] sticky top-0">
                         <tr>
+                          <th className="px-3 py-2 text-left w-12">
+                            <label className="flex items-center cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={allSelected}
+                                ref={(el) => {
+                                  if (el) {
+                                    el.indeterminate = someSelected;
+                                  }
+                                }}
+                                onChange={toggleSelectAll}
+                                className="w-4 h-4 rounded border-[var(--border-subtle)] text-[var(--accent-cyan)] focus:ring-[var(--accent-cyan)] focus:ring-offset-0 bg-[var(--bg-deep)]"
+                              />
+                            </label>
+                          </th>
                           <th className="px-4 py-2 text-left font-mono text-xs text-[var(--text-muted)] uppercase">Unit</th>
                           <th className="px-4 py-2 text-left font-mono text-xs text-[var(--text-muted)] uppercase">Field</th>
                           <th className="px-4 py-2 text-left font-mono text-xs text-[var(--text-muted)] uppercase">Old Value</th>
-                          <th className="px-4 py-2 text-center font-mono text-xs text-[var(--text-muted)] uppercase"></th>
+                          <th className="px-4 py-2 text-center font-mono text-xs text-[var(--text-muted)] uppercase w-10"></th>
                           <th className="px-4 py-2 text-left font-mono text-xs text-[var(--text-muted)] uppercase">New Value</th>
                         </tr>
                       </thead>
                       <tbody>
                         {importResult.valid.map((row) =>
-                          row.changes.map((change, changeIndex) => (
-                            <tr
-                              key={`${row.unitNumber}-${changeIndex}`}
-                              className="border-t border-[var(--border-subtle)]"
-                            >
-                              <td className="px-4 py-2">
-                                <span className="font-mono text-sm text-[var(--text-primary)]">
-                                  {row.unitNumber}
-                                </span>
-                                {changeIndex === 0 && row.warnings.length > 0 && (
-                                  <span className="ml-2 text-[var(--accent-gold-bright)]" title={row.warnings.join(", ")}>
-                                    ⚠️
+                          row.changes.map((change, changeIndex) => {
+                            const isSelected = selectedUnits.has(row.unitNumber);
+                            return (
+                              <tr
+                                key={`${row.unitNumber}-${changeIndex}`}
+                                className={`border-t border-[var(--border-subtle)] transition-all ${
+                                  isSelected
+                                    ? "bg-transparent"
+                                    : "bg-[var(--bg-deep)]/50 opacity-50"
+                                }`}
+                              >
+                                <td className="px-3 py-2">
+                                  {changeIndex === 0 && (
+                                    <label className="flex items-center cursor-pointer">
+                                      <input
+                                        type="checkbox"
+                                        checked={isSelected}
+                                        onChange={() => toggleUnit(row.unitNumber)}
+                                        className="w-4 h-4 rounded border-[var(--border-subtle)] text-[var(--accent-cyan)] focus:ring-[var(--accent-cyan)] focus:ring-offset-0 bg-[var(--bg-deep)]"
+                                      />
+                                    </label>
+                                  )}
+                                </td>
+                                <td className="px-4 py-2">
+                                  <span className={`font-mono text-sm ${isSelected ? "text-[var(--text-primary)]" : "text-[var(--text-muted)] line-through"}`}>
+                                    {row.unitNumber}
                                   </span>
-                                )}
-                              </td>
-                              <td className="px-4 py-2 text-sm text-[var(--text-secondary)]">
-                                {formatFieldName(change.field)}
-                              </td>
-                              <td className="px-4 py-2">
-                                <span className="font-mono text-sm text-[var(--accent-rose)]">
-                                  {formatValue(change.oldValue)}
-                                </span>
-                              </td>
-                              <td className="px-4 py-2 text-center">
-                                <svg className="w-4 h-4 text-[var(--accent-cyan)] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                              </td>
-                              <td className="px-4 py-2">
-                                <span className="font-mono text-sm text-[var(--accent-emerald)]">
-                                  {formatValue(change.newValue)}
-                                </span>
-                              </td>
-                            </tr>
-                          ))
+                                  {changeIndex === 0 && row.warnings.length > 0 && (
+                                    <span className="ml-2 text-[var(--accent-gold-bright)]" title={row.warnings.join(", ")}>
+                                      ⚠️
+                                    </span>
+                                  )}
+                                </td>
+                                <td className={`px-4 py-2 text-sm ${isSelected ? "text-[var(--text-secondary)]" : "text-[var(--text-muted)]"}`}>
+                                  {formatFieldName(change.field)}
+                                </td>
+                                <td className="px-4 py-2">
+                                  <span className={`font-mono text-sm ${isSelected ? "text-[var(--accent-rose)]" : "text-[var(--text-muted)]"}`}>
+                                    {formatValue(change.oldValue)}
+                                  </span>
+                                </td>
+                                <td className="px-4 py-2 text-center">
+                                  <svg className={`w-4 h-4 mx-auto ${isSelected ? "text-[var(--accent-cyan)]" : "text-[var(--text-muted)]"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                  </svg>
+                                </td>
+                                <td className="px-4 py-2">
+                                  <span className={`font-mono text-sm ${isSelected ? "text-[var(--accent-emerald)]" : "text-[var(--text-muted)]"}`}>
+                                    {formatValue(change.newValue)}
+                                  </span>
+                                </td>
+                              </tr>
+                            );
+                          })
                         )}
                       </tbody>
                     </table>
                   </div>
+
+                  {/* Selection Summary Footer */}
+                  {!allSelected && selectedCount > 0 && (
+                    <div className="px-4 py-2 border-t border-[var(--border-subtle)] bg-[var(--accent-gold-bright)]/10">
+                      <p className="text-xs font-mono text-[var(--accent-gold-bright)]">
+                        {totalUnits - selectedCount} unit(s) will be skipped
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -387,7 +530,7 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
 
         {/* Footer */}
         <div className="sticky bottom-0 glass border-t border-[var(--border-subtle)] px-6 py-4 rounded-b-xl">
-          <div className="flex gap-3 justify-end">
+          <div className="flex gap-3 justify-end items-center">
             {step === "upload" && (
               <button onClick={onClose} className="btn-secondary">
                 Cancel
@@ -401,10 +544,16 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
                 </button>
                 <button
                   onClick={handleApplyChanges}
-                  disabled={importResult?.valid.length === 0}
-                  className="btn-primary disabled:opacity-50"
+                  disabled={selectedCount === 0}
+                  className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
-                  Apply {importResult?.valid.length || 0} Changes
+                  {selectedCount === 0 ? (
+                    "Select Units to Import"
+                  ) : selectedCount === totalUnits ? (
+                    `Import All (${selectedChangesCount} Changes)`
+                  ) : (
+                    `Import ${selectedCount} Selected (${selectedChangesCount} Changes)`
+                  )}
                 </button>
               </>
             )}
