@@ -1,8 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import type { Mock } from "vitest";
+
+// Create a hoisted mock function that can be referenced in vi.mock
+const { mockSaveAs } = vi.hoisted(() => ({
+  mockSaveAs: vi.fn(),
+}));
 
 // Mock file-saver to prevent actual file downloads
 vi.mock("file-saver", () => ({
-  saveAs: vi.fn(),
+  saveAs: mockSaveAs,
 }));
 
 // Mock the developments data
@@ -54,79 +60,63 @@ vi.mock("../data/realDevelopments", () => ({
   ],
 }));
 
+// Import the service after mocks are set up
+import { exportUnitsToExcel, getExportColumns } from "./excelExportService";
+
 describe("Excel Export Service", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    mockSaveAs.mockClear();
   });
 
   it("should export development units to Excel without errors", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-    const { saveAs } = await import("file-saver");
-
     // Should not throw
     await expect(exportUnitsToExcel("test-dev-1")).resolves.not.toThrow();
 
     // Verify saveAs was called
-    expect(saveAs).toHaveBeenCalledTimes(1);
-  });
+    expect(mockSaveAs).toHaveBeenCalledTimes(1);
+  }, 10000); // Increase timeout for ExcelJS operations
 
   it("should create blob with correct MIME type", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-    const { saveAs } = await import("file-saver");
-
     await exportUnitsToExcel("test-dev-1");
 
-    const call = vi.mocked(saveAs).mock.calls[0];
+    const call = (mockSaveAs as Mock).mock.calls[0];
     const blob = call[0] as Blob;
 
     expect(blob).toBeInstanceOf(Blob);
     expect(blob.type).toBe(
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     );
-  });
+  }, 10000);
 
   it("should use correct filename format for single development", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-    const { saveAs } = await import("file-saver");
-
     await exportUnitsToExcel("test-dev-1");
 
-    const filename = vi.mocked(saveAs).mock.calls[0][1] as string;
+    const filename = (mockSaveAs as Mock).mock.calls[0][1] as string;
     expect(filename).toMatch(/Test_Development_Export_\d{4}-\d{2}-\d{2}\.xlsx/);
-  });
+  }, 10000);
 
   it("should use correct filename format when exporting all developments", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-    const { saveAs } = await import("file-saver");
-
     await exportUnitsToExcel(); // No ID = export all
 
-    const filename = vi.mocked(saveAs).mock.calls[0][1] as string;
+    const filename = (mockSaveAs as Mock).mock.calls[0][1] as string;
     expect(filename).toMatch(/Units_Export_\d{4}-\d{2}-\d{2}\.xlsx/);
-  });
+  }, 10000);
 
   it("should throw error for non-existent development", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-
     await expect(exportUnitsToExcel("non-existent-id")).rejects.toThrow(
       "Development with ID non-existent-id not found"
     );
   });
 
   it("should create non-empty blob (Excel file has content)", async () => {
-    const { exportUnitsToExcel } = await import("./excelExportService");
-    const { saveAs } = await import("file-saver");
-
     await exportUnitsToExcel("test-dev-1");
 
-    const blob = vi.mocked(saveAs).mock.calls[0][0] as Blob;
+    const blob = (mockSaveAs as Mock).mock.calls[0][0] as Blob;
     // Excel files with content should be at least a few KB
     expect(blob.size).toBeGreaterThan(1000);
-  });
+  }, 10000);
 
-  it("should return correct export columns", async () => {
-    const { getExportColumns } = await import("./excelExportService");
-
+  it("should return correct export columns", () => {
     const columns = getExportColumns();
 
     expect(columns).toContain("Development Name");
