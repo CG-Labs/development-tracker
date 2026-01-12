@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "./config/firebase";
+import { MsalProvider } from "@azure/msal-react";
+import { msalInstance } from "./config/azure";
+import { containers } from "./config/cosmos";
 import { Dashboard } from "./components/Dashboard";
 import { developments } from "./data/realDevelopments";
 import { Login } from "./components/Login";
@@ -11,7 +12,7 @@ import { ImportModal } from "./components/ImportModal";
 import { ExportModal } from "./components/ExportModal";
 import { LogoUploadModal } from "./components/LogoUploadModal";
 import { ReportDevelopmentSelector } from "./components/ReportDevelopmentSelector";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AzureAuthContext";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { loadUnitOverrides } from "./services/excelImportService";
 import { ROLE_INFO } from "./types/roles";
@@ -49,14 +50,13 @@ function AuthenticatedApp() {
     loadUnitOverrides();
   }, []);
 
-  // Load company logo
+  // Load company logo from Cosmos DB
   useEffect(() => {
     async function loadLogo() {
       try {
-        const docRef = doc(db, "settings", "company");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists() && docSnap.data().logoUrl) {
-          setCompanyLogo(docSnap.data().logoUrl);
+        const { resource } = await containers.settings.item("company", "company").read();
+        if (resource && resource.logoUrl) {
+          setCompanyLogo(resource.logoUrl);
         }
       } catch (error) {
         console.error("Failed to load company logo:", error);
@@ -421,13 +421,15 @@ function AppRoutes() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </AuthProvider>
-      </ThemeProvider>
+      <MsalProvider instance={msalInstance}>
+        <ThemeProvider>
+          <AuthProvider>
+            <BrowserRouter>
+              <AppRoutes />
+            </BrowserRouter>
+          </AuthProvider>
+        </ThemeProvider>
+      </MsalProvider>
     </ErrorBoundary>
   );
 }
