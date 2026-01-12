@@ -122,7 +122,7 @@ export function DevelopmentDetail() {
   const [notesCounts, setNotesCounts] = useState<Map<string, number>>(new Map());
   const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
   const [selectedUnitIds, setSelectedUnitIds] = useState<Set<string>>(new Set());
-  const [, setRefreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [sortField, setSortField] = useState<SortField>("unitNumber");
   const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
 
@@ -271,7 +271,7 @@ export function DevelopmentDetail() {
       }
       return sortDirection === "asc" ? comparison : -comparison;
     });
-  }, [development, typeFilter, bedsFilter, salesFilter, bcmsApprovedFilter, sortField, sortDirection]);
+  }, [development, typeFilter, bedsFilter, salesFilter, bcmsApprovedFilter, sortField, sortDirection, refreshKey]);
 
   // Selection helpers
   const isAllSelected = filteredUnits.length > 0 && filteredUnits.every((u) => selectedUnitIds.has(u.unitNumber));
@@ -350,7 +350,7 @@ export function DevelopmentDetail() {
       forSaleCount,
       notReleasedCount,
     };
-  }, [development]);
+  }, [development, refreshKey]);
 
   if (!development) {
     return (
