@@ -69,6 +69,16 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
     setSelectedUnits(new Set());
   };
 
+  const selectUpdatesOnly = () => {
+    if (importResult?.valid) {
+      // Select only units that have changes (updates to existing data)
+      const updatesOnly = importResult.valid
+        .filter((row) => row.changes.length > 0)
+        .map((row) => row.unitNumber);
+      setSelectedUnits(new Set(updatesOnly));
+    }
+  };
+
   const toggleSelectAll = () => {
     if (allSelected) {
       deselectAll();
@@ -353,6 +363,12 @@ export function ImportModal({ onClose, onComplete, developmentName }: ImportModa
                           className="px-3 py-1.5 text-xs font-mono rounded border border-[var(--border-subtle)] hover:border-[var(--accent-cyan)] hover:text-[var(--accent-cyan)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                         >
                           Select All
+                        </button>
+                        <button
+                          onClick={selectUpdatesOnly}
+                          className="px-3 py-1.5 text-xs font-mono rounded border border-[var(--border-subtle)] hover:border-[var(--accent-emerald)] hover:text-[var(--accent-emerald)] transition-all"
+                        >
+                          Updates Only
                         </button>
                         <button
                           onClick={deselectAll}
