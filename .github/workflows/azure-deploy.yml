@@ -1,0 +1,123 @@
+name: Deploy to Azure LABS
+
+on:
+  push:
+    branches: [master, feature/azure-migration]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+  AZURE_WEBAPP_NAME: 'ce-devtracker-labs-app'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test:run
+
+      - name: Build application
+        env:
+          VITE_AAD_CLIENT_ID: ${{ secrets.AAD_CLIENT_ID }}
+          VITE_AAD_TENANT_ID: ${{ secrets.AAD_TENANT_ID }}
+          VITE_AAD_REDIRECT_URI: https://ce-devtracker-labs-app.azurewebsites.net/auth/callback
+          VITE_APP_URL: https://ce-devtracker-labs-app.azurewebsites.net
+        run: npm run build
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: dist/
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/feature/azure-migration')
+    environment:
+      name: labs
+      url: ${{ steps.deploy.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: dist/
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure App Service
+        id: deploy
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: dist/
+
+      - name: Azure Logout
+        run: |
+          az logout
+        if: always()
+
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    environment:
+      name: labs-infrastructure
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep Infrastructure
+        run: |
+          az deployment sub create \
+            --name ce-devtracker-labs-$(date +%Y%m%d-%H%M%S) \
+            --location eastus \
+            --template-file infrastructure/main.bicep \
+            --parameters environment=labs \
+                         orgPrefix=ce \
+                         workload=devtracker \
+                         adminEmails="${{ secrets.ADMIN_EMAILS }}" \
+                         aadClientId="${{ secrets.AAD_CLIENT_ID }}" \
+                         aadTenantId="${{ secrets.AAD_TENANT_ID }}" \
+                         aadClientSecret="${{ secrets.AAD_CLIENT_SECRET }}"
+
+      - name: Get deployment outputs
+        id: deployment
+        run: |
+          OUTPUTS=$(az deployment sub show \
+            --name ce-devtracker-labs-latest \
+            --query properties.outputs)
+          echo "outputs=$OUTPUTS" >> $GITHUB_OUTPUT
+
+      - name: Azure Logout
+        run: |
+          az logout
+        if: always()

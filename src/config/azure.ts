@@ -4,7 +4,7 @@
  * MSAL.js configuration for authentication with Azure AD
  */
 
-import { Configuration, PublicClientApplication, LogLevel } from '@azure/msal-browser';
+import { PublicClientApplication, LogLevel, type Configuration } from '@azure/msal-browser';
 
 // MSAL Configuration
 export const msalConfig: Configuration = {

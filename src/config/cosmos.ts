@@ -72,27 +72,27 @@ export async function getItem<T>(
 /**
  * Helper to create an item
  */
-export async function createItem<T>(
+export async function createItem<T = any>(
   container: Container,
-  item: T
+  item: any
 ): Promise<T> {
-  const { resource } = await container.items.create<T>(item);
-  return resource!;
+  const { resource } = await container.items.create(item);
+  return resource as T;
 }
 
 /**
  * Helper to update an item
  */
-export async function updateItem<T>(
+export async function updateItem<T = any>(
   container: Container,
   id: string,
   partitionKey: string,
-  updates: Partial<T>
+  updates: any
 ): Promise<T> {
   const { resource } = await container
     .item(id, partitionKey)
-    .replace<T>(updates as T);
-  return resource!;
+    .replace(updates);
+  return resource as T;
 }
 
 /**

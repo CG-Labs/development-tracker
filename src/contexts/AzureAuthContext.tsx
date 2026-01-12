@@ -10,7 +10,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from "react";
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
+// InteractionRequiredAuthError available if needed for error handling
 import { msalInstance, loginRequest, initializeMsal, getActiveAccount } from "../config/azure";
 import {
   getUserProfile,
