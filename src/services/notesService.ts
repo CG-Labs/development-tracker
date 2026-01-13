@@ -63,7 +63,7 @@ export async function getNotes(unitId: string): Promise<Note[]> {
 }
 
 /**
- * Subscribe to real-time notes updates using Cosmos DB change feed
+ * Subscribe to real-time notes updates using polling
  * Polls every 2 seconds for changes
  */
 export function subscribeToNotes(
@@ -72,54 +72,36 @@ export function subscribeToNotes(
   onError?: (error: Error) => void
 ): () => void {
   let active = true;
-  let continuationToken: string | undefined;
+  let intervalId: ReturnType<typeof setInterval>;
 
-  async function poll() {
-    // Initial load
+  async function pollNotes() {
     try {
-      const initialNotes = await getNotes(unitId);
-      callback(initialNotes);
+      const notes = await getNotes(unitId);
+      if (active) {
+        callback(notes);
+      }
     } catch (error) {
-      console.error("Error loading initial notes:", error);
-      onError?.(error as Error);
-    }
-
-    // Start polling for changes
-    while (active) {
-      try {
-        // Use change feed to detect changes
-        const iterator = containers.notes.items.readChangeFeed({
-          partitionKey: unitId,
-          continuationToken,
-          startFromBeginning: false,
-        });
-
-        if (iterator.hasMoreResults) {
-          const response = await iterator.readNext();
-
-          // If there are changes, reload all notes
-          if (response.result && response.result.length > 0) {
-            const updatedNotes = await getNotes(unitId);
-            callback(updatedNotes);
-          }
-
-          continuationToken = response.continuationToken;
-        }
-      } catch (error) {
-        console.error("Error in notes subscription:", error);
+      console.error("Error polling notes:", error);
+      if (active) {
         onError?.(error as Error);
       }
-
-      // Poll every 2 seconds
-      await new Promise(resolve => setTimeout(resolve, 2000));
     }
   }
 
-  poll();
+  // Initial load
+  pollNotes();
+
+  // Set up polling interval (every 2 seconds)
+  intervalId = setInterval(() => {
+    if (active) {
+      pollNotes();
+    }
+  }, 2000);
 
   // Return unsubscribe function
   return () => {
     active = false;
+    clearInterval(intervalId);
   };
 }
 

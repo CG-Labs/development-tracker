@@ -9,8 +9,7 @@ import {
 } from "../services/auditLogService";
 import type { AuditLogEntry, AuditLogFilters, AuditAction } from "../types/auditLog";
 import { developments } from "../data/realDevelopments";
-import type { QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AzureAuthContext";
 
 const actionBadgeClasses: Record<AuditAction, string> = {
   create: "badge badge-complete",
@@ -49,7 +48,7 @@ export function AuditLog() {
   const [error, setError] = useState<string | null>(null);
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
   const [users, setUsers] = useState<{ id: string; email: string; name: string }[]>([]);
-  const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+  const [continuationToken, setContinuationToken] = useState<string | undefined>(undefined);
   const [hasMore, setHasMore] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
@@ -75,7 +74,7 @@ export function AuditLog() {
       const result: GetAuditLogsResult = await getAuditLogs(
         activeFilters,
         50,
-        resetPagination ? undefined : lastDoc || undefined
+        resetPagination ? undefined : continuationToken
       );
 
       if (resetPagination) {
@@ -83,7 +82,7 @@ export function AuditLog() {
       } else {
         setEntries((prev) => [...prev, ...result.entries]);
       }
-      setLastDoc(result.lastDoc);
+      setContinuationToken(result.continuationToken);
       setHasMore(result.hasMore);
     } catch (err) {
       console.error("Failed to load audit logs:", err);
@@ -91,7 +90,7 @@ export function AuditLog() {
     } finally {
       setLoading(false);
     }
-  }, [startDate, endDate, selectedUser, selectedDevelopment, selectedAction, lastDoc]);
+  }, [startDate, endDate, selectedUser, selectedDevelopment, selectedAction, continuationToken]);
 
   const loadMoreLogs = async () => {
     if (!hasMore || loadingMore) return;
@@ -104,9 +103,9 @@ export function AuditLog() {
       if (selectedDevelopment) activeFilters.developmentId = selectedDevelopment;
       if (selectedAction) activeFilters.action = selectedAction as AuditAction;
 
-      const result = await getAuditLogs(activeFilters, 50, lastDoc || undefined);
+      const result = await getAuditLogs(activeFilters, 50, continuationToken);
       setEntries((prev) => [...prev, ...result.entries]);
-      setLastDoc(result.lastDoc);
+      setContinuationToken(result.continuationToken);
       setHasMore(result.hasMore);
     } catch (err) {
       console.error("Failed to load more logs:", err);

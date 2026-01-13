@@ -53,14 +53,14 @@ export async function executeQuery<T>(
 /**
  * Helper to get a single item by ID and partition key
  */
-export async function getItem<T>(
+export async function getItem<T = any>(
   container: Container,
   id: string,
   partitionKey: string
 ): Promise<T | null> {
   try {
-    const { resource } = await container.item(id, partitionKey).read<T>();
-    return resource || null;
+    const { resource } = await container.item(id, partitionKey).read();
+    return (resource as T) || null;
   } catch (error: any) {
     if (error.code === 404) {
       return null;

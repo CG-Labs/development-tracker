@@ -30,7 +30,6 @@ export async function logChange(params: LogChangeParams): Promise<string> {
   const id = generateId();
   const auditLog = {
     id,
-    userId: params.userId,
     ...params,
     timestamp: new Date().toISOString(),
   };

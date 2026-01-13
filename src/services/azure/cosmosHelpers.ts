@@ -63,14 +63,14 @@ export async function queryWithPagination<T>(
 /**
  * Get item by ID with partition key
  */
-export async function getItemById<T>(
+export async function getItemById<T = any>(
   container: Container,
   id: string,
   partitionKey: string
 ): Promise<T | null> {
   try {
-    const { resource } = await container.item(id, partitionKey).read<T>();
-    return resource || null;
+    const { resource } = await container.item(id, partitionKey).read();
+    return (resource as T) || null;
   } catch (error: any) {
     if (error.code === 404) {
       return null;
@@ -116,16 +116,17 @@ export async function replaceItem<T = any>(
 
 /**
  * Patch an item (partial update)
+ * Note: Cosmos DB patch operations require specific format
  */
 export async function patchItem<T = any>(
   container: Container,
   id: string,
   partitionKey: string,
-  operations: Array<{ op: string; path: string; value: any }>
+  operations: Array<{ op: 'add' | 'replace' | 'remove' | 'set' | 'incr'; path: string; value?: any }>
 ): Promise<T> {
   const { resource } = await container
     .item(id, partitionKey)
-    .patch(operations);
+    .patch(operations as any);
   return resource as T;
 }
 
