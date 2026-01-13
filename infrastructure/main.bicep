@@ -10,7 +10,7 @@ param orgPrefix string = 'ce'
 param workload string = 'devtracker'
 
 @description('Azure region')
-param location string = 'eastus'
+param location string = 'uksouth'
 
 @description('Admin emails (comma-separated)')
 @secure()
@@ -90,52 +90,23 @@ module appService 'modules/app-service.bicep' = {
 }
 
 // Store secrets in Key Vault
-resource kvCosmosSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/cosmos-db-connection-string'
-  properties: {
-    value: cosmosDb.outputs.connectionString
-  }
+module kvSecrets 'modules/key-vault-secrets.bicep' = {
   scope: rg
-}
-
-resource kvStorageSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/storage-connection-string'
-  properties: {
-    value: storage.outputs.connectionString
+  name: 'keyvault-secrets-deployment'
+  params: {
+    keyVaultName: keyVault.outputs.keyVaultName
+    cosmosConnectionString: cosmosDb.outputs.connectionString
+    storageConnectionString: storage.outputs.connectionString
+    aadClientId: aadClientId
+    aadClientSecret: aadClientSecret
+    aadTenantId: aadTenantId
+    adminEmails: adminEmails
   }
-  scope: rg
-}
-
-resource kvAadClientId 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/aad-client-id'
-  properties: {
-    value: aadClientId
-  }
-  scope: rg
-}
-
-resource kvAadClientSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/aad-client-secret'
-  properties: {
-    value: aadClientSecret
-  }
-  scope: rg
-}
-
-resource kvAadTenantId 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/aad-tenant-id'
-  properties: {
-    value: aadTenantId
-  }
-  scope: rg
-}
-
-resource kvAdminEmails 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  name: '${keyVault.outputs.keyVaultName}/admin-emails'
-  properties: {
-    value: adminEmails
-  }
-  scope: rg
+  dependsOn: [
+    keyVault
+    cosmosDb
+    storage
+  ]
 }
 
 // Grant Key Vault access to App Service Managed Identity
@@ -149,6 +120,7 @@ module kvAccess 'modules/key-vault-access.bicep' = {
   dependsOn: [
     keyVault
     appService
+    kvSecrets
   ]
 }
 

@@ -3,7 +3,7 @@ using '../main.bicep'
 param environment = 'labs'
 param orgPrefix = 'ce'
 param workload = 'devtracker'
-param location = 'eastus'
+param location = 'uksouth'
 
 // These will need to be provided at deployment time
 param adminEmails = '' // Will be provided via command line

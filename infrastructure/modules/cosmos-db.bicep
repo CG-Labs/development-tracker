@@ -7,7 +7,6 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
   kind: 'GlobalDocumentDB'
   properties: {
     databaseAccountOfferType: 'Standard'
-    enableServerless: true  // Serverless for burstable workload
     enableAutomaticFailover: false
     enableMultipleWriteLocations: false
     consistencyPolicy: {
@@ -18,6 +17,11 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
         locationName: location
         failoverPriority: 0
         isZoneRedundant: false
+      }
+    ]
+    capabilities: [
+      {
+        name: 'EnableServerless'
       }
     ]
     publicNetworkAccess: 'Enabled'
