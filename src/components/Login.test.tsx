@@ -1,17 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render } from "@testing-library/react";
-import { screen, waitFor } from "@testing-library/dom";
+import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { Login } from "./Login";
 
 // Mock the auth context
 const mockLogin = vi.fn();
-const mockResetPassword = vi.fn();
 
-vi.mock("../contexts/AuthContext", () => ({
+vi.mock("../contexts/AzureAuthContext", () => ({
   useAuth: () => ({
     login: mockLogin,
-    resetPassword: mockResetPassword,
   }),
 }));
 
@@ -20,218 +18,69 @@ describe("Login", () => {
     vi.clearAllMocks();
   });
 
-  describe("login form", () => {
-    it("renders login form elements", () => {
-      render(<Login />);
+  it("renders Azure AD login button", () => {
+    render(<Login />);
+    const button = screen.getByRole("button", { name: /sign in with microsoft/i });
+    expect(button).toBeInTheDocument();
+  });
 
-      expect(screen.getByText("Welcome Back")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("you@example.com")).toBeInTheDocument();
-      expect(screen.getByPlaceholderText("Enter your password")).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "Sign In" })).toBeInTheDocument();
-    });
+  it("displays help text about Microsoft account", () => {
+    render(<Login />);
+    expect(screen.getByText(/you'll be redirected to sign in with your microsoft account/i)).toBeInTheDocument();
+  });
 
-    it("renders forgot password link", () => {
-      render(<Login />);
+  it("displays contact admin message", () => {
+    render(<Login />);
+    expect(screen.getByText(/need an account\? contact your administrator/i)).toBeInTheDocument();
+  });
 
-      expect(screen.getByText("Forgot Password?")).toBeInTheDocument();
-    });
+  it("displays footer with version", () => {
+    render(<Login />);
+    expect(screen.getByText(/devtracker v1\.0/i)).toBeInTheDocument();
+  });
 
-    it("allows user to type email and password", async () => {
-      const user = userEvent.setup();
-      render(<Login />);
+  it("calls login when sign in button is clicked", async () => {
+    const user = userEvent.setup();
+    render(<Login />);
 
-      const emailInput = screen.getByPlaceholderText("you@example.com");
-      const passwordInput = screen.getByPlaceholderText("Enter your password");
+    const button = screen.getByRole("button", { name: /sign in with microsoft/i });
+    await user.click(button);
 
-      await user.type(emailInput, "test@example.com");
-      await user.type(passwordInput, "password123");
+    expect(mockLogin).toHaveBeenCalledTimes(1);
+  });
 
-      expect(emailInput).toHaveValue("test@example.com");
-      expect(passwordInput).toHaveValue("password123");
-    });
+  it("shows loading state during login", async () => {
+    mockLogin.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    const user = userEvent.setup();
+    render(<Login />);
 
-    it("calls login with credentials on form submit", async () => {
-      const user = userEvent.setup();
-      mockLogin.mockResolvedValue(undefined);
-      render(<Login />);
+    const button = screen.getByRole("button", { name: /sign in with microsoft/i });
+    await user.click(button);
 
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.type(screen.getByPlaceholderText("Enter your password"), "password123");
-      await user.click(screen.getByRole("button", { name: "Sign In" }));
+    expect(screen.getByText(/signing in/i)).toBeInTheDocument();
+  });
 
-      await waitFor(() => {
-        expect(mockLogin).toHaveBeenCalledWith("test@example.com", "password123");
-      });
-    });
+  it("displays error when login fails", async () => {
+    mockLogin.mockRejectedValueOnce(new Error("Failed to sign in"));
+    const user = userEvent.setup();
+    render(<Login />);
 
-    it("shows loading state during login", async () => {
-      const user = userEvent.setup();
-      // Make login take time
-      mockLogin.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
-      render(<Login />);
+    const button = screen.getByRole("button", { name: /sign in with microsoft/i });
+    await user.click(button);
 
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.type(screen.getByPlaceholderText("Enter your password"), "password123");
-      await user.click(screen.getByRole("button", { name: "Sign In" }));
-
-      expect(screen.getByText("Signing in...")).toBeInTheDocument();
-    });
-
-    it("displays invalid-credential error message", async () => {
-      const user = userEvent.setup();
-      // Create a Firebase-style error with proper code property
-      const invalidCredError = new Error("Invalid credential");
-      (invalidCredError as { code?: string }).code = "auth/invalid-credential";
-      mockLogin.mockRejectedValue(invalidCredError);
-      render(<Login />);
-
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.type(screen.getByPlaceholderText("Enter your password"), "wrongpassword");
-      await user.click(screen.getByRole("button", { name: "Sign In" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("Invalid email or password.")).toBeInTheDocument();
-      });
-    });
-
-    it("displays too-many-requests error message", async () => {
-      const user = userEvent.setup();
-      // Create a Firebase-style error with proper code property
-      const rateLimitError = new Error("Too many requests");
-      (rateLimitError as { code?: string }).code = "auth/too-many-requests";
-      mockLogin.mockRejectedValue(rateLimitError);
-      render(<Login />);
-
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.type(screen.getByPlaceholderText("Enter your password"), "password123");
-      await user.click(screen.getByRole("button", { name: "Sign In" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("Too many failed attempts. Please wait a few minutes before trying again.")).toBeInTheDocument();
-      });
-    });
-
-    it("displays generic error message for other errors", async () => {
-      const user = userEvent.setup();
-      mockLogin.mockRejectedValue(new Error("Network error"));
-      render(<Login />);
-
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.type(screen.getByPlaceholderText("Enter your password"), "password123");
-      await user.click(screen.getByRole("button", { name: "Sign In" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("Network error")).toBeInTheDocument();
-      });
+    await vi.waitFor(() => {
+      expect(screen.getByText(/failed to sign in/i)).toBeInTheDocument();
     });
   });
 
-  describe("reset password form", () => {
-    it("shows reset password form when forgot password is clicked", async () => {
-      const user = userEvent.setup();
-      render(<Login />);
+  it("has disabled button when loading", async () => {
+    mockLogin.mockImplementation(() => new Promise(resolve => setTimeout(resolve, 1000)));
+    const user = userEvent.setup();
+    render(<Login />);
 
-      await user.click(screen.getByText("Forgot Password?"));
+    const button = screen.getByRole("button", { name: /sign in with microsoft/i });
+    await user.click(button);
 
-      expect(screen.getByText("Reset Password")).toBeInTheDocument();
-      expect(screen.getByText("Enter your email to receive a reset link")).toBeInTheDocument();
-    });
-
-    it("requires email field to be filled before reset", async () => {
-      const user = userEvent.setup();
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-
-      // The email input has the 'required' attribute
-      const emailInput = screen.getByPlaceholderText("you@example.com");
-      expect(emailInput).toBeRequired();
-    });
-
-    it("calls resetPassword with email", async () => {
-      const user = userEvent.setup();
-      mockResetPassword.mockResolvedValue(undefined);
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.click(screen.getByRole("button", { name: "Send Reset Link" }));
-
-      await waitFor(() => {
-        expect(mockResetPassword).toHaveBeenCalledWith("test@example.com");
-      });
-    });
-
-    it("shows success message after reset email sent", async () => {
-      const user = userEvent.setup();
-      mockResetPassword.mockResolvedValue(undefined);
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.click(screen.getByRole("button", { name: "Send Reset Link" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("Password reset email sent!")).toBeInTheDocument();
-      });
-    });
-
-    it("shows user-not-found error message", async () => {
-      const user = userEvent.setup();
-      mockResetPassword.mockRejectedValue(new Error("user-not-found"));
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-      await user.type(screen.getByPlaceholderText("you@example.com"), "notfound@example.com");
-      await user.click(screen.getByRole("button", { name: "Send Reset Link" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("No account found with this email")).toBeInTheDocument();
-      });
-    });
-
-    it("returns to login form when back button is clicked", async () => {
-      const user = userEvent.setup();
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-      expect(screen.getByText("Reset Password")).toBeInTheDocument();
-
-      await user.click(screen.getByText("Back to Login"));
-      expect(screen.getByText("Welcome Back")).toBeInTheDocument();
-    });
-
-    it("returns to login form after successful reset when back button is clicked", async () => {
-      const user = userEvent.setup();
-      mockResetPassword.mockResolvedValue(undefined);
-      render(<Login />);
-
-      await user.click(screen.getByText("Forgot Password?"));
-      await user.type(screen.getByPlaceholderText("you@example.com"), "test@example.com");
-      await user.click(screen.getByRole("button", { name: "Send Reset Link" }));
-
-      await waitFor(() => {
-        expect(screen.getByText("Password reset email sent!")).toBeInTheDocument();
-      });
-
-      await user.click(screen.getByRole("button", { name: "Back to Login" }));
-      expect(screen.getByText("Welcome Back")).toBeInTheDocument();
-    });
-  });
-
-  describe("UI elements", () => {
-    it("displays footer with version", () => {
-      render(<Login />);
-
-      expect(screen.getByText("DevTracker v1.0")).toBeInTheDocument();
-    });
-
-    it("displays contact admin message", () => {
-      render(<Login />);
-
-      expect(
-        screen.getByText(/Need an account\? Contact your administrator/)
-      ).toBeInTheDocument();
-    });
+    expect(button).toBeDisabled();
   });
 });
