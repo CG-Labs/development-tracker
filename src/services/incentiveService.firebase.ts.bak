@@ -1,38 +1,44 @@
-/**
- * Incentive Service - Cosmos DB Implementation
- *
- * Handles buyer incentive scheme management
- */
-
-import { containers } from "../config/cosmos";
 import {
-  queryAll,
-  getItemById,
-  createItem,
-  replaceItem,
-  deleteItem,
-  generateId,
-} from "./azure/cosmosHelpers";
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+  getDoc,
+  query,
+  where,
+  orderBy,
+  Timestamp,
+} from "firebase/firestore";
+import { db } from "../config/firebase";
 import type { IncentiveScheme, IncentiveSchemeFormData } from "../types/incentive";
 import type { Unit } from "../types";
 
-function isoToDate(iso: string | undefined): Date | undefined {
-  return iso ? new Date(iso) : undefined;
+const COLLECTION_NAME = "incentiveSchemes";
+
+function timestampToDate(timestamp: Timestamp | Date | undefined): Date | undefined {
+  if (!timestamp) return undefined;
+  if (timestamp instanceof Timestamp) {
+    return timestamp.toDate();
+  }
+  return timestamp;
 }
 
-function schemeFromCosmos(data: any): IncentiveScheme {
+function schemeFromFirestore(doc: { id: string; data: () => Record<string, unknown> }): IncentiveScheme {
+  const data = doc.data();
   return {
-    id: data.id,
+    id: doc.id,
     name: data.name as string,
     description: data.description as string | undefined,
     active: data.active as boolean,
     benefits: data.benefits as IncentiveScheme["benefits"],
     requirements: data.requirements as IncentiveScheme["requirements"],
-    validFrom: isoToDate(data.validFrom),
-    validTo: isoToDate(data.validTo),
+    validFrom: timestampToDate(data.validFrom as Timestamp | undefined),
+    validTo: timestampToDate(data.validTo as Timestamp | undefined),
     createdBy: data.createdBy as string,
-    createdAt: isoToDate(data.createdAt) || new Date(),
-    updatedAt: isoToDate(data.updatedAt),
+    createdAt: timestampToDate(data.createdAt as Timestamp) || new Date(),
+    updatedAt: timestampToDate(data.updatedAt as Timestamp | undefined),
   };
 }
 
@@ -40,81 +46,68 @@ export async function createIncentiveScheme(
   scheme: IncentiveSchemeFormData,
   userId: string
 ): Promise<string> {
-  const id = generateId();
-
   const docData = {
-    id,
     ...scheme,
-    validFrom: scheme.validFrom ? new Date(scheme.validFrom).toISOString() : null,
-    validTo: scheme.validTo ? new Date(scheme.validTo).toISOString() : null,
+    validFrom: scheme.validFrom ? Timestamp.fromDate(new Date(scheme.validFrom)) : null,
+    validTo: scheme.validTo ? Timestamp.fromDate(new Date(scheme.validTo)) : null,
     createdBy: userId,
-    createdAt: new Date().toISOString(),
+    createdAt: Timestamp.now(),
   };
 
-  await createItem(containers.incentiveSchemes, docData);
-  return id;
+  const docRef = await addDoc(collection(db, COLLECTION_NAME), docData);
+  return docRef.id;
 }
 
 export async function getIncentiveSchemes(): Promise<IncentiveScheme[]> {
-  const schemes = await queryAll<any>(
-    containers.incentiveSchemes,
-    'SELECT * FROM c ORDER BY c.createdAt DESC'
-  );
-
-  return schemes.map(schemeFromCosmos);
+  const q = query(collection(db, COLLECTION_NAME), orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => schemeFromFirestore({ id: doc.id, data: () => doc.data() }));
 }
 
 export async function getActiveSchemes(): Promise<IncentiveScheme[]> {
-  const schemes = await queryAll<any>(
-    containers.incentiveSchemes,
-    'SELECT * FROM c WHERE c.active = true ORDER BY c.createdAt DESC'
+  const q = query(
+    collection(db, COLLECTION_NAME),
+    where("active", "==", true),
+    orderBy("createdAt", "desc")
   );
-
-  return schemes.map(schemeFromCosmos);
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => schemeFromFirestore({ id: doc.id, data: () => doc.data() }));
 }
 
 export async function getIncentiveScheme(id: string): Promise<IncentiveScheme | null> {
-  const scheme = await getItemById<any>(containers.incentiveSchemes, id, id);
-
-  if (!scheme) {
-    return null;
-  }
-
-  return schemeFromCosmos(scheme);
+  const docRef = doc(db, COLLECTION_NAME, id);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) return null;
+  return schemeFromFirestore({ id: docSnap.id, data: () => docSnap.data() });
 }
 
 export async function updateIncentiveScheme(
   id: string,
   updates: Partial<IncentiveSchemeFormData>
 ): Promise<void> {
-  const scheme = await getItemById<any>(containers.incentiveSchemes, id, id);
-
-  if (!scheme) {
-    throw new Error("Incentive scheme not found");
-  }
-
-  const updateData: any = {
-    ...scheme,
+  const docRef = doc(db, COLLECTION_NAME, id);
+  const updateData: Record<string, unknown> = {
     ...updates,
-    updatedAt: new Date().toISOString(),
+    updatedAt: Timestamp.now(),
   };
 
   if (updates.validFrom !== undefined) {
     updateData.validFrom = updates.validFrom
-      ? new Date(updates.validFrom).toISOString()
+      ? Timestamp.fromDate(new Date(updates.validFrom))
       : null;
   }
   if (updates.validTo !== undefined) {
     updateData.validTo = updates.validTo
-      ? new Date(updates.validTo).toISOString()
+      ? Timestamp.fromDate(new Date(updates.validTo))
       : null;
   }
 
-  await replaceItem(containers.incentiveSchemes, id, id, updateData);
+  await updateDoc(docRef, updateData);
 }
 
 export async function deleteIncentiveScheme(id: string): Promise<void> {
-  await deleteItem(containers.incentiveSchemes, id, id);
+  const docRef = doc(db, COLLECTION_NAME, id);
+  await deleteDoc(docRef);
 }
 
 export interface EligibilityResult {

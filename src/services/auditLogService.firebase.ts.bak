@@ -1,17 +1,20 @@
-/**
- * Audit Log Service - Cosmos DB Implementation
- *
- * Handles audit logging with pagination via continuation tokens
- */
-
-import { containers } from "../config/cosmos";
 import {
-  queryAll,
-  queryWithPagination,
-  createItem,
-  generateId,
-} from "./azure/cosmosHelpers";
+  collection,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  getDocs,
+  Timestamp,
+  limit,
+  startAfter,
+  type DocumentData,
+  type QueryDocumentSnapshot,
+} from "firebase/firestore";
+import { db } from "../config/firebase";
 import type { AuditLogEntry, AuditLogFilters, AuditChange, AuditAction, EntityType } from "../types/auditLog";
+
+const AUDIT_LOGS_COLLECTION = "auditLogs";
 
 interface LogChangeParams {
   userId: string;
@@ -27,71 +30,18 @@ interface LogChangeParams {
 }
 
 export async function logChange(params: LogChangeParams): Promise<string> {
-  const id = generateId();
-  const auditLog = {
-    id,
-    userId: params.userId,
+  const docRef = await addDoc(collection(db, AUDIT_LOGS_COLLECTION), {
     ...params,
-    timestamp: new Date().toISOString(),
-  };
-
-  await createItem(containers.auditLogs, auditLog);
-  return id;
+    timestamp: Timestamp.now(),
+  });
+  return docRef.id;
 }
 
-export interface GetAuditLogsResult {
-  entries: AuditLogEntry[];
-  continuationToken?: string;
-  hasMore: boolean;
-}
-
-export async function getAuditLogs(
-  filters: AuditLogFilters = {},
-  pageSize: number = 50,
-  continuationToken?: string
-): Promise<GetAuditLogsResult> {
-  const conditions: string[] = [];
-  const parameters: Array<{ name: string; value: any }> = [];
-
-  // Add filters
-  if (filters.startDate) {
-    conditions.push('c.timestamp >= @startDate');
-    parameters.push({ name: '@startDate', value: filters.startDate.toISOString() });
-  }
-  if (filters.endDate) {
-    // Add 1 day to include the end date fully
-    const endOfDay = new Date(filters.endDate);
-    endOfDay.setHours(23, 59, 59, 999);
-    conditions.push('c.timestamp <= @endDate');
-    parameters.push({ name: '@endDate', value: endOfDay.toISOString() });
-  }
-  if (filters.userId) {
-    conditions.push('c.userId = @userId');
-    parameters.push({ name: '@userId', value: filters.userId });
-  }
-  if (filters.developmentId) {
-    conditions.push('c.developmentId = @developmentId');
-    parameters.push({ name: '@developmentId', value: filters.developmentId });
-  }
-  if (filters.action) {
-    conditions.push('c.action = @action');
-    parameters.push({ name: '@action', value: filters.action });
-  }
-
-  const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-  const sqlQuery = `SELECT * FROM c ${whereClause} ORDER BY c.timestamp DESC`;
-
-  const result = await queryWithPagination<any>(
-    containers.auditLogs,
-    sqlQuery,
-    parameters,
-    pageSize,
-    continuationToken
-  );
-
-  const entries = result.items.map((data) => ({
-    id: data.id,
-    timestamp: data.timestamp ? new Date(data.timestamp) : new Date(),
+function docToAuditLogEntry(doc: QueryDocumentSnapshot<DocumentData>): AuditLogEntry {
+  const data = doc.data();
+  return {
+    id: doc.id,
+    timestamp: data.timestamp?.toDate() || new Date(),
     userId: data.userId || "",
     userEmail: data.userEmail || "",
     userName: data.userName || "",
@@ -102,28 +52,75 @@ export async function getAuditLogs(
     developmentId: data.developmentId,
     developmentName: data.developmentName,
     unitNumber: data.unitNumber,
-  }));
-
-  return {
-    entries,
-    continuationToken: result.continuationToken,
-    hasMore: result.hasMore,
   };
 }
 
+export interface GetAuditLogsResult {
+  entries: AuditLogEntry[];
+  lastDoc: QueryDocumentSnapshot<DocumentData> | null;
+  hasMore: boolean;
+}
+
+export async function getAuditLogs(
+  filters: AuditLogFilters = {},
+  pageSize: number = 50,
+  lastDocument?: QueryDocumentSnapshot<DocumentData>
+): Promise<GetAuditLogsResult> {
+  const constraints = [];
+
+  // Add filters
+  if (filters.startDate) {
+    constraints.push(where("timestamp", ">=", Timestamp.fromDate(filters.startDate)));
+  }
+  if (filters.endDate) {
+    // Add 1 day to include the end date fully
+    const endOfDay = new Date(filters.endDate);
+    endOfDay.setHours(23, 59, 59, 999);
+    constraints.push(where("timestamp", "<=", Timestamp.fromDate(endOfDay)));
+  }
+  if (filters.userId) {
+    constraints.push(where("userId", "==", filters.userId));
+  }
+  if (filters.developmentId) {
+    constraints.push(where("developmentId", "==", filters.developmentId));
+  }
+  if (filters.action) {
+    constraints.push(where("action", "==", filters.action));
+  }
+
+  // Order by timestamp descending
+  constraints.push(orderBy("timestamp", "desc"));
+
+  // Pagination
+  constraints.push(limit(pageSize + 1)); // Get one extra to check if there are more
+
+  if (lastDocument) {
+    constraints.push(startAfter(lastDocument));
+  }
+
+  const q = query(collection(db, AUDIT_LOGS_COLLECTION), ...constraints);
+  const snapshot = await getDocs(q);
+
+  const docs = snapshot.docs;
+  const hasMore = docs.length > pageSize;
+  const entries = docs.slice(0, pageSize).map(docToAuditLogEntry);
+  const lastDoc = docs.length > 0 ? docs[Math.min(docs.length - 1, pageSize - 1)] : null;
+
+  return { entries, lastDoc, hasMore };
+}
+
 export async function getAllUsers(): Promise<{ id: string; email: string; name: string }[]> {
-  const logs = await queryAll<any>(
-    containers.auditLogs,
-    'SELECT * FROM c ORDER BY c.timestamp DESC'
-  );
+  const q = query(collection(db, AUDIT_LOGS_COLLECTION), orderBy("timestamp", "desc"));
+  const snapshot = await getDocs(q);
 
   const usersMap = new Map<string, { id: string; email: string; name: string }>();
-  logs.forEach((log) => {
-    if (log.userId && !usersMap.has(log.userId)) {
-      usersMap.set(log.userId, {
-        id: log.userId,
-        email: log.userEmail || "",
-        name: log.userName || "",
+  snapshot.docs.forEach((doc) => {
+    const data = doc.data();
+    if (data.userId && !usersMap.has(data.userId)) {
+      usersMap.set(data.userId, {
+        id: data.userId,
+        email: data.userEmail || "",
+        name: data.userName || "",
       });
     }
   });

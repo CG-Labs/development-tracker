@@ -1,8 +1,6 @@
 import { useState, useRef, useCallback } from "react";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../config/firebase";
-import app from "../config/firebase";
+import { uploadBlob } from "../services/azure/blobStorageService";
+import { containers } from "../config/cosmos";
 
 interface LogoUploadModalProps {
   onClose: () => void;
@@ -83,17 +81,19 @@ export function LogoUploadModal({ onClose, onUpload, currentLogo }: LogoUploadMo
     setError(null);
 
     try {
-      const storage = getStorage(app);
-      const storageRef = ref(storage, `company-logo/logo-${Date.now()}`);
+      // Upload to Azure Blob Storage
+      const fileExtension = selectedFile.name.split('.').pop() || 'png';
+      const blobName = `logo-${Date.now()}.${fileExtension}`;
+      const downloadURL = await uploadBlob(selectedFile, blobName);
 
-      await uploadBytes(storageRef, selectedFile);
-      const downloadURL = await getDownloadURL(storageRef);
-
-      // Save URL to Firestore settings
-      await setDoc(doc(db, "settings", "company"), {
+      // Save URL to Cosmos DB settings
+      const existingSettings = await containers.settings.item("company", "company").read().catch(() => null);
+      await containers.settings.items.upsert({
+        id: "company",
         logoUrl: downloadURL,
-        updatedAt: new Date(),
-      }, { merge: true });
+        updatedAt: new Date().toISOString(),
+        ...existingSettings?.resource,
+      });
 
       onUpload(downloadURL);
       onClose();
@@ -108,10 +108,14 @@ export function LogoUploadModal({ onClose, onUpload, currentLogo }: LogoUploadMo
   const handleRemoveLogo = async () => {
     setUploading(true);
     try {
-      await setDoc(doc(db, "settings", "company"), {
+      // Update Cosmos DB settings to remove logo
+      const existingSettings = await containers.settings.item("company", "company").read().catch(() => null);
+      await containers.settings.items.upsert({
+        id: "company",
         logoUrl: null,
-        updatedAt: new Date(),
-      }, { merge: true });
+        updatedAt: new Date().toISOString(),
+        ...existingSettings?.resource,
+      });
 
       onUpload("");
       onClose();

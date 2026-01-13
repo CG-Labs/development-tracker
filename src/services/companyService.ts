@@ -1,64 +1,62 @@
+/**
+ * Company Service - Cosmos DB Implementation
+ *
+ * Handles development company management
+ */
+
+import { containers } from "../config/cosmos";
 import {
-  collection,
-  doc,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  query,
-  orderBy,
-  Timestamp,
-} from "firebase/firestore";
-import { db } from "../config/firebase";
+  queryAll,
+  getItemById,
+  createItem,
+  replaceItem,
+  deleteItem,
+  generateId,
+} from "./azure/cosmosHelpers";
 import type { DevelopmentCompany, CreateCompanyInput } from "../types/company";
 
-const COLLECTION_NAME = "developmentCompanies";
-
-// Convert Firestore document to DevelopmentCompany
-function docToCompany(
-  docId: string,
-  data: Record<string, unknown>
-): DevelopmentCompany {
+// Convert Cosmos document to DevelopmentCompany
+function docToCompany(data: any): DevelopmentCompany {
   return {
-    id: docId,
+    id: data.id,
     name: data.name as string,
     registeredAddress: data.registeredAddress as DevelopmentCompany["registeredAddress"],
     companyNumber: data.companyNumber as string,
     active: data.active as boolean,
-    createdAt:
-      data.createdAt instanceof Timestamp
-        ? data.createdAt.toDate()
-        : new Date(data.createdAt as string),
+    createdAt: data.createdAt ? new Date(data.createdAt) : new Date(),
     createdBy: data.createdBy as string,
   };
 }
 
 // Get all companies
 export async function getCompanies(): Promise<DevelopmentCompany[]> {
-  const companiesRef = collection(db, COLLECTION_NAME);
-  const q = query(companiesRef, orderBy("name", "asc"));
-  const snapshot = await getDocs(q);
+  const companies = await queryAll<any>(
+    containers.developmentCompanies,
+    'SELECT * FROM c ORDER BY c.name ASC'
+  );
 
-  return snapshot.docs.map((doc) => docToCompany(doc.id, doc.data()));
+  return companies.map(docToCompany);
 }
 
 // Get active companies only
 export async function getActiveCompanies(): Promise<DevelopmentCompany[]> {
-  const companies = await getCompanies();
-  return companies.filter((c) => c.active);
+  const companies = await queryAll<any>(
+    containers.developmentCompanies,
+    'SELECT * FROM c WHERE c.active = true ORDER BY c.name ASC'
+  );
+
+  return companies.map(docToCompany);
 }
 
 // Get a single company by ID
 export async function getCompany(id: string): Promise<DevelopmentCompany | null> {
-  const docRef = doc(db, COLLECTION_NAME, id);
-  const docSnap = await getDoc(docRef);
+  const company = await getItemById<any>(containers.developmentCompanies, id, id);
 
-  if (!docSnap.exists()) {
+  if (!company) {
     return null;
   }
 
-  return docToCompany(docSnap.id, docSnap.data());
+  return docToCompany(company);
 }
 
 // Create a new company
@@ -66,21 +64,22 @@ export async function createCompany(
   input: CreateCompanyInput,
   userId: string
 ): Promise<DevelopmentCompany> {
-  const companiesRef = collection(db, COLLECTION_NAME);
+  const id = generateId();
 
-  const docData = {
+  const companyData = {
+    id,
     name: input.name,
     registeredAddress: input.registeredAddress,
     companyNumber: input.companyNumber,
     active: input.active,
-    createdAt: Timestamp.now(),
+    createdAt: new Date().toISOString(),
     createdBy: userId,
   };
 
-  const docRef = await addDoc(companiesRef, docData);
+  await createItem(containers.developmentCompanies, companyData);
 
   return {
-    id: docRef.id,
+    id,
     ...input,
     createdAt: new Date(),
     createdBy: userId,
@@ -92,14 +91,21 @@ export async function updateCompany(
   id: string,
   updates: Partial<CreateCompanyInput>
 ): Promise<void> {
-  const docRef = doc(db, COLLECTION_NAME, id);
-  await updateDoc(docRef, updates);
+  const company = await getItemById<any>(containers.developmentCompanies, id, id);
+
+  if (!company) {
+    throw new Error("Company not found");
+  }
+
+  await replaceItem(containers.developmentCompanies, id, id, {
+    ...company,
+    ...updates,
+  });
 }
 
 // Delete a company
 export async function deleteCompany(id: string): Promise<void> {
-  const docRef = doc(db, COLLECTION_NAME, id);
-  await deleteDoc(docRef);
+  await deleteItem(containers.developmentCompanies, id, id);
 }
 
 // Toggle company active status
@@ -107,6 +113,14 @@ export async function toggleCompanyActive(
   id: string,
   active: boolean
 ): Promise<void> {
-  const docRef = doc(db, COLLECTION_NAME, id);
-  await updateDoc(docRef, { active });
+  const company = await getItemById<any>(containers.developmentCompanies, id, id);
+
+  if (!company) {
+    throw new Error("Company not found");
+  }
+
+  await replaceItem(containers.developmentCompanies, id, id, {
+    ...company,
+    active,
+  });
 }

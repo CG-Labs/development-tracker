@@ -1,33 +1,45 @@
 /**
- * User Service - Complete User Management (Cosmos DB)
+ * User Service - Complete User Management
  *
  * Handles:
  * - User profiles
- * - Email invites with tokens (via Graph API)
+ * - Magic link invites with tokens
  * - Role-based access control
  * - Notifications
  * - Audit logging
  */
 
-import { containers } from "../config/cosmos";
 import {
-  queryAll,
-  getItemById,
-  createItem,
-  replaceItem,
-  deleteItem,
-  generateId,
-} from "./azure/cosmosHelpers";
-import { sendInvitationEmail } from "./azure/graphEmailService";
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  where,
+  serverTimestamp,
+  Timestamp,
+  addDoc,
+} from "firebase/firestore";
+import { sendSignInLinkToEmail } from "firebase/auth";
+import { db, auth, getActionCodeSettings } from "../config/firebase";
 import type { UserRole, UserProfile, UserInvite, UserNotification, UserStatus } from "../types/roles";
 import { ROLE_INFO } from "../types/roles";
 
+const USERS_COLLECTION = "users";
+const INVITES_COLLECTION = "invites";
+const NOTIFICATIONS_COLLECTION = "notifications";
+const AUDIT_LOGS_COLLECTION = "auditLogs";
+
 /**
  * Admin emails - these users will automatically be assigned admin role on first signup
- * Configure via ADMIN_EMAILS environment variable (comma-separated)
+ * Configure via VITE_ADMIN_EMAILS environment variable (comma-separated)
  */
 const getAdminEmails = (): string[] => {
-  const envEmails = import.meta.env.ADMIN_EMAILS || import.meta.env.VITE_ADMIN_EMAILS;
+  const envEmails = import.meta.env.VITE_ADMIN_EMAILS;
   if (envEmails && typeof envEmails === "string") {
     return envEmails.split(",").map((email) => email.trim().toLowerCase());
   }
@@ -37,10 +49,10 @@ const getAdminEmails = (): string[] => {
 const ADMIN_EMAILS = getAdminEmails();
 
 /**
- * Convert ISO string to Date
+ * Convert Firestore timestamp to Date
  */
-function isoToDate(iso: string | undefined): Date | undefined {
-  return iso ? new Date(iso) : undefined;
+function timestampToDate(timestamp: Timestamp | undefined): Date | undefined {
+  return timestamp?.toDate();
 }
 
 // ==================== User Profile Functions ====================
@@ -50,25 +62,27 @@ function isoToDate(iso: string | undefined): Date | undefined {
  */
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
   try {
-    const user = await getItemById<any>(containers.users, uid, uid);
+    const docRef = doc(db, USERS_COLLECTION, uid);
+    const docSnap = await getDoc(docRef);
 
-    if (!user) {
+    if (!docSnap.exists()) {
       return null;
     }
 
+    const data = docSnap.data();
     return {
-      uid: user.id,
-      email: user.email,
-      displayName: user.displayName,
-      role: user.role as UserRole,
-      status: (user.status as UserStatus) || "active",
-      isActive: user.isActive !== false,
-      allowedDevelopments: user.allowedDevelopments || undefined,
-      invitedBy: user.invitedBy,
-      invitedAt: isoToDate(user.invitedAt),
-      createdAt: isoToDate(user.createdAt) || new Date(),
-      lastLogin: isoToDate(user.lastLogin),
-      passwordSet: user.passwordSet || false,
+      uid: docSnap.id,
+      email: data.email,
+      displayName: data.displayName,
+      role: data.role as UserRole,
+      status: (data.status as UserStatus) || "active",
+      isActive: data.isActive !== false,
+      allowedDevelopments: data.allowedDevelopments || undefined,
+      invitedBy: data.invitedBy,
+      invitedAt: timestampToDate(data.invitedAt),
+      createdAt: timestampToDate(data.createdAt) || new Date(),
+      lastLogin: timestampToDate(data.lastLogin),
+      passwordSet: data.passwordSet || false,
     };
   } catch (error) {
     console.error("Error getting user profile:", error);
@@ -81,11 +95,8 @@ export async function getUserProfile(uid: string): Promise<UserProfile | null> {
  */
 export async function markPasswordSet(uid: string): Promise<void> {
   try {
-    const user = await getItemById<any>(containers.users, uid, uid);
-    if (!user) return;
-
-    await replaceItem(containers.users, uid, uid, {
-      ...user,
+    const docRef = doc(db, USERS_COLLECTION, uid);
+    await updateDoc(docRef, {
       passwordSet: true,
     });
   } catch (error) {
@@ -99,30 +110,28 @@ export async function markPasswordSet(uid: string): Promise<void> {
  */
 export async function getUserProfileByEmail(email: string): Promise<UserProfile | null> {
   try {
-    const users = await queryAll<any>(
-      containers.users,
-      'SELECT * FROM c WHERE c.email = @email',
-      [{ name: '@email', value: email.toLowerCase() }]
-    );
+    const q = query(collection(db, USERS_COLLECTION), where("email", "==", email.toLowerCase()));
+    const snapshot = await getDocs(q);
 
-    if (users.length === 0) {
+    if (snapshot.empty) {
       return null;
     }
 
-    const user = users[0];
+    const docSnap = snapshot.docs[0];
+    const data = docSnap.data();
     return {
-      uid: user.id,
-      email: user.email,
-      displayName: user.displayName,
-      role: user.role as UserRole,
-      status: (user.status as UserStatus) || "active",
-      isActive: user.isActive !== false,
-      allowedDevelopments: user.allowedDevelopments || undefined,
-      invitedBy: user.invitedBy,
-      invitedAt: isoToDate(user.invitedAt),
-      createdAt: isoToDate(user.createdAt) || new Date(),
-      lastLogin: isoToDate(user.lastLogin),
-      passwordSet: user.passwordSet || false,
+      uid: docSnap.id,
+      email: data.email,
+      displayName: data.displayName,
+      role: data.role as UserRole,
+      status: (data.status as UserStatus) || "active",
+      isActive: data.isActive !== false,
+      allowedDevelopments: data.allowedDevelopments || undefined,
+      invitedBy: data.invitedBy,
+      invitedAt: timestampToDate(data.invitedAt),
+      createdAt: timestampToDate(data.createdAt) || new Date(),
+      lastLogin: timestampToDate(data.lastLogin),
+      passwordSet: data.passwordSet || false,
     };
   } catch (error) {
     console.error("Error getting user by email:", error);
@@ -148,7 +157,6 @@ export async function createUserFromInvite(
   invite: UserInvite
 ): Promise<UserProfile> {
   const userProfile = {
-    id: uid,
     uid,
     email: email.toLowerCase(),
     displayName,
@@ -157,13 +165,14 @@ export async function createUserFromInvite(
     isActive: true,
     allowedDevelopments: invite.allowedDevelopments || null,
     invitedBy: invite.invitedBy,
-    invitedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
-    lastLogin: new Date().toISOString(),
+    invitedAt: serverTimestamp(),
+    createdAt: serverTimestamp(),
+    lastLogin: serverTimestamp(),
     passwordSet: false,
   };
 
-  await createItem(containers.users, userProfile);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  await setDoc(docRef, userProfile);
 
   // Mark invite as accepted
   await markInviteAsAccepted(invite.id);
@@ -209,41 +218,33 @@ export async function createUserFromInvite(
  */
 export async function getInviteById(inviteId: string): Promise<UserInvite | null> {
   try {
-    // For invites, we use email as partition key, but we don't know it yet
-    // So we need to query by id
-    const invites = await queryAll<any>(
-      containers.invites,
-      'SELECT * FROM c WHERE c.id = @id',
-      [{ name: '@id', value: inviteId }]
-    );
+    const docRef = doc(db, INVITES_COLLECTION, inviteId);
+    const docSnap = await getDoc(docRef);
 
-    if (invites.length === 0) {
+    if (!docSnap.exists()) {
       return null;
     }
 
-    const data = invites[0];
-    const expiresAt = isoToDate(data.expiresAt) || new Date();
+    const data = docSnap.data();
+    const expiresAt = timestampToDate(data.expiresAt) || new Date();
 
     // Check if expired and update status
     if (data.status === "pending" && expiresAt < new Date()) {
-      await replaceItem(containers.invites, data.id, data.email, {
-        ...data,
-        status: "expired",
-      });
+      await updateDoc(docRef, { status: "expired" });
       return null;
     }
 
     return {
-      id: data.id,
+      id: docSnap.id,
       email: data.email,
       role: data.role as UserRole,
       allowedDevelopments: data.allowedDevelopments || undefined,
-      token: data.id,
+      token: docSnap.id,
       invitedBy: data.invitedBy,
       invitedByEmail: data.invitedByEmail,
       invitedByName: data.invitedByName,
       status: data.status,
-      createdAt: isoToDate(data.createdAt) || new Date(),
+      createdAt: timestampToDate(data.createdAt) || new Date(),
       expiresAt,
     };
   } catch (error) {
@@ -265,7 +266,6 @@ export async function createAdminUserProfile(
   }
 
   const userProfile = {
-    id: uid,
     uid,
     email: email.toLowerCase(),
     displayName: displayName || email.split("@")[0],
@@ -273,11 +273,12 @@ export async function createAdminUserProfile(
     status: "active" as UserStatus,
     isActive: true,
     allowedDevelopments: null,
-    createdAt: new Date().toISOString(),
-    lastLogin: new Date().toISOString(),
+    createdAt: serverTimestamp(),
+    lastLogin: serverTimestamp(),
   };
 
-  await createItem(containers.users, userProfile);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  await setDoc(docRef, userProfile);
 
   await logAuditEvent({
     action: "admin_created",
@@ -303,13 +304,8 @@ export async function createAdminUserProfile(
  */
 export async function updateLastLogin(uid: string): Promise<void> {
   try {
-    const user = await getItemById<any>(containers.users, uid, uid);
-    if (!user) return;
-
-    await replaceItem(containers.users, uid, uid, {
-      ...user,
-      lastLogin: new Date().toISOString(),
-    });
+    const docRef = doc(db, USERS_COLLECTION, uid);
+    await updateDoc(docRef, { lastLogin: serverTimestamp() });
   } catch (error) {
     console.error("Error updating last login:", error);
   }
@@ -323,22 +319,20 @@ export async function updateUserRole(
   newRole: UserRole,
   performedBy: string
 ): Promise<void> {
-  const user = await getItemById<any>(containers.users, uid, uid);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  const userDoc = await getDoc(docRef);
 
-  if (!user) {
+  if (!userDoc.exists()) {
     throw new Error("User not found");
   }
 
-  const oldRole = user.role;
-  await replaceItem(containers.users, uid, uid, {
-    ...user,
-    role: newRole,
-  });
+  const oldRole = userDoc.data().role;
+  await updateDoc(docRef, { role: newRole });
 
   await logAuditEvent({
     action: "user_role_changed",
     userId: uid,
-    userEmail: user.email,
+    userEmail: userDoc.data().email,
     performedBy,
     details: { oldRole, newRole },
   });
@@ -356,29 +350,30 @@ export async function updateUserProfile(
   },
   performedBy: string
 ): Promise<void> {
-  const user = await getItemById<any>(containers.users, uid, uid);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  const userDoc = await getDoc(docRef);
 
-  if (!user) {
+  if (!userDoc.exists()) {
     throw new Error("User not found");
   }
 
-  const oldData = { ...user };
-  const updatedUser = { ...user };
+  const oldData = userDoc.data();
+  const updateData: Record<string, unknown> = {};
 
   if (updates.displayName !== undefined) {
-    updatedUser.displayName = updates.displayName;
+    updateData.displayName = updates.displayName;
   }
   if (updates.role !== undefined) {
-    updatedUser.role = updates.role;
+    updateData.role = updates.role;
   }
   if (updates.allowedDevelopments !== undefined) {
-    updatedUser.allowedDevelopments =
+    updateData.allowedDevelopments =
       updates.allowedDevelopments && updates.allowedDevelopments.length > 0
         ? updates.allowedDevelopments
         : null;
   }
 
-  await replaceItem(containers.users, uid, uid, updatedUser);
+  await updateDoc(docRef, updateData);
 
   await logAuditEvent({
     action: "user_edited",
@@ -393,14 +388,14 @@ export async function updateUserProfile(
  * Deactivate a user
  */
 export async function deactivateUser(uid: string, performedBy: string): Promise<void> {
-  const user = await getItemById<any>(containers.users, uid, uid);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  const userDoc = await getDoc(docRef);
 
-  if (!user) {
+  if (!userDoc.exists()) {
     throw new Error("User not found");
   }
 
-  await replaceItem(containers.users, uid, uid, {
-    ...user,
+  await updateDoc(docRef, {
     isActive: false,
     status: "inactive",
   });
@@ -408,7 +403,7 @@ export async function deactivateUser(uid: string, performedBy: string): Promise<
   await logAuditEvent({
     action: "user_deactivated",
     userId: uid,
-    userEmail: user.email,
+    userEmail: userDoc.data().email,
     performedBy,
     details: {},
   });
@@ -418,14 +413,14 @@ export async function deactivateUser(uid: string, performedBy: string): Promise<
  * Reactivate a user
  */
 export async function reactivateUser(uid: string, performedBy: string): Promise<void> {
-  const user = await getItemById<any>(containers.users, uid, uid);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  const userDoc = await getDoc(docRef);
 
-  if (!user) {
+  if (!userDoc.exists()) {
     throw new Error("User not found");
   }
 
-  await replaceItem(containers.users, uid, uid, {
-    ...user,
+  await updateDoc(docRef, {
     isActive: true,
     status: "active",
   });
@@ -433,7 +428,7 @@ export async function reactivateUser(uid: string, performedBy: string): Promise<
   await logAuditEvent({
     action: "user_reactivated",
     userId: uid,
-    userEmail: user.email,
+    userEmail: userDoc.data().email,
     performedBy,
     details: {},
   });
@@ -443,14 +438,15 @@ export async function reactivateUser(uid: string, performedBy: string): Promise<
  * Delete a user
  */
 export async function deleteUser(uid: string, performedBy: string): Promise<void> {
-  const user = await getItemById<any>(containers.users, uid, uid);
+  const docRef = doc(db, USERS_COLLECTION, uid);
+  const userDoc = await getDoc(docRef);
 
-  if (!user) {
+  if (!userDoc.exists()) {
     throw new Error("User not found");
   }
 
-  const userData = { ...user };
-  await deleteItem(containers.users, uid, uid);
+  const userData = userDoc.data();
+  await deleteDoc(docRef);
 
   await logAuditEvent({
     action: "user_deleted",
@@ -466,24 +462,25 @@ export async function deleteUser(uid: string, performedBy: string): Promise<void
  */
 export async function getAllUsers(): Promise<UserProfile[]> {
   try {
-    const users = await queryAll<any>(
-      containers.users,
-      'SELECT * FROM c ORDER BY c.createdAt DESC'
-    );
+    const q = query(collection(db, USERS_COLLECTION), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
 
-    return users.map((user) => ({
-      uid: user.id,
-      email: user.email,
-      displayName: user.displayName,
-      role: user.role as UserRole,
-      status: (user.status as UserStatus) || "active",
-      isActive: user.isActive !== false,
-      allowedDevelopments: user.allowedDevelopments || undefined,
-      invitedBy: user.invitedBy,
-      invitedAt: isoToDate(user.invitedAt),
-      createdAt: isoToDate(user.createdAt) || new Date(),
-      lastLogin: isoToDate(user.lastLogin),
-    }));
+    return querySnapshot.docs.map((docSnap) => {
+      const data = docSnap.data();
+      return {
+        uid: docSnap.id,
+        email: data.email,
+        displayName: data.displayName,
+        role: data.role as UserRole,
+        status: (data.status as UserStatus) || "active",
+        isActive: data.isActive !== false,
+        allowedDevelopments: data.allowedDevelopments || undefined,
+        invitedBy: data.invitedBy,
+        invitedAt: timestampToDate(data.invitedAt),
+        createdAt: timestampToDate(data.createdAt) || new Date(),
+        lastLogin: timestampToDate(data.lastLogin),
+      };
+    });
   } catch (error) {
     console.error("Error getting all users:", error);
     return [];
@@ -507,7 +504,7 @@ export function canAccessDevelopment(
 // ==================== Invite Functions ====================
 
 /**
- * Create a new invite with custom email via Graph API
+ * Create a new invite with Firebase Magic Link
  */
 export async function createUserInvite(
   email: string,
@@ -536,12 +533,8 @@ export async function createUserInvite(
   const expiresAt = new Date();
   expiresAt.setDate(expiresAt.getDate() + 7);
 
-  // Generate invite ID/token
-  const inviteId = generateId();
-
-  // Create invite record in Cosmos DB
+  // Create invite record in Firestore first
   const inviteData = {
-    id: inviteId,
     email: normalizedEmail,
     role,
     allowedDevelopments: allowedDevelopments?.length ? allowedDevelopments : null,
@@ -550,26 +543,25 @@ export async function createUserInvite(
     invitedByName: invitedByName || null,
     inviteeName: inviteeName || null,
     status: "pending" as const,
-    createdAt: new Date().toISOString(),
-    expiresAt: expiresAt.toISOString(),
+    createdAt: serverTimestamp(),
+    expiresAt: Timestamp.fromDate(expiresAt),
   };
 
-  await createItem(containers.invites, inviteData);
+  const docRef = await addDoc(collection(db, INVITES_COLLECTION), inviteData);
 
-  // Send custom email with invitation link via Graph API
-  const appUrl = import.meta.env.VITE_APP_URL || window.location.origin;
-  const inviteLink = `${appUrl}/invite/${inviteId}`;
+  // Send Firebase Magic Link email
+  const actionCodeSettings = getActionCodeSettings(docRef.id);
 
   try {
-    await sendInvitationEmail(
-      normalizedEmail,
-      inviteLink,
-      role,
-      invitedByName || invitedByEmail
-    );
+    await sendSignInLinkToEmail(auth, normalizedEmail, actionCodeSettings);
+
+    // Store email in localStorage for sign-in completion (for same device)
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("emailForSignIn", normalizedEmail);
+    }
   } catch (error) {
     // If email sending fails, delete the invite record
-    await deleteItem(containers.invites, inviteId, normalizedEmail);
+    await deleteDoc(docRef);
     throw new Error(`Failed to send invite email: ${error instanceof Error ? error.message : "Unknown error"}`);
   }
 
@@ -581,11 +573,11 @@ export async function createUserInvite(
   });
 
   return {
-    id: inviteId,
+    id: docRef.id,
     email: normalizedEmail,
     role,
     allowedDevelopments,
-    token: inviteId,
+    token: docRef.id,
     invitedBy,
     invitedByEmail,
     invitedByName,
@@ -600,42 +592,38 @@ export async function createUserInvite(
  */
 export async function getInviteByToken(token: string): Promise<UserInvite | null> {
   try {
-    const invites = await queryAll<any>(
-      containers.invites,
-      'SELECT * FROM c WHERE c.id = @token AND c.status = @status',
-      [
-        { name: '@token', value: token },
-        { name: '@status', value: 'pending' }
-      ]
+    const q = query(
+      collection(db, INVITES_COLLECTION),
+      where("token", "==", token),
+      where("status", "==", "pending")
     );
+    const querySnapshot = await getDocs(q);
 
-    if (invites.length === 0) {
+    if (querySnapshot.empty) {
       return null;
     }
 
-    const data = invites[0];
-    const expiresAt = isoToDate(data.expiresAt) || new Date();
+    const docSnap = querySnapshot.docs[0];
+    const data = docSnap.data();
+    const expiresAt = timestampToDate(data.expiresAt) || new Date();
 
     // Check if expired
     if (expiresAt < new Date()) {
-      await replaceItem(containers.invites, data.id, data.email, {
-        ...data,
-        status: "expired",
-      });
+      await updateDoc(doc(db, INVITES_COLLECTION, docSnap.id), { status: "expired" });
       return null;
     }
 
     return {
-      id: data.id,
+      id: docSnap.id,
       email: data.email,
       role: data.role as UserRole,
       allowedDevelopments: data.allowedDevelopments || undefined,
-      token: data.id,
+      token: data.token,
       invitedBy: data.invitedBy,
       invitedByEmail: data.invitedByEmail,
       invitedByName: data.invitedByName,
       status: data.status,
-      createdAt: isoToDate(data.createdAt) || new Date(),
+      createdAt: timestampToDate(data.createdAt) || new Date(),
       expiresAt,
     };
   } catch (error) {
@@ -649,42 +637,38 @@ export async function getInviteByToken(token: string): Promise<UserInvite | null
  */
 export async function getPendingInviteByEmail(email: string): Promise<UserInvite | null> {
   try {
-    const invites = await queryAll<any>(
-      containers.invites,
-      'SELECT * FROM c WHERE c.email = @email AND c.status = @status',
-      [
-        { name: '@email', value: email.toLowerCase() },
-        { name: '@status', value: 'pending' }
-      ]
+    const q = query(
+      collection(db, INVITES_COLLECTION),
+      where("email", "==", email.toLowerCase()),
+      where("status", "==", "pending")
     );
+    const querySnapshot = await getDocs(q);
 
-    if (invites.length === 0) {
+    if (querySnapshot.empty) {
       return null;
     }
 
-    const data = invites[0];
-    const expiresAt = isoToDate(data.expiresAt) || new Date();
+    const docSnap = querySnapshot.docs[0];
+    const data = docSnap.data();
+    const expiresAt = timestampToDate(data.expiresAt) || new Date();
 
     // Check if expired
     if (expiresAt < new Date()) {
-      await replaceItem(containers.invites, data.id, data.email, {
-        ...data,
-        status: "expired",
-      });
+      await updateDoc(doc(db, INVITES_COLLECTION, docSnap.id), { status: "expired" });
       return null;
     }
 
     return {
-      id: data.id,
+      id: docSnap.id,
       email: data.email,
       role: data.role as UserRole,
       allowedDevelopments: data.allowedDevelopments || undefined,
-      token: data.id,
+      token: data.token,
       invitedBy: data.invitedBy,
       invitedByEmail: data.invitedByEmail,
       invitedByName: data.invitedByName,
       status: data.status,
-      createdAt: isoToDate(data.createdAt) || new Date(),
+      createdAt: timestampToDate(data.createdAt) || new Date(),
       expiresAt,
     };
   } catch (error) {
@@ -698,25 +682,26 @@ export async function getPendingInviteByEmail(email: string): Promise<UserInvite
  */
 export async function getAllInvites(): Promise<UserInvite[]> {
   try {
-    const invites = await queryAll<any>(
-      containers.invites,
-      'SELECT * FROM c ORDER BY c.createdAt DESC'
-    );
+    const q = query(collection(db, INVITES_COLLECTION), orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
 
-    return invites.map((data) => ({
-      id: data.id,
-      email: data.email,
-      role: data.role as UserRole,
-      allowedDevelopments: data.allowedDevelopments || undefined,
-      token: data.id,
-      invitedBy: data.invitedBy,
-      invitedByEmail: data.invitedByEmail,
-      invitedByName: data.invitedByName,
-      status: data.status,
-      createdAt: isoToDate(data.createdAt) || new Date(),
-      expiresAt: isoToDate(data.expiresAt) || new Date(),
-      acceptedAt: isoToDate(data.acceptedAt),
-    }));
+    return querySnapshot.docs.map((docSnap) => {
+      const data = docSnap.data();
+      return {
+        id: docSnap.id,
+        email: data.email,
+        role: data.role as UserRole,
+        allowedDevelopments: data.allowedDevelopments || undefined,
+        token: data.token,
+        invitedBy: data.invitedBy,
+        invitedByEmail: data.invitedByEmail,
+        invitedByName: data.invitedByName,
+        status: data.status,
+        createdAt: timestampToDate(data.createdAt) || new Date(),
+        expiresAt: timestampToDate(data.expiresAt) || new Date(),
+        acceptedAt: timestampToDate(data.acceptedAt),
+      };
+    });
   } catch (error) {
     console.error("Error getting all invites:", error);
     return [];
@@ -727,19 +712,10 @@ export async function getAllInvites(): Promise<UserInvite[]> {
  * Mark invite as accepted
  */
 async function markInviteAsAccepted(inviteId: string): Promise<void> {
-  const invites = await queryAll<any>(
-    containers.invites,
-    'SELECT * FROM c WHERE c.id = @id',
-    [{ name: '@id', value: inviteId }]
-  );
-
-  if (invites.length === 0) return;
-
-  const invite = invites[0];
-  await replaceItem(containers.invites, inviteId, invite.email, {
-    ...invite,
+  const docRef = doc(db, INVITES_COLLECTION, inviteId);
+  await updateDoc(docRef, {
     status: "accepted",
-    acceptedAt: new Date().toISOString(),
+    acceptedAt: serverTimestamp(),
   });
 }
 
@@ -747,66 +723,55 @@ async function markInviteAsAccepted(inviteId: string): Promise<void> {
  * Cancel an invite
  */
 export async function cancelInvite(inviteId: string, performedBy: string): Promise<void> {
-  const invites = await queryAll<any>(
-    containers.invites,
-    'SELECT * FROM c WHERE c.id = @id',
-    [{ name: '@id', value: inviteId }]
-  );
+  const docRef = doc(db, INVITES_COLLECTION, inviteId);
+  const inviteDoc = await getDoc(docRef);
 
-  if (invites.length === 0) {
+  if (!inviteDoc.exists()) {
     throw new Error("Invite not found");
   }
 
-  const invite = invites[0];
-  await replaceItem(containers.invites, inviteId, invite.email, {
-    ...invite,
-    status: "cancelled",
-  });
+  const inviteData = inviteDoc.data();
+  await updateDoc(docRef, { status: "cancelled" });
 
   await logAuditEvent({
     action: "invite_cancelled",
     performedBy,
-    details: { email: invite.email, role: invite.role },
+    details: { email: inviteData.email, role: inviteData.role },
   });
 }
 
 /**
- * Resend an invite using Graph API email
+ * Resend an invite using Firebase Magic Link
  */
 export async function resendInvite(inviteId: string, performedBy: string): Promise<UserInvite> {
-  const invites = await queryAll<any>(
-    containers.invites,
-    'SELECT * FROM c WHERE c.id = @id',
-    [{ name: '@id', value: inviteId }]
-  );
+  const docRef = doc(db, INVITES_COLLECTION, inviteId);
+  const inviteDoc = await getDoc(docRef);
 
-  if (invites.length === 0) {
+  if (!inviteDoc.exists()) {
     throw new Error("Invite not found");
   }
 
-  const data = invites[0];
+  const data = inviteDoc.data();
 
   // Set new expiry
   const newExpiresAt = new Date();
   newExpiresAt.setDate(newExpiresAt.getDate() + 7);
 
-  await replaceItem(containers.invites, inviteId, data.email, {
-    ...data,
-    expiresAt: newExpiresAt.toISOString(),
+  await updateDoc(docRef, {
+    expiresAt: Timestamp.fromDate(newExpiresAt),
     status: "pending",
   });
 
-  // Send custom email with invitation link via Graph API
-  const appUrl = import.meta.env.VITE_APP_URL || window.location.origin;
-  const inviteLink = `${appUrl}/invite/${inviteId}`;
+  // Send Firebase Magic Link email
+  const actionCodeSettings = getActionCodeSettings(inviteId);
 
   try {
-    await sendInvitationEmail(
-      data.email,
-      inviteLink,
-      data.role as UserRole,
-      data.invitedByName || data.invitedByEmail
-    );
+    await sendSignInLinkToEmail(auth, data.email, actionCodeSettings);
+
+    // Store email in localStorage for sign-in completion (for same device)
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("emailForSignIn", data.email);
+    }
   } catch (error) {
     throw new Error(`Failed to resend invite email: ${error instanceof Error ? error.message : "Unknown error"}`);
   }
@@ -827,7 +792,7 @@ export async function resendInvite(inviteId: string, performedBy: string): Promi
     invitedByEmail: data.invitedByEmail,
     invitedByName: data.invitedByName,
     status: "pending",
-    createdAt: isoToDate(data.createdAt) || new Date(),
+    createdAt: timestampToDate(data.createdAt) || new Date(),
     expiresAt: newExpiresAt,
   };
 }
@@ -836,16 +801,8 @@ export async function resendInvite(inviteId: string, performedBy: string): Promi
  * Delete an invite completely
  */
 export async function deleteInvite(inviteId: string): Promise<void> {
-  const invites = await queryAll<any>(
-    containers.invites,
-    'SELECT * FROM c WHERE c.id = @id',
-    [{ name: '@id', value: inviteId }]
-  );
-
-  if (invites.length === 0) return;
-
-  const invite = invites[0];
-  await deleteItem(containers.invites, inviteId, invite.email);
+  const docRef = doc(db, INVITES_COLLECTION, inviteId);
+  await deleteDoc(docRef);
 }
 
 // ==================== Notification Functions ====================
@@ -860,16 +817,14 @@ export async function createNotification(params: {
   message: string;
   data?: Record<string, unknown>;
 }): Promise<string> {
-  const id = generateId();
   const notification = {
-    id,
     ...params,
     read: false,
-    createdAt: new Date().toISOString(),
+    createdAt: serverTimestamp(),
   };
 
-  await createItem(containers.notifications, notification);
-  return id;
+  const docRef = await addDoc(collection(db, NOTIFICATIONS_COLLECTION), notification);
+  return docRef.id;
 }
 
 /**
@@ -877,22 +832,26 @@ export async function createNotification(params: {
  */
 export async function getUserNotifications(userId: string): Promise<UserNotification[]> {
   try {
-    const notifications = await queryAll<any>(
-      containers.notifications,
-      'SELECT * FROM c WHERE c.userId = @userId ORDER BY c.createdAt DESC',
-      [{ name: '@userId', value: userId }]
+    const q = query(
+      collection(db, NOTIFICATIONS_COLLECTION),
+      where("userId", "==", userId),
+      orderBy("createdAt", "desc")
     );
+    const querySnapshot = await getDocs(q);
 
-    return notifications.map((data) => ({
-      id: data.id,
-      userId: data.userId,
-      type: data.type,
-      title: data.title,
-      message: data.message,
-      data: data.data,
-      read: data.read,
-      createdAt: isoToDate(data.createdAt) || new Date(),
-    }));
+    return querySnapshot.docs.map((docSnap) => {
+      const data = docSnap.data();
+      return {
+        id: docSnap.id,
+        userId: data.userId,
+        type: data.type,
+        title: data.title,
+        message: data.message,
+        data: data.data,
+        read: data.read,
+        createdAt: timestampToDate(data.createdAt) || new Date(),
+      };
+    });
   } catch (error) {
     console.error("Error getting notifications:", error);
     return [];
@@ -904,12 +863,13 @@ export async function getUserNotifications(userId: string): Promise<UserNotifica
  */
 export async function getUnreadNotificationCount(userId: string): Promise<number> {
   try {
-    const notifications = await queryAll<any>(
-      containers.notifications,
-      'SELECT * FROM c WHERE c.userId = @userId AND c.read = false',
-      [{ name: '@userId', value: userId }]
+    const q = query(
+      collection(db, NOTIFICATIONS_COLLECTION),
+      where("userId", "==", userId),
+      where("read", "==", false)
     );
-    return notifications.length;
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.size;
   } catch (error) {
     console.error("Error getting unread count:", error);
     return 0;
@@ -920,37 +880,23 @@ export async function getUnreadNotificationCount(userId: string): Promise<number
  * Mark notification as read
  */
 export async function markNotificationAsRead(notificationId: string): Promise<void> {
-  // We need to find the notification first to get the partition key (userId)
-  const allNotifications = await queryAll<any>(
-    containers.notifications,
-    'SELECT * FROM c WHERE c.id = @id',
-    [{ name: '@id', value: notificationId }]
-  );
-
-  if (allNotifications.length === 0) return;
-
-  const notification = allNotifications[0];
-  await replaceItem(containers.notifications, notificationId, notification.userId, {
-    ...notification,
-    read: true,
-  });
+  const docRef = doc(db, NOTIFICATIONS_COLLECTION, notificationId);
+  await updateDoc(docRef, { read: true });
 }
 
 /**
  * Mark all notifications as read for a user
  */
 export async function markAllNotificationsAsRead(userId: string): Promise<void> {
-  const notifications = await queryAll<any>(
-    containers.notifications,
-    'SELECT * FROM c WHERE c.userId = @userId AND c.read = false',
-    [{ name: '@userId', value: userId }]
+  const q = query(
+    collection(db, NOTIFICATIONS_COLLECTION),
+    where("userId", "==", userId),
+    where("read", "==", false)
   );
+  const querySnapshot = await getDocs(q);
 
-  const updates = notifications.map((notification) =>
-    replaceItem(containers.notifications, notification.id, userId, {
-      ...notification,
-      read: true,
-    })
+  const updates = querySnapshot.docs.map((docSnap) =>
+    updateDoc(doc(db, NOTIFICATIONS_COLLECTION, docSnap.id), { read: true })
   );
 
   await Promise.all(updates);
@@ -969,15 +915,10 @@ async function logAuditEvent(params: {
   details: Record<string, unknown>;
 }): Promise<void> {
   try {
-    const id = generateId();
-    const auditLog = {
-      id,
-      userId: params.userId || params.performedBy || 'system',
+    await addDoc(collection(db, AUDIT_LOGS_COLLECTION), {
       ...params,
-      timestamp: new Date().toISOString(),
-    };
-
-    await createItem(containers.auditLogs, auditLog);
+      timestamp: serverTimestamp(),
+    });
   } catch (error) {
     console.error("Error logging audit event:", error);
   }
