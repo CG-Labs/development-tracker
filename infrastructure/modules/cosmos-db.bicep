@@ -52,15 +52,11 @@ resource usersContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/cont
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/email/?' }
-          { path: '/role/?' }
-          { path: '/isActive/?' }
-          { path: '/createdAt/?' }
-        ]
-        excludedPaths: [
           { path: '/*' }
         ]
+        excludedPaths: []
       }
       uniqueKeyPolicy: {
         uniqueKeys: [
@@ -84,11 +80,11 @@ resource invitesContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/co
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/status/?' }
-          { path: '/expiresAt/?' }
-          { path: '/createdAt/?' }
+          { path: '/*' }
         ]
+        excludedPaths: []
       }
       defaultTtl: 2592000  // 30 days auto-expiry
     }
@@ -108,10 +104,11 @@ resource notificationsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDataba
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/read/?' }
-          { path: '/createdAt/?' }
+          { path: '/*' }
         ]
+        excludedPaths: []
       }
     }
   }
@@ -130,11 +127,11 @@ resource auditLogsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/developmentId/?' }
-          { path: '/action/?' }
-          { path: '/timestamp/?' }
+          { path: '/*' }
         ]
+        excludedPaths: []
       }
     }
   }
@@ -153,10 +150,11 @@ resource notesContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/cont
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/developmentId/?' }
-          { path: '/timestamp/?' }
+          { path: '/*' }
         ]
+        excludedPaths: []
       }
     }
   }
@@ -175,10 +173,11 @@ resource companiesContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/
       }
       indexingPolicy: {
         indexingMode: 'consistent'
+        automatic: true
         includedPaths: [
-          { path: '/active/?' }
-          { path: '/name/?' }
+          { path: '/*' }
         ]
+        excludedPaths: []
       }
     }
   }
