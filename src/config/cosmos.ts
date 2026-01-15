@@ -1,132 +1,122 @@
 /**
- * Azure Cosmos DB Configuration
+ * Cosmos DB API Proxy - Browser to Backend
  *
- * Connection and client setup for Cosmos DB NoSQL API
+ * Proxies all Cosmos DB operations through backend API
+ * Backend has Cosmos SDK, browser makes HTTP calls
  */
 
-import { CosmosClient, Container, Database } from '@azure/cosmos';
+const API_BASE = '/api/cosmos';
 
-// Cosmos DB configuration from environment
-const endpoint = import.meta.env.COSMOS_DB_ENDPOINT || '';
-const key = import.meta.env.COSMOS_DB_KEY || '';
-const databaseId = 'devtracker';
+// Mock container that proxies to backend
+const createApiContainer = (containerName: string) => ({
+  item: (id: string, partitionKey: string) => ({
+    read: async () => {
+      const res = await fetch(`${API_BASE}/${containerName}/${id}/${partitionKey}`);
+      if (res.status === 404) return { resource: null };
+      const resource = await res.json();
+      return { resource };
+    },
+    replace: async (data: any) => {
+      const res = await fetch(`${API_BASE}/${containerName}/${id}/${partitionKey}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const resource = await res.json();
+      return { resource };
+    },
+    delete: async () => {
+      await fetch(`${API_BASE}/${containerName}/${id}/${partitionKey}`, { method: 'DELETE' });
+      return {};
+    }
+  }),
+  items: {
+    query: (querySpec: any, options?: any) => ({
+      fetchAll: async () => {
+        const res = await fetch(`${API_BASE}/${containerName}/query`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: querySpec.query, parameters: querySpec.parameters })
+        });
+        const resources = await res.json();
+        return { resources };
+      },
+      fetchNext: async () => {
+        const res = await fetch(`${API_BASE}/${containerName}/query`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: querySpec.query, parameters: querySpec.parameters, maxItemCount: options?.maxItemCount, continuationToken: options?.continuationToken })
+        });
+        const data = await res.json();
+        return { resources: data.resources || data, hasMoreResults: false, continuationToken: undefined };
+      }
+    }),
+    create: async (data: any) => {
+      const res = await fetch(`${API_BASE}/${containerName}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const resource = await res.json();
+      return { resource };
+    },
+    upsert: async (data: any) => {
+      const res = await fetch(`${API_BASE}/${containerName}/upsert`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const resource = await res.json();
+      return { resource };
+    }
+  }
+});
 
-// Create Cosmos Client
-export const cosmosClient = new CosmosClient({ endpoint, key });
-
-// Database reference
-export const database: Database = cosmosClient.database(databaseId);
-
-// Container references
 export const containers = {
-  users: database.container('users'),
-  invites: database.container('invites'),
-  notifications: database.container('notifications'),
-  auditLogs: database.container('auditLogs'),
-  notes: database.container('notes'),
-  developmentCompanies: database.container('developmentCompanies'),
-  incentiveSchemes: database.container('incentiveSchemes'),
-  settings: database.container('settings'),
+  users: createApiContainer('users'),
+  invites: createApiContainer('invites'),
+  notifications: createApiContainer('notifications'),
+  auditLogs: createApiContainer('auditLogs'),
+  notes: createApiContainer('notes'),
+  developmentCompanies: createApiContainer('developmentCompanies'),
+  incentiveSchemes: createApiContainer('incentiveSchemes'),
+  settings: createApiContainer('settings'),
 };
 
-/**
- * Get a container by name
- */
-export function getContainer(containerName: string): Container {
-  return database.container(containerName);
+export const cosmosClient = {} as any;
+export const database = {
+  container: (name: string) => createApiContainer(name)
+};
+
+export function getContainer(containerName: string): any {
+  return createApiContainer(containerName);
 }
 
-/**
- * Helper to execute a query with parameters
- */
-export async function executeQuery<T>(
-  container: Container,
-  query: string,
-  parameters: Array<{ name: string; value: any }> = []
-): Promise<T[]> {
-  const { resources } = await container.items
-    .query<T>({ query, parameters })
-    .fetchAll();
+export async function executeQuery<T>(container: any, query: string, parameters: any[] = []): Promise<T[]> {
+  const { resources } = await container.items.query({ query, parameters }).fetchAll();
   return resources;
 }
 
-/**
- * Helper to get a single item by ID and partition key
- */
-export async function getItem<T = any>(
-  container: Container,
-  id: string,
-  partitionKey: string
-): Promise<T | null> {
-  try {
-    const { resource } = await container.item(id, partitionKey).read();
-    return (resource as T) || null;
-  } catch (error: any) {
-    if (error.code === 404) {
-      return null;
-    }
-    throw error;
-  }
+export async function getItem<T = any>(container: any, id: string, partitionKey: string): Promise<T | null> {
+  const { resource } = await container.item(id, partitionKey).read();
+  return resource;
 }
 
-/**
- * Helper to create an item
- */
-export async function createItem<T = any>(
-  container: Container,
-  item: any
-): Promise<T> {
+export async function createItem<T = any>(container: any, item: any): Promise<T> {
   const { resource } = await container.items.create(item);
   return resource as T;
 }
 
-/**
- * Helper to update an item
- */
-export async function updateItem<T = any>(
-  container: Container,
-  id: string,
-  partitionKey: string,
-  updates: any
-): Promise<T> {
-  const { resource } = await container
-    .item(id, partitionKey)
-    .replace(updates);
+export async function updateItem<T = any>(container: any, id: string, partitionKey: string, updates: any): Promise<T> {
+  const { resource } = await container.item(id, partitionKey).replace(updates);
   return resource as T;
 }
 
-/**
- * Helper to delete an item
- */
-export async function deleteItem(
-  container: Container,
-  id: string,
-  partitionKey: string
-): Promise<void> {
+export async function deleteItem(container: any, id: string, partitionKey: string): Promise<void> {
   await container.item(id, partitionKey).delete();
 }
 
-/**
- * Query with pagination support (continuation tokens)
- */
-export async function queryWithPagination<T>(
-  container: Container,
-  query: string,
-  parameters: Array<{ name: string; value: any }> = [],
-  maxItemCount: number = 50,
-  continuationToken?: string
-): Promise<{ items: T[]; continuationToken?: string; hasMore: boolean }> {
-  const queryIterator = container.items.query<T>(
-    { query, parameters },
-    { maxItemCount, continuationToken }
-  );
-
-  const { resources, hasMoreResults, continuationToken: nextToken } =
-    await queryIterator.fetchNext();
-
-  return {
-    items: resources,
-    continuationToken: nextToken,
-    hasMore: hasMoreResults,
-  };
+export async function queryWithPagination<T>(container: any, query: string, parameters: any[] = [], maxItemCount: number = 50, continuationToken?: string): Promise<{ items: T[]; continuationToken?: string; hasMore: boolean }> {
+  const { resources, hasMoreResults, continuationToken: nextToken } = await container.items.query({ query, parameters }, { maxItemCount, continuationToken }).fetchNext();
+  return { items: resources, continuationToken: nextToken, hasMore: hasMoreResults };
 }
